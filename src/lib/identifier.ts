@@ -74,7 +74,7 @@ export function identify(sceneKey: string, detectionId: string, truth: TruthItem
   const species = {
     id: speciesPick.id,
     name: speciesPick.common,
-    confidence: round((hard ? between(rng, 0.3, 0.62) : between(rng, 0.55, 0.9)) - penalty),
+    confidence: round((hard ? between(rng, 0.3, 0.62) : between(rng, 0.6, 0.92)) - penalty),
   }
   return { order, family, species, speciesId: speciesPick.id }
 }

@@ -36,7 +36,7 @@ export function StepReview({ lab }: { lab: Lab }) {
         <h2>Step 4: Be the reviewer</h2>
         <p>
           Scientists don't just trust the AI. They check the guesses it was <strong>least sure</strong> about. The Mothbox
-          team does this in a tool called FiftyOne. Here are the {lab.unsure.length} cards where the AI was under 60% sure.
+          team does this in a tool called FiftyOne. Here are the {lab.unsure.length} cards where the AI was under 50% sure.
           Keep its guess or pick a better one.
         </p>
       </div>
@@ -50,6 +50,10 @@ export function StepReview({ lab }: { lab: Lab }) {
             Reviewed {reviewed} of {lab.unsure.length}
           </span>
         </div>
+        <p className="small">
+          You only need to check <strong>{lab.unsure.length}</strong> of {lab.cards.length} cards. The AI handles the easy
+          ones, and you spend your time on the hard ones. That's how scientists use AI: as a helper, not a replacement.
+        </p>
       </div>
 
       {lab.unsure.length === 0 && <p>The AI was sure about every card this time. Try the warm summer night.</p>}

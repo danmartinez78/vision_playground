@@ -1,4 +1,5 @@
 import type { Lab } from '../lab'
+import { ScaleUp } from './ScaleUp'
 import { GROUP_LABEL, GROUPS, ROLE_LABEL, SPECIES } from '../lib/species'
 
 export function StepLearn({ lab }: { lab: Lab }) {
@@ -137,6 +138,28 @@ export function StepLearn({ lab }: { lab: Lab }) {
           <p className="small muted">Your guess was {lab.guess || '—'}. The detector kept {lab.kept.length} spots.</p>
         </>
       )}
+
+      <h3>Why scientists use AI for this</h3>
+      <div className="then-now">
+        <div>
+          <h4>Before: all by hand</h4>
+          <ul>
+            <li>Insects were caught in traps, usually killed, and brought back to the lab.</li>
+            <li>Experts sorted, pinned and named them one at a time with a microscope.</li>
+            <li>One night's catch could take days, so scientists could only study a few places.</li>
+          </ul>
+        </div>
+        <div>
+          <h4>Now: camera + AI + people</h4>
+          <ul>
+            <li>A Mothbox photographs the insects, and they fly away unharmed.</li>
+            <li>AI does the first pass: find every insect, then make a best guess at its name.</li>
+            <li>Experts check only the hard cases, so many more places and nights can be studied.</li>
+          </ul>
+        </div>
+      </div>
+
+      <ScaleUp lab={lab} />
 
       <div className="big-idea">
         <h3>Seeing vs. guessing</h3>

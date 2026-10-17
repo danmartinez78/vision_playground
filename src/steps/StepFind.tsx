@@ -1,5 +1,6 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import type { Lab, Score } from '../lab'
+import { formatTime } from '../lib/time'
 import { SceneView, type BoxLayer } from '../SceneView'
 
 const COLORS = { mine: '#2563eb', detector: '#e11d74', answer: '#16a34a' }
@@ -11,6 +12,69 @@ function ScoreLine({ who, score }: { who: string; score: Score }) {
       <span className="pill good">Found {score.hits} of {score.total}</span>
       <span className="pill miss">Missed {score.misses}</span>
       <span className="pill bad">False alarms {score.falseAlarms}</span>
+    </div>
+  )
+}
+
+function Stopwatch({ lab }: { lab: Lab }) {
+  const { start, end } = lab.handTimer
+  const [now, setNow] = useState(() => Date.now())
+  useEffect(() => {
+    if (!start || end) return
+    const id = window.setInterval(() => setNow(Date.now()), 250)
+    return () => window.clearInterval(id)
+  }, [start, end])
+
+  if (!start) {
+    return (
+      <div className="stopwatch">
+        <span aria-hidden>⏱️</span>
+        <span>
+          Scientists used to find and count every insect by hand. <strong>How long does it take you?</strong>
+        </span>
+        <button
+          className="primary"
+          onClick={() => {
+            lab.setStudentBoxes([])
+            lab.setHandTimer({ start: Date.now(), end: null })
+          }}
+        >
+          Start the stopwatch
+        </button>
+      </div>
+    )
+  }
+  if (!end) {
+    return (
+      <div className="stopwatch running">
+        <span aria-hidden>⏱️</span>
+        <strong className="clock">{formatTime((now - start) / 1000)}</strong>
+        <span>Box every insect you can find, then press done. ({lab.studentBoxes.length} so far)</span>
+        <button className="primary" onClick={() => lab.setHandTimer({ start, end: Date.now() })}>
+          I'm done
+        </button>
+      </div>
+    )
+  }
+  const secs = (end - start) / 1000
+  return (
+    <div className="stopwatch done">
+      <span aria-hidden>⏱️</span>
+      <span>
+        You boxed <strong>{lab.studentBoxes.length}</strong> insects in <strong>{formatTime(secs)}</strong>
+        {lab.handSeconds !== null && <> (about {lab.handSeconds.toFixed(1)} seconds each)</>}.
+        {lab.detector ? (
+          <>
+            {' '}
+            The detector checked the whole picture in <strong>{(lab.detector.millis / 1000).toFixed(2)} seconds</strong>.
+          </>
+        ) : (
+          ' Now run the detector and compare.'
+        )}
+      </span>
+      <button className="ghost" onClick={() => lab.setHandTimer({ start: null, end: null })}>
+        Try again
+      </button>
     </div>
   )
 }
@@ -57,6 +121,8 @@ export function StepFind({ lab }: { lab: Lab }) {
           <strong>Experiment:</strong> move the slider. What happens to misses and false alarms?
         </li>
       </ol>
+
+      <Stopwatch lab={lab} />
 
       <div className="toolbar">
         <button className="primary" onClick={lab.runIt}>

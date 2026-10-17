@@ -7,10 +7,10 @@ Students walk through the same steps as the real Mothbox pipeline, doing each jo
 | Step | What students do | Real Mothbox equivalent |
 |---|---|---|
 | 1. The night | Pick a sample night (or load a photo), look around, guess the count | UV light attracts insects, camera photographs the sheet |
-| 2. Find the bugs | Draw boxes around insects, run the detector, move the confidence slider and watch hits, misses and false alarms change; peek at "what the detector sees" | YOLO detector finds and crops each insect |
+| 2. Find the bugs | Race a stopwatch to box insects by hand, run the detector, move the confidence slider and watch hits, misses and false alarms change; peek at "what the detector sees" | YOLO detector finds and crops each insect |
 | 3. Sort the crops | Sort each crop into a group, then compare with the AI's order, family and species guesses | BioCLIP names each crop at several levels of the tree of life |
-| 4. Be the reviewer | Fix the guesses the AI was least sure about; compare "AI alone" with "AI + you" | People review results in FiftyOne |
-| 5. What did we learn? | Night tally, pest watch, helpers, number of kinds; discussion of direct observation vs. estimation (the scent simulator's survey map) | Biodiversity counts and pest monitoring |
+| 4. Be the reviewer | Fix only the guesses the AI was least sure about; compare "AI alone" with "AI + you" | People review results in FiftyOne |
+| 5. What did we learn? | Night tally, pest watch, helpers, number of kinds; then vs. now (counting by hand vs. camera + AI + people); "Scale it up" runs the detector on 20 new photos and turns the student's own speed into by-hand time for a 300-photo night and a season; discussion of direct observation vs. estimation | Biodiversity counts and pest monitoring |
 
 ## Run it locally
 

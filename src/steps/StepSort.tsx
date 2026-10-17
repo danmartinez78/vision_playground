@@ -81,6 +81,9 @@ export function StepSort({ lab }: { lab: Lab }) {
         <span>
           Sorted {sorted} of {lab.cards.length} cards
           {lab.kept.length > lab.cards.length && ` (showing the ${lab.cards.length} the detector was most sure about)`}
+          {lab.sortSeconds !== null && (
+            <span className="muted"> · about {lab.sortSeconds.toFixed(1)} seconds per card</span>
+          )}
         </span>
         {sample ? (
           <button className="primary" onClick={() => lab.setAiRevealed(!lab.aiRevealed)}>
@@ -119,7 +122,7 @@ export function StepSort({ lab }: { lab: Lab }) {
                   <button
                     key={gr.id}
                     className={choice === gr.id ? 'chip on' : 'chip'}
-                    onClick={() => lab.setSortChoices({ ...lab.sortChoices, [d.id]: gr.id })}
+                    onClick={() => lab.chooseGroup(d.id, gr.id)}
                     title={gr.label}
                   >
                     <span aria-hidden>{gr.emoji}</span> {gr.label}

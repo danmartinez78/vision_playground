@@ -21,6 +21,9 @@ export function useLab() {
   const [sortChoices, setSortChoices] = useState<Record<string, GroupId>>({})
   const [aiRevealed, setAiRevealed] = useState(false)
   const [reviewChoices, setReviewChoices] = useState<Record<string, string>>({})
+  // stopwatches for the "by hand" jobs, so students can compare with the computer
+  const [handTimer, setHandTimer] = useState<{ start: number | null; end: number | null }>({ start: null, end: null })
+  const [sortTimer, setSortTimer] = useState<{ start: number; last: number; count: number } | null>(null)
 
   const setScene = (s: Scene | null) => {
     setSceneRaw(s)
@@ -30,6 +33,16 @@ export function useLab() {
     setSortChoices({})
     setAiRevealed(false)
     setReviewChoices({})
+    setHandTimer({ start: null, end: null })
+    setSortTimer(null)
+  }
+
+  const chooseGroup = (id: string, group: GroupId) => {
+    const now = Date.now()
+    if (!sortChoices[id]) {
+      setSortTimer((t) => (t ? { ...t, last: now, count: t.count + 1 } : { start: now, last: now, count: 1 }))
+    }
+    setSortChoices({ ...sortChoices, [id]: group })
   }
 
   const runIt = () => {
@@ -86,7 +99,7 @@ export function useLab() {
       const g = ai.get(d.id)
       if (!g) return false
       const conf = g.speciesId ? g.species.confidence : g.order.confidence
-      return conf < 0.6
+      return conf < 0.5
     })
     const finalLabel = (id: string): string | null => {
       const chosen = reviewChoices[id]
@@ -94,8 +107,15 @@ export function useLab() {
       return ai.get(id)?.speciesId ?? null
     }
 
-    return { truth, insects, kept, truthFor, detectorScore, studentScore, cards, ai, unsure, finalLabel }
-  }, [scene, detector, threshold, studentBoxes, reviewChoices])
+    // seconds per insect for each by-hand job (null until measured)
+    const handSeconds =
+      handTimer.start && handTimer.end && studentBoxes.length
+        ? (handTimer.end - handTimer.start) / 1000 / studentBoxes.length
+        : null
+    const sortSeconds = sortTimer && sortTimer.count > 1 ? (sortTimer.last - sortTimer.start) / 1000 / (sortTimer.count - 1) : null
+
+    return { truth, insects, kept, truthFor, detectorScore, studentScore, cards, ai, unsure, finalLabel, handSeconds, sortSeconds }
+  }, [scene, detector, threshold, studentBoxes, reviewChoices, handTimer, sortTimer])
 
   return {
     scene,
@@ -109,7 +129,9 @@ export function useLab() {
     threshold,
     setThreshold,
     sortChoices,
-    setSortChoices,
+    chooseGroup,
+    handTimer,
+    setHandTimer,
     aiRevealed,
     setAiRevealed,
     reviewChoices,

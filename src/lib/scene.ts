@@ -426,6 +426,21 @@ export const NIGHTS: NightRecipe[] = [
   },
 ]
 
+/** A different random night each time, for the "process a whole night" demo. */
+export function randomRecipe(seed: number): NightRecipe {
+  const rng = makeRng(seed)
+  return {
+    key: `batch-${seed}`,
+    title: `Photo ${seed}`,
+    blurb: '',
+    seed,
+    insects: Math.round(between(rng, 8, 45)),
+    debris: Math.round(between(rng, 0, 8)),
+    folds: Math.round(between(rng, 2, 7)),
+    weights: DEFAULT_WEIGHTS,
+  }
+}
+
 function weightedPick(rng: Rng, weights: Record<string, number>): string {
   const entries = Object.entries(weights)
   const total = entries.reduce((s, [, w]) => s + w, 0)
@@ -437,7 +452,7 @@ function weightedPick(rng: Rng, weights: Record<string, number>): string {
   return entries[entries.length - 1][0]
 }
 
-export function renderNight(recipe: NightRecipe): Scene {
+export function renderNight(recipe: NightRecipe, withImage = true): Scene {
   const rng = makeRng(recipe.seed)
   const canvas = document.createElement('canvas')
   canvas.width = SCENE_W
@@ -505,7 +520,7 @@ export function renderNight(recipe: NightRecipe): Scene {
     title: recipe.title,
     source: 'sample',
     canvas,
-    imageUrl: canvas.toDataURL('image/jpeg', 0.9),
+    imageUrl: withImage ? canvas.toDataURL('image/jpeg', 0.9) : '',
     width: SCENE_W,
     height: SCENE_H,
     truth,
