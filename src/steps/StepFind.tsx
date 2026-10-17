@@ -79,7 +79,7 @@ function Stopwatch({ lab }: { lab: Lab }) {
   )
 }
 
-export function StepFind({ lab }: { lab: Lab }) {
+export function StepFind({ lab, onExplain }: { lab: Lab; onExplain: () => void }) {
   const [zoom, setZoom] = useState(1)
   const [showMine, setShowMine] = useState(true)
   const [showDetector, setShowDetector] = useState(true)
@@ -106,7 +106,10 @@ export function StepFind({ lab }: { lab: Lab }) {
         <p>
           The first computer job is <strong>detection</strong>: finding <em>where</em> each insect is, without caring what
           kind it is. The real Mothbox uses a trained AI model called YOLO for this. Here you will try it yourself, then run
-          a simple detector that looks for spots that stand out from the white sheet.
+          a simple detector that looks for spots that stand out from the white sheet.{' '}
+          <button className="link" onClick={onExplain}>
+            How does a real AI like YOLO see?
+          </button>
         </p>
       </div>
 

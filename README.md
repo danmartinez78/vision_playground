@@ -12,6 +12,14 @@ Students walk through the same steps as the real Mothbox pipeline, doing each jo
 | 4. Be the reviewer | Fix only the guesses the AI was least sure about; compare "AI alone" with "AI + you" | People review results in FiftyOne |
 | 5. What did we learn? | Night tally, pest watch, helpers, number of kinds; then vs. now (counting by hand vs. camera + AI + people); "Scale it up" runs the detector on 20 new photos and turns the student's own speed into by-hand time for a 300-photo night and a season; discussion of direct observation vs. estimation | Biodiversity counts and pest monitoring |
 
+There is also a **How the AI sees** page (button in the header, and a link in step 2) that explains convolutional neural networks at a middle-school level, with everything running live on the sample night:
+
+1. A photo is a grid of numbers (zoom into a moth until it turns into pixel values).
+2. A filter is a tiny pattern finder (pick or type a 3 x 3 filter, click a spot to see the multiply-and-add).
+3. Layers stack up (edge finders, then an outline, then "something insect-sized is here").
+4. Teach a tiny AI: a real 309-number CNN trains in the browser on the quiet night, then gets tested on the windy night (`src/lib/cnn.ts`).
+5. How YOLO turns a grid of guesses into one box per insect (confidence cutoff and non-maximum suppression).
+
 ## Run it locally
 
 You need [Node.js](https://nodejs.org/) 18 or newer.
@@ -43,6 +51,10 @@ There is no backend, login or network dependency. Everything runs in the browser
 2. Replace the simple detector with a small YOLO model running in the browser (ONNX).
 3. Show real BioCLIP results, precomputed for each sample photo.
 4. Before-and-after nights to check a scent treatment: did the pest count drop while helpers stayed?
+
+## License
+
+AGPL-3.0 (see `LICENSE`), because the trained YOLO detector we are adding is built with Ultralytics, which is AGPL-3.0.
 
 ## Credits
 
