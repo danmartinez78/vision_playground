@@ -1198,7 +1198,9 @@ button.big {
 .sample-thumb {
   display: flex;
   flex-direction: column;
+  justify-content: flex-start;
   gap: 0.3rem;
+  min-width: 0;
   padding: 0.4rem;
   border: 2px solid var(--line);
   border-radius: 12px;
@@ -1209,7 +1211,10 @@ button.big {
 }
 
 .sample-thumb img {
+  display: block;
   width: 100%;
+  height: auto;
+  flex: none;
   aspect-ratio: 1600 / 844;
   object-fit: cover;
   border-radius: 8px;

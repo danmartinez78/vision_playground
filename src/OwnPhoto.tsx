@@ -3,7 +3,7 @@ import { detect, engineName, type DetectResult } from './lib/detect'
 import { cropToDataUrl, judgeBoxes } from './lib/geometry'
 import { sceneFromFile, sceneFromUrl } from './lib/scene'
 import type { Box, Scene } from './lib/types'
-import { loadSamples, REGION_NAMES, SAMPLES_DIR, sampleTitle, type Sample } from './lib/samples'
+import { loadSamples, REGION_NAMES, SAMPLES_DIR, sampleTitle, thumbUrl, type Sample } from './lib/samples'
 import { loadYolo } from './lib/yolo'
 import { SceneView, type BoxLayer } from './SceneView'
 
@@ -139,7 +139,7 @@ export function OwnPhoto() {
                 onClick={() => openSample(s)}
                 disabled={busy}
               >
-                <img src={`${SAMPLES_DIR}${s.image}`} alt="" loading="lazy" />
+                <img src={thumbUrl(s.image)} width={480} height={253} alt="" />
                 <span className="small">
                   {REGION_NAMES[s.region] ?? s.region} · {s.boxes.length} insects
                 </span>

@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import type { Lab } from '../lab'
-import { inLesson, loadSamples, REGION_NAMES, SAMPLES_DIR, sceneFromSample, type Sample } from '../lib/samples'
+import { inLesson, loadSamples, REGION_NAMES, sceneFromSample, thumbUrl, type Sample } from '../lib/samples'
 import { SceneView } from '../SceneView'
 
 export function StepNight({ lab }: { lab: Lab }) {
@@ -53,7 +53,7 @@ export function StepNight({ lab }: { lab: Lab }) {
             onClick={() => pick(s)}
             disabled={Boolean(loading)}
           >
-            <img src={`${SAMPLES_DIR}${s.image}`} alt="" loading="lazy" />
+            <img src={thumbUrl(s.image)} width={480} height={253} alt="" />
             <span className="small">{loading === s.image ? 'Loading…' : (REGION_NAMES[s.region] ?? s.region)}</span>
           </button>
         ))}
