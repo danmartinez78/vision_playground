@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { HowAiLearns, HowAiSees } from './HowAiSees'
+import { Credits } from './Credits'
 import { useLab } from './lab'
 import { OwnPhoto } from './OwnPhoto'
 import { StepFind } from './steps/StepFind'
@@ -21,10 +22,11 @@ const STEPS = [
 export default function App() {
   const lab = useLab()
   const [step, setStep] = useState(0)
-  const [ownPhoto, setOwnPhoto] = useState(false)
+  const [page, setPage] = useState<'lesson' | 'own' | 'credits'>('lesson')
+  const ownPhoto = page !== 'lesson'
   const go = (i: number) => {
     setStep(i)
-    setOwnPhoto(false)
+    setPage('lesson')
     window.scrollTo({ top: 0, behavior: 'smooth' })
   }
 
@@ -46,6 +48,7 @@ export default function App() {
               key={name}
               className={i === step && !ownPhoto ? 'step current' : i < step ? 'step done' : 'step'}
               onClick={() => go(i)}
+              aria-label={`Step ${i + 1}: ${name}`}
               disabled={i > 0 && !lab.scene}
               aria-current={i === step && !ownPhoto ? 'step' : undefined}
             >
@@ -54,12 +57,13 @@ export default function App() {
             </button>
           ))}
           <button
-            className={ownPhoto ? 'step own current' : 'step own'}
+            className={page === 'own' ? 'step own current' : 'step own'}
             onClick={() => {
-              setOwnPhoto(true)
+              setPage('own')
               window.scrollTo({ top: 0, behavior: 'smooth' })
             }}
-            aria-current={ownPhoto ? 'page' : undefined}
+            aria-current={page === 'own' ? 'page' : undefined}
+            aria-label="Try your own photo"
           >
             <span className="num" aria-hidden>
               📷
@@ -72,7 +76,7 @@ export default function App() {
       <main>
         {ownPhoto ? (
           <>
-            <OwnPhoto />
+            {page === 'own' ? <OwnPhoto /> : <Credits />}
             <div className="nav-buttons">
               <button className="primary" onClick={() => go(step)}>
                 ← Back to the lesson
@@ -107,10 +111,19 @@ export default function App() {
 
       <footer className="small muted">
         A practice lab for our FIRST LEGO League team, based on the open-source{' '}
-        <a href="https://digital-naturalism-laboratories.github.io/Mothbox/" target="_blank" rel="noreferrer">
+        <a href="https://mothbox.org/" target="_blank" rel="noreferrer">
           Mothbox
         </a>{' '}
-        by Digital Naturalism Laboratories. Sample nights are computer drawn; the practice identifier imitates BioCLIP.
+        by Digital Naturalism Laboratories.{' '}
+        <button
+          className="link"
+          onClick={() => {
+            setPage('credits')
+            window.scrollTo({ top: 0, behavior: 'smooth' })
+          }}
+        >
+          Credits and links
+        </button>
       </footer>
     </div>
   )

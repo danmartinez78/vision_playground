@@ -67,4 +67,10 @@ AGPL-3.0 (see `LICENSE`), because the trained YOLO detector we are adding is bui
 
 ## Credits
 
-Based on the open-source Mothbox and Mothbot by [Digital Naturalism Laboratories](https://mothbox.org/). This lab is a separate teaching tool and is not affiliated with them.
+The site has a full Credits and links page (footer link). In short:
+
+- [Mothbox](https://mothbox.org/) by Digital Naturalism Laboratories ([GitHub](https://github.com/Digital-Naturalism-Laboratories/Mothbox)). This lab is a separate teaching tool and is not affiliated with them.
+- AMI dataset from the Automated Monitoring of Insects project, Rolnick Lab: Jain et al., [Insect Identification in the Wild: The AMI Dataset](https://arxiv.org/abs/2406.12452), ECCV 2024; data on [Zenodo](https://zenodo.org/records/11358689) (MIT).
+- [Ultralytics YOLO11](https://docs.ultralytics.com/models/yolo11/) (AGPL-3.0); the YOLO11 size and speed table in step 4 comes from its docs.
+- [BioCLIP](https://imageomics.github.io/bioclip/) by the Imageomics Institute (Stevens et al., CVPR 2024), which the practice identifier imitates.
+- [FiftyOne](https://docs.voxel51.com/) by Voxel51, which the Mothbox team uses to review results.

@@ -175,7 +175,8 @@ export function StepFind({ lab, onExplain }: { lab: Lab; onExplain: () => void }
         <span aria-hidden>⏱️</span>
         <Clock start={start} />
         <span>
-          Boxes so far: <strong>{lab.studentBoxes.length}</strong>. Drag around each insect. Click a box to remove it.
+          Boxes so far: <strong>{lab.studentBoxes.length}</strong>. Drag around each insect. Tap or click a box to
+          remove it.
         </span>
         <button
           className="primary"
@@ -261,55 +262,57 @@ export function StepFind({ lab, onExplain }: { lab: Lab; onExplain: () => void }
       {phase === 'compare' && lab.detector && (
         <div className="callout">
           <h3>3. Compare: you vs. the computer</h3>
-          <table className="tally compare">
-            <thead>
-              <tr>
-                <th></th>
-                <th>Found</th>
-                <th>Missed</th>
-                <th>False alarms</th>
-                <th>Time</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>
-                  <strong>You</strong>
-                </td>
-                {lab.studentScore ? (
-                  <>
-                    <td>
-                      {lab.studentScore.hits} of {lab.studentScore.total}
-                    </td>
-                    <td>{lab.studentScore.misses}</td>
-                    <td>{lab.studentScore.falseAlarms}</td>
-                  </>
-                ) : (
-                  <td colSpan={3} className="muted">
-                    You are the answer key ({lab.studentBoxes.length} boxes)
+          <div className="table-scroll">
+            <table className="tally compare">
+              <thead>
+                <tr>
+                  <th></th>
+                  <th>Found</th>
+                  <th>Missed</th>
+                  <th>False alarms</th>
+                  <th>Time</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    <strong>You</strong>
                   </td>
-                )}
-                <td>{formatTime(handSecs)}</td>
-              </tr>
-              <tr>
-                <td>
-                  <strong>Computer</strong>
-                </td>
-                {lab.detectorScore ? (
-                  <>
-                    <td>
-                      {lab.detectorScore.hits} of {lab.detectorScore.total}
+                  {lab.studentScore ? (
+                    <>
+                      <td>
+                        {lab.studentScore.hits} of {lab.studentScore.total}
+                      </td>
+                      <td>{lab.studentScore.misses}</td>
+                      <td>{lab.studentScore.falseAlarms}</td>
+                    </>
+                  ) : (
+                    <td colSpan={3} className="muted">
+                      You are the answer key ({lab.studentBoxes.length} boxes)
                     </td>
-                    <td>{lab.detectorScore.misses}</td>
-                    <td>{lab.detectorScore.falseAlarms}</td>
-                  </>
-                ) : (
-                  <td colSpan={3}>—</td>
-                )}
-                <td>{(lab.detector.millis / 1000).toFixed(2)} seconds</td>
-              </tr>
-            </tbody>
-          </table>
+                  )}
+                  <td>{formatTime(handSecs)}</td>
+                </tr>
+                <tr>
+                  <td>
+                    <strong>Computer</strong>
+                  </td>
+                  {lab.detectorScore ? (
+                    <>
+                      <td>
+                        {lab.detectorScore.hits} of {lab.detectorScore.total}
+                      </td>
+                      <td>{lab.detectorScore.misses}</td>
+                      <td>{lab.detectorScore.falseAlarms}</td>
+                    </>
+                  ) : (
+                    <td colSpan={3}>—</td>
+                  )}
+                  <td>{(lab.detector.millis / 1000).toFixed(2)} seconds</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
           <p className="small muted">
             Both are scored with the same rules. The computer checked the whole photo in{' '}
             {Math.max(1, Math.round(lab.detector.millis))} milliseconds.{' '}
@@ -377,8 +380,8 @@ export function StepFind({ lab, onExplain }: { lab: Lab; onExplain: () => void }
         <div className="slider-box">
           <h3>Experiment: how sure should the computer be?</h3>
           <p className="small">
-            The detector gives every spot a score for how sure it is (the % on each box). Move the slider and watch
-            the scores in the table change.
+            The detector gives every spot a score for how sure it is (the % on each box). Move the slider and watch the
+            scores in the table change.
           </p>
           <label htmlFor="threshold">
             Count a spot as an insect when the computer is at least <strong>{Math.round(lab.threshold * 100)}%</strong>{' '}

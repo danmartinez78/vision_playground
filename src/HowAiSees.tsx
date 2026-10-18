@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState, type MouseEvent } from 'react'
 import type { Lab } from './lab'
+import { ModelSize } from './ModelSize'
 import {
   add,
   convolve,
@@ -633,6 +634,8 @@ export function HowAiLearns({ lab }: { lab: Lab }) {
 
       <TeachTinyAi trainScene={trainScene} testScene={testScene} />
 
+      <ModelSize />
+
       <div className="big-idea">
         <h3>What the AI can't do</h3>
         <ul>
@@ -657,6 +660,10 @@ export function HowAiLearns({ lab }: { lab: Lab }) {
           <li>What fooled the tiny AI on the windy night? Why do you think those things were hard for it?</li>
           <li>
             Why do you think the AI has to practice on photos people already labeled? What if the labels had mistakes?
+          </li>
+          <li>
+            If you had to pick one YOLO11 size for a Mothbox running on a battery in a rainforest, which would you pick?
+            Why?
           </li>
         </ol>
       </div>
