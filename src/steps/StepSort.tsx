@@ -3,8 +3,9 @@ import type { Lab } from '../lab'
 import { cropToDataUrl } from '../lib/geometry'
 import type { AiGuess } from '../lib/identifier'
 import { GROUP_LABEL, GROUPS, SPECIES_BY_ID } from '../lib/species'
-import { truthGroup, truthName } from '../lib/truth'
-import type { GroupId } from '../lib/types'
+import { expertName } from '../lib/samples'
+import { REAL_GROUP_LABEL, REAL_GROUPS, realRight, truthGroup, truthName } from '../lib/truth'
+import type { GroupId, RealGroup } from '../lib/types'
 
 function Bar({ value }: { value: number }) {
   const pct = Math.round(value * 100)
@@ -42,6 +43,36 @@ export function AiLadder({ g }: { g: AiGuess }) {
   )
 }
 
+/** The AI's moth-or-not answer for a real photo, as one bar. */
+function MothAnswer({ group, confidence }: { group: RealGroup; confidence: number }) {
+  return (
+    <div className="ladder">
+      <div>
+        <span>Says</span> {REAL_GROUP_LABEL.get(group)} <Bar value={confidence} />
+      </div>
+    </div>
+  )
+}
+
+/** Tips for telling a moth from other insects on a light-trap photo. */
+export function MothTips() {
+  return (
+    <ul className="small tips">
+      <li>
+        <strong>Moth:</strong> wide wings covered in dusty scales, often held like a tent or a flat triangle. Antennae
+        like threads or feathers.
+      </li>
+      <li>
+        <strong>Other insect:</strong> a hard shiny shell (beetle), clear see-through wings (fly, wasp, mayfly), or a
+        long thin body.
+      </li>
+      <li>
+        <strong>Not a bug:</strong> an empty spot, a shadow or a speck on the sheet.
+      </li>
+    </ul>
+  )
+}
+
 export function StepSort({ lab }: { lab: Lab }) {
   const scene = lab.scene!
   const sample = scene.source === 'sample'
@@ -51,12 +82,20 @@ export function StepSort({ lab }: { lab: Lab }) {
   )
   const sorted = lab.cards.filter((d) => lab.sortChoices[d.id]).length
   const allSorted = sorted === lab.cards.length
-  const rightCount = lab.cards.filter((d) => lab.sortChoices[d.id] === truthGroup(lab.truthFor.get(d.id))).length
-  const aiRight = lab.cards.filter((d) => {
-    const g = lab.ai.get(d.id)
-    const aiGroup: GroupId = g?.speciesId ? SPECIES_BY_ID.get(g.speciesId)!.group : 'notbug'
-    return aiGroup === truthGroup(lab.truthFor.get(d.id))
-  }).length
+  const isRight = (id: string, answer: GroupId | RealGroup | undefined) =>
+    lab.real
+      ? realRight(answer as RealGroup | undefined, lab.truthFor.get(id))
+      : answer === truthGroup(lab.truthFor.get(id))
+  const aiGroup = (id: string): GroupId | RealGroup => {
+    if (lab.real) return lab.mothAi.get(id)?.group ?? 'notbug'
+    const g = lab.ai.get(id)
+    return g?.speciesId ? SPECIES_BY_ID.get(g.speciesId)!.group : 'notbug'
+  }
+  const rightCount = lab.cards.filter((d) => isRight(d.id, lab.sortChoices[d.id])).length
+  const aiRight = lab.cards.filter((d) => isRight(d.id, aiGroup(d.id))).length
+  const groups = lab.real ? REAL_GROUPS : GROUPS
+  const groupLabel = (g: GroupId | RealGroup) =>
+    lab.real ? REAL_GROUP_LABEL.get(g as RealGroup) : GROUP_LABEL.get(g as GroupId)
   const revealed = lab.aiRevealed && sample
 
   if (!lab.detector) {
@@ -76,13 +115,28 @@ export function StepSort({ lab }: { lab: Lab }) {
         <h2>Step 3: Name the insects</h2>
         <p>
           The second job is called <strong>identification</strong>: deciding <em>what</em> each insect is. The Mothbox
-          cuts a small close-up picture out of the photo for every box the detector found. Then a different AI, called{' '}
-          <strong>BioCLIP</strong>, names each one at every level of the tree of life: order, then family, then species.
+          cuts a small close-up picture out of the photo for every box the detector found. Then a different AI names
+          each one.
         </p>
-        <p>
-          <strong>Your turn first:</strong> put each close-up into a group. When you've done them all, you can see what
-          the AI said.
-        </p>
+        {lab.real ? (
+          <>
+            <p>
+              The first question scientists ask is simple: <strong>is it a moth?</strong> Moths are what the Mothbox was
+              built to count.
+            </p>
+            <p>
+              <strong>Your turn first:</strong> sort each close-up. When you've done them all, you can see what the AI
+              and the experts said.
+            </p>
+            <MothTips />
+          </>
+        ) : (
+          <p>
+            An AI called <strong>BioCLIP</strong> names insects at every level of the tree of life: order, then family,
+            then species. <strong>Your turn first:</strong> put each close-up into a group. When you've done them all,
+            you can see what the AI said.
+          </p>
+        )}
       </div>
 
       <div className="toolbar">
@@ -102,23 +156,32 @@ export function StepSort({ lab }: { lab: Lab }) {
           const choice = lab.sortChoices[d.id]
           const real = lab.truthFor.get(d.id)
           const g = lab.ai.get(d.id)
-          const right = choice && choice === truthGroup(real)
+          const m = lab.mothAi.get(d.id)
+          const right = choice && isRight(d.id, choice)
           return (
             <article key={d.id} className={revealed ? (right ? 'crop-card right' : 'crop-card wrong') : 'crop-card'}>
               <img src={closeUps.get(d.id)} alt="A close-up from the photo" width={132} height={132} />
-              {revealed && g ? (
+              {revealed && (g || m) ? (
                 <>
                   <p className="answer small">
                     <span className={right ? 'good-text' : 'bad-text'}>{right ? '✓' : '✗'}</span> You said{' '}
-                    <strong>{choice ? GROUP_LABEL.get(choice) : 'nothing'}</strong>. It was{' '}
-                    <strong>{truthName(real)}</strong>.
+                    <strong>{choice ? groupLabel(choice) : 'nothing'}</strong>.{' '}
+                    {lab.real ? (
+                      <>
+                        Experts: <strong>{real ? expertName(real.label) : 'Nothing there (a false alarm)'}</strong>.
+                      </>
+                    ) : (
+                      <>
+                        It was <strong>{truthName(real)}</strong>.
+                      </>
+                    )}
                   </p>
                   <div className="small muted">The AI said:</div>
-                  <AiLadder g={g} />
+                  {m ? <MothAnswer group={m.group} confidence={m.confidence} /> : g && <AiLadder g={g} />}
                 </>
               ) : (
                 <div className="group-buttons" role="group" aria-label="Pick a group">
-                  {GROUPS.map((gr) => (
+                  {groups.map((gr) => (
                     <button
                       key={gr.id}
                       className={choice === gr.id ? 'chip on' : 'chip'}
@@ -149,13 +212,26 @@ export function StepSort({ lab }: { lab: Lab }) {
                   AI: {aiRight} of {lab.cards.length}
                 </span>
               </div>
-              <p className="small">
-                Look at the AI's bars on each card. It's very sure about the order, less sure about the family, and
-                often unsure about the exact species, especially for the three brown pest moths that look alike.
-              </p>
-              <p className="small muted">
-                Practice mode: on the sample photos these AI answers are made up to act like BioCLIP.
-              </p>
+              {lab.real ? (
+                <>
+                  <p className="small">
+                    Look at the AI's bars. It's sure about big, clear insects and less sure about tiny or blurry ones.
+                    Those unsure ones are where people help, in the next step.
+                  </p>
+                  <p className="small muted">
+                    Practice mode: the expert answers are real, but the AI's answers are made up to act like a moth
+                    classifier.
+                  </p>
+                </>
+              ) : (
+                <>
+                  <p className="small">
+                    Look at the AI's bars on each card. It's very sure about the order, less sure about the family, and
+                    often unsure about the exact species, especially for the three brown pest moths that look alike.
+                  </p>
+                  <p className="small muted">Practice mode: these AI answers are made up to act like BioCLIP.</p>
+                </>
+              )}
             </div>
           ) : (
             <>

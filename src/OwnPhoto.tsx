@@ -3,24 +3,11 @@ import { detect, engineName, type DetectResult } from './lib/detect'
 import { cropToDataUrl, judgeBoxes } from './lib/geometry'
 import { sceneFromFile, sceneFromUrl } from './lib/scene'
 import type { Box, Scene } from './lib/types'
+import { loadSamples, REGION_NAMES, SAMPLES_DIR, sampleTitle, type Sample } from './lib/samples'
 import { loadYolo } from './lib/yolo'
 import { SceneView, type BoxLayer } from './SceneView'
 
 const MAX_CLOSE_UPS = 24
-const SAMPLES_DIR = `${import.meta.env.BASE_URL}samples/ami-traps/`
-
-interface Sample {
-  image: string
-  region: string
-  /** Expert boxes as [x1, y1, x2, y2] in the 1600-pixel-wide photo. */
-  boxes: [number, number, number, number][]
-}
-
-const REGION_NAMES: Record<string, string> = {
-  CentralAmerica: 'Central America',
-  NorthEasternAmerica: 'Northeastern North America',
-  WesternEurope: 'Western Europe',
-}
 
 /** A free-play page outside the lesson: run the detector on any photo. */
 export function OwnPhoto() {
@@ -37,9 +24,8 @@ export function OwnPhoto() {
 
   useEffect(() => {
     loadYolo().catch(() => {})
-    fetch(`${SAMPLES_DIR}index.json`)
-      .then((r) => r.json())
-      .then((d: { images: Sample[] }) => setSamples(d.images))
+    loadSamples()
+      .then(setSamples)
       .catch(() => setSamples([]))
   }, [])
 
@@ -63,7 +49,7 @@ export function OwnPhoto() {
   const upload = (file: File | undefined) => file && open(() => sceneFromFile(file), null)
   const openSample = (s: Sample) =>
     open(
-      () => sceneFromUrl(`${SAMPLES_DIR}${s.image}`, `Light trap in ${REGION_NAMES[s.region] ?? s.region}`),
+      () => sceneFromUrl(`${SAMPLES_DIR}${s.image}`, sampleTitle(s)),
       s.boxes.map(([x1, y1, x2, y2]) => ({ x: x1, y: y1, w: x2 - x1, h: y2 - y1 })),
     )
 

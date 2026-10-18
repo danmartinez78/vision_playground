@@ -6,11 +6,11 @@ Students walk through the same steps as the real Mothbox pipeline, doing each jo
 
 | Step | What students do | Real Mothbox equivalent |
 |---|---|---|
-| 1. Look at a photo | Pick a sample night, zoom around, guess the count | UV light attracts insects, camera photographs the sheet |
+| 1. Look at a photo | Pick one of 23 real light-trap photos (or the bonus drawn night), zoom around, guess the count | UV light attracts insects, camera photographs the sheet |
 | 2. Find the insects | Box every insect against a stopwatch and see why each box counted or not; then run the computer's detector live in the browser and compare found, missed, false alarms and time; experiment with the confidence slider | YOLO detector finds each insect |
-| 3. Name the insects | Sort each close-up into a group first, then reveal the AI's order, family and species answers | BioCLIP names each close-up |
-| 4. Check the AI's work | For each close-up the AI was least sure about, compare it with field guide pictures (the AI's answer and look-alikes), agree or pick another, then see the truth; "AI alone" vs. "AI + you" | People review results in FiftyOne |
-| 5. What did we learn? | Pest watch, helpers, then vs. now, "Scale it up" to a 300-photo night and a season, seeing vs. guessing | Biodiversity counts and pest monitoring |
+| 3. Name the insects | Sort each close-up as moth, other insect or not a bug, then reveal the AI's answer and the experts' label (the drawn night uses order, family and species instead) | A classifier and BioCLIP name each close-up |
+| 4. Check the AI's work | For each close-up the AI was least sure about, compare it with a field guide (real moth and non-moth close-ups; species pictures on the drawn night), agree or pick another, then see the truth; "AI alone" vs. "AI + you" | People review results in FiftyOne |
+| 5. What did we learn? | Moths vs. other insects counted against the experts and the moths they named (pest watch and helpers on the drawn night), then vs. now, "Scale it up" to a 300-photo night and a season, seeing vs. guessing | Biodiversity counts and pest monitoring |
 
 Outside the lesson, **How the AI works** (header button, also linked from step 2) is an optional extra in two parts: how the AI sees (pixels and resolution, a 3 x 3 filter playground with the math shown, layers of filters, how YOLO turns grid guesses into one box per insect) and how it learns (train a real 309-number CNN in the browser, then test it on a night it never saw).
 
@@ -51,14 +51,14 @@ nginx sends the cross-origin isolation headers (`Cross-Origin-Opener-Policy` and
 ## What is real and what is practice (MVP)
 
 - **The detector is a real trained AI running in the browser**: YOLO11n trained on AMI-Traps (`src/lib/yolo.ts`, details and test results in `docs/yolo-model.md`). With WebGPU it runs the 1280 model; otherwise the 960 model on WebAssembly (about half a second per photo on a laptop). If the model can't load, the page falls back to a simple spot finder (`src/lib/detector.ts`) and says so.
-- **Real light-trap photos**: "Try your own photo" offers 12 AMI-Traps test photos with expert boxes, so students see what the AI found, missed and wrongly boxed. The detector never trained on them.
-- **The sample nights are computer drawn** (`src/lib/scene.ts`), so the lab knows the right answer for every insect, leaf and smudge. The species are real North American insects, including three crop-pest moths and several helpers (`src/lib/species.ts`).
-- **The AI identifier is simulated on sample nights** (`src/lib/identifier.ts`). It acts like BioCLIP does on real photos: very sure about the order, less sure about the family, and often unsure or wrong between look-alike species (the three brown pest moths). On uploaded photos, steps 3 to 5 use only the students' own sorting for now.
+- **The lesson uses real light-trap photos**: 24 AMI-Traps test photos (`public/samples/ami-traps`, `src/lib/samples.ts`) with the experts' boxes and labels, simplified to moth / not a moth / unknown. The detector never trained on them. One photo, where the detector boxes dozens of tiny insects the experts left out, is only in "Try your own photo". The field guide close-ups in step 4 are cut from these photos (`examples/`).
+- **The bonus drawn night** (`src/lib/scene.ts`) keeps the species version of steps 3 to 5, with real North American insects including three crop-pest moths and several helpers (`src/lib/species.ts`).
+- **The AI identifier is simulated** (`src/lib/identifier.ts`). On real photos it makes moth / not-a-moth answers: usually right and sure, unsure when it's wrong. On the drawn night it acts like BioCLIP: very sure about the order, less sure about the family, often unsure between look-alike species. On uploaded photos, steps 3 to 5 use only the students' own sorting for now.
 
 ## Next steps
 
-1. Use real light-trap photos in the lesson itself, then the team's own Mothbox nights.
-2. Show real BioCLIP results, precomputed for each sample photo.
+1. Use the team's own Mothbox nights.
+2. Show real AI results (the AMI moth classifier or BioCLIP), precomputed for each sample photo.
 3. Before-and-after nights to check a scent treatment: did the pest count drop while helpers stayed?
 
 ## License

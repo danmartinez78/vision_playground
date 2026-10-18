@@ -22,14 +22,14 @@ import { iou } from './lib/geometry'
 import { between, makeRng } from './lib/rng'
 import { NIGHTS, renderNight } from './lib/scene'
 import { SPECIES_BY_ID } from './lib/species'
-import type { Box, Scene } from './lib/types'
+import type { Box, Scene, TruthItem } from './lib/types'
 import { SceneView, type BoxLayer } from './SceneView'
 
 /** A square around the biggest moth on the sheet, for the close-up demos. */
 function mothCrop(scene: Scene): Box {
-  const moths = (scene.truth ?? []).filter(
-    (t) => t.kind === 'insect' && SPECIES_BY_ID.get(t.speciesId!)?.group === 'moth',
-  )
+  const insects = (scene.truth ?? []).filter((t) => t.kind === 'insect')
+  const isMoth = (t: TruthItem) => SPECIES_BY_ID.get(t.speciesId ?? '')?.group === 'moth' || t.label?.group === 'moth'
+  const moths = insects.some(isMoth) ? insects.filter(isMoth) : insects
   const big = moths.sort((a, b) => b.box.w * b.box.h - a.box.w * a.box.h)[0]
   const b = big?.box ?? { x: scene.width / 2 - 50, y: scene.height / 2 - 50, w: 100, h: 100 }
   const side = Math.max(b.w, b.h) * 1.15

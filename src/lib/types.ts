@@ -12,6 +12,8 @@ export interface TruthItem {
   kind: 'insect' | 'debris'
   speciesId?: string
   debrisLabel?: string
+  /** What a real photo's insect is, from the AMI labels (real photos only). */
+  label?: { name: string; group: ExpertGroup }
 }
 
 export interface Detection {
@@ -31,6 +33,14 @@ export interface Scene {
   height: number
   /** Answer key. Sample nights only. */
   truth?: TruthItem[]
+  /** A real light-trap photo (not one the computer drew). */
+  real?: boolean
 }
 
 export type GroupId = 'moth' | 'beetle' | 'fly' | 'wasp' | 'lacewing' | 'notbug'
+
+/** What the experts said about an insect in a real photo. */
+export type ExpertGroup = 'moth' | 'other' | 'unknown'
+
+/** The groups students sort real photos into. */
+export type RealGroup = 'moth' | 'other' | 'notbug'

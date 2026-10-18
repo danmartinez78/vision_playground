@@ -1,7 +1,9 @@
 import { useRef, useState } from 'react'
 import type { Lab } from '../lab'
 import { detect } from '../lib/detect'
+import { inLesson, loadSamples, sceneFromSample } from '../lib/samples'
 import { randomRecipe, renderNight } from '../lib/scene'
+import type { Scene } from '../lib/types'
 import { formatDuration } from '../lib/time'
 
 // From the Mothbox paper: the default schedule takes about 300 photos a night.
@@ -26,14 +28,24 @@ export function ScaleUp({ lab }: { lab: Lab }) {
   const [result, setResult] = useState<BatchResult | null>(null)
   const running = useRef(false)
 
-  const run = () => {
+  const run = async () => {
     if (running.current) return
     running.current = true
     setResult(null)
     const acc: BatchResult = { photos: 0, insects: 0, found: 0, detectSeconds: 0 }
     const seedBase = Math.floor(Math.random() * 100000)
+    // real photos: the other lesson photos; drawn night: freshly drawn ones
+    let next: () => Promise<Scene> = async () => renderNight(randomRecipe(seedBase + acc.photos), false)
+    if (lab.real) {
+      try {
+        const others = (await loadSamples()).filter((s) => inLesson(s) && `ami-${s.image}` !== lab.scene?.key)
+        next = () => sceneFromSample(others[acc.photos % others.length])
+      } catch {
+        // keep the drawn photos if the real ones can't be loaded
+      }
+    }
     const step = async () => {
-      const scene = renderNight(randomRecipe(seedBase + acc.photos), false)
+      const scene = await next()
       const out = await detect(scene.canvas)
       acc.photos++
       acc.insects += scene.truth!.filter((t) => t.kind === 'insect').length

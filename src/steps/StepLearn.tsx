@@ -2,6 +2,98 @@ import type { Lab } from '../lab'
 import { ScaleUp } from './ScaleUp'
 import { GROUP_LABEL, GROUPS, ROLE_LABEL, SPECIES } from '../lib/species'
 
+/** Step 5's count for a real photo: moths and other insects, counted vs. the experts. */
+function RealTally({ lab, counted }: { lab: Lab; counted: Map<string, number> }) {
+  const real = { moth: 0, other: 0, unknown: 0 }
+  const mothNames = new Map<string, number>()
+  for (const t of lab.insects) {
+    const g = t.label?.group ?? 'unknown'
+    real[g]++
+    if (g === 'moth' && t.label && t.label.name !== 'Moth' && t.label.name !== 'Lepidoptera') {
+      mothNames.set(t.label.name, (mothNames.get(t.label.name) ?? 0) + 1)
+    }
+  }
+  const moths = counted.get('moth') ?? 0
+  const others = counted.get('other') ?? 0
+  return (
+    <>
+      <div className="stat-row">
+        <div className="stat">
+          <span>Your guess</span>
+          <strong>{lab.guess || '—'}</strong>
+        </div>
+        <div className="stat">
+          <span>Counted by computer + AI + you</span>
+          <strong>{moths + others}</strong>
+        </div>
+        <div className="stat">
+          <span>Really on the sheet</span>
+          <strong>{lab.insects.length}</strong>
+        </div>
+        <div className="stat">
+          <span>Moths counted</span>
+          <strong>{moths}</strong>
+        </div>
+      </div>
+
+      <div className="callout">
+        <h3>Moth count</h3>
+        <div className="table-scroll">
+          <table className="tally">
+            <thead>
+              <tr>
+                <th></th>
+                <th>Counted</th>
+                <th>Experts</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>🦋 Moths</td>
+                <td>{moths}</td>
+                <td>{real.moth}</td>
+              </tr>
+              <tr>
+                <td>🐞 Other insects</td>
+                <td>{others}</td>
+                <td>{real.other}</td>
+              </tr>
+              {real.unknown > 0 && (
+                <tr>
+                  <td>❓ Experts couldn't tell</td>
+                  <td>—</td>
+                  <td>{real.unknown}</td>
+                </tr>
+              )}
+            </tbody>
+          </table>
+        </div>
+        <p className="small muted">
+          Counts can be off when the detector misses an insect, boxes an empty spot, or the AI mixes up a moth.
+        </p>
+      </div>
+
+      {mothNames.size > 0 && (
+        <details className="callout">
+          <summary>Which moths did the experts name?</summary>
+          <p className="small">
+            Experts looked closely and named these moths, some down to the species. That's the job BioCLIP tries to do
+            next in the Mothbox pipeline.
+          </p>
+          <ul className="small">
+            {[...mothNames].map(([name, n]) => (
+              <li key={name}>
+                <em>{name}</em>
+                {n > 1 && ` × ${n}`}
+              </li>
+            ))}
+          </ul>
+        </details>
+      )}
+    </>
+  )
+}
+
 export function StepLearn({ lab }: { lab: Lab }) {
   const scene = lab.scene!
   const sample = scene.source === 'sample'
@@ -17,7 +109,7 @@ export function StepLearn({ lab }: { lab: Lab }) {
 
   const counted = new Map<string, number>()
   if (sample) {
-    for (const d of lab.cards) {
+    for (const d of lab.kept) {
       const id = lab.finalLabel(d.id)
       if (id) counted.set(id, (counted.get(id) ?? 0) + 1)
     }
@@ -42,7 +134,9 @@ export function StepLearn({ lab }: { lab: Lab }) {
         <h2>Step 5: What did we learn?</h2>
       </div>
 
-      {sample ? (
+      {lab.real ? (
+        <RealTally lab={lab} counted={counted} />
+      ) : sample ? (
         <>
           <div className="stat-row">
             <div className="stat">

@@ -1,8 +1,8 @@
 import { useMemo, useRef, useState } from 'react'
 import { detect, type DetectResult } from './lib/detect'
 import { judgeBoxes, type Judgement } from './lib/geometry'
-import { identify, type AiGuess } from './lib/identifier'
-import type { Box, Detection, GroupId, Scene, TruthItem } from './lib/types'
+import { identify, identifyMoth, type AiGuess, type MothGuess } from './lib/identifier'
+import type { Box, Detection, GroupId, RealGroup, Scene, TruthItem } from './lib/types'
 
 export interface Score {
   hits: number
@@ -19,7 +19,7 @@ export function useLab() {
   const [detector, setDetector] = useState<DetectResult | null>(null)
   const [detecting, setDetecting] = useState(false)
   const [threshold, setThreshold] = useState(0.25)
-  const [sortChoices, setSortChoices] = useState<Record<string, GroupId>>({})
+  const [sortChoices, setSortChoices] = useState<Record<string, GroupId | RealGroup>>({})
   const [aiRevealed, setAiRevealed] = useState(false)
   const [reviewChoices, setReviewChoices] = useState<Record<string, string>>({})
   // stopwatches for the "by hand" jobs, so students can compare with the computer
@@ -40,7 +40,7 @@ export function useLab() {
     setSortTimer(null)
   }
 
-  const chooseGroup = (id: string, group: GroupId) => {
+  const chooseGroup = (id: string, group: GroupId | RealGroup) => {
     const now = Date.now()
     if (!sortChoices[id]) {
       setSortTimer((t) => (t ? { ...t, last: now, count: t.count + 1 } : { start: now, last: now, count: 1 }))
@@ -96,19 +96,33 @@ export function useLab() {
 
     // the cards for sorting: the most confident detections first, at most 24
     const cards = kept.slice(0, 24)
+    // the AI's answers: species for drawn nights, moth or not for real photos
+    const real = Boolean(scene?.real)
     const ai = new Map<string, AiGuess>()
+    const mothAi = new Map<string, MothGuess>()
     if (scene?.source === 'sample') {
-      for (const d of cards) ai.set(d.id, identify(scene.key, d.id, truthFor.get(d.id)))
+      for (const d of kept) {
+        if (real) mothAi.set(d.id, identifyMoth(scene.key, d.id, truthFor.get(d.id)))
+        else ai.set(d.id, identify(scene.key, d.id, truthFor.get(d.id)))
+      }
+    }
+    const confidence = (id: string): number | null => {
+      if (real) return mothAi.get(id)?.confidence ?? null
+      const g = ai.get(id)
+      return g ? (g.speciesId ? g.species.confidence : g.order.confidence) : null
     }
     const unsure = cards.filter((d) => {
-      const g = ai.get(d.id)
-      if (!g) return false
-      const conf = g.speciesId ? g.species.confidence : g.order.confidence
-      return conf < 0.5
+      const c = confidence(d.id)
+      return c !== null && c < (real ? 0.6 : 0.5)
     })
+    /** The answer after the student's check: a species id (drawn) or group (real); null for not a bug. */
     const finalLabel = (id: string): string | null => {
       const chosen = reviewChoices[id]
       if (chosen !== undefined) return chosen === 'notbug' ? null : chosen
+      if (real) {
+        const g = mothAi.get(id)?.group
+        return g && g !== 'notbug' ? g : null
+      }
       return ai.get(id)?.speciesId ?? null
     }
 
@@ -130,7 +144,9 @@ export function useLab() {
       detectorJudgement,
       studentJudgement,
       cards,
+      real,
       ai,
+      mothAi,
       unsure,
       finalLabel,
       handSeconds,

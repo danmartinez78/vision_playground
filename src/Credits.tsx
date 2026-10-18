@@ -43,9 +43,9 @@ export function Credits() {
       <div className="callout">
         <h3>The photos our detector learned from</h3>
         <p>
-          Our detector practiced on the <strong>AMI dataset</strong> from the Automated Monitoring of Insects project
-          (Rolnick Lab at Mila and McGill University, with partners around the world). Experts drew boxes around the
-          insects in thousands of light-trap photos and shared them for free.
+          Our detector practiced on, and the lesson photos come from, the <strong>AMI dataset</strong> from the
+          Automated Monitoring of Insects project (Rolnick Lab at Mila and McGill University, with partners around the
+          world). Experts drew boxes around the insects in thousands of light-trap photos and shared them for free.
         </p>
         <ul>
           <li>
@@ -71,7 +71,7 @@ export function Credits() {
           </li>
           <li>
             <strong>BioCLIP</strong> by the Imageomics Institute names living things at every level of the tree of life.
-            The practice identifier in step 3 imitates it.{' '}
+            The practice identifier on the drawn night imitates it.{' '}
             <Link href="https://imageomics.github.io/bioclip/">BioCLIP project page</Link> and{' '}
             <Link href="https://arxiv.org/abs/2311.18803">paper</Link> (Stevens and others, CVPR 2024)
           </li>
@@ -85,10 +85,10 @@ export function Credits() {
       <div className="callout">
         <h3>About this lab</h3>
         <p>
-          Made for our FIRST LEGO League team. The sample nights are drawn by the computer, not real photos, and the
-          names in step 3 are made up to act like BioCLIP. The detector is real: our trained YOLO11n runs right in your
-          browser, on the drawn nights, the real light-trap photos and your own photos. The lab's code is free to use
-          and change under the AGPL-3.0 license:{' '}
+          Made for our FIRST LEGO League team. The lesson photos and the experts' boxes and labels are real, from the
+          AMI dataset. The AI's answers in step 3 are made up for practice. The detector is real: our trained YOLO11n
+          runs right in your browser, on the light-trap photos, the bonus drawn night and your own photos. The lab's
+          code is free to use and change under the AGPL-3.0 license:{' '}
           <Link href="https://github.com/danmartinez78/vision_playground">source code on GitHub</Link>.
         </p>
       </div>
