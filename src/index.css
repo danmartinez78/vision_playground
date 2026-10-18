@@ -1304,9 +1304,26 @@ button.big {
   border-color: var(--accent);
 }
 
+/* on phones the photos sit in one row you swipe through, so the results stay close */
+.swipe-hint {
+  display: none;
+}
+
 @media (max-width: 700px) {
   .sample-grid {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: none;
+    grid-auto-flow: column;
+    grid-auto-columns: 42%;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    padding-bottom: 0.4rem;
+  }
+  .sample-thumb {
+    scroll-snap-align: start;
+  }
+  .swipe-hint {
+    display: block;
+    margin: -0.4rem 0 0.8rem;
   }
 }
 
@@ -1346,4 +1363,51 @@ button.big {
   .guide-row.wide .example-strip {
     max-width: 220px;
   }
+}
+
+.time-race {
+  list-style: none;
+  margin: 0.25rem 0 1rem;
+  padding: 0;
+  display: grid;
+  gap: 0.7rem;
+}
+
+.race-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.5rem;
+  align-items: baseline;
+}
+
+.race-head strong {
+  font-size: 1.15rem;
+}
+
+.race-bar {
+  display: block;
+  height: 0.8rem;
+  border-radius: 999px;
+  background: var(--line);
+  overflow: hidden;
+  margin: 0.2rem 0;
+}
+
+.race-bar > span {
+  display: block;
+  height: 100%;
+  border-radius: 999px;
+  background: #94a3b8;
+}
+
+.time-race .team .race-bar > span {
+  background: #7c3aed;
+}
+
+.time-race .computer .race-bar > span {
+  background: #16a34a;
+}
+
+.results-anchor {
+  scroll-margin-top: 0.5rem;
 }

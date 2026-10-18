@@ -71,35 +71,43 @@ export function ScaleUp({ lab }: { lab: Lab }) {
     const handNight = PHOTOS_PER_NIGHT * perPhoto * (boxSec + idSec)
     const computerNight = (PHOTOS_PER_NIGHT * result.detectSeconds) / result.photos
     const teamNight = computerNight + PHOTOS_PER_NIGHT * perPhoto * unsureShare * idSec
+    const rows = [
+      { label: 'By hand', seconds: handNight, note: 'finding and naming every insect', tone: 'hand' },
+      {
+        label: 'Computer + you',
+        seconds: teamNight,
+        note: `you check only the unsure ones, about ${Math.round(unsureShare * 100)}% of the insects`,
+        tone: 'team',
+      },
+      { label: 'Computer alone', seconds: computerNight, note: 'our YOLO11n AI finding the insects', tone: 'computer' },
+    ]
     tiles = (
       <>
         <p>
           The computer checked <strong>{result.photos} photos</strong> in{' '}
-          <strong>{formatDuration(result.detectSeconds)}</strong>. For a whole Mothbox night of {PHOTOS_PER_NIGHT}{' '}
-          photos:
+          <strong>{formatDuration(result.detectSeconds)}</strong>. A whole Mothbox night is {PHOTOS_PER_NIGHT} photos.
         </p>
-        <div className="stat-row">
-          <div className="stat">
-            <span>By hand: one night</span>
-            <strong>{formatDuration(handNight)}</strong>
-            <small>finding and naming every insect</small>
-          </div>
-          <div className="stat">
-            <span>By hand: a season ({NIGHTS_PER_SEASON} nights)</span>
-            <strong>{formatDuration(handNight * NIGHTS_PER_SEASON)}</strong>
-            <small>about {Math.round((handNight * NIGHTS_PER_SEASON) / 3600 / 40)} weeks of full-time work</small>
-          </div>
-          <div className="stat">
-            <span>Computer finding the bugs: one night</span>
-            <strong>{formatDuration(computerNight)}</strong>
-            <small>our YOLO11n AI on this device</small>
-          </div>
-          <div className="stat highlight">
-            <span>Computer + you checking only the unsure ones</span>
-            <strong>{formatDuration(teamNight)}</strong>
-            <small>you review about {Math.round(unsureShare * 100)}% of the insects</small>
-          </div>
-        </div>
+        <h4>One night</h4>
+        <ul className="time-race">
+          {rows.map((r) => (
+            <li key={r.label} className={r.tone}>
+              <div className="race-head">
+                <span>{r.label}</span>
+                <strong>{formatDuration(r.seconds)}</strong>
+              </div>
+              <span className="race-bar">
+                <span style={{ width: `${Math.max(1.5, (r.seconds / handNight) * 100)}%` }} />
+              </span>
+              <small className="muted">{r.note}</small>
+            </li>
+          ))}
+        </ul>
+        <h4>A whole season ({NIGHTS_PER_SEASON} nights)</h4>
+        <p>
+          By hand: <strong>{formatDuration(handNight * NIGHTS_PER_SEASON)}</strong>, about{' '}
+          {Math.round((handNight * NIGHTS_PER_SEASON) / 3600 / 40)} weeks of full-time work. Computer + you:{' '}
+          <strong>{formatDuration(teamNight * NIGHTS_PER_SEASON)}</strong>.
+        </p>
         <details className="small muted">
           <summary>How did we work this out?</summary>
           <p>

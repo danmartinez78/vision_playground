@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { detect, engineName, type DetectResult } from './lib/detect'
 import { cropToDataUrl, judgeBoxes } from './lib/geometry'
 import { sceneFromFile, sceneFromUrl } from './lib/scene'
@@ -21,6 +21,7 @@ export function OwnPhoto() {
   const [showKey, setShowKey] = useState(true)
   const [marks, setMarks] = useState<Record<string, boolean>>({})
   const [error, setError] = useState('')
+  const results = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     loadYolo().catch(() => {})
@@ -33,6 +34,8 @@ export function OwnPhoto() {
     setError('')
     setBusy(true)
     setDetector(null)
+    // jump to the results, so it's clear something is happening
+    window.setTimeout(() => results.current?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 0)
     try {
       const s = await load()
       setScene(s)
@@ -143,9 +146,11 @@ export function OwnPhoto() {
               </button>
             ))}
           </div>
+          <p className="swipe-hint small muted">Swipe sideways for more photos.</p>
         </>
       )}
 
+      <div ref={results} className="results-anchor" />
       {busy && <p className="callout">The AI is looking at the photo…</p>}
 
       {scene && detector && !busy && (

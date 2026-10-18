@@ -1,4 +1,5 @@
 import type { Lab } from '../lab'
+import { DrawnNight } from './DrawnNight'
 import { ScaleUp } from './ScaleUp'
 import { GROUP_LABEL, GROUPS, ROLE_LABEL, SPECIES } from '../lib/species'
 
@@ -275,6 +276,8 @@ export function StepLearn({ lab }: { lab: Lab }) {
           <li>How could a Mothbox show whether a scent treatment worked?</li>
         </ol>
       </div>
+
+      {lab.real && <DrawnNight lab={lab} />}
     </section>
   )
 }

@@ -1,16 +1,14 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import type { Lab } from '../lab'
 import { inLesson, loadSamples, REGION_NAMES, SAMPLES_DIR, sceneFromSample, type Sample } from '../lib/samples'
-import { NIGHTS, renderNight } from '../lib/scene'
 import { SceneView } from '../SceneView'
-
-// the drawn night kept as a bonus: the AI has never seen a drawing
-const DRAWN = NIGHTS[1]
 
 export function StepNight({ lab }: { lab: Lab }) {
   const [samples, setSamples] = useState<Sample[]>([])
   const [loading, setLoading] = useState('')
   const [error, setError] = useState('')
+  const photo = useRef<HTMLDivElement>(null)
+  const show = () => window.setTimeout(() => photo.current?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 0)
   useEffect(() => {
     loadSamples()
       .then((all) => setSamples(all.filter(inLesson)))
@@ -21,6 +19,7 @@ export function StepNight({ lab }: { lab: Lab }) {
     setLoading(s.image)
     try {
       lab.setScene(await sceneFromSample(s))
+      show()
     } catch {
       setError('That photo could not be loaded. Try another one.')
     } finally {
@@ -59,21 +58,9 @@ export function StepNight({ lab }: { lab: Lab }) {
           </button>
         ))}
       </div>
-      <details className="small">
-        <summary>Bonus: a night drawn by the computer</summary>
-        <p>
-          Our AI learned from thousands of real photos, but it has never seen a drawing. Can it still find drawn bugs?
-          Try this one after a real photo and compare.
-        </p>
-        <button
-          className={lab.scene?.key === DRAWN.key ? 'night-card selected' : 'night-card'}
-          onClick={() => lab.setScene(renderNight(DRAWN))}
-        >
-          <strong>{DRAWN.title} (drawn)</strong>
-          <span>{DRAWN.blurb}</span>
-        </button>
-      </details>
+      <p className="swipe-hint small muted">Swipe sideways for more photos.</p>
 
+      <div ref={photo} className="results-anchor" />
       {lab.scene && (
         <>
           <SceneView
