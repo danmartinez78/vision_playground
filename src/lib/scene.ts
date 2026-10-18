@@ -310,23 +310,6 @@ function drawSpecies(ctx: Ctx, speciesId: string, size: number, rng: Rng): Exten
   }
 }
 
-/** A field-guide picture of one species on a plain sheet, as a data URL. */
-export function speciesPicture(speciesId: string, size = 132): string {
-  const draw = (ctx: Ctx) => drawSpecies(ctx, speciesId, 100, makeRng(3))
-  const probe = document.createElement('canvas').getContext('2d')!
-  const e = draw(probe)
-  const canvas = document.createElement('canvas')
-  canvas.width = canvas.height = size
-  const ctx = canvas.getContext('2d')!
-  ctx.fillStyle = '#efede8'
-  ctx.fillRect(0, 0, size, size)
-  const k = (size * 0.84) / Math.max(e.maxX - e.minX, e.maxY - e.minY)
-  ctx.translate(size / 2 - ((e.minX + e.maxX) / 2) * k, size / 2 - ((e.minY + e.maxY) / 2) * k)
-  ctx.scale(k, k)
-  draw(ctx)
-  return canvas.toDataURL()
-}
-
 function rotatedBox(e: Extent, x: number, y: number, angle: number): Box {
   const cos = Math.cos(angle)
   const sin = Math.sin(angle)

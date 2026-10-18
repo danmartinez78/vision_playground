@@ -34,15 +34,13 @@ export function ScaleUp({ lab }: { lab: Lab }) {
     setResult(null)
     const acc: BatchResult = { photos: 0, insects: 0, found: 0, detectSeconds: 0 }
     const seedBase = Math.floor(Math.random() * 100000)
-    // real photos: the other lesson photos; drawn night: freshly drawn ones
+    // the other lesson photos (drawn ones only if the photos can't be loaded)
     let next: () => Promise<Scene> = async () => renderNight(randomRecipe(seedBase + acc.photos), false)
-    if (lab.real) {
-      try {
-        const others = (await loadSamples()).filter((s) => inLesson(s) && `ami-${s.image}` !== lab.scene?.key)
-        next = () => sceneFromSample(others[acc.photos % others.length])
-      } catch {
-        // keep the drawn photos if the real ones can't be loaded
-      }
+    try {
+      const others = (await loadSamples()).filter((s) => inLesson(s) && `ami-${s.image}` !== lab.scene?.key)
+      next = () => sceneFromSample(others[acc.photos % others.length])
+    } catch {
+      // keep the drawn photos if the real ones can't be loaded
     }
     const step = async () => {
       const scene = await next()

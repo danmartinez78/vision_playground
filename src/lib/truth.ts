@@ -1,16 +1,4 @@
-import { SPECIES_BY_ID } from './species'
-import type { GroupId, RealGroup, TruthItem } from './types'
-
-export function truthGroup(t: TruthItem | undefined): GroupId {
-  if (!t || t.kind === 'debris' || !t.speciesId) return 'notbug'
-  return SPECIES_BY_ID.get(t.speciesId)!.group
-}
-
-export function truthName(t: TruthItem | undefined): string {
-  if (!t) return 'Nothing there (a false alarm)'
-  if (t.kind === 'debris') return `${t.debrisLabel} (not an insect)`
-  return SPECIES_BY_ID.get(t.speciesId!)!.common
-}
+import type { RealGroup, TruthItem } from './types'
 
 /** The right group for a real-photo close-up ('unknown' accepts any insect). */
 export function truthRealGroup(t: TruthItem | undefined): RealGroup | 'unknown' {

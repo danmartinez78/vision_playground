@@ -1,11 +1,9 @@
 import { useMemo } from 'react'
 import type { Lab } from '../lab'
 import { cropToDataUrl } from '../lib/geometry'
-import type { AiGuess } from '../lib/identifier'
-import { GROUP_LABEL, GROUPS, SPECIES_BY_ID } from '../lib/species'
 import { expertName } from '../lib/samples'
-import { REAL_GROUP_LABEL, REAL_GROUPS, realRight, truthGroup, truthName } from '../lib/truth'
-import type { GroupId, RealGroup } from '../lib/types'
+import { REAL_GROUP_LABEL, REAL_GROUPS, realRight } from '../lib/truth'
+import type { RealGroup } from '../lib/types'
 
 function Bar({ value }: { value: number }) {
   const pct = Math.round(value * 100)
@@ -15,31 +13,6 @@ function Bar({ value }: { value: number }) {
       <span style={{ width: `${pct}%` }} />
       <em>{pct}%</em>
     </span>
-  )
-}
-
-export function AiLadder({ g }: { g: AiGuess }) {
-  if (!g.speciesId && g.order.name === 'Not an insect') {
-    return (
-      <div className="ladder">
-        <div>
-          <span>Says</span> Not an insect <Bar value={g.order.confidence} />
-        </div>
-      </div>
-    )
-  }
-  return (
-    <div className="ladder">
-      <div>
-        <span>Order</span> {g.order.name} <Bar value={g.order.confidence} />
-      </div>
-      <div>
-        <span>Family</span> {g.family.name} <Bar value={g.family.confidence} />
-      </div>
-      <div>
-        <span>Species</span> {g.species.name} <Bar value={g.species.confidence} />
-      </div>
-    </div>
   )
 }
 
@@ -101,30 +74,19 @@ export function MothTips() {
 
 export function StepSort({ lab }: { lab: Lab }) {
   const scene = lab.scene!
-  const sample = scene.source === 'sample'
   const closeUps = useMemo(
     () => new Map(lab.cards.map((d) => [d.id, cropToDataUrl(scene.canvas, d.box)])),
     [lab.cards, scene],
   )
   const sorted = lab.cards.filter((d) => lab.sortChoices[d.id]).length
   const allSorted = sorted === lab.cards.length
-  const isRight = (id: string, answer: GroupId | RealGroup | undefined) =>
-    lab.real
-      ? realRight(answer as RealGroup | undefined, lab.truthFor.get(id))
-      : answer === truthGroup(lab.truthFor.get(id))
-  const aiGroup = (id: string): GroupId | RealGroup => {
-    if (lab.real) return lab.mothAi.get(id)?.group ?? 'notbug'
-    const g = lab.ai.get(id)
-    return g?.speciesId ? SPECIES_BY_ID.get(g.speciesId)!.group : 'notbug'
-  }
+  const isRight = (id: string, answer: RealGroup | undefined) => realRight(answer, lab.truthFor.get(id))
+  const aiGroup = (id: string): RealGroup => lab.mothAi.get(id)?.group ?? 'notbug'
   const scoredCards = lab.cards.filter((d) => lab.scored(d.id))
   const rightCount = scoredCards.filter((d) => isRight(d.id, lab.sortChoices[d.id])).length
   const aiRight = scoredCards.filter((d) => isRight(d.id, aiGroup(d.id))).length
   const unscored = lab.cards.length - scoredCards.length
-  const groups = lab.real ? REAL_GROUPS : GROUPS
-  const groupLabel = (g: GroupId | RealGroup) =>
-    lab.real ? REAL_GROUP_LABEL.get(g as RealGroup) : GROUP_LABEL.get(g as GroupId)
-  const revealed = lab.aiRevealed && sample
+  const revealed = lab.aiRevealed
 
   if (!lab.detector) {
     return (
@@ -146,25 +108,15 @@ export function StepSort({ lab }: { lab: Lab }) {
           cuts a small close-up picture out of the photo for every box the detector found. Then a different AI names
           each one.
         </p>
-        {lab.real ? (
-          <>
-            <p>
-              The first question scientists ask is simple: <strong>is it a moth?</strong> Moths are what the Mothbox was
-              built to count.
-            </p>
-            <p>
-              <strong>Your turn first:</strong> sort each close-up. When you've done them all, you can see what the AI
-              and the experts said.
-            </p>
-            <MothTips />
-          </>
-        ) : (
-          <p>
-            An AI called <strong>BioCLIP</strong> names insects at every level of the tree of life: order, then family,
-            then species. <strong>Your turn first:</strong> put each close-up into a group. When you've done them all,
-            you can see what the AI said.
-          </p>
-        )}
+        <p>
+          The first question scientists ask is simple: <strong>is it a moth?</strong> Moths are what the Mothbox was
+          built to count.
+        </p>
+        <p>
+          <strong>Your turn first:</strong> sort each close-up. When you've done them all, you can see what the AI and
+          the experts said.
+        </p>
+        <MothTips />
       </div>
 
       <div className="toolbar">
@@ -182,8 +134,6 @@ export function StepSort({ lab }: { lab: Lab }) {
       <div className="cards">
         {lab.cards.map((d) => {
           const choice = lab.sortChoices[d.id]
-          const real = lab.truthFor.get(d.id)
-          const g = lab.ai.get(d.id)
           const m = lab.mothAi.get(d.id)
           const right = choice && isRight(d.id, choice)
           return (
@@ -192,27 +142,21 @@ export function StepSort({ lab }: { lab: Lab }) {
               className={revealed && lab.scored(d.id) ? (right ? 'crop-card right' : 'crop-card wrong') : 'crop-card'}
             >
               <img src={closeUps.get(d.id)} alt="A close-up from the photo" width={132} height={132} />
-              {revealed && (g || m) ? (
+              {revealed && m ? (
                 <>
                   <p className="answer small">
                     {lab.scored(d.id) && (
                       <span className={right ? 'good-text' : 'bad-text'}>{right ? '✓ ' : '✗ '}</span>
                     )}
-                    You said <strong>{choice ? groupLabel(choice) : 'nothing'}</strong>.{' '}
-                    {lab.real ? (
-                      <ExpertSays id={d.id} lab={lab} />
-                    ) : (
-                      <>
-                        It was <strong>{truthName(real)}</strong>.
-                      </>
-                    )}
+                    You said <strong>{choice ? REAL_GROUP_LABEL.get(choice) : 'nothing'}</strong>.{' '}
+                    <ExpertSays id={d.id} lab={lab} />
                   </p>
                   <div className="small muted">The AI said:</div>
-                  {m ? <MothAnswer group={m.group} confidence={m.confidence} /> : g && <AiLadder g={g} />}
+                  <MothAnswer group={m.group} confidence={m.confidence} />
                 </>
               ) : (
                 <div className="group-buttons" role="group" aria-label="Pick a group">
-                  {groups.map((gr) => (
+                  {REAL_GROUPS.map((gr) => (
                     <button
                       key={gr.id}
                       className={choice === gr.id ? 'chip on' : 'chip'}
@@ -229,66 +173,50 @@ export function StepSort({ lab }: { lab: Lab }) {
         })}
       </div>
 
-      {sample ? (
-        <div className="computer-turn">
-          {revealed ? (
-            <div>
-              <h3>You vs. the AI</h3>
-              <div className="score">
-                <strong>Right group</strong>
-                <span className="pill good">
-                  You: {rightCount} of {scoredCards.length}
-                </span>
-                <span className="pill">
-                  AI: {aiRight} of {scoredCards.length}
-                </span>
-              </div>
-              {unscored > 0 && (
-                <p className="small muted">
-                  {unscored} close-up{unscored > 1 ? 's have' : ' has'} no expert answer, so{' '}
-                  {unscored > 1 ? "they aren't" : "it isn't"} scored.
-                </p>
-              )}
-              {lab.real ? (
-                <>
-                  <p className="small">
-                    Look at the AI's bars. It's sure about big, clear insects and less sure about tiny or blurry ones.
-                    Those unsure ones are where people help, in the next step.
-                  </p>
-                  <p className="small muted">
-                    Practice mode: the expert answers are real, but the AI's answers are made up to act like a moth
-                    classifier.
-                  </p>
-                </>
-              ) : (
-                <>
-                  <p className="small">
-                    Look at the AI's bars on each card. It's very sure about the order, less sure about the family, and
-                    often unsure about the exact species, especially for the three brown pest moths that look alike.
-                  </p>
-                  <p className="small muted">Practice mode: these AI answers are made up to act like BioCLIP.</p>
-                </>
-              )}
+      <div className="computer-turn">
+        {revealed ? (
+          <div>
+            <h3>You vs. the AI</h3>
+            <div className="score">
+              <strong>Right group</strong>
+              <span className="pill good">
+                You: {rightCount} of {scoredCards.length}
+              </span>
+              <span className="pill">
+                AI: {aiRight} of {scoredCards.length}
+              </span>
             </div>
-          ) : (
-            <>
-              <div>
-                <h3>AI's turn</h3>
-                <p>
-                  {allSorted
-                    ? 'Ready! See what the AI said about each close-up.'
-                    : `Sort all ${lab.cards.length} close-ups first (${lab.cards.length - sorted} to go).`}
-                </p>
-              </div>
-              <button className="primary big" onClick={() => lab.setAiRevealed(true)} disabled={!allSorted}>
-                ▶ Show the AI's answers
-              </button>
-            </>
-          )}
-        </div>
-      ) : (
-        <p className="muted small">AI answers for your own photos come in a later version.</p>
-      )}
+            {unscored > 0 && (
+              <p className="small muted">
+                {unscored} close-up{unscored > 1 ? 's have' : ' has'} no expert answer, so{' '}
+                {unscored > 1 ? "they aren't" : "it isn't"} scored.
+              </p>
+            )}
+            <p className="small">
+              Look at the AI's bars. It's sure about big, clear insects and less sure about tiny or blurry ones. Those
+              unsure ones are where people help, in the next step.
+            </p>
+            <p className="small muted">
+              Practice mode: the expert answers are real, but the AI's answers are made up to act like a moth
+              classifier.
+            </p>
+          </div>
+        ) : (
+          <>
+            <div>
+              <h3>AI's turn</h3>
+              <p>
+                {allSorted
+                  ? 'Ready! See what the AI said about each close-up.'
+                  : `Sort all ${lab.cards.length} close-ups first (${lab.cards.length - sorted} to go).`}
+              </p>
+            </div>
+            <button className="primary big" onClick={() => lab.setAiRevealed(true)} disabled={!allSorted}>
+              ▶ Show the AI's answers
+            </button>
+          </>
+        )}
+      </div>
     </section>
   )
 }
