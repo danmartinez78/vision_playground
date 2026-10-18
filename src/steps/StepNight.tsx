@@ -30,19 +30,20 @@ export function StepNight({ lab }: { lab: Lab }) {
   return (
     <section>
       <div className="intro">
-        <h2>Step 1: Look at a light-trap photo</h2>
+        <h2>Step 1: Look at an insect-monitor photo</h2>
         <p>
-          A <strong>Mothbox</strong> is a camera trap for insects. At night it turns on a bright light and takes photos
-          of the insects that land on its white sheet. One night can make hundreds of photos. Nobody has time to look at
-          all of them, so computers help. In this lab you will do each job yourself first, then see how the computer
-          does it.
+          A <strong>Mothbox</strong> is an insect monitor. At night it turns on a bright light and takes photos of the
+          insects that land on a white sheet. Nothing is caught: the insects fly away. Counting insects shows which
+          pests are around <em>before</em> they damage the crops. One night can make hundreds of photos, and nobody has
+          time to look at all of them, so computers help. In this lab you will do each job yourself first, then see how
+          the computer does it.
         </p>
       </div>
 
       <h3>Pick a photo to work on</h3>
       <p className="small muted">
-        These are real photos from light traps like the Mothbox, used by scientists in the AMI project in North America,
-        Central America and Europe. Experts drew a box around every insect, so the lab knows the right answers.
+        These are real photos from insect monitors like the Mothbox, taken by scientists in the AMI project in North
+        America, Central America and Europe. Experts drew a box around every insect, so the lab knows the right answers.
       </p>
       {error && <p className="warn">{error}</p>}
       <div className="sample-grid">
@@ -68,7 +69,7 @@ export function StepNight({ lab }: { lab: Lab }) {
             width={lab.scene.width}
             height={lab.scene.height}
             layers={[]}
-            alt={`Mothbox sheet: ${lab.scene.title}`}
+            alt={`Insect-monitor photo: ${lab.scene.title}`}
           />
           <div className="callout">
             <label className="guess">

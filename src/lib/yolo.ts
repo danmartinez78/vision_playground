@@ -1,4 +1,4 @@
-// Our trained insect detector: YOLO11n, trained on the AMI-Traps light-trap
+// Our trained insect detector: YOLO11n, trained on the AMI-Traps insect-monitor
 // photos (see docs/yolo-model.md), running in the browser with ONNX Runtime
 // Web. With WebGPU it uses the 1280 model; without, the faster 960 model on
 // the computer chip (WebAssembly).

@@ -45,8 +45,8 @@ export function DrawnNight({ lab }: { lab: Lab }) {
         <strong>Extra: can the AI handle a drawing?</strong>
       </summary>
       <p>
-        Our AI learned from thousands of real light-trap photos. It has never seen a drawing of a bug. Here's a night
-        drawn by the computer.
+        Our AI learned from thousands of real insect-monitor photos. It has never seen a drawing of a bug. Here's a
+        night drawn by the computer.
       </p>
       {!out && (
         <>
@@ -100,8 +100,8 @@ export function DrawnNight({ lab }: { lab: Lab }) {
           />
           <p className="small muted">Green: found a bug. Red: false alarm. Dashed purple: a bug the AI missed.</p>
           <p>
-            <strong>An AI only knows what it was trained on.</strong> That's why a Mothbox AI trained in one place needs
-            checking when it's used somewhere new.
+            <strong>An AI only knows what it was trained on.</strong> That's why an insect-monitor AI trained in one
+            place needs checking when it's used somewhere new.
           </p>
         </>
       )}

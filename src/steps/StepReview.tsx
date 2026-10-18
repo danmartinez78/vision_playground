@@ -51,9 +51,8 @@ export function StepReview({ lab }: { lab: Lab }) {
       <div className="intro">
         <h2>Step 5: Check the AI's work</h2>
         <p>
-          Scientists don't just trust the AI. They check the answers it was <strong>least sure</strong> about. (The
-          Mothbox team does this in a program called FiftyOne.) Here are the <strong>{lab.unsure.length}</strong> of the{' '}
-          {lab.cards.length} close-ups the AI was least sure about.
+          Scientists don't just trust the AI. They check the answers it was <strong>least sure</strong> about. Here are
+          the <strong>{lab.unsure.length}</strong> of the {lab.cards.length} close-ups the AI was least sure about.
         </p>
         <p>
           <strong>Your job:</strong> compare each close-up with the field guide. Does the AI's answer match? If not,

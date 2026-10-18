@@ -531,7 +531,7 @@ export function renderNight(recipe: NightRecipe, withImage = true): Scene {
   }
 }
 
-/** Loads a photo (for example from the team's Mothbox) and shrinks it to a workable size. */
+/** Loads a photo (for example from an insect monitor) and shrinks it to a workable size. */
 export async function sceneFromFile(file: File): Promise<Scene> {
   return sceneFromBitmap(await createImageBitmap(file), `upload-${file.name}-${file.lastModified}`, file.name)
 }

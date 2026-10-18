@@ -108,8 +108,8 @@ function PixelNumbers({ scene, crop }: { scene: Scene; crop: Box }) {
       </div>
       <p className="small muted">
         {size} × {size} = {size * size} pixels. In the numbers, 0 means white and 9 means black. A real color photo has
-        three numbers for every pixel (how much red, green and blue), and a Mothbox photo has tens of millions of
-        pixels. That's a lot of numbers!
+        three numbers for every pixel (how much red, green and blue), and an insect-monitor photo has tens of millions
+        of pixels. That's a lot of numbers!
       </p>
     </div>
   )
@@ -468,8 +468,8 @@ function TeachTinyAi({ trainScene, testScene }: { trainScene: Scene; testScene: 
             Tiny AI: {NUMBER_COUNT} numbers, practiced on 1 drawn photo for {MAX_ROUNDS} rounds, in a few seconds.
           </li>
           <li>
-            Our real detector (YOLO): about 2.6 million numbers, practiced on about 2,300 real light-trap photos that
-            experts had boxed, 100 times through all of them, in about an hour on a powerful graphics chip (GPU).
+            Our real detector (YOLO): about 2.6 million numbers, practiced on about 2,300 real insect-monitor photos
+            that experts had boxed, 100 times through all of them, in about an hour on a powerful graphics chip (GPU).
           </li>
         </ul>
         Same idea, much bigger. That's why the real one finds tiny insects and isn't fooled as often.
@@ -595,8 +595,9 @@ export function HowAiSees({ lab }: { lab: Lab }) {
     <section className="explainer">
       <div className="intro">
         <p>
-          The real Mothbox finds insects with an AI called a <strong>convolutional neural network</strong> (CNN for
-          short). That sounds complicated, but it's built from a few simple ideas. Try each one below.
+          Insect monitors like the Mothbox find insects with an AI called a{' '}
+          <strong>convolutional neural network</strong> (CNN for short). That sounds complicated, but it's built from a
+          few simple ideas. Try each one below.
         </p>
       </div>
 
@@ -636,7 +637,7 @@ export function HowAiLearns({ lab }: { lab: Lab }) {
         <h3>What the AI can't do</h3>
         <ul>
           <li>
-            It only knows what it practiced on. Our detector learned from light-trap photos, so a photo of a garden
+            It only knows what it practiced on. Our detector learned from insect-monitor photos, so a photo of a garden
             would confuse it.
           </li>
           <li>

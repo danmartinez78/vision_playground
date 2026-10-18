@@ -53,7 +53,7 @@ export function ExpertSays({ id, lab }: { id: string; lab: Lab }) {
   )
 }
 
-/** Tips for telling a moth from other insects on a light-trap photo. */
+/** Tips for telling a moth from other insects on an insect-monitor photo. */
 export function MothTips() {
   return (
     <ul className="small tips">

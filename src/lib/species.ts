@@ -15,7 +15,7 @@ export interface Species {
   note: string
 }
 
-// A small, real North American list. Moths at a light trap are mostly
+// A small, real North American list. Moths at a light are mostly
 // harmless; a few are crop pests and several other visitors are helpers.
 export const SPECIES: Species[] = [
   {

@@ -285,7 +285,7 @@ export function StepFind({ lab, onExplain }: { lab: Lab; onExplain: () => void }
       edit={
         phase === 'mine' && start ? { boxes: lab.studentBoxes, color: BLUE, onChange: lab.setStudentBoxes } : undefined
       }
-      alt="Mothbox sheet"
+      alt="Insect-monitor photo"
       bar={bar}
       full={full}
       onFullChange={setFull}
@@ -396,8 +396,8 @@ export function StepFind({ lab, onExplain }: { lab: Lab; onExplain: () => void }
           <div>
             <h3>Computer's turn</h3>
             <p>
-              Its <strong>detector</strong> is YOLO11n, a small AI we trained on about 2,300 real light-trap photos. It
-              runs right now, inside this browser, so it works on your own photos too.
+              Its <strong>detector</strong> is YOLO11n, a small AI we trained on about 2,300 real insect-monitor photos.
+              It runs right now, inside this browser, so it works on your own photos too.
             </p>
           </div>
           <button className="primary big" onClick={lab.runIt} disabled={lab.detecting}>

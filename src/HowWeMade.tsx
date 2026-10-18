@@ -13,7 +13,7 @@ export function HowWeMade() {
       <div className="intro">
         <h2>How we made this site</h2>
         <p>
-          Everything in the lesson is real: real light-trap photos, real answers from experts, and real AIs. Here's
+          Everything in the lesson is real: real insect-monitor photos, real answers from experts, and real AIs. Here's
           where each part came from.
         </p>
       </div>
@@ -34,8 +34,9 @@ export function HowWeMade() {
             it on the lesson photos ahead of time and saved its answers.
           </li>
           <li>
-            <strong>The Mothbox</strong> is the trap our team uses, and it follows the same steps. None of the photos or
-            AIs here come from the Mothbox project.
+            <strong>The Mothbox</strong> is an open-source insect monitor. Our team learned about it and is designing a
+            sensor like it to count pests before and after a treatment. It uses the same steps as this lesson. None of
+            the photos or AIs here come from the Mothbox project.
           </li>
         </ol>
       </div>
@@ -75,7 +76,7 @@ export function HowWeMade() {
       <div className="callout">
         <h3>Credits: the Mothbox</h3>
         <p>
-          The Mothbox is an open-source automatic light trap made by <strong>Digital Naturalism Laboratories</strong>{' '}
+          The Mothbox is an open-source insect monitor made by <strong>Digital Naturalism Laboratories</strong>{' '}
           (Dinalab). It attracts insects to a lit sheet at night and photographs them, so scientists can count insects
           without catching them. Anyone can build one from the free plans.
         </p>
@@ -99,7 +100,7 @@ export function HowWeMade() {
         <p>
           Our detector practiced on, and the lesson photos come from, the <strong>AMI dataset</strong> from the
           Automated Monitoring of Insects project (Rolnick Lab at Mila and McGill University, with partners around the
-          world). Experts drew boxes around the insects in thousands of light-trap photos and shared them for free.
+          world). Experts drew boxes around the insects in thousands of insect-monitor photos and shared them for free.
         </p>
         <ul>
           <li>
@@ -129,12 +130,12 @@ export function HowWeMade() {
             <Link href="https://pytorch.org/vision/stable/models/mobilenetv3.html">MobileNetV3 docs</Link>
           </li>
           <li>
-            <strong>BioCLIP</strong> by the Imageomics Institute names each moth in step 4, like it does for the Mothbox
-            team. It's too big for a browser, so we ran it ahead of time on the lesson photos.{' '}
+            <strong>BioCLIP</strong> by the Imageomics Institute names each moth in step 4, like it does for the
+            Mothbox's makers. It's too big for a browser, so we ran it ahead of time on the lesson photos.{' '}
             <Link href="https://imageomics.github.io/bioclip/">BioCLIP</Link> (MIT license)
           </li>
           <li>
-            <strong>FiftyOne</strong> by Voxel51 is the program the Mothbox team uses to check the AI's work.{' '}
+            <strong>FiftyOne</strong> by Voxel51 is the program the Mothbox's makers use to check the AI's work.{' '}
             <Link href="https://docs.voxel51.com/">FiftyOne docs</Link>
           </li>
         </ul>

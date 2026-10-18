@@ -169,11 +169,11 @@ export default function App() {
       </main>
 
       <footer className="small muted">
-        A practice lab for our FIRST LEGO League team, based on the open-source{' '}
+        A practice lab for our FIRST LEGO League team, inspired by the open-source{' '}
         <a href="https://mothbox.org/" target="_blank" rel="noreferrer">
           Mothbox
         </a>{' '}
-        by Digital Naturalism Laboratories.{' '}
+        insect monitor by Digital Naturalism Laboratories.{' '}
         <button className="link" onClick={() => setPage('about')}>
           How we made this site
         </button>

@@ -34,7 +34,7 @@ export interface Scene {
   height: number
   /** Answer key. Sample nights only. */
   truth?: TruthItem[]
-  /** A real light-trap photo (not one the computer drew). */
+  /** A real insect-monitor photo (not one the computer drew). */
   real?: boolean
 }
 

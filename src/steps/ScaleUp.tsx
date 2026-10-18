@@ -83,7 +83,8 @@ export function ScaleUp({ lab }: { lab: Lab }) {
       <>
         <p>
           The computer checked <strong>{result.photos} photos</strong> in{' '}
-          <strong>{formatDuration(result.detectSeconds)}</strong>. A whole Mothbox night is {PHOTOS_PER_NIGHT} photos.
+          <strong>{formatDuration(result.detectSeconds)}</strong>. A Mothbox takes about {PHOTOS_PER_NIGHT} photos in
+          one night.
         </p>
         <h4>One night</h4>
         <ul className="time-race">
@@ -127,7 +128,7 @@ export function ScaleUp({ lab }: { lab: Lab }) {
   return (
     <div className="scale-box">
       <h3>Scale it up</h3>
-      <p>A real Mothbox takes hundreds of photos a night. Let the computer try a stack of new ones.</p>
+      <p>An insect monitor takes hundreds of photos a night. Let the computer try a stack of new ones.</p>
       <button className="primary" onClick={run} disabled={progress > 0 && progress < 1}>
         {result ? 'Run it again' : `Process ${BATCH} new photos`}
       </button>

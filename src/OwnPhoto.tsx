@@ -108,8 +108,8 @@ export function OwnPhoto() {
       <div className="intro">
         <h2>Try your own photo</h2>
         <p>
-          Run the computer's detector, our trained YOLO11n AI, on any photo, like one from your Mothbox. It runs inside
-          this web browser, so your photo never leaves your computer.
+          Run the computer's detector, our trained YOLO11n AI, on any photo, like one from an insect monitor. It runs
+          inside this web browser, so your photo never leaves your computer.
         </p>
         <p className="small muted">
           The detector was trained on insects on a lit sheet at night. On other photos (a garden, a leaf, your desk) it
@@ -126,10 +126,10 @@ export function OwnPhoto() {
 
       {samples.length > 0 && (
         <>
-          <h3>Or try a real light-trap photo</h3>
+          <h3>Or try a real insect-monitor photo</h3>
           <p className="small muted">
-            Photos from light traps in the AMI dataset, with boxes drawn by experts, so you can see what the AI found
-            and missed. The detector never practiced on these photos.
+            Photos from insect monitors in the AMI dataset, with boxes drawn by experts, so you can see what the AI
+            found and missed. The detector never practiced on these photos.
           </p>
           <div className="sample-grid">
             {samples.map((s) => (

@@ -132,7 +132,7 @@ export function StepLearn({ lab, onOwn, onAi }: { lab: Lab; onOwn: () => void; o
         <div>
           <h4>Now: camera + AI + people</h4>
           <ul>
-            <li>A Mothbox takes photos, and the insects fly away.</li>
+            <li>An insect monitor takes photos, and the insects fly away.</li>
             <li>AI finds and sorts them in minutes.</li>
             <li>People check only the hard ones.</li>
           </ul>
@@ -142,12 +142,22 @@ export function StepLearn({ lab, onOwn, onAi }: { lab: Lab; onOwn: () => void; o
       <ScaleUp lab={lab} />
 
       <div className="big-idea">
-        <h3>Seeing vs. guessing</h3>
+        <h3>Why count insects instead of watching the crops?</h3>
         <p>
-          The scent simulator's survey map <strong>guesses</strong> where pests are from clues like crop damage. A
-          Mothbox <strong>sees</strong> them: every insect in the count is a photo you can check. It still makes
-          mistakes, but you can find and fix them, like you just did.
+          Crop damage is a clue, like in the scent simulator's survey map, but it's a weak one. It shows up{' '}
+          <strong>too late</strong> to prevent the damage, it's <strong>not a sure sign</strong> of pests (crops also
+          suffer from dry weather or poor soil), and it's <strong>too slow</strong> to tell you if a treatment worked,
+          because crops take weeks to recover.
         </p>
+        <p>
+          A sensor like the Mothbox counts the insects themselves, and every insect in the count is a photo you can
+          check. Our team is designing one to use before and after a treatment, to:
+        </p>
+        <ul>
+          <li>find out which pests are there,</li>
+          <li>treat only where they are, which means less pesticide even without a scent repellent,</li>
+          <li>count again afterward to see if the treatment worked.</li>
+        </ul>
       </div>
 
       <div className="callout">
@@ -155,7 +165,7 @@ export function StepLearn({ lab, onOwn, onAi }: { lab: Lab; onOwn: () => void; o
         <ol>
           <li>Where did the computer beat you? Where did you beat it?</li>
           <li>Which is worse for a farmer: a missed pest, or a false alarm?</li>
-          <li>How could a Mothbox show whether a scent treatment worked?</li>
+          <li>How could counting insects before and after show whether a treatment worked?</li>
         </ol>
       </div>
 
@@ -167,7 +177,9 @@ export function StepLearn({ lab, onOwn, onAi }: { lab: Lab; onOwn: () => void; o
           </span>
           <span>
             <strong>Try your own photo</strong>
-            <span className="small">Run the AI on a photo of your own, or on any of 24 real light-trap photos.</span>
+            <span className="small">
+              Run the AI on a photo of your own, or on any of 24 real insect-monitor photos.
+            </span>
           </span>
         </button>
         <button className="next-card" onClick={onAi}>

@@ -1,12 +1,12 @@
 # Mothbox Vision Lab
 
-A browser lesson for our FIRST LEGO League team (6th to 8th grade) about the computer-vision side of the [Mothbox](https://mothbox.org/), the open-source automated insect light trap our project uses.
+A browser lesson for our FIRST LEGO League team (6th to 8th grade) about the computer-vision side of the [Mothbox](https://mothbox.org/), an open-source insect monitor (a light and a camera; nothing is caught). Our team is designing a Mothbox-like sensor to count pests before and after a treatment.
 
 Students walk through the same steps as the real Mothbox pipeline, doing each job themselves before seeing how the computer does it:
 
 | Step | What students do | Real Mothbox equivalent |
 |---|---|---|
-| 1. Look at a photo | Pick one of 23 real light-trap photos, zoom around, guess the count | UV light attracts insects, camera photographs the sheet |
+| 1. Look at a photo | Pick one of 6 real insect-monitor photos, zoom around, guess the count | UV light attracts insects, camera photographs the sheet |
 | 2. Find the insects | Box every insect against a stopwatch and see why each box counted or not; then run the computer's detector live in the browser and compare found, missed, false alarms and time; experiment with the confidence slider | YOLO detector finds each insect |
 | 3. Moth or not? | Sort each close-up as moth, other insect or not a bug, then reveal the AI's answer and the experts' label | A moth / not-a-moth classifier sorts each close-up |
 | 4. Name the moth | For each moth the experts named to species, pick the matching field-guide picture, then reveal BioCLIP's top answer and the experts' name | BioCLIP names each moth (run ahead of time, too big for a browser) |
@@ -52,7 +52,7 @@ nginx sends the cross-origin isolation headers (`Cross-Origin-Opener-Policy` and
 ## What is real and what is practice (MVP)
 
 - **The detector is a real trained AI running in the browser**: YOLO11n trained on AMI-Traps (`src/lib/yolo.ts`, details and test results in `docs/yolo-model.md`). With WebGPU it runs the 1280 model; otherwise the 960 model on WebAssembly (about half a second per photo on a laptop). If the model can't load, the page falls back to a simple spot finder (`src/lib/detector.ts`) and says so.
-- **The lesson uses real light-trap photos**: 6 of the 24 AMI-Traps test photos in `public/samples/ami-traps` (the `LESSON` list in `src/lib/samples.ts`), with the experts' boxes and labels, simplified to moth / not a moth / unknown. They're the photos where the experts boxed nearly every insect and named enough moths for Step 4; all 24 stay in "Try your own photo". The detector never trained on them. The experts skipped many tiny bugs, so `scripts/unlisted_spots.py` marks every dark spot outside their boxes (`unlisted` in `index.json`), and a box on one of those counts neither as a find nor as a false alarm. The field guide close-ups in step 5 are cut from these photos (`examples/`).
+- **The lesson uses real insect-monitor photos**: 6 of the 24 AMI-Traps test photos in `public/samples/ami-traps` (the `LESSON` list in `src/lib/samples.ts`), with the experts' boxes and labels, simplified to moth / not a moth / unknown. They're the photos where the experts boxed nearly every insect and named enough moths for Step 4; all 24 stay in "Try your own photo". The detector never trained on them. The experts skipped many tiny bugs, so `scripts/unlisted_spots.py` marks every dark spot outside their boxes (`unlisted` in `index.json`), and a box on one of those counts neither as a find nor as a false alarm. The field guide close-ups in step 5 are cut from these photos (`examples/`).
 - **On phones and tablets** (`src/lib/touch.ts`, `src/SceneView.tsx`): the photo on the page is a preview that opens full screen, with its own pinch-zoom and pan, zoom-to-a-corner buttons, and tap-to-mark instead of drawing boxes. A tap makes a small square, scored with the same rules as a drawn box.
 - **The drawn night** (`src/lib/scene.ts`) is only used for the optional extra at the end of step 6 and the tiny-CNN demo in How the AI works: it shows that an AI only knows what it was trained on.
 - **The moth / not-a-moth answers come from a real classifier** (`src/lib/mothModel.ts`, `docs/moth-classifier.md`): a small MobileNetV3 trained on AMI-Traps insect close-ups from the train split, running in the browser on each close-up the detector kept. Its 4 least-sure answers go to the student in step 5.
@@ -60,7 +60,7 @@ nginx sends the cross-origin isolation headers (`Cross-Origin-Opener-Policy` and
 
 ## Next steps
 
-1. Use the team's own Mothbox nights.
+1. Use nights from the team's own sensor once it exists.
 2. Before-and-after nights to check a scent treatment: did the pest count drop while helpers stayed?
 
 ## License
@@ -74,4 +74,4 @@ The site has a full Credits and links page (footer link). In short:
 - [Mothbox](https://mothbox.org/) by Digital Naturalism Laboratories ([GitHub](https://github.com/Digital-Naturalism-Laboratories/Mothbox)). This lab is a separate teaching tool and is not affiliated with them.
 - AMI dataset from the Automated Monitoring of Insects project, Rolnick Lab: Jain et al., [Insect Identification in the Wild: The AMI Dataset](https://arxiv.org/abs/2406.12452), ECCV 2024; data on [Zenodo](https://zenodo.org/records/11358689) (MIT).
 - [Ultralytics YOLO11](https://docs.ultralytics.com/models/yolo11/) (AGPL-3.0).
-- [FiftyOne](https://docs.voxel51.com/) by Voxel51, which the Mothbox team uses to review results.
+- [FiftyOne](https://docs.voxel51.com/) by Voxel51, which the Mothbox's makers use to review results.

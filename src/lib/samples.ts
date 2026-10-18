@@ -1,4 +1,4 @@
-// Real light-trap photos from the AMI-Traps test split (public/samples/ami-traps),
+// Real insect-monitor photos from the AMI-Traps test split (public/samples/ami-traps),
 // each with the boxes experts drew around every insect.
 import { sceneFromUrl } from './scene'
 import type { ExpertGroup, Scene, TruthItem } from './types'
@@ -75,7 +75,7 @@ export function loadSamples(): Promise<Sample[]> {
 }
 
 export function sampleTitle(s: Sample): string {
-  return `Light trap in ${REGION_NAMES[s.region] ?? s.region}`
+  return `Insect monitor in ${REGION_NAMES[s.region] ?? s.region}`
 }
 
 /** A sample photo as a lesson scene, with the experts' boxes as its answer key. */
