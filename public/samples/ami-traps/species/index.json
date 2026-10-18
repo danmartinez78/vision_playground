@@ -1,0 +1,3484 @@
+{
+ "source": "AMI-Traps train/val photos (MIT); none from the test split",
+ "species": [
+  {
+   "species": "Abagrotis alternata",
+   "genus": "Abagrotis",
+   "family": "Noctuidae",
+   "picture": "species/Abagrotis_alternata.jpg",
+   "from_image": "20230710025959-127-snapshot"
+  },
+  {
+   "species": "Abrostola tripartita",
+   "genus": "Abrostola",
+   "family": "Noctuidae",
+   "picture": "species/Abrostola_tripartita.jpg",
+   "from_image": "20230612010959-115-snapshot"
+  },
+  {
+   "species": "Acasis viretata",
+   "genus": "Acasis",
+   "family": "Geometridae",
+   "picture": "species/Acasis_viretata.jpg",
+   "from_image": "20230522025959-83-snapshot"
+  },
+  {
+   "species": "Acleris forsskaleana",
+   "genus": "Acleris",
+   "family": "Tortricidae",
+   "picture": "species/Acleris_forsskaleana.jpg",
+   "from_image": "20230627013000-69-snapshot"
+  },
+  {
+   "species": "Acleris laterana",
+   "genus": "Acleris",
+   "family": "Tortricidae",
+   "picture": "species/Acleris_laterana.jpg",
+   "from_image": "20230922025959-173-snapshot"
+  },
+  {
+   "species": "Acleris semipurpurana",
+   "genus": "Acleris",
+   "family": "Tortricidae",
+   "picture": "species/Acleris_semipurpurana.jpg",
+   "from_image": "20220618014043-00-90"
+  },
+  {
+   "species": "Acleris sparsana",
+   "genus": "Acleris",
+   "family": "Tortricidae",
+   "picture": "species/Acleris_sparsana.jpg",
+   "from_image": "20230922025959-173-snapshot"
+  },
+  {
+   "species": "Acleris variana",
+   "genus": "Acleris",
+   "family": "Tortricidae",
+   "picture": "species/Acleris_variana.jpg",
+   "from_image": "20220909011542-00-75"
+  },
+  {
+   "species": "Acleris variegana",
+   "genus": "Acleris",
+   "family": "Tortricidae",
+   "picture": "species/Acleris_variegana.jpg",
+   "from_image": "20230918030000-92-snapshot"
+  },
+  {
+   "species": "Acrobasis angusella",
+   "genus": "Acrobasis",
+   "family": "Pyralidae",
+   "picture": "species/Acrobasis_angusella.jpg",
+   "from_image": "20220807225613-00-86"
+  },
+  {
+   "species": "Acrobasis tricolorella",
+   "genus": "Acrobasis",
+   "family": "Pyralidae",
+   "picture": "species/Acrobasis_tricolorella.jpg",
+   "from_image": "20220728001507-00-135"
+  },
+  {
+   "species": "Acronicta leporina",
+   "genus": "Acronicta",
+   "family": "Noctuidae",
+   "picture": "species/Acronicta_leporina.jpg",
+   "from_image": "20230627025959-149-snapshot"
+  },
+  {
+   "species": "Acronicta megacephala",
+   "genus": "Acronicta",
+   "family": "Noctuidae",
+   "picture": "species/Acronicta_megacephala.jpg",
+   "from_image": "20230626025959-156-snapshot"
+  },
+  {
+   "species": "Actias luna",
+   "genus": "Actias",
+   "family": "Saturniidae",
+   "picture": "species/Actias_luna.jpg",
+   "from_image": "20220623033324-00-175"
+  },
+  {
+   "species": "Adoxophyes negundana",
+   "genus": "Adoxophyes",
+   "family": "Tortricidae",
+   "picture": "species/Adoxophyes_negundana.jpg",
+   "from_image": "20220626010853-00-89"
+  },
+  {
+   "species": "Aethalura punctulata",
+   "genus": "Aethalura",
+   "family": "Geometridae",
+   "picture": "species/Aethalura_punctulata.jpg",
+   "from_image": "20230522025959-87-snapshot"
+  },
+  {
+   "species": "Aethes sexdentata",
+   "genus": "Aethes",
+   "family": "Tortricidae",
+   "picture": "species/Aethes_sexdentata.jpg",
+   "from_image": "20220630003245-00-86"
+  },
+  {
+   "species": "Agapeta hamana",
+   "genus": "Agapeta",
+   "family": "Tortricidae",
+   "picture": "species/Agapeta_hamana.jpg",
+   "from_image": "20230621020959-139-snapshot"
+  },
+  {
+   "species": "Agriphila selasella",
+   "genus": "Agriphila",
+   "family": "Crambidae",
+   "picture": "species/Agriphila_selasella.jpg",
+   "from_image": "20230819025959-220-snapshot"
+  },
+  {
+   "species": "Agriphila tristella",
+   "genus": "Agriphila",
+   "family": "Crambidae",
+   "picture": "species/Agriphila_tristella.jpg",
+   "from_image": "20230821235906-00-42"
+  },
+  {
+   "species": "Agrotis exclamationis",
+   "genus": "Agrotis",
+   "family": "Noctuidae",
+   "picture": "species/Agrotis_exclamationis.jpg",
+   "from_image": "20230523030000-144-snapshot"
+  },
+  {
+   "species": "Alcis repandata",
+   "genus": "Alcis",
+   "family": "Geometridae",
+   "picture": "species/Alcis_repandata.jpg",
+   "from_image": "20230717025959-200-snapshot"
+  },
+  {
+   "species": "Alsophila pometaria",
+   "genus": "Alsophila",
+   "family": "Geometridae",
+   "picture": "species/Alsophila_pometaria.jpg",
+   "from_image": "13-20221105015959-snapshot"
+  },
+  {
+   "species": "Amorbia humerosana",
+   "genus": "Amorbia",
+   "family": "Tortricidae",
+   "picture": "species/Amorbia_humerosana.jpg",
+   "from_image": "20220614003657-00-124"
+  },
+  {
+   "species": "Amphipyra tragopoginis",
+   "genus": "Amphipyra",
+   "family": "Noctuidae",
+   "picture": "species/Amphipyra_tragopoginis.jpg",
+   "from_image": "20230911224949-00-14"
+  },
+  {
+   "species": "Anania hortulata",
+   "genus": "Anania",
+   "family": "Crambidae",
+   "picture": "species/Anania_hortulata.jpg",
+   "from_image": "20230805003650-00-79"
+  },
+  {
+   "species": "Ancylis comptana",
+   "genus": "Ancylis",
+   "family": "Tortricidae",
+   "picture": "species/Ancylis_comptana.jpg",
+   "from_image": "20220522005423-00-50"
+  },
+  {
+   "species": "Ancylis diminutana",
+   "genus": "Ancylis",
+   "family": "Tortricidae",
+   "picture": "species/Ancylis_diminutana.jpg",
+   "from_image": "20220801215502-00-50"
+  },
+  {
+   "species": "Ancylis goodelliana",
+   "genus": "Ancylis",
+   "family": "Tortricidae",
+   "picture": "species/Ancylis_goodelliana.jpg",
+   "from_image": "20220610011345-00-90"
+  },
+  {
+   "species": "Ancylis nubeculana",
+   "genus": "Ancylis",
+   "family": "Tortricidae",
+   "picture": "species/Ancylis_nubeculana.jpg",
+   "from_image": "20220703003237-00-86"
+  },
+  {
+   "species": "Anerastia lotella",
+   "genus": "Anerastia",
+   "family": "Pyralidae",
+   "picture": "species/Anerastia_lotella.jpg",
+   "from_image": "20230815025959-137-snapshot"
+  },
+  {
+   "species": "Antaeotricha leucillana",
+   "genus": "Antaeotricha",
+   "family": "Depresariidae",
+   "picture": "species/Antaeotricha_leucillana.jpg",
+   "from_image": "20220609042236-00-253"
+  },
+  {
+   "species": "Apamea scoparia",
+   "genus": "Apamea",
+   "family": "Noctuidae",
+   "picture": "species/Apamea_scoparia.jpg",
+   "from_image": "20230625025000-215-snapshot"
+  },
+  {
+   "species": "Aphelia unitana",
+   "genus": "Aphelia",
+   "family": "Tortricidae",
+   "picture": "species/Aphelia_unitana.jpg",
+   "from_image": "20230618025959-146-snapshot"
+  },
+  {
+   "species": "Aplocera plagiata",
+   "genus": "Aplocera",
+   "family": "Geometridae",
+   "picture": "species/Aplocera_plagiata.jpg",
+   "from_image": "20220831041022-00-249"
+  },
+  {
+   "species": "Apoda limacodes",
+   "genus": "Apoda",
+   "family": "Limacodidae",
+   "picture": "species/Apoda_limacodes.jpg",
+   "from_image": "20230621030000-142-snapshot"
+  },
+  {
+   "species": "Apomyelois bistriatella",
+   "genus": "Apomyelois",
+   "family": "Pyralidae",
+   "picture": "species/Apomyelois_bistriatella.jpg",
+   "from_image": "20220614230254-00-63"
+  },
+  {
+   "species": "Apotomis albeolana",
+   "genus": "Apotomis",
+   "family": "Tortricidae",
+   "picture": "species/Apotomis_albeolana.jpg",
+   "from_image": "20220802005504-00-123"
+  },
+  {
+   "species": "Apotomis funerea",
+   "genus": "Apotomis",
+   "family": "Tortricidae",
+   "picture": "species/Apotomis_funerea.jpg",
+   "from_image": "20220817011918-00-139"
+  },
+  {
+   "species": "Apotomis sororculana",
+   "genus": "Apotomis",
+   "family": "Tortricidae",
+   "picture": "species/Apotomis_sororculana.jpg",
+   "from_image": "20230531024959-36-snapshot"
+  },
+  {
+   "species": "Archips cerasivorana",
+   "genus": "Archips",
+   "family": "Tortricidae",
+   "picture": "species/Archips_cerasivorana.jpg",
+   "from_image": "20220707025703-00-214"
+  },
+  {
+   "species": "Archips dissitana",
+   "genus": "Archips",
+   "family": "Tortricidae",
+   "picture": "species/Archips_dissitana.jpg",
+   "from_image": "21-20220716230000-snapshot"
+  },
+  {
+   "species": "Archips packardiana",
+   "genus": "Archips",
+   "family": "Tortricidae",
+   "picture": "species/Archips_packardiana.jpg",
+   "from_image": "20220718010444-00-14"
+  },
+  {
+   "species": "Archips podana",
+   "genus": "Archips",
+   "family": "Tortricidae",
+   "picture": "species/Archips_podana.jpg",
+   "from_image": "20230630025959-165-snapshot"
+  },
+  {
+   "species": "Archips purpurana",
+   "genus": "Archips",
+   "family": "Tortricidae",
+   "picture": "species/Archips_purpurana.jpg",
+   "from_image": "20220718012444-00-14"
+  },
+  {
+   "species": "Arctornis l-nigrum",
+   "genus": "Arctornis",
+   "family": "Erebidae",
+   "picture": "species/Arctornis_l-nigrum.jpg",
+   "from_image": "20230625015000-163-snapshot"
+  },
+  {
+   "species": "Argyresthia calliphanes",
+   "genus": "Argyresthia",
+   "family": "Argyresthiidae",
+   "picture": "species/Argyresthia_calliphanes.jpg",
+   "from_image": "20220716234000-00-21"
+  },
+  {
+   "species": "Argyresthia conjugella",
+   "genus": "Argyresthia",
+   "family": "Argyresthiidae",
+   "picture": "species/Argyresthia_conjugella.jpg",
+   "from_image": "20220620022348-00-216"
+  },
+  {
+   "species": "Argyria critica",
+   "genus": "Argyria",
+   "family": "Crambidae",
+   "picture": "species/Argyria_critica.jpg",
+   "from_image": "20220719004007-00-100"
+  },
+  {
+   "species": "Argyrotaenia mariana",
+   "genus": "Argyrotaenia",
+   "family": "Tortricidae",
+   "picture": "species/Argyrotaenia_mariana.jpg",
+   "from_image": "20220516010301-00-97"
+  },
+  {
+   "species": "Argyrotaenia quadrifasciana",
+   "genus": "Argyrotaenia",
+   "family": "Tortricidae",
+   "picture": "species/Argyrotaenia_quadrifasciana.jpg",
+   "from_image": "20220627041000-00-35"
+  },
+  {
+   "species": "Argyrotaenia quercifoliana",
+   "genus": "Argyrotaenia",
+   "family": "Tortricidae",
+   "picture": "species/Argyrotaenia_quercifoliana.jpg",
+   "from_image": "20220717034000-00-21"
+  },
+  {
+   "species": "Argyrotaenia velutinana",
+   "genus": "Argyrotaenia",
+   "family": "Tortricidae",
+   "picture": "species/Argyrotaenia_velutinana.jpg",
+   "from_image": "20220731013631-00-111"
+  },
+  {
+   "species": "Ategumia dilecticolor",
+   "genus": "Ategumia",
+   "family": "Crambidae",
+   "picture": "species/Ategumia_dilecticolor.jpg",
+   "from_image": "117-20230124222759-snapshot"
+  },
+  {
+   "species": "Atolmis rubricollis",
+   "genus": "Atolmis",
+   "family": "Erebidae",
+   "picture": "species/Atolmis_rubricollis.jpg",
+   "from_image": "20230626011000-87-snapshot"
+  },
+  {
+   "species": "Autographa gamma",
+   "genus": "Autographa",
+   "family": "Noctuidae",
+   "picture": "species/Autographa_gamma.jpg",
+   "from_image": "20230907013848-00-54"
+  },
+  {
+   "species": "Autographa pulchrina",
+   "genus": "Autographa",
+   "family": "Noctuidae",
+   "picture": "species/Autographa_pulchrina.jpg",
+   "from_image": "20230630030000-245-snapshot"
+  },
+  {
+   "species": "Automeris io",
+   "genus": "Automeris",
+   "family": "Saturniidae",
+   "picture": "species/Automeris_io.jpg",
+   "from_image": "20220602034427-00-223"
+  },
+  {
+   "species": "Baileya dormitans",
+   "genus": "Baileya",
+   "family": "Nolidae",
+   "picture": "species/Baileya_dormitans.jpg",
+   "from_image": "20220623003311-00-115"
+  },
+  {
+   "species": "Baileya ophthalmica",
+   "genus": "Baileya",
+   "family": "Nolidae",
+   "picture": "species/Baileya_ophthalmica.jpg",
+   "from_image": "20220625234849-00-42"
+  },
+  {
+   "species": "Balsa tristrigella",
+   "genus": "Balsa",
+   "family": "Noctuidae",
+   "picture": "species/Balsa_tristrigella.jpg",
+   "from_image": "20220603024723-00-23"
+  },
+  {
+   "species": "Besma quercivoraria",
+   "genus": "Besma",
+   "family": "Geometridae",
+   "picture": "species/Besma_quercivoraria.jpg",
+   "from_image": "20220623023314-00-156"
+  },
+  {
+   "species": "Bibarrambla allenella",
+   "genus": "Bibarrambla",
+   "family": "Depressariidae",
+   "picture": "species/Bibarrambla_allenella.jpg",
+   "from_image": "20220703005237-00-139"
+  },
+  {
+   "species": "Biston betularia",
+   "genus": "Biston",
+   "family": "Geometridae",
+   "picture": "species/Biston_betularia.jpg",
+   "from_image": "20230807025959-196-snapshot"
+  },
+  {
+   "species": "Blastobasis adustella",
+   "genus": "Blastobasis",
+   "family": "Blastobasidae",
+   "picture": "species/Blastobasis_adustella.jpg",
+   "from_image": "20230829002811-00-43"
+  },
+  {
+   "species": "Blepharomastix ranalis",
+   "genus": "Lamprosema",
+   "family": "Crambidae",
+   "picture": "species/Blepharomastix_ranalis.jpg",
+   "from_image": "20220620010316-00-161"
+  },
+  {
+   "species": "Cabera pusaria",
+   "genus": "Cabera",
+   "family": "Geometridae",
+   "picture": "species/Cabera_pusaria.jpg",
+   "from_image": "20230704025959-48-snapshot"
+  },
+  {
+   "species": "Caenurgina crassiuscula",
+   "genus": "Caenurgina",
+   "family": "Erebidae",
+   "picture": "species/Caenurgina_crassiuscula.jpg",
+   "from_image": "20220801215502-00-50"
+  },
+  {
+   "species": "Caenurgina erechtea",
+   "genus": "Caenurgina",
+   "family": "Erebidae",
+   "picture": "species/Caenurgina_erechtea.jpg",
+   "from_image": "20220707011649-00-142"
+  },
+  {
+   "species": "Calamotropha paludella",
+   "genus": "Calamotropha",
+   "family": "Crambidae",
+   "picture": "species/Calamotropha_paludella.jpg",
+   "from_image": "20230622021000-91-snapshot"
+  },
+  {
+   "species": "Calledapteryx dryopterata",
+   "genus": "Epiplema",
+   "family": "Uraniidae",
+   "picture": "species/Calledapteryx_dryopterata.jpg",
+   "from_image": "20220622235310-00-99"
+  },
+  {
+   "species": "Calliteara pudibunda",
+   "genus": "Calliteara",
+   "family": "Erebidae",
+   "picture": "species/Calliteara_pudibunda.jpg",
+   "from_image": "20230608025959-40-snapshot"
+  },
+  {
+   "species": "Callizzia amorata",
+   "genus": "Epiplema",
+   "family": "Uraniidae",
+   "picture": "species/Callizzia_amorata.jpg",
+   "from_image": "20220623025322-00-160"
+  },
+  {
+   "species": "Callopistria mollissima",
+   "genus": "Callopistria",
+   "family": "Noctuidae",
+   "picture": "species/Callopistria_mollissima.jpg",
+   "from_image": "20220623214512-00-43"
+  },
+  {
+   "species": "Campaea margaritaria",
+   "genus": "Campaea",
+   "family": "Geometridae",
+   "picture": "species/Campaea_margaritaria.jpg",
+   "from_image": "20230909023829-00-125"
+  },
+  {
+   "species": "Campaea perlata",
+   "genus": "Campaea",
+   "family": "Geometridae",
+   "picture": "species/Campaea_perlata.jpg",
+   "from_image": "20220620045033-00-281"
+  },
+  {
+   "species": "Carcina quercana",
+   "genus": "Carcina",
+   "family": "Oecophoridae",
+   "picture": "species/Carcina_quercana.jpg",
+   "from_image": "20230715025959-133-snapshot"
+  },
+  {
+   "species": "Catocala nupta",
+   "genus": "Catocala",
+   "family": "Erebidae",
+   "picture": "species/Catocala_nupta.jpg",
+   "from_image": "20230828025959-84-snapshot"
+  },
+  {
+   "species": "Catoptria falsella",
+   "genus": "Catoptria",
+   "family": "Crambidae",
+   "picture": "species/Catoptria_falsella.jpg",
+   "from_image": "20230907005848-00-50"
+  },
+  {
+   "species": "Catoptria osthelderi",
+   "genus": "Catoptria",
+   "family": "Crambidae",
+   "picture": "species/Catoptria_osthelderi.jpg",
+   "from_image": "20230813030000-211-snapshot"
+  },
+  {
+   "species": "Catoptria permutatellus",
+   "genus": "Catoptria",
+   "family": "Crambidae",
+   "picture": "species/Catoptria_permutatellus.jpg",
+   "from_image": "20230803030000-186-snapshot"
+  },
+  {
+   "species": "Catoptria pinella",
+   "genus": "Catoptria",
+   "family": "Crambidae",
+   "picture": "species/Catoptria_pinella.jpg",
+   "from_image": "20230725030000-142-snapshot"
+  },
+  {
+   "species": "Catoptria verellus",
+   "genus": "Catoptria",
+   "family": "Crambidae",
+   "picture": "species/Catoptria_verellus.jpg",
+   "from_image": "20230729025959-164-snapshot"
+  },
+  {
+   "species": "Cedestis subfasciella",
+   "genus": "Cedestis",
+   "family": "Yponomeutidae",
+   "picture": "species/Cedestis_subfasciella.jpg",
+   "from_image": "20230629014000-49-snapshot"
+  },
+  {
+   "species": "Celypha lacunana",
+   "genus": "Syricoris",
+   "family": "Tortricidae",
+   "picture": "species/Celypha_lacunana.jpg",
+   "from_image": "20230824030002-00-84"
+  },
+  {
+   "species": "Celypha striana",
+   "genus": "Celypha",
+   "family": "Tortricidae",
+   "picture": "species/Celypha_striana.jpg",
+   "from_image": "20230722040832-00-48"
+  },
+  {
+   "species": "Cenopis diluticostana",
+   "genus": "Cenopis",
+   "family": "Tortricidae",
+   "picture": "species/Cenopis_diluticostana.jpg",
+   "from_image": "20220720025404-00-45"
+  },
+  {
+   "species": "Cenopis reticulatana",
+   "genus": "Cenopis",
+   "family": "Tortricidae",
+   "picture": "species/Cenopis_reticulatana.jpg",
+   "from_image": "20220907022000-00-334"
+  },
+  {
+   "species": "Charanyca trigrammica",
+   "genus": "Charanyca",
+   "family": "Noctuidae",
+   "picture": "species/Charanyca_trigrammica.jpg",
+   "from_image": "20230814232311-00-58"
+  },
+  {
+   "species": "Chiasmia clathrata",
+   "genus": "Chiasmia",
+   "family": "Geometridae",
+   "picture": "species/Chiasmia_clathrata.jpg",
+   "from_image": "20230618025959-146-snapshot"
+  },
+  {
+   "species": "Chilo phragmitella",
+   "genus": "Chilo",
+   "family": "Crambidae",
+   "picture": "species/Chilo_phragmitella.jpg",
+   "from_image": "20230622001000-12-snapshot"
+  },
+  {
+   "species": "Chionodes mediofuscella",
+   "genus": "Chionodes",
+   "family": "Gelechiidae",
+   "picture": "species/Chionodes_mediofuscella.jpg",
+   "from_image": "20220616042539-00-21"
+  },
+  {
+   "species": "Chloroclysta siterata",
+   "genus": "Chloroclysta",
+   "family": "Geometridae",
+   "picture": "species/Chloroclysta_siterata.jpg",
+   "from_image": "20230523030000-144-snapshot"
+  },
+  {
+   "species": "Chloroclystis v-ata",
+   "genus": "Chloroclystis",
+   "family": "Geometridae",
+   "picture": "species/Chloroclystis_v-ata.jpg",
+   "from_image": "20230710025959-118-snapshot"
+  },
+  {
+   "species": "Choristoneura conflictana",
+   "genus": "Choristoneura",
+   "family": "Tortricidae",
+   "picture": "species/Choristoneura_conflictana.jpg",
+   "from_image": "20220623005311-00-121"
+  },
+  {
+   "species": "Choristoneura fractivittana",
+   "genus": "Choristoneura",
+   "family": "Tortricidae",
+   "picture": "species/Choristoneura_fractivittana.jpg",
+   "from_image": "20220617232851-00-45"
+  },
+  {
+   "species": "Choristoneura fumiferana",
+   "genus": "Choristoneura",
+   "family": "Tortricidae",
+   "picture": "species/Choristoneura_fumiferana.jpg",
+   "from_image": "20220717232444-00-14"
+  },
+  {
+   "species": "Choristoneura hebenstreitella",
+   "genus": "Choristoneura",
+   "family": "Tortricidae",
+   "picture": "species/Choristoneura_hebenstreitella.jpg",
+   "from_image": "20220717232444-00-14"
+  },
+  {
+   "species": "Choristoneura pinus",
+   "genus": "Choristoneura",
+   "family": "Tortricidae",
+   "picture": "species/Choristoneura_pinus.jpg",
+   "from_image": "20220728033509-00-128"
+  },
+  {
+   "species": "Choristoneura rosaceana",
+   "genus": "Choristoneura",
+   "family": "Tortricidae",
+   "picture": "species/Choristoneura_rosaceana.jpg",
+   "from_image": "20220821042449-00-22"
+  },
+  {
+   "species": "Chrysoteuchia culmella",
+   "genus": "Chrysoteuchia",
+   "family": "Crambidae",
+   "picture": "species/Chrysoteuchia_culmella.jpg",
+   "from_image": "20230810031942-00-46"
+  },
+  {
+   "species": "Chrysoteuchia topiarius",
+   "genus": "Chrysoteuchia",
+   "family": "Crambidae",
+   "picture": "species/Chrysoteuchia_topiarius.jpg",
+   "from_image": "20220722235222-00-24"
+  },
+  {
+   "species": "Chytolita morbidalis",
+   "genus": "Macrochilo",
+   "family": "Erebidae",
+   "picture": "species/Chytolita_morbidalis.jpg",
+   "from_image": "20220615002256-00-85"
+  },
+  {
+   "species": "Chytonix palliatricula",
+   "genus": "Chytonix",
+   "family": "Noctuidae",
+   "picture": "species/Chytonix_palliatricula.jpg",
+   "from_image": "20220606013906-00-92"
+  },
+  {
+   "species": "Cilix glaucata",
+   "genus": "Cilix",
+   "family": "Drepanidae",
+   "picture": "species/Cilix_glaucata.jpg",
+   "from_image": "20230725030000-135-snapshot"
+  },
+  {
+   "species": "Cisseps fulvicollis",
+   "genus": "Cisseps",
+   "family": "Erebidae",
+   "picture": "species/Cisseps_fulvicollis.jpg",
+   "from_image": "20220806034614-00-15"
+  },
+  {
+   "species": "Cisthene picta",
+   "genus": "Cisthene",
+   "family": "Erebidae",
+   "picture": "species/Cisthene_picta.jpg",
+   "from_image": "20220715031227-00-190"
+  },
+  {
+   "species": "Cladara atroliturata",
+   "genus": "Cladara",
+   "family": "Geometridae",
+   "picture": "species/Cladara_atroliturata.jpg",
+   "from_image": "20220522045429-00-54"
+  },
+  {
+   "species": "Cladara limitaria",
+   "genus": "Cladara",
+   "family": "Geometridae",
+   "picture": "species/Cladara_limitaria.jpg",
+   "from_image": "20220522015425-00-50"
+  },
+  {
+   "species": "Clemensia albata",
+   "genus": "Clemensia",
+   "family": "Erebidae",
+   "picture": "species/Clemensia_albata.jpg",
+   "from_image": "20220815013323-00-169"
+  },
+  {
+   "species": "Cleorodes lichenaria",
+   "genus": "Cleorodes",
+   "family": "Geometridae",
+   "picture": "species/Cleorodes_lichenaria.jpg",
+   "from_image": "20230713030000-181-snapshot"
+  },
+  {
+   "species": "Clepsis melaleucanus",
+   "genus": "Clepsis",
+   "family": "Tortricidae",
+   "picture": "species/Clepsis_melaleucanus.jpg",
+   "from_image": "20220605015054-00-214"
+  },
+  {
+   "species": "Clepsis peritana",
+   "genus": "Clepsis",
+   "family": "Tortricidae",
+   "picture": "species/Clepsis_peritana.jpg",
+   "from_image": "20220616032537-00-18"
+  },
+  {
+   "species": "Clepsis persicana",
+   "genus": "Clepsis",
+   "family": "Tortricidae",
+   "picture": "species/Clepsis_persicana.jpg",
+   "from_image": "20220621020459-166-snapshot"
+  },
+  {
+   "species": "Clepsis virescana",
+   "genus": "Clepsis",
+   "family": "Tortricidae",
+   "picture": "species/Clepsis_virescana.jpg",
+   "from_image": "20220703003237-00-86"
+  },
+  {
+   "species": "Cnephasia stephensiana",
+   "genus": "Cnephasia",
+   "family": "Tortricidae",
+   "picture": "species/Cnephasia_stephensiana.jpg",
+   "from_image": "20220706034657-00-104"
+  },
+  {
+   "species": "Cochylichroa hoffmanana",
+   "genus": "Cochylichroa",
+   "family": "Tortricidae",
+   "picture": "species/Cochylichroa_hoffmanana.jpg",
+   "from_image": "20220809215330-00-49"
+  },
+  {
+   "species": "Cochylis dubitana",
+   "genus": "Cochylis",
+   "family": "Tortricidae",
+   "picture": "species/Cochylis_dubitana.jpg",
+   "from_image": "20230722020832-00-39"
+  },
+  {
+   "species": "Cochylis molliculana",
+   "genus": "Cochylis",
+   "family": "Tortricidae",
+   "picture": "species/Cochylis_molliculana.jpg",
+   "from_image": "20230819040310-00-224"
+  },
+  {
+   "species": "Coelostathma discopunctana",
+   "genus": "Coelostathma",
+   "family": "Tortricidae",
+   "picture": "species/Coelostathma_discopunctana.jpg",
+   "from_image": "20220626022858-00-103"
+  },
+  {
+   "species": "Coenophila subrosea",
+   "genus": "Coenophila",
+   "family": "Noctuidae",
+   "picture": "species/Coenophila_subrosea.jpg",
+   "from_image": "20230825025959-189-snapshot"
+  },
+  {
+   "species": "Coleophora mayrella",
+   "genus": "Coleophora",
+   "family": "Coleophoridae",
+   "picture": "species/Coleophora_mayrella.jpg",
+   "from_image": "20220718040444-00-14"
+  },
+  {
+   "species": "Colocasia coryli",
+   "genus": "Colocasia",
+   "family": "Noctuidae",
+   "picture": "species/Colocasia_coryli.jpg",
+   "from_image": "20230602024959-68-snapshot"
+  },
+  {
+   "species": "Colostygia pectinataria",
+   "genus": "Colostygia",
+   "family": "Geometridae",
+   "picture": "species/Colostygia_pectinataria.jpg",
+   "from_image": "20230716030000-224-snapshot"
+  },
+  {
+   "species": "Condylolomia participalis",
+   "genus": "Condylolomia",
+   "family": "Pyralidae",
+   "picture": "species/Condylolomia_participalis.jpg",
+   "from_image": "20220711223617-00-23"
+  },
+  {
+   "species": "Cosmia trapezina",
+   "genus": "Cosmia",
+   "family": "Noctuidae",
+   "picture": "species/Cosmia_trapezina.jpg",
+   "from_image": "20230805015720-00-137"
+  },
+  {
+   "species": "Crambus agitatellus",
+   "genus": "Crambus",
+   "family": "Crambidae",
+   "picture": "species/Crambus_agitatellus.jpg",
+   "from_image": "20220815013323-00-169"
+  },
+  {
+   "species": "Crambus albellus",
+   "genus": "Crambus",
+   "family": "Crambidae",
+   "picture": "species/Crambus_albellus.jpg",
+   "from_image": "20220718030444-00-14"
+  },
+  {
+   "species": "Crambus girardellus",
+   "genus": "Crambus",
+   "family": "Crambidae",
+   "picture": "species/Crambus_girardellus.jpg",
+   "from_image": "20220624044519-00-153"
+  },
+  {
+   "species": "Crambus perlella",
+   "genus": "Crambus",
+   "family": "Crambidae",
+   "picture": "species/Crambus_perlella.jpg",
+   "from_image": "20230722034832-00-45"
+  },
+  {
+   "species": "Crambus perlellus",
+   "genus": "Crambus",
+   "family": "Crambidae",
+   "picture": "species/Crambus_perlellus.jpg",
+   "from_image": "20230629030000-108-snapshot"
+  },
+  {
+   "species": "Crambus praefectellus",
+   "genus": "Crambus",
+   "family": "Crambidae",
+   "picture": "species/Crambus_praefectellus.jpg",
+   "from_image": "20220826020930-00-117"
+  },
+  {
+   "species": "Craniophora ligustri",
+   "genus": "Craniophora",
+   "family": "Noctuidae",
+   "picture": "species/Craniophora_ligustri.jpg",
+   "from_image": "20230722025959-120-snapshot"
+  },
+  {
+   "species": "Crassa unitella",
+   "genus": "Borkhausenia",
+   "family": "Oecophoridae",
+   "picture": "species/Crassa_unitella.jpg",
+   "from_image": "20230619021000-103-snapshot"
+  },
+  {
+   "species": "Cryphia algae",
+   "genus": "Cryphia",
+   "family": "Noctuidae",
+   "picture": "species/Cryphia_algae.jpg",
+   "from_image": "20230809215610-00-22"
+  },
+  {
+   "species": "Ctenucha virginica",
+   "genus": "Ctenucha",
+   "family": "Erebidae",
+   "picture": "species/Ctenucha_virginica.jpg",
+   "from_image": "20220626040902-00-131"
+  },
+  {
+   "species": "Cybosia mesomella",
+   "genus": "Cybosia",
+   "family": "Erebidae",
+   "picture": "species/Cybosia_mesomella.jpg",
+   "from_image": "20230709030000-157-snapshot"
+  },
+  {
+   "species": "Cyclophora linearia",
+   "genus": "Cyclophora",
+   "family": "Geometridae",
+   "picture": "species/Cyclophora_linearia.jpg",
+   "from_image": "20230907031848-00-76"
+  },
+  {
+   "species": "Cyclophora pendulinaria",
+   "genus": "Cyclophora",
+   "family": "Geometridae",
+   "picture": "species/Cyclophora_pendulinaria.jpg",
+   "from_image": "20220809021123-00-135"
+  },
+  {
+   "species": "Cyclophora punctaria",
+   "genus": "Cyclophora",
+   "family": "Geometridae",
+   "picture": "species/Cyclophora_punctaria.jpg",
+   "from_image": "20230812025959-94-snapshot"
+  },
+  {
+   "species": "Cycnia tenera",
+   "genus": "Cycnia",
+   "family": "Erebidae",
+   "picture": "species/Cycnia_tenera.jpg",
+   "from_image": "20220805002029-00-106"
+  },
+  {
+   "species": "Cydia fagiglandana",
+   "genus": "Cydia",
+   "family": "Tortricidae",
+   "picture": "species/Cydia_fagiglandana.jpg",
+   "from_image": "20230715025959-117-snapshot"
+  },
+  {
+   "species": "Cydia latiferreana",
+   "genus": "Cydia",
+   "family": "Tortricidae",
+   "picture": "species/Cydia_latiferreana.jpg",
+   "from_image": "20220820052901-00-17"
+  },
+  {
+   "species": "Cydia pomonella",
+   "genus": "Cydia",
+   "family": "Tortricidae",
+   "picture": "species/Cydia_pomonella.jpg",
+   "from_image": "20230819025959-220-snapshot"
+  },
+  {
+   "species": "Cydia splendana",
+   "genus": "Cydia",
+   "family": "Tortricidae",
+   "picture": "species/Cydia_splendana.jpg",
+   "from_image": "20230717025959-142-snapshot"
+  },
+  {
+   "species": "Deilephila elpenor",
+   "genus": "Deilephila",
+   "family": "Sphingidae",
+   "picture": "species/Deilephila_elpenor.jpg",
+   "from_image": "20230706025959-146-snapshot"
+  },
+  {
+   "species": "Deltote bankiana",
+   "genus": "Deltote",
+   "family": "Noctuidae",
+   "picture": "species/Deltote_bankiana.jpg",
+   "from_image": "20230623010959-161-snapshot"
+  },
+  {
+   "species": "Deltote pygarga",
+   "genus": "Deltote",
+   "family": "Noctuidae",
+   "picture": "species/Deltote_pygarga.jpg",
+   "from_image": "20230710030000-160-snapshot"
+  },
+  {
+   "species": "Deltote uncula",
+   "genus": "Deltote",
+   "family": "Noctuidae",
+   "picture": "species/Deltote_uncula.jpg",
+   "from_image": "20230710030000-160-snapshot"
+  },
+  {
+   "species": "Diachrysia balluca",
+   "genus": "Diachrysia",
+   "family": "Noctuidae",
+   "picture": "species/Diachrysia_balluca.jpg",
+   "from_image": "20220801001444-00-90"
+  },
+  {
+   "species": "Diachrysia stenochrysis",
+   "genus": "Diachrysia",
+   "family": "Noctuidae",
+   "picture": "species/Diachrysia_stenochrysis.jpg",
+   "from_image": "20230627025959-137-snapshot"
+  },
+  {
+   "species": "Diacme adipaloides",
+   "genus": "Epipagis",
+   "family": "Crambidae",
+   "picture": "species/Diacme_adipaloides.jpg",
+   "from_image": "20220802031504-00-147"
+  },
+  {
+   "species": "Diaphora mendica",
+   "genus": "Spilosoma",
+   "family": "Erebidae",
+   "picture": "species/Diaphora_mendica.jpg",
+   "from_image": "20230522025959-83-snapshot"
+  },
+  {
+   "species": "Diathrausta reconditalis",
+   "genus": "Diathrausta",
+   "family": "Crambidae",
+   "picture": "species/Diathrausta_reconditalis.jpg",
+   "from_image": "20220812001959-00-73"
+  },
+  {
+   "species": "Dicallomera fascelina",
+   "genus": "Calliteara",
+   "family": "Erebidae",
+   "picture": "species/Dicallomera_fascelina.jpg",
+   "from_image": "20230729025959-115-snapshot"
+  },
+  {
+   "species": "Dichomeris ligulella",
+   "genus": "Dichomeris",
+   "family": "Gelechiidae",
+   "picture": "species/Dichomeris_ligulella.jpg",
+   "from_image": "20220729233959-00-62"
+  },
+  {
+   "species": "Dichomeris marginella",
+   "genus": "Dichomeris",
+   "family": "Gelechiidae",
+   "picture": "species/Dichomeris_marginella.jpg",
+   "from_image": "20220802033504-00-189"
+  },
+  {
+   "species": "Dichrorampha acuminatana",
+   "genus": "Dichrorampha",
+   "family": "Tortricidae",
+   "picture": "species/Dichrorampha_acuminatana.jpg",
+   "from_image": "20220703212601-00-21"
+  },
+  {
+   "species": "Dioryctria abietella",
+   "genus": "Dioryctria",
+   "family": "Pyralidae",
+   "picture": "species/Dioryctria_abietella.jpg",
+   "from_image": "20230715025959-133-snapshot"
+  },
+  {
+   "species": "Dioryctria abietivorella",
+   "genus": "Dioryctria",
+   "family": "Pyralidae",
+   "picture": "species/Dioryctria_abietivorella.jpg",
+   "from_image": "20220824005414-00-127"
+  },
+  {
+   "species": "Dioryctria reniculelloides",
+   "genus": "Dioryctria",
+   "family": "Pyralidae",
+   "picture": "species/Dioryctria_reniculelloides.jpg",
+   "from_image": "20220802035504-00-201"
+  },
+  {
+   "species": "Dioryctria zimmermani",
+   "genus": "Dioryctria",
+   "family": "Pyralidae",
+   "picture": "species/Dioryctria_zimmermani.jpg",
+   "from_image": "20220826032930-00-146"
+  },
+  {
+   "species": "Drepana arcuata",
+   "genus": "Drepana",
+   "family": "Drepanidae",
+   "picture": "species/Drepana_arcuata.jpg",
+   "from_image": "20220603022723-00-22"
+  },
+  {
+   "species": "Drepana curvatula",
+   "genus": "Drepana",
+   "family": "Drepanidae",
+   "picture": "species/Drepana_curvatula.jpg",
+   "from_image": "20230730025959-171-snapshot"
+  },
+  {
+   "species": "Drepana falcataria",
+   "genus": "Drepana",
+   "family": "Drepanidae",
+   "picture": "species/Drepana_falcataria.jpg",
+   "from_image": "20230811231238-00-19"
+  },
+  {
+   "species": "Drymonia dodonaea",
+   "genus": "Drymonia",
+   "family": "Notodontidae",
+   "picture": "species/Drymonia_dodonaea.jpg",
+   "from_image": "20230611003000-32-snapshot"
+  },
+  {
+   "species": "Drymonia ruficornis",
+   "genus": "Drymonia",
+   "family": "Notodontidae",
+   "picture": "species/Drymonia_ruficornis.jpg",
+   "from_image": "20230612025959-40-snapshot"
+  },
+  {
+   "species": "Dryocampa rubicunda",
+   "genus": "Dryocampa",
+   "family": "Saturniidae",
+   "picture": "species/Dryocampa_rubicunda.jpg",
+   "from_image": "20220705212647-00-21"
+  },
+  {
+   "species": "Dysstroma truncata",
+   "genus": "Dysstroma",
+   "family": "Geometridae",
+   "picture": "species/Dysstroma_truncata.jpg",
+   "from_image": "20230901030000-29-snapshot"
+  },
+  {
+   "species": "Ecdytolopha insiticiana",
+   "genus": "Ecdytolopha",
+   "family": "Tortricidae",
+   "picture": "species/Ecdytolopha_insiticiana.jpg",
+   "from_image": "20220626020856-00-93"
+  },
+  {
+   "species": "Ecliptopera silaceata",
+   "genus": "Ecliptopera",
+   "family": "Geometridae",
+   "picture": "species/Ecliptopera_silaceata.jpg",
+   "from_image": "20230729025959-164-snapshot"
+  },
+  {
+   "species": "Ectropis crepuscularia",
+   "genus": "Ectropis",
+   "family": "Geometridae",
+   "picture": "species/Ectropis_crepuscularia.jpg",
+   "from_image": "20230716025959-130-snapshot"
+  },
+  {
+   "species": "Eilema caniola",
+   "genus": "Eilema",
+   "family": "Erebidae",
+   "picture": "species/Eilema_caniola.jpg",
+   "from_image": "20230815020839-00-161"
+  },
+  {
+   "species": "Eilema complana",
+   "genus": "Eilema",
+   "family": "Erebidae",
+   "picture": "species/Eilema_complana.jpg",
+   "from_image": "20230812025959-94-snapshot"
+  },
+  {
+   "species": "Eilema depressa",
+   "genus": "Eilema",
+   "family": "Erebidae",
+   "picture": "species/Eilema_depressa.jpg",
+   "from_image": "20230801025959-62-snapshot"
+  },
+  {
+   "species": "Eilema griseola",
+   "genus": "Eilema",
+   "family": "Erebidae",
+   "picture": "species/Eilema_griseola.jpg",
+   "from_image": "20230814213739-00-07"
+  },
+  {
+   "species": "Eilema lurideola",
+   "genus": "Eilema",
+   "family": "Erebidae",
+   "picture": "species/Eilema_lurideola.jpg",
+   "from_image": "20230722044832-00-60"
+  },
+  {
+   "species": "Eilema lutarella",
+   "genus": "Eilema",
+   "family": "Erebidae",
+   "picture": "species/Eilema_lutarella.jpg",
+   "from_image": "20230714030000-106-snapshot"
+  },
+  {
+   "species": "Eilema pygmaeola",
+   "genus": "Eilema",
+   "family": "Erebidae",
+   "picture": "species/Eilema_pygmaeola.jpg",
+   "from_image": "20230724030000-140-snapshot"
+  },
+  {
+   "species": "Eilema sororcula",
+   "genus": "Eilema",
+   "family": "Erebidae",
+   "picture": "species/Eilema_sororcula.jpg",
+   "from_image": "20230606020959-35-snapshot"
+  },
+  {
+   "species": "Elaphria alapallida",
+   "genus": "Elaphria",
+   "family": "Noctuidae",
+   "picture": "species/Elaphria_alapallida.jpg",
+   "from_image": "20220623001311-00-108"
+  },
+  {
+   "species": "Electrophaes corylata",
+   "genus": "Electrophaes",
+   "family": "Geometridae",
+   "picture": "species/Electrophaes_corylata.jpg",
+   "from_image": "20230527005000-15-snapshot"
+  },
+  {
+   "species": "Elophila nymphaeata",
+   "genus": "Elophila",
+   "family": "Crambidae",
+   "picture": "species/Elophila_nymphaeata.jpg",
+   "from_image": "20230625003000-67-snapshot"
+  },
+  {
+   "species": "Endothenia hebesana",
+   "genus": "Endothenia",
+   "family": "Tortricidae",
+   "picture": "species/Endothenia_hebesana.jpg",
+   "from_image": "20220802220842-00-34"
+  },
+  {
+   "species": "Endotricha flammealis",
+   "genus": "Endotricha",
+   "family": "Pyralidae",
+   "picture": "species/Endotricha_flammealis.jpg",
+   "from_image": "20230731030000-42-snapshot"
+  },
+  {
+   "species": "Ennomos alniaria",
+   "genus": "Ennomos",
+   "family": "Geometridae",
+   "picture": "species/Ennomos_alniaria.jpg",
+   "from_image": "20230826030000-44-snapshot"
+  },
+  {
+   "species": "Ennomos erosaria",
+   "genus": "Ennomos",
+   "family": "Geometridae",
+   "picture": "species/Ennomos_erosaria.jpg",
+   "from_image": "20230730030000-168-snapshot"
+  },
+  {
+   "species": "Ennomos fuscantaria",
+   "genus": "Ennomos",
+   "family": "Geometridae",
+   "picture": "species/Ennomos_fuscantaria.jpg",
+   "from_image": "20230812024152-00-58"
+  },
+  {
+   "species": "Ennomos subsignaria",
+   "genus": "Ennomos",
+   "family": "Geometridae",
+   "picture": "species/Ennomos_subsignaria.jpg",
+   "from_image": "20220815025407-00-230"
+  },
+  {
+   "species": "Epiblema foenella",
+   "genus": "Epiblema",
+   "family": "Tortricidae",
+   "picture": "species/Epiblema_foenella.jpg",
+   "from_image": "20230715025959-133-snapshot"
+  },
+  {
+   "species": "Epiblema otiosana",
+   "genus": "Epiblema",
+   "family": "Tortricidae",
+   "picture": "species/Epiblema_otiosana.jpg",
+   "from_image": "20220802222843-00-46"
+  },
+  {
+   "species": "Epicallima argenticinctella",
+   "genus": "Callima",
+   "family": "Oecophoridae",
+   "picture": "species/Epicallima_argenticinctella.jpg",
+   "from_image": "20220711223617-00-23"
+  },
+  {
+   "species": "Epinotia lindana",
+   "genus": "Epinotia",
+   "family": "Tortricidae",
+   "picture": "species/Epinotia_lindana.jpg",
+   "from_image": "20220908031800-00-399"
+  },
+  {
+   "species": "Epinotia ramella",
+   "genus": "Epinotia",
+   "family": "Tortricidae",
+   "picture": "species/Epinotia_ramella.jpg",
+   "from_image": "20230812025959-94-snapshot"
+  },
+  {
+   "species": "Epinotia transmissana",
+   "genus": "Epinotia",
+   "family": "Tortricidae",
+   "picture": "species/Epinotia_transmissana.jpg",
+   "from_image": "20220824041904-00-227"
+  },
+  {
+   "species": "Epiphyas postvittana",
+   "genus": "Epiphyas",
+   "family": "Tortricidae",
+   "picture": "species/Epiphyas_postvittana.jpg",
+   "from_image": "20230908215828-00-27"
+  },
+  {
+   "species": "Epirrhoe alternata",
+   "genus": "Epirrhoe",
+   "family": "Geometridae",
+   "picture": "species/Epirrhoe_alternata.jpg",
+   "from_image": "20230716025959-130-snapshot"
+  },
+  {
+   "species": "Epirrhoe tristata",
+   "genus": "Epirrhoe",
+   "family": "Geometridae",
+   "picture": "species/Epirrhoe_tristata.jpg",
+   "from_image": "20230812030000-159-snapshot"
+  },
+  {
+   "species": "Eremobia ochroleuca",
+   "genus": "Eremobia",
+   "family": "Noctuidae",
+   "picture": "species/Eremobia_ochroleuca.jpg",
+   "from_image": "20230805031910-00-157"
+  },
+  {
+   "species": "Euchaetes egle",
+   "genus": "Euchaetes",
+   "family": "Erebidae",
+   "picture": "species/Euchaetes_egle.jpg",
+   "from_image": "20220707031704-00-224"
+  },
+  {
+   "species": "Euchoeca nebulata",
+   "genus": "Euchoeca",
+   "family": "Geometridae",
+   "picture": "species/Euchoeca_nebulata.jpg",
+   "from_image": "20230715030000-165-snapshot"
+  },
+  {
+   "species": "Eucopina tocullionana",
+   "genus": "Eucopina",
+   "family": "Tortricidae",
+   "picture": "species/Eucopina_tocullionana.jpg",
+   "from_image": "20220718030444-00-14"
+  },
+  {
+   "species": "Eucosma campoliliana",
+   "genus": "Eucosma",
+   "family": "Tortricidae",
+   "picture": "species/Eucosma_campoliliana.jpg",
+   "from_image": "20230622025959-226-snapshot"
+  },
+  {
+   "species": "Eucosma cana",
+   "genus": "Eucosma",
+   "family": "Tortricidae",
+   "picture": "species/Eucosma_cana.jpg",
+   "from_image": "20230709030000-201-snapshot"
+  },
+  {
+   "species": "Eucosma formosana",
+   "genus": "Eucosma",
+   "family": "Tortricidae",
+   "picture": "species/Eucosma_formosana.jpg",
+   "from_image": "20220603010721-00-18"
+  },
+  {
+   "species": "Eucosma parmatana",
+   "genus": "Eucosma",
+   "family": "Tortricidae",
+   "picture": "species/Eucosma_parmatana.jpg",
+   "from_image": "20220729233959-00-62"
+  },
+  {
+   "species": "Eucosma pupillana",
+   "genus": "Eucosma",
+   "family": "Tortricidae",
+   "picture": "species/Eucosma_pupillana.jpg",
+   "from_image": "20230717025959-142-snapshot"
+  },
+  {
+   "species": "Eucosma radiatana",
+   "genus": "Eucosma",
+   "family": "Tortricidae",
+   "picture": "species/Eucosma_radiatana.jpg",
+   "from_image": "20220604212900-00-45"
+  },
+  {
+   "species": "Eucosma tomonana",
+   "genus": "Phaneta",
+   "family": "Tortricidae",
+   "picture": "species/Eucosma_tomonana.jpg",
+   "from_image": "20220830014932-00-09"
+  },
+  {
+   "species": "Eudonia strigalis",
+   "genus": "Eudonia",
+   "family": "Crambidae",
+   "picture": "species/Eudonia_strigalis.jpg",
+   "from_image": "20220718012444-00-14"
+  },
+  {
+   "species": "Eudryas grata",
+   "genus": "Eudryas",
+   "family": "Noctuidae",
+   "picture": "species/Eudryas_grata.jpg",
+   "from_image": "20220711223617-00-23"
+  },
+  {
+   "species": "Eufidonia convergaria",
+   "genus": "Eufidonia",
+   "family": "Geometridae",
+   "picture": "species/Eufidonia_convergaria.jpg",
+   "from_image": "20220608041353-00-62"
+  },
+  {
+   "species": "Eufidonia notataria",
+   "genus": "Eufidonia",
+   "family": "Geometridae",
+   "picture": "species/Eufidonia_notataria.jpg",
+   "from_image": "20220522035429-00-52"
+  },
+  {
+   "species": "Euphyia intermediata",
+   "genus": "Euphyia",
+   "family": "Geometridae",
+   "picture": "species/Euphyia_intermediata.jpg",
+   "from_image": "20220625232849-00-79"
+  },
+  {
+   "species": "Euphyia unangulata",
+   "genus": "Euphyia",
+   "family": "Geometridae",
+   "picture": "species/Euphyia_unangulata.jpg",
+   "from_image": "20230702025959-141-snapshot"
+  },
+  {
+   "species": "Eupithecia absinthiata",
+   "genus": "Eupithecia",
+   "family": "Geometridae",
+   "picture": "species/Eupithecia_absinthiata.jpg",
+   "from_image": "20220815011322-00-155"
+  },
+  {
+   "species": "Eupithecia assimilata",
+   "genus": "Eupithecia",
+   "family": "Geometridae",
+   "picture": "species/Eupithecia_assimilata.jpg",
+   "from_image": "20230528025959-90-snapshot"
+  },
+  {
+   "species": "Eupithecia centaureata",
+   "genus": "Eupithecia",
+   "family": "Geometridae",
+   "picture": "species/Eupithecia_centaureata.jpg",
+   "from_image": "20230817032105-00-258"
+  },
+  {
+   "species": "Eupithecia cretaceata",
+   "genus": "Eupithecia",
+   "family": "Geometridae",
+   "picture": "species/Eupithecia_cretaceata.jpg",
+   "from_image": "20220616044540-00-22"
+  },
+  {
+   "species": "Eupithecia icterata",
+   "genus": "Eupithecia",
+   "family": "Geometridae",
+   "picture": "species/Eupithecia_icterata.jpg",
+   "from_image": "20230908225828-00-58"
+  },
+  {
+   "species": "Eupithecia linariata",
+   "genus": "Eupithecia",
+   "family": "Geometridae",
+   "picture": "species/Eupithecia_linariata.jpg",
+   "from_image": "20230630030000-169-snapshot"
+  },
+  {
+   "species": "Eupithecia nanata",
+   "genus": "Eupithecia",
+   "family": "Geometridae",
+   "picture": "species/Eupithecia_nanata.jpg",
+   "from_image": "20230729025959-115-snapshot"
+  },
+  {
+   "species": "Eupithecia ravocostaliata",
+   "genus": "Eupithecia",
+   "family": "Geometridae",
+   "picture": "species/Eupithecia_ravocostaliata.jpg",
+   "from_image": "20220516002158-00-74"
+  },
+  {
+   "species": "Eupithecia subumbrata",
+   "genus": "Eupithecia",
+   "family": "Geometridae",
+   "picture": "species/Eupithecia_subumbrata.jpg",
+   "from_image": "20230629030000-201-snapshot"
+  },
+  {
+   "species": "Eupithecia tantillaria",
+   "genus": "Eupithecia",
+   "family": "Geometridae",
+   "picture": "species/Eupithecia_tantillaria.jpg",
+   "from_image": "20230523030000-139-snapshot"
+  },
+  {
+   "species": "Eupithecia tenuiata",
+   "genus": "Eupithecia",
+   "family": "Geometridae",
+   "picture": "species/Eupithecia_tenuiata.jpg",
+   "from_image": "20230721232832-00-35"
+  },
+  {
+   "species": "Euproctis chrysorrhoea",
+   "genus": "Euproctis",
+   "family": "Erebidae",
+   "picture": "species/Euproctis_chrysorrhoea.jpg",
+   "from_image": "20230803035242-00-199"
+  },
+  {
+   "species": "Euproctis similis",
+   "genus": "Euproctis",
+   "family": "Erebidae",
+   "picture": "species/Euproctis_similis.jpg",
+   "from_image": "20230803030000-186-snapshot"
+  },
+  {
+   "species": "Eusarca confusaria",
+   "genus": "Eusarca",
+   "family": "Geometridae",
+   "picture": "species/Eusarca_confusaria.jpg",
+   "from_image": "20220701030617-00-159"
+  },
+  {
+   "species": "Euthrix potatoria",
+   "genus": "Euthrix",
+   "family": "Lasiocampidae",
+   "picture": "species/Euthrix_potatoria.jpg",
+   "from_image": "20230717025959-142-snapshot"
+  },
+  {
+   "species": "Eutrapela clemataria",
+   "genus": "Eutrapela",
+   "family": "Geometridae",
+   "picture": "species/Eutrapela_clemataria.jpg",
+   "from_image": "20220516014319-00-123"
+  },
+  {
+   "species": "Euzophera pinguis",
+   "genus": "Euzophera",
+   "family": "Pyralidae",
+   "picture": "species/Euzophera_pinguis.jpg",
+   "from_image": "20230623024959-293-snapshot"
+  },
+  {
+   "species": "Euzophera semifuneralis",
+   "genus": "Euzophera",
+   "family": "Pyralidae",
+   "picture": "species/Euzophera_semifuneralis.jpg",
+   "from_image": "20220718010444-00-14"
+  },
+  {
+   "species": "Evergestis forficalis",
+   "genus": "Evergestis",
+   "family": "Crambidae",
+   "picture": "species/Evergestis_forficalis.jpg",
+   "from_image": "20230815020839-00-161"
+  },
+  {
+   "species": "Falcaria lacertinaria",
+   "genus": "Falcaria",
+   "family": "Drepanidae",
+   "picture": "species/Falcaria_lacertinaria.jpg",
+   "from_image": "20230815025959-196-snapshot"
+  },
+  {
+   "species": "Furcula bifida",
+   "genus": "Furcula",
+   "family": "Notodontidae",
+   "picture": "species/Furcula_bifida.jpg",
+   "from_image": "20230621024959-184-snapshot"
+  },
+  {
+   "species": "Furcula furcula",
+   "genus": "Furcula",
+   "family": "Notodontidae",
+   "picture": "species/Furcula_furcula.jpg",
+   "from_image": "20230621014959-123-snapshot"
+  },
+  {
+   "species": "Galasa nigrinodis",
+   "genus": "Galasa",
+   "family": "Pyralidae",
+   "picture": "species/Galasa_nigrinodis.jpg",
+   "from_image": "20220728035510-00-130"
+  },
+  {
+   "species": "Geometra papilionaria",
+   "genus": "Geometra",
+   "family": "Geometridae",
+   "picture": "species/Geometra_papilionaria.jpg",
+   "from_image": "20230711030000-70-snapshot"
+  },
+  {
+   "species": "Gerdana caritella",
+   "genus": "Gerdana",
+   "family": "Autostichidae",
+   "picture": "species/Gerdana_caritella.jpg",
+   "from_image": "20220828025928-00-230"
+  },
+  {
+   "species": "Gluphisia crenata",
+   "genus": "Gluphisia",
+   "family": "Notodontidae",
+   "picture": "species/Gluphisia_crenata.jpg",
+   "from_image": "20230620005000-61-snapshot"
+  },
+  {
+   "species": "Gluphisia septentrionis",
+   "genus": "Gluphisia",
+   "family": "Notodontidae",
+   "picture": "species/Gluphisia_septentrionis.jpg",
+   "from_image": "20220608025350-00-53"
+  },
+  {
+   "species": "Gretchena delicatana",
+   "genus": "Gretchena",
+   "family": "Tortricidae",
+   "picture": "species/Gretchena_delicatana.jpg",
+   "from_image": "20220623043328-00-217"
+  },
+  {
+   "species": "Gymnoscelis rufifasciata",
+   "genus": "Gymnoscelis",
+   "family": "Geometridae",
+   "picture": "species/Gymnoscelis_rufifasciata.jpg",
+   "from_image": "20230729025959-115-snapshot"
+  },
+  {
+   "species": "Gypsonoma salicicolana",
+   "genus": "Gypsonoma",
+   "family": "Tortricidae",
+   "picture": "species/Gypsonoma_salicicolana.jpg",
+   "from_image": "20220622233310-00-104"
+  },
+  {
+   "species": "Hada plebeja",
+   "genus": "Hada",
+   "family": "Noctuidae",
+   "picture": "species/Hada_plebeja.jpg",
+   "from_image": "20230617025959-76-snapshot"
+  },
+  {
+   "species": "Halysidota harrisii",
+   "genus": "Halysidota",
+   "family": "Erebidae",
+   "picture": "species/Halysidota_harrisii.jpg",
+   "from_image": "20220709212751-00-11"
+  },
+  {
+   "species": "Halysidota tessellaris",
+   "genus": "Halysidota",
+   "family": "Erebidae",
+   "picture": "species/Halysidota_tessellaris.jpg",
+   "from_image": "20220710011622-00-124"
+  },
+  {
+   "species": "Haploa clymene",
+   "genus": "Haploa",
+   "family": "Erebidae",
+   "picture": "species/Haploa_clymene.jpg",
+   "from_image": "20220806002614-00-101"
+  },
+  {
+   "species": "Haploa contigua",
+   "genus": "Haploa",
+   "family": "Erebidae",
+   "picture": "species/Haploa_contigua.jpg",
+   "from_image": "20220719024034-00-131"
+  },
+  {
+   "species": "Haploa lecontei",
+   "genus": "Haploa",
+   "family": "Erebidae",
+   "picture": "species/Haploa_lecontei.jpg",
+   "from_image": "20220715015204-00-152"
+  },
+  {
+   "species": "Harrisina americana",
+   "genus": "Harrisina",
+   "family": "Zygaenidae",
+   "picture": "species/Harrisina_americana.jpg",
+   "from_image": "20220712031626-00-23"
+  },
+  {
+   "species": "Hedya ochroleucana",
+   "genus": "Hedya",
+   "family": "Tortricidae",
+   "picture": "species/Hedya_ochroleucana.jpg",
+   "from_image": "20220622030533-00-151"
+  },
+  {
+   "species": "Hedya separatana",
+   "genus": "Hedya",
+   "family": "Tortricidae",
+   "picture": "species/Hedya_separatana.jpg",
+   "from_image": "20220809215330-00-49"
+  },
+  {
+   "species": "Helcystogramma rufescens",
+   "genus": "Helcystogramma",
+   "family": "Gelechiidae",
+   "picture": "species/Helcystogramma_rufescens.jpg",
+   "from_image": "20230803033242-00-188"
+  },
+  {
+   "species": "Heliomata cycladata",
+   "genus": "Heliomata",
+   "family": "Geometridae",
+   "picture": "species/Heliomata_cycladata.jpg",
+   "from_image": "20220601004331-00-11"
+  },
+  {
+   "species": "Hemithea aestivaria",
+   "genus": "Hemithea",
+   "family": "Geometridae",
+   "picture": "species/Hemithea_aestivaria.jpg",
+   "from_image": "20230717025959-142-snapshot"
+  },
+  {
+   "species": "Hepialus humuli",
+   "genus": "Hepialus",
+   "family": "Hepialidae",
+   "picture": "species/Hepialus_humuli.jpg",
+   "from_image": "20230621014959-123-snapshot"
+  },
+  {
+   "species": "Herpetogramma pertextalis",
+   "genus": "Herpetogramma",
+   "family": "Crambidae",
+   "picture": "species/Herpetogramma_pertextalis.jpg",
+   "from_image": "20220715003103-00-104"
+  },
+  {
+   "species": "Heterocampa guttivitta",
+   "genus": "Heterocampa",
+   "family": "Notodontidae",
+   "picture": "species/Heterocampa_guttivitta.jpg",
+   "from_image": "20220611021933-00-84"
+  },
+  {
+   "species": "Hethemia pistasciaria",
+   "genus": "Hethemia",
+   "family": "Geometridae",
+   "picture": "species/Hethemia_pistasciaria.jpg",
+   "from_image": "20220522015425-00-50"
+  },
+  {
+   "species": "Homochlodes fritillaria",
+   "genus": "Homochlodes",
+   "family": "Geometridae",
+   "picture": "species/Homochlodes_fritillaria.jpg",
+   "from_image": "20220708234000-00-78"
+  },
+  {
+   "species": "Homoeosoma sinuella",
+   "genus": "Homoeosoma",
+   "family": "Pyralidae",
+   "picture": "species/Homoeosoma_sinuella.jpg",
+   "from_image": "20230722002832-00-70"
+  },
+  {
+   "species": "Hoplodrina ambigua",
+   "genus": "Hoplodrina",
+   "family": "Noctuidae",
+   "picture": "species/Hoplodrina_ambigua.jpg",
+   "from_image": "20230902024752-00-106"
+  },
+  {
+   "species": "Hoplodrina octogenaria",
+   "genus": "Hoplodrina",
+   "family": "Noctuidae",
+   "picture": "species/Hoplodrina_octogenaria.jpg",
+   "from_image": "20230627021000-95-snapshot"
+  },
+  {
+   "species": "Horisme vitalbata",
+   "genus": "Horisme",
+   "family": "Geometridae",
+   "picture": "species/Horisme_vitalbata.jpg",
+   "from_image": "20230824001944-00-136"
+  },
+  {
+   "species": "Hydrelia condensata",
+   "genus": "Hydrelia",
+   "family": "Geometridae",
+   "picture": "species/Hydrelia_condensata.jpg",
+   "from_image": "20220614011657-00-162"
+  },
+  {
+   "species": "Hydrelia inornata",
+   "genus": "Hydrelia",
+   "family": "Geometridae",
+   "picture": "species/Hydrelia_inornata.jpg",
+   "from_image": "20220630031454-00-178"
+  },
+  {
+   "species": "Hydria undulata",
+   "genus": "Rheumaptera",
+   "family": "Geometridae",
+   "picture": "species/Hydria_undulata.jpg",
+   "from_image": "20230801025959-46-snapshot"
+  },
+  {
+   "species": "Hydriomena furcata",
+   "genus": "Hydriomena",
+   "family": "Geometridae",
+   "picture": "species/Hydriomena_furcata.jpg",
+   "from_image": "20230610025959-102-snapshot"
+  },
+  {
+   "species": "Hypagyrtis piniata",
+   "genus": "Hypagyrtis",
+   "family": "Geometridae",
+   "picture": "species/Hypagyrtis_piniata.jpg",
+   "from_image": "20220705011027-00-171"
+  },
+  {
+   "species": "Hypagyrtis unipunctata",
+   "genus": "Hypagyrtis",
+   "family": "Geometridae",
+   "picture": "species/Hypagyrtis_unipunctata.jpg",
+   "from_image": "20220629005006-00-146"
+  },
+  {
+   "species": "Hypena baltimoralis",
+   "genus": "Hypena",
+   "family": "Erebidae",
+   "picture": "species/Hypena_baltimoralis.jpg",
+   "from_image": "20220623232514-00-62"
+  },
+  {
+   "species": "Hypena deceptalis",
+   "genus": "Hypena",
+   "family": "Erebidae",
+   "picture": "species/Hypena_deceptalis.jpg",
+   "from_image": "20220708020327-00-178"
+  },
+  {
+   "species": "Hypena edictalis",
+   "genus": "Hypena",
+   "family": "Erebidae",
+   "picture": "species/Hypena_edictalis.jpg",
+   "from_image": "20220815011322-00-155"
+  },
+  {
+   "species": "Hypena humuli",
+   "genus": "Hypena",
+   "family": "Erebidae",
+   "picture": "species/Hypena_humuli.jpg",
+   "from_image": "20220715213504-00-13"
+  },
+  {
+   "species": "Hypena palparia",
+   "genus": "Hypena",
+   "family": "Erebidae",
+   "picture": "species/Hypena_palparia.jpg",
+   "from_image": "20220831223326-00-87"
+  },
+  {
+   "species": "Hypena proboscidalis",
+   "genus": "Hypena",
+   "family": "Erebidae",
+   "picture": "species/Hypena_proboscidalis.jpg",
+   "from_image": "20230616011000-34-snapshot"
+  },
+  {
+   "species": "Hypena scabra",
+   "genus": "Hypena",
+   "family": "Erebidae",
+   "picture": "species/Hypena_scabra.jpg",
+   "from_image": "20221008220000-00-01"
+  },
+  {
+   "species": "Hyphantria cunea",
+   "genus": "Hyphantria",
+   "family": "Erebidae",
+   "picture": "species/Hyphantria_cunea.jpg",
+   "from_image": "20220629013014-00-174"
+  },
+  {
+   "species": "Hypomecis punctinalis",
+   "genus": "Hypomecis",
+   "family": "Geometridae",
+   "picture": "species/Hypomecis_punctinalis.jpg",
+   "from_image": "20230609021000-42-snapshot"
+  },
+  {
+   "species": "Hypomecis roboraria",
+   "genus": "Hypomecis",
+   "family": "Geometridae",
+   "picture": "species/Hypomecis_roboraria.jpg",
+   "from_image": "20230627025959-137-snapshot"
+  },
+  {
+   "species": "Hypoprepia fucosa",
+   "genus": "Hypoprepia",
+   "family": "Erebidae",
+   "picture": "species/Hypoprepia_fucosa.jpg",
+   "from_image": "54-20220724034000-snapshot"
+  },
+  {
+   "species": "Hypoprepia miniata",
+   "genus": "Hypoprepia",
+   "family": "Erebidae",
+   "picture": "species/Hypoprepia_miniata.jpg",
+   "from_image": "20220716234000-00-21"
+  },
+  {
+   "species": "Idaea aversata",
+   "genus": "Idaea",
+   "family": "Geometridae",
+   "picture": "species/Idaea_aversata.jpg",
+   "from_image": "20230817024104-00-09"
+  },
+  {
+   "species": "Idaea biselata",
+   "genus": "Idaea",
+   "family": "Geometridae",
+   "picture": "species/Idaea_biselata.jpg",
+   "from_image": "20230812030000-139-snapshot"
+  },
+  {
+   "species": "Idaea dimidiata",
+   "genus": "Idaea",
+   "family": "Geometridae",
+   "picture": "species/Idaea_dimidiata.jpg",
+   "from_image": "20220704010800-00-120"
+  },
+  {
+   "species": "Idaea emarginata",
+   "genus": "Idaea",
+   "family": "Geometridae",
+   "picture": "species/Idaea_emarginata.jpg",
+   "from_image": "20230803031242-00-201"
+  },
+  {
+   "species": "Idaea rusticata",
+   "genus": "Idaea",
+   "family": "Geometridae",
+   "picture": "species/Idaea_rusticata.jpg",
+   "from_image": "20230805035910-00-90"
+  },
+  {
+   "species": "Idia aemula",
+   "genus": "Idia",
+   "family": "Erebidae",
+   "picture": "species/Idia_aemula.jpg",
+   "from_image": "20220718233846-00-113"
+  },
+  {
+   "species": "Idia americalis",
+   "genus": "Idia",
+   "family": "Erebidae",
+   "picture": "species/Idia_americalis.jpg",
+   "from_image": "20220715005104-00-112"
+  },
+  {
+   "species": "Iridopsis larvaria",
+   "genus": "Iridopsis",
+   "family": "Geometridae",
+   "picture": "species/Iridopsis_larvaria.jpg",
+   "from_image": "20220603022723-00-22"
+  },
+  {
+   "species": "Lacanobia oleracea",
+   "genus": "Lacanobia",
+   "family": "Noctuidae",
+   "picture": "species/Lacanobia_oleracea.jpg",
+   "from_image": "20230708030000-133-snapshot"
+  },
+  {
+   "species": "Lambdina fiscellaria",
+   "genus": "Lambdina",
+   "family": "Geometridae",
+   "picture": "species/Lambdina_fiscellaria.jpg",
+   "from_image": "20220909000434-00-42"
+  },
+  {
+   "species": "Laothoe populi",
+   "genus": "Laothoe",
+   "family": "Sphingidae",
+   "picture": "species/Laothoe_populi.jpg",
+   "from_image": "20230703025959-273-snapshot"
+  },
+  {
+   "species": "Lascoria ambigualis",
+   "genus": "Lascoria",
+   "family": "Erebidae",
+   "picture": "species/Lascoria_ambigualis.jpg",
+   "from_image": "20220604012020-00-171"
+  },
+  {
+   "species": "Laspeyria flexula",
+   "genus": "Laspeyria",
+   "family": "Erebidae",
+   "picture": "species/Laspeyria_flexula.jpg",
+   "from_image": "20230716025959-95-snapshot"
+  },
+  {
+   "species": "Lateroligia ophiogramma",
+   "genus": "Lateroligia",
+   "family": "Noctuidae",
+   "picture": "species/Lateroligia_ophiogramma.jpg",
+   "from_image": "20230715025959-133-snapshot"
+  },
+  {
+   "species": "Leucania comma",
+   "genus": "Leucania",
+   "family": "Noctuidae",
+   "picture": "species/Leucania_comma.jpg",
+   "from_image": "20230629030000-108-snapshot"
+  },
+  {
+   "species": "Leuconycta diphteroides",
+   "genus": "Leuconycta",
+   "family": "Noctuidae",
+   "picture": "species/Leuconycta_diphteroides.jpg",
+   "from_image": "20220711010356-00-127"
+  },
+  {
+   "species": "Leucopleura ciarana",
+   "genus": "Leucopleura",
+   "family": "Erebidae",
+   "picture": "species/Leucopleura_ciarana.jpg",
+   "from_image": "175-20230124034000-snapshot"
+  },
+  {
+   "species": "Lithacodia synochitis",
+   "genus": "Lithacodia",
+   "family": "Noctuidae",
+   "picture": "species/Lithacodia_synochitis.jpg",
+   "from_image": "20220723011222-00-145"
+  },
+  {
+   "species": "Lobophora nivigerata",
+   "genus": "Lobophora",
+   "family": "Geometridae",
+   "picture": "species/Lobophora_nivigerata.jpg",
+   "from_image": "20220603020723-00-19"
+  },
+  {
+   "species": "Lochmaeus manteo",
+   "genus": "Lochmaeus",
+   "family": "Notodontidae",
+   "picture": "species/Lochmaeus_manteo.jpg",
+   "from_image": "20220602003849-00-155"
+  },
+  {
+   "species": "Lomaspilis marginata",
+   "genus": "Lomaspilis",
+   "family": "Geometridae",
+   "picture": "species/Lomaspilis_marginata.jpg",
+   "from_image": "20230718025959-66-snapshot"
+  },
+  {
+   "species": "Lomographa vestaliata",
+   "genus": "Lomographa",
+   "family": "Geometridae",
+   "picture": "species/Lomographa_vestaliata.jpg",
+   "from_image": "20220608023350-00-53"
+  },
+  {
+   "species": "Lophocampa caryae",
+   "genus": "Lophocampa",
+   "family": "Erebidae",
+   "picture": "species/Lophocampa_caryae.jpg",
+   "from_image": "20221004210804-00-04"
+  },
+  {
+   "species": "Lymantria dispar",
+   "genus": "Lymantria",
+   "family": "Erebidae",
+   "picture": "species/Lymantria_dispar.jpg",
+   "from_image": "20230819040310-00-224"
+  },
+  {
+   "species": "Lymantria monacha",
+   "genus": "Lymantria",
+   "family": "Erebidae",
+   "picture": "species/Lymantria_monacha.jpg",
+   "from_image": "20230815002501-00-104"
+  },
+  {
+   "species": "Macaria aemulataria",
+   "genus": "Macaria",
+   "family": "Geometridae",
+   "picture": "species/Macaria_aemulataria.jpg",
+   "from_image": "20220708231959-00-59"
+  },
+  {
+   "species": "Macaria bisignata",
+   "genus": "Macaria",
+   "family": "Geometridae",
+   "picture": "species/Macaria_bisignata.jpg",
+   "from_image": "20220709022027-00-150"
+  },
+  {
+   "species": "Macaria fissinotata",
+   "genus": "Macaria",
+   "family": "Geometridae",
+   "picture": "species/Macaria_fissinotata.jpg",
+   "from_image": "20220613035729-00-249"
+  },
+  {
+   "species": "Macaria liturata",
+   "genus": "Macaria",
+   "family": "Geometridae",
+   "picture": "species/Macaria_liturata.jpg",
+   "from_image": "20230717025959-142-snapshot"
+  },
+  {
+   "species": "Macaria minorata",
+   "genus": "Macaria",
+   "family": "Geometridae",
+   "picture": "species/Macaria_minorata.jpg",
+   "from_image": "20220815013323-00-169"
+  },
+  {
+   "species": "Macaria notata",
+   "genus": "Macaria",
+   "family": "Geometridae",
+   "picture": "species/Macaria_notata.jpg",
+   "from_image": "20230810030000-107-snapshot"
+  },
+  {
+   "species": "Macaria pinistrobata",
+   "genus": "Macaria",
+   "family": "Geometridae",
+   "picture": "species/Macaria_pinistrobata.jpg",
+   "from_image": "20220613041832-00-262"
+  },
+  {
+   "species": "Macaria pustularia",
+   "genus": "Macaria",
+   "family": "Geometridae",
+   "picture": "species/Macaria_pustularia.jpg",
+   "from_image": "20220723041222-00-26"
+  },
+  {
+   "species": "Macaria signaria",
+   "genus": "Macaria",
+   "family": "Geometridae",
+   "picture": "species/Macaria_signaria.jpg",
+   "from_image": "20220620002247-00-129"
+  },
+  {
+   "species": "Macaria wauaria",
+   "genus": "Macaria",
+   "family": "Geometridae",
+   "picture": "species/Macaria_wauaria.jpg",
+   "from_image": "20230626023000-169-snapshot"
+  },
+  {
+   "species": "Macrothylacia rubi",
+   "genus": "Macrothylacia",
+   "family": "Lasiocampidae",
+   "picture": "species/Macrothylacia_rubi.jpg",
+   "from_image": "20230523030000-126-snapshot"
+  },
+  {
+   "species": "Malacosoma americana",
+   "genus": "Malacosoma",
+   "family": "Lasiocampidae",
+   "picture": "species/Malacosoma_americana.jpg",
+   "from_image": "20220712031626-00-23"
+  },
+  {
+   "species": "Malacosoma castrensis",
+   "genus": "Malacosoma",
+   "family": "Lasiocampidae",
+   "picture": "species/Malacosoma_castrensis.jpg",
+   "from_image": "20230715025959-150-snapshot"
+  },
+  {
+   "species": "Malacosoma disstria",
+   "genus": "Malacosoma",
+   "family": "Lasiocampidae",
+   "picture": "species/Malacosoma_disstria.jpg",
+   "from_image": "20220730223623-00-47"
+  },
+  {
+   "species": "Malacosoma neustria",
+   "genus": "Malacosoma",
+   "family": "Lasiocampidae",
+   "picture": "species/Malacosoma_neustria.jpg",
+   "from_image": "20230722004832-00-38"
+  },
+  {
+   "species": "Maliattha concinnimacula",
+   "genus": "Maliattha",
+   "family": "Noctuidae",
+   "picture": "species/Maliattha_concinnimacula.jpg",
+   "from_image": "20220602005850-00-165"
+  },
+  {
+   "species": "Maliattha synochitis",
+   "genus": "Maliattha",
+   "family": "Noctuidae",
+   "picture": "species/Maliattha_synochitis.jpg",
+   "from_image": "20220711225619-00-64"
+  },
+  {
+   "species": "Marimatha nigrofimbria",
+   "genus": "Marimatha",
+   "family": "Noctuidae",
+   "picture": "species/Marimatha_nigrofimbria.jpg",
+   "from_image": "20220815013323-00-169"
+  },
+  {
+   "species": "Meroptera pravella",
+   "genus": "Meroptera",
+   "family": "Pyralidae",
+   "picture": "species/Meroptera_pravella.jpg",
+   "from_image": "20220614230254-00-63"
+  },
+  {
+   "species": "Mesoleuca albicillata",
+   "genus": "Mesoleuca",
+   "family": "Geometridae",
+   "picture": "species/Mesoleuca_albicillata.jpg",
+   "from_image": "20230713025959-163-snapshot"
+  },
+  {
+   "species": "Mesoligia furuncula",
+   "genus": "Mesoligia",
+   "family": "Noctuidae",
+   "picture": "species/Mesoligia_furuncula.jpg",
+   "from_image": "20230805033910-00-167"
+  },
+  {
+   "species": "Metanema inatomaria",
+   "genus": "Metanema",
+   "family": "Geometridae",
+   "picture": "species/Metanema_inatomaria.jpg",
+   "from_image": "20220624014515-00-127"
+  },
+  {
+   "species": "Microcrambus biguttellus",
+   "genus": "Microcrambus",
+   "family": "Crambidae",
+   "picture": "species/Microcrambus_biguttellus.jpg",
+   "from_image": "20220718032444-00-14"
+  },
+  {
+   "species": "Microcrambus elegans",
+   "genus": "Microcrambus",
+   "family": "Crambidae",
+   "picture": "species/Microcrambus_elegans.jpg",
+   "from_image": "20220725215757-00-30"
+  },
+  {
+   "species": "Microcrambus minor",
+   "genus": "Microcrambus",
+   "family": "Crambidae",
+   "picture": "species/Microcrambus_minor.jpg",
+   "from_image": "20220707230320-00-57"
+  },
+  {
+   "species": "Miltochrista miniata",
+   "genus": "Miltochrista",
+   "family": "Erebidae",
+   "picture": "species/Miltochrista_miniata.jpg",
+   "from_image": "20230625025000-215-snapshot"
+  },
+  {
+   "species": "Moma alpium",
+   "genus": "Moma",
+   "family": "Noctuidae",
+   "picture": "species/Moma_alpium.jpg",
+   "from_image": "20230620030000-324-snapshot"
+  },
+  {
+   "species": "Mompha brevivittella",
+   "genus": "Mompha",
+   "family": "Momphidae",
+   "picture": "species/Mompha_brevivittella.jpg",
+   "from_image": "20220723021222-00-26"
+  },
+  {
+   "species": "Mompha terminella",
+   "genus": "Mompha",
+   "family": "Momphidae",
+   "picture": "species/Mompha_terminella.jpg",
+   "from_image": "20220718010444-00-14"
+  },
+  {
+   "species": "Moodna ostrinella",
+   "genus": "Moodna",
+   "family": "Pyralidae",
+   "picture": "species/Moodna_ostrinella.jpg",
+   "from_image": "20220522021425-00-50"
+  },
+  {
+   "species": "Mythimna albipuncta",
+   "genus": "Mythimna",
+   "family": "Noctuidae",
+   "picture": "species/Mythimna_albipuncta.jpg",
+   "from_image": "20230822020306-00-48"
+  },
+  {
+   "species": "Mythimna pallens",
+   "genus": "Mythimna",
+   "family": "Noctuidae",
+   "picture": "species/Mythimna_pallens.jpg",
+   "from_image": "20230819020308-00-146"
+  },
+  {
+   "species": "Nadata gibbosa",
+   "genus": "Nadata",
+   "family": "Notodontidae",
+   "picture": "species/Nadata_gibbosa.jpg",
+   "from_image": "20220602030130-00-201"
+  },
+  {
+   "species": "Nematocampa resistaria",
+   "genus": "Nematocampa",
+   "family": "Geometridae",
+   "picture": "species/Nematocampa_resistaria.jpg",
+   "from_image": "20220705230650-00-56"
+  },
+  {
+   "species": "Nemoria bistriaria",
+   "genus": "Nemoria",
+   "family": "Geometridae",
+   "picture": "species/Nemoria_bistriaria.jpg",
+   "from_image": "20220715031227-00-190"
+  },
+  {
+   "species": "Nemoria mimosaria",
+   "genus": "Nemoria",
+   "family": "Geometridae",
+   "picture": "species/Nemoria_mimosaria.jpg",
+   "from_image": "20220516033032-00-160"
+  },
+  {
+   "species": "Noctua fimbriata",
+   "genus": "Noctua",
+   "family": "Noctuidae",
+   "picture": "species/Noctua_fimbriata.jpg",
+   "from_image": "20230909023829-00-125"
+  },
+  {
+   "species": "Noctua janthe",
+   "genus": "Noctua",
+   "family": "Noctuidae",
+   "picture": "species/Noctua_janthe.jpg",
+   "from_image": "20230814231907-00-56"
+  },
+  {
+   "species": "Noctua janthina",
+   "genus": "Noctua",
+   "family": "Noctuidae",
+   "picture": "species/Noctua_janthina.jpg",
+   "from_image": "20230822012054-00-33"
+  },
+  {
+   "species": "Nomophila nearctica",
+   "genus": "Nomophila",
+   "family": "Crambidae",
+   "picture": "species/Nomophila_nearctica.jpg",
+   "from_image": "146-20220922001000-snapshot"
+  },
+  {
+   "species": "Notocelia cynosbatella",
+   "genus": "Notocelia",
+   "family": "Tortricidae",
+   "picture": "species/Notocelia_cynosbatella.jpg",
+   "from_image": "20230605002959-18-snapshot"
+  },
+  {
+   "species": "Notocelia uddmanniana",
+   "genus": "Notocelia",
+   "family": "Tortricidae",
+   "picture": "species/Notocelia_uddmanniana.jpg",
+   "from_image": "20230702030000-185-snapshot"
+  },
+  {
+   "species": "Notodonta dromedarius",
+   "genus": "Notodonta",
+   "family": "Notodontidae",
+   "picture": "species/Notodonta_dromedarius.jpg",
+   "from_image": "20230810035943-00-142"
+  },
+  {
+   "species": "Notodonta ziczac",
+   "genus": "Notodonta",
+   "family": "Notodontidae",
+   "picture": "species/Notodonta_ziczac.jpg",
+   "from_image": "20230813030000-128-snapshot"
+  },
+  {
+   "species": "Nymphula nitidulata",
+   "genus": "Nymphula",
+   "family": "Crambidae",
+   "picture": "species/Nymphula_nitidulata.jpg",
+   "from_image": "20230710030000-160-snapshot"
+  },
+  {
+   "species": "Ochropacha duplaris",
+   "genus": "Ochropacha",
+   "family": "Drepanidae",
+   "picture": "species/Ochropacha_duplaris.jpg",
+   "from_image": "20230715025959-117-snapshot"
+  },
+  {
+   "species": "Ochropleura implecta",
+   "genus": "Ochropleura",
+   "family": "Noctuidae",
+   "picture": "species/Ochropleura_implecta.jpg",
+   "from_image": "20220608234053-00-96"
+  },
+  {
+   "species": "Olethreutes fasciatana",
+   "genus": "Olethreutes",
+   "family": "Tortricidae",
+   "picture": "species/Olethreutes_fasciatana.jpg",
+   "from_image": "20220715213504-00-13"
+  },
+  {
+   "species": "Olethreutes merrickanum",
+   "genus": "Olethreutes",
+   "family": "Tortricidae",
+   "picture": "species/Olethreutes_merrickanum.jpg",
+   "from_image": "20220705214647-00-34"
+  },
+  {
+   "species": "Olethreutes nigranum",
+   "genus": "Olethreutes",
+   "family": "Tortricidae",
+   "picture": "species/Olethreutes_nigranum.jpg",
+   "from_image": "20220820024901-00-143"
+  },
+  {
+   "species": "Olethreutes osmundana",
+   "genus": "Olethreutes",
+   "family": "Tortricidae",
+   "picture": "species/Olethreutes_osmundana.jpg",
+   "from_image": "20220706225639-00-71"
+  },
+  {
+   "species": "Olethreutes quadrifidum",
+   "genus": "Olethreutes",
+   "family": "Tortricidae",
+   "picture": "species/Olethreutes_quadrifidum.jpg",
+   "from_image": "21-20220717020000-snapshot"
+  },
+  {
+   "species": "Olethreutes versicolorana",
+   "genus": "Olethreutes",
+   "family": "Tortricidae",
+   "picture": "species/Olethreutes_versicolorana.jpg",
+   "from_image": "20220718022444-00-144"
+  },
+  {
+   "species": "Opisthograptis luteolata",
+   "genus": "Opisthograptis",
+   "family": "Geometridae",
+   "picture": "species/Opisthograptis_luteolata.jpg",
+   "from_image": "20230810025942-00-70"
+  },
+  {
+   "species": "Orthosia gothica",
+   "genus": "Orthosia",
+   "family": "Noctuidae",
+   "picture": "species/Orthosia_gothica.jpg",
+   "from_image": "20230627025959-149-snapshot"
+  },
+  {
+   "species": "Ostrinia nubilalis",
+   "genus": "Ostrinia",
+   "family": "Crambidae",
+   "picture": "species/Ostrinia_nubilalis.jpg",
+   "from_image": "20230721230832-00-34"
+  },
+  {
+   "species": "Palpita magniferalis",
+   "genus": "Palpita",
+   "family": "Crambidae",
+   "picture": "species/Palpita_magniferalis.jpg",
+   "from_image": "20220614044315-00-232"
+  },
+  {
+   "species": "Palthis angulalis",
+   "genus": "Palthis",
+   "family": "Erebidae",
+   "picture": "species/Palthis_angulalis.jpg",
+   "from_image": "20220603022723-00-22"
+  },
+  {
+   "species": "Palthis asopialis",
+   "genus": "Palthis",
+   "family": "Erebidae",
+   "picture": "species/Palthis_asopialis.jpg",
+   "from_image": "20220817235234-00-91"
+  },
+  {
+   "species": "Pandemis lamprosana",
+   "genus": "Pandemis",
+   "family": "Tortricidae",
+   "picture": "species/Pandemis_lamprosana.jpg",
+   "from_image": "20220814235320-00-104"
+  },
+  {
+   "species": "Pandemis limitata",
+   "genus": "Pandemis",
+   "family": "Tortricidae",
+   "picture": "species/Pandemis_limitata.jpg",
+   "from_image": "20220815001321-00-116"
+  },
+  {
+   "species": "Pandemis morrisana",
+   "genus": "Pandemis",
+   "family": "Tortricidae",
+   "picture": "species/Pandemis_morrisana.jpg",
+   "from_image": "20220710232333-00-65"
+  },
+  {
+   "species": "Panthea furcilla",
+   "genus": "Panthea",
+   "family": "Noctuidae",
+   "picture": "species/Panthea_furcilla.jpg",
+   "from_image": "20220729000719-00-79"
+  },
+  {
+   "species": "Paraclemensia acerifoliella",
+   "genus": "Paraclemensia",
+   "family": "Incurvariidae",
+   "picture": "species/Paraclemensia_acerifoliella.jpg",
+   "from_image": "20220521235422-00-50"
+  },
+  {
+   "species": "Parapoynx stratiotata",
+   "genus": "Parapoynx",
+   "family": "Crambidae",
+   "picture": "species/Parapoynx_stratiotata.jpg",
+   "from_image": "20230622021000-91-snapshot"
+  },
+  {
+   "species": "Pasiphila rectangulata",
+   "genus": "Pasiphila",
+   "family": "Geometridae",
+   "picture": "species/Pasiphila_rectangulata.jpg",
+   "from_image": "20220708215958-00-32"
+  },
+  {
+   "species": "Pediasia contaminella",
+   "genus": "Pediasia",
+   "family": "Crambidae",
+   "picture": "species/Pediasia_contaminella.jpg",
+   "from_image": "20230806030000-64-snapshot"
+  },
+  {
+   "species": "Pediasia trisecta",
+   "genus": "Pediasia",
+   "family": "Crambidae",
+   "picture": "species/Pediasia_trisecta.jpg",
+   "from_image": "20220826020930-00-117"
+  },
+  {
+   "species": "Pelosia muscerda",
+   "genus": "Pelosia",
+   "family": "Erebidae",
+   "picture": "species/Pelosia_muscerda.jpg",
+   "from_image": "20230803025959-174-snapshot"
+  },
+  {
+   "species": "Pempelia palumbella",
+   "genus": "Pempelia",
+   "family": "Pyralidae",
+   "picture": "species/Pempelia_palumbella.jpg",
+   "from_image": "20230815025959-137-snapshot"
+  },
+  {
+   "species": "Peribatodes rhomboidaria",
+   "genus": "Peribatodes",
+   "family": "Geometridae",
+   "picture": "species/Peribatodes_rhomboidaria.jpg",
+   "from_image": "20230829030855-00-152"
+  },
+  {
+   "species": "Peridea anceps",
+   "genus": "Peridea",
+   "family": "Notodontidae",
+   "picture": "species/Peridea_anceps.jpg",
+   "from_image": "20230515025959-28-snapshot"
+  },
+  {
+   "species": "Peridea basitriens",
+   "genus": "Peridea",
+   "family": "Notodontidae",
+   "picture": "species/Peridea_basitriens.jpg",
+   "from_image": "20220718002444-00-122"
+  },
+  {
+   "species": "Perigramma vicina",
+   "genus": "Perigramma",
+   "family": "Geometridae",
+   "picture": "species/Perigramma_vicina.jpg",
+   "from_image": "195-20230125010759-snapshot"
+  },
+  {
+   "species": "Perizoma affinitata",
+   "genus": "Perizoma",
+   "family": "Geometridae",
+   "picture": "species/Perizoma_affinitata.jpg",
+   "from_image": "20230805030000-139-snapshot"
+  },
+  {
+   "species": "Perizoma alchemillata",
+   "genus": "Perizoma",
+   "family": "Geometridae",
+   "picture": "species/Perizoma_alchemillata.jpg",
+   "from_image": "20230626011000-87-snapshot"
+  },
+  {
+   "species": "Petrophora chlorosata",
+   "genus": "Pterophorus",
+   "family": "Pterophoridae",
+   "picture": "species/Petrophora_chlorosata.jpg",
+   "from_image": "20230626025000-197-snapshot"
+  },
+  {
+   "species": "Petrophora subaequaria",
+   "genus": "Pterophorus",
+   "family": "Pterophoridae",
+   "picture": "species/Petrophora_subaequaria.jpg",
+   "from_image": "20220515030028-00-175"
+  },
+  {
+   "species": "Phalaenophana pyramusalis",
+   "genus": "Phaeolita",
+   "family": "Erebidae",
+   "picture": "species/Phalaenophana_pyramusalis.jpg",
+   "from_image": "20220605023054-00-246"
+  },
+  {
+   "species": "Phalaenostola larentioides",
+   "genus": "Phalaenostola",
+   "family": "Erebidae",
+   "picture": "species/Phalaenostola_larentioides.jpg",
+   "from_image": "20220629005006-00-146"
+  },
+  {
+   "species": "Phalera bucephala",
+   "genus": "Phalera",
+   "family": "Notodontidae",
+   "picture": "species/Phalera_bucephala.jpg",
+   "from_image": "20230629030000-201-snapshot"
+  },
+  {
+   "species": "Phalonidia lepidana",
+   "genus": "Phalonidia",
+   "family": "Tortricidae",
+   "picture": "species/Phalonidia_lepidana.jpg",
+   "from_image": "20220723033222-00-26"
+  },
+  {
+   "species": "Phalonidia straminoides",
+   "genus": "Phalonidia",
+   "family": "Tortricidae",
+   "picture": "species/Phalonidia_straminoides.jpg",
+   "from_image": "20220809025123-00-140"
+  },
+  {
+   "species": "Pheosia gnoma",
+   "genus": "Pheosia",
+   "family": "Notodontidae",
+   "picture": "species/Pheosia_gnoma.jpg",
+   "from_image": "20230813030000-165-snapshot"
+  },
+  {
+   "species": "Pheosia tremula",
+   "genus": "Pheosia",
+   "family": "Notodontidae",
+   "picture": "species/Pheosia_tremula.jpg",
+   "from_image": "20230805030000-130-snapshot"
+  },
+  {
+   "species": "Phiaris schulziana",
+   "genus": "Olethreutes",
+   "family": "Tortricidae",
+   "picture": "species/Phiaris_schulziana.jpg",
+   "from_image": "20230911025959-64-snapshot"
+  },
+  {
+   "species": "Philereme transversata",
+   "genus": "Philereme",
+   "family": "Geometridae",
+   "picture": "species/Philereme_transversata.jpg",
+   "from_image": "20230721234832-00-35"
+  },
+  {
+   "species": "Phlogophora meticulosa",
+   "genus": "Phlogophora",
+   "family": "Noctuidae",
+   "picture": "species/Phlogophora_meticulosa.jpg",
+   "from_image": "20230907001848-00-49"
+  },
+  {
+   "species": "Photedes fluxa",
+   "genus": "Photedes",
+   "family": "Noctuidae",
+   "picture": "species/Photedes_fluxa.jpg",
+   "from_image": "20230917025959-51-snapshot"
+  },
+  {
+   "species": "Photedes minima",
+   "genus": "Photedes",
+   "family": "Noctuidae",
+   "picture": "species/Photedes_minima.jpg",
+   "from_image": "20230708030000-126-snapshot"
+  },
+  {
+   "species": "Phragmatobia fuliginosa",
+   "genus": "Phragmatobia",
+   "family": "Erebidae",
+   "picture": "species/Phragmatobia_fuliginosa.jpg",
+   "from_image": "20230721222832-00-22"
+  },
+  {
+   "species": "Phycita roborella",
+   "genus": "Phycita",
+   "family": "Pyralidae",
+   "picture": "species/Phycita_roborella.jpg",
+   "from_image": "20230715025959-133-snapshot"
+  },
+  {
+   "species": "Phyllodesma americana",
+   "genus": "Phyllodesma",
+   "family": "Lasiocampidae",
+   "picture": "species/Phyllodesma_americana.jpg",
+   "from_image": "20220520224414-00-75"
+  },
+  {
+   "species": "Plagodis alcoolaria",
+   "genus": "Plagodis",
+   "family": "Geometridae",
+   "picture": "species/Plagodis_alcoolaria.jpg",
+   "from_image": "20220604010019-00-158"
+  },
+  {
+   "species": "Plagodis phlogosaria",
+   "genus": "Plagodis",
+   "family": "Geometridae",
+   "picture": "species/Plagodis_phlogosaria.jpg",
+   "from_image": "20220604012020-00-171"
+  },
+  {
+   "species": "Platynota exasperatana",
+   "genus": "Platynota",
+   "family": "Tortricidae",
+   "picture": "species/Platynota_exasperatana.jpg",
+   "from_image": "20220725215757-00-30"
+  },
+  {
+   "species": "Platynota idaeusalis",
+   "genus": "Platynota",
+   "family": "Tortricidae",
+   "picture": "species/Platynota_idaeusalis.jpg",
+   "from_image": "20220620040527-00-268"
+  },
+  {
+   "species": "Platynota semiustana",
+   "genus": "Platynota",
+   "family": "Tortricidae",
+   "picture": "species/Platynota_semiustana.jpg",
+   "from_image": "20220624052625-00-174"
+  },
+  {
+   "species": "Platytes alpinella",
+   "genus": "Platytes",
+   "family": "Crambidae",
+   "picture": "species/Platytes_alpinella.jpg",
+   "from_image": "20230629030000-201-snapshot"
+  },
+  {
+   "species": "Pleuroprucha insulsaria",
+   "genus": "Pleuroprucha",
+   "family": "Geometridae",
+   "picture": "species/Pleuroprucha_insulsaria.jpg",
+   "from_image": "20220817225232-00-48"
+  },
+  {
+   "species": "Pleuroptya ruralis",
+   "genus": "Pleuroptya",
+   "family": "Crambidae",
+   "picture": "species/Pleuroptya_ruralis.jpg",
+   "from_image": "20230815001935-00-100"
+  },
+  {
+   "species": "Plutella xylostella",
+   "genus": "Plutella",
+   "family": "Plutellidae",
+   "picture": "species/Plutella_xylostella.jpg",
+   "from_image": "20220722235222-00-24"
+  },
+  {
+   "species": "Polia nebulosa",
+   "genus": "Polia",
+   "family": "Noctuidae",
+   "picture": "species/Polia_nebulosa.jpg",
+   "from_image": "20230627025959-137-snapshot"
+  },
+  {
+   "species": "Ponometia candefacta",
+   "genus": "Acontia",
+   "family": "Noctuidae",
+   "picture": "species/Ponometia_candefacta.jpg",
+   "from_image": "20220716025601-00-273"
+  },
+  {
+   "species": "Ponometia erastrioides",
+   "genus": "Acontia",
+   "family": "Noctuidae",
+   "picture": "species/Ponometia_erastrioides.jpg",
+   "from_image": "20220709034150-00-202"
+  },
+  {
+   "species": "Prays fraxinella",
+   "genus": "Prays",
+   "family": "Praydidae",
+   "picture": "species/Prays_fraxinella.jpg",
+   "from_image": "20230812025959-94-snapshot"
+  },
+  {
+   "species": "Probole amicaria",
+   "genus": "Probole",
+   "family": "Geometridae",
+   "picture": "species/Probole_amicaria.jpg",
+   "from_image": "20220608041353-00-62"
+  },
+  {
+   "species": "Prochoerodes lineola",
+   "genus": "Prochoerodes",
+   "family": "Geometridae",
+   "picture": "species/Prochoerodes_lineola.jpg",
+   "from_image": "20220815035459-00-271"
+  },
+  {
+   "species": "Proteoteras aesculana",
+   "genus": "Proteoteras",
+   "family": "Tortricidae",
+   "picture": "species/Proteoteras_aesculana.jpg",
+   "from_image": "20220514002642-00-135"
+  },
+  {
+   "species": "Proteoteras crescentana",
+   "genus": "Proteoteras",
+   "family": "Tortricidae",
+   "picture": "species/Proteoteras_crescentana.jpg",
+   "from_image": "20220621222527-00-57"
+  },
+  {
+   "species": "Proteoteras moffatiana",
+   "genus": "Proteoteras",
+   "family": "Tortricidae",
+   "picture": "species/Proteoteras_moffatiana.jpg",
+   "from_image": "20220720025404-00-45"
+  },
+  {
+   "species": "Proteoteras willingana",
+   "genus": "Proteoteras",
+   "family": "Tortricidae",
+   "picture": "species/Proteoteras_willingana.jpg",
+   "from_image": "20220701231407-00-48"
+  },
+  {
+   "species": "Protodeltote muscosula",
+   "genus": "Protodeltote",
+   "family": "Noctuidae",
+   "picture": "species/Protodeltote_muscosula.jpg",
+   "from_image": "20220623025322-00-160"
+  },
+  {
+   "species": "Pseudeustrotia carneola",
+   "genus": "Pseudeustrotia",
+   "family": "Noctuidae",
+   "picture": "species/Pseudeustrotia_carneola.jpg",
+   "from_image": "20220616044540-00-22"
+  },
+  {
+   "species": "Pseudoips prasinana",
+   "genus": "Pseudoips",
+   "family": "Nolidae",
+   "picture": "species/Pseudoips_prasinana.jpg",
+   "from_image": "20230623012959-191-snapshot"
+  },
+  {
+   "species": "Pseudosciaphila duplex",
+   "genus": "Pseudosciaphila",
+   "family": "Tortricidae",
+   "picture": "species/Pseudosciaphila_duplex.jpg",
+   "from_image": "20220627023000-00-35"
+  },
+  {
+   "species": "Pterapherapteryx sexalata",
+   "genus": "Pterapherapteryx",
+   "family": "Geometridae",
+   "picture": "species/Pterapherapteryx_sexalata.jpg",
+   "from_image": "20230710030000-160-snapshot"
+  },
+  {
+   "species": "Ptilodon capucina",
+   "genus": "Ptilodon",
+   "family": "Notodontidae",
+   "picture": "species/Ptilodon_capucina.jpg",
+   "from_image": "20230725030000-142-snapshot"
+  },
+  {
+   "species": "Pyrausta aerealis",
+   "genus": "Pyrausta",
+   "family": "Crambidae",
+   "picture": "species/Pyrausta_aerealis.jpg",
+   "from_image": "20230728030000-39-snapshot"
+  },
+  {
+   "species": "Raphia frater",
+   "genus": "Raphia",
+   "family": "Noctuidae",
+   "picture": "species/Raphia_frater.jpg",
+   "from_image": "20220624000514-00-50"
+  },
+  {
+   "species": "Rheumaptera prunivorata",
+   "genus": "Rheumaptera",
+   "family": "Geometridae",
+   "picture": "species/Rheumaptera_prunivorata.jpg",
+   "from_image": "20220814225315-00-70"
+  },
+  {
+   "species": "Rheumaptera undulata",
+   "genus": "Rheumaptera",
+   "family": "Geometridae",
+   "picture": "species/Rheumaptera_undulata.jpg",
+   "from_image": "20220815232357-00-96"
+  },
+  {
+   "species": "Rivula propinqualis",
+   "genus": "Rivula",
+   "family": "Erebidae",
+   "picture": "species/Rivula_propinqualis.jpg",
+   "from_image": "20220813022237-00-58"
+  },
+  {
+   "species": "Rivula sericealis",
+   "genus": "Rivula",
+   "family": "Erebidae",
+   "picture": "species/Rivula_sericealis.jpg",
+   "from_image": "20230625030000-194-snapshot"
+  },
+  {
+   "species": "Schizura unicornis",
+   "genus": "Schizura",
+   "family": "Notodontidae",
+   "picture": "species/Schizura_unicornis.jpg",
+   "from_image": "20220729012741-00-116"
+  },
+  {
+   "species": "Sciota basilaris",
+   "genus": "Sciota",
+   "family": "Pyralidae",
+   "picture": "species/Sciota_basilaris.jpg",
+   "from_image": "20220722235222-00-24"
+  },
+  {
+   "species": "Scoparia basalis",
+   "genus": "Scoparia",
+   "family": "Crambidae",
+   "picture": "species/Scoparia_basalis.jpg",
+   "from_image": "20220614003657-00-124"
+  },
+  {
+   "species": "Scoparia basistrigalis",
+   "genus": "Scoparia",
+   "family": "Crambidae",
+   "picture": "species/Scoparia_basistrigalis.jpg",
+   "from_image": "20220825224929-00-58"
+  },
+  {
+   "species": "Scoparia biplagialis",
+   "genus": "Scoparia",
+   "family": "Crambidae",
+   "picture": "species/Scoparia_biplagialis.jpg",
+   "from_image": "20220831203229-00-09"
+  },
+  {
+   "species": "Scoparia cinereomedia",
+   "genus": "Scoparia",
+   "family": "Crambidae",
+   "picture": "species/Scoparia_cinereomedia.jpg",
+   "from_image": "20220712031626-00-23"
+  },
+  {
+   "species": "Scopula limboundata",
+   "genus": "Scopula",
+   "family": "Geometridae",
+   "picture": "species/Scopula_limboundata.jpg",
+   "from_image": "20220713213443-00-16"
+  },
+  {
+   "species": "Scotopteryx chenopodiata",
+   "genus": "Scotopteryx",
+   "family": "Geometridae",
+   "picture": "species/Scotopteryx_chenopodiata.jpg",
+   "from_image": "20230803031242-00-201"
+  },
+  {
+   "species": "Scythris limbella",
+   "genus": "Scythris",
+   "family": "Scythrididae",
+   "picture": "species/Scythris_limbella.jpg",
+   "from_image": "20220820042901-00-17"
+  },
+  {
+   "species": "Selagia spadicella",
+   "genus": "Selagia",
+   "family": "Pyralidae",
+   "picture": "species/Selagia_spadicella.jpg",
+   "from_image": "20230812025959-94-snapshot"
+  },
+  {
+   "species": "Selenia tetralunaria",
+   "genus": "Selenia",
+   "family": "Geometridae",
+   "picture": "species/Selenia_tetralunaria.jpg",
+   "from_image": "20230511030000-55-snapshot"
+  },
+  {
+   "species": "Semioscopis inornata",
+   "genus": "Semioscopis",
+   "family": "Depressariidae",
+   "picture": "species/Semioscopis_inornata.jpg",
+   "from_image": "20220715015204-00-152"
+  },
+  {
+   "species": "Semioscopis packardella",
+   "genus": "Semioscopis",
+   "family": "Depressariidae",
+   "picture": "species/Semioscopis_packardella.jpg",
+   "from_image": "20220608045355-00-74"
+  },
+  {
+   "species": "Sitochroa palealis",
+   "genus": "Sitochroa",
+   "family": "Crambidae",
+   "picture": "species/Sitochroa_palealis.jpg",
+   "from_image": "20220729030752-00-168"
+  },
+  {
+   "species": "Sparganothis reticulatana",
+   "genus": "Sparganothis",
+   "family": "Tortricidae",
+   "picture": "species/Sparganothis_reticulatana.jpg",
+   "from_image": "20220623033324-00-175"
+  },
+  {
+   "species": "Sparganothis sulfureana",
+   "genus": "Sparganothis",
+   "family": "Tortricidae",
+   "picture": "species/Sparganothis_sulfureana.jpg",
+   "from_image": "20220907020000-00-311"
+  },
+  {
+   "species": "Sparganothis umbrana",
+   "genus": "Sparganothis",
+   "family": "Tortricidae",
+   "picture": "species/Sparganothis_umbrana.jpg",
+   "from_image": "20220616030536-00-17"
+  },
+  {
+   "species": "Sphacelodes vulneraria",
+   "genus": "Sphacelodes",
+   "family": "Geometridae",
+   "picture": "species/Sphacelodes_vulneraria.jpg",
+   "from_image": "177-20230124053000-snapshot"
+  },
+  {
+   "species": "Sphinx pinastri",
+   "genus": "Sphinx",
+   "family": "Sphingidae",
+   "picture": "species/Sphinx_pinastri.jpg",
+   "from_image": "20230813030000-128-snapshot"
+  },
+  {
+   "species": "Spilomela discordens",
+   "genus": "Spilomela",
+   "family": "Crambidae",
+   "picture": "species/Spilomela_discordens.jpg",
+   "from_image": "175-20230124034000-snapshot"
+  },
+  {
+   "species": "Spilomela perspicata",
+   "genus": "Spilomela",
+   "family": "Crambidae",
+   "picture": "species/Spilomela_perspicata.jpg",
+   "from_image": "177-20230124054000-snapshot"
+  },
+  {
+   "species": "Spilonota ocellana",
+   "genus": "Spilonota",
+   "family": "Tortricidae",
+   "picture": "species/Spilonota_ocellana.jpg",
+   "from_image": "20220721031823-00-34"
+  },
+  {
+   "species": "Spilosoma congrua",
+   "genus": "Spilosoma",
+   "family": "Erebidae",
+   "picture": "species/Spilosoma_congrua.jpg",
+   "from_image": "20220612024824-00-90"
+  },
+  {
+   "species": "Spilosoma lubricipeda",
+   "genus": "Spilosoma",
+   "family": "Erebidae",
+   "picture": "species/Spilosoma_lubricipeda.jpg",
+   "from_image": "20230614025959-23-snapshot"
+  },
+  {
+   "species": "Spilosoma lutea",
+   "genus": "Spilosoma",
+   "family": "Erebidae",
+   "picture": "species/Spilosoma_lutea.jpg",
+   "from_image": "20230614025959-11-snapshot"
+  },
+  {
+   "species": "Spilosoma urticae",
+   "genus": "Spilosoma",
+   "family": "Erebidae",
+   "picture": "species/Spilosoma_urticae.jpg",
+   "from_image": "20230625030000-170-snapshot"
+  },
+  {
+   "species": "Spilosoma virginica",
+   "genus": "Spilosoma",
+   "family": "Erebidae",
+   "picture": "species/Spilosoma_virginica.jpg",
+   "from_image": "20220709000001-00-65"
+  },
+  {
+   "species": "Staurophora celsia",
+   "genus": "Staurophora",
+   "family": "Noctuidae",
+   "picture": "species/Staurophora_celsia.jpg",
+   "from_image": "20230913030000-46-snapshot"
+  },
+  {
+   "species": "Stauropus fagi",
+   "genus": "Stauropus",
+   "family": "Notodontidae",
+   "picture": "species/Stauropus_fagi.jpg",
+   "from_image": "20230713030000-181-snapshot"
+  },
+  {
+   "species": "Striacosta albicosta",
+   "genus": "Striacosta",
+   "family": "Noctuidae",
+   "picture": "species/Striacosta_albicosta.jpg",
+   "from_image": "20220827233804-00-123"
+  },
+  {
+   "species": "Synanthedon acerni",
+   "genus": "Synanthedon",
+   "family": "Sesiidae",
+   "picture": "species/Synanthedon_acerni.jpg",
+   "from_image": "20220605011054-00-176"
+  },
+  {
+   "species": "Syndemis afflictana",
+   "genus": "Syndemis",
+   "family": "Tortricidae",
+   "picture": "species/Syndemis_afflictana.jpg",
+   "from_image": "20220522023425-00-50"
+  },
+  {
+   "species": "Syngrapha rectangula",
+   "genus": "Syngrapha",
+   "family": "Noctuidae",
+   "picture": "species/Syngrapha_rectangula.jpg",
+   "from_image": "20220628011000-00-97"
+  },
+  {
+   "species": "Tethea or",
+   "genus": "Tethea",
+   "family": "Drepanidae",
+   "picture": "species/Tethea_or.jpg",
+   "from_image": "20230731030000-88-snapshot"
+  },
+  {
+   "species": "Tetracis cachexiata",
+   "genus": "Tetracis",
+   "family": "Geometridae",
+   "picture": "species/Tetracis_cachexiata.jpg",
+   "from_image": "20220612024824-00-90"
+  },
+  {
+   "species": "Thalpophila matura",
+   "genus": "Thalpophila",
+   "family": "Noctuidae",
+   "picture": "species/Thalpophila_matura.jpg",
+   "from_image": "20230814215423-00-03"
+  },
+  {
+   "species": "Thera obeliscata",
+   "genus": "Thera",
+   "family": "Geometridae",
+   "picture": "species/Thera_obeliscata.jpg",
+   "from_image": "20230523030000-126-snapshot"
+  },
+  {
+   "species": "Tortricidia testacea",
+   "genus": "Tortricidia",
+   "family": "Limacodidae",
+   "picture": "species/Tortricidia_testacea.jpg",
+   "from_image": "20220624024516-00-132"
+  },
+  {
+   "species": "Tortrix viridana",
+   "genus": "Tortrix",
+   "family": "Tortricidae",
+   "picture": "species/Tortrix_viridana.jpg",
+   "from_image": "20230619030000-144-snapshot"
+  },
+  {
+   "species": "Trichiura crataegi",
+   "genus": "Trichiura",
+   "family": "Lasiocampidae",
+   "picture": "species/Trichiura_crataegi.jpg",
+   "from_image": "20230819030309-00-165"
+  },
+  {
+   "species": "Trichopteryx carpinata",
+   "genus": "Trichopteryx",
+   "family": "Geometridae",
+   "picture": "species/Trichopteryx_carpinata.jpg",
+   "from_image": "20230511025959-24-snapshot"
+  },
+  {
+   "species": "Udea prunalis",
+   "genus": "Udea",
+   "family": "Crambidae",
+   "picture": "species/Udea_prunalis.jpg",
+   "from_image": "20230725025959-149-snapshot"
+  },
+  {
+   "species": "Urola nivalis",
+   "genus": "Argyria",
+   "family": "Crambidae",
+   "picture": "species/Urola_nivalis.jpg",
+   "from_image": "20220706231639-00-63"
+  },
+  {
+   "species": "Venusia comptaria",
+   "genus": "Venusia",
+   "family": "Geometridae",
+   "picture": "species/Venusia_comptaria.jpg",
+   "from_image": "20220514035331-00-202"
+  },
+  {
+   "species": "Virbia laeta",
+   "genus": "Virbia",
+   "family": "Erebidae",
+   "picture": "species/Virbia_laeta.jpg",
+   "from_image": "20220624000514-00-50"
+  },
+  {
+   "species": "Vitula broweri",
+   "genus": "Vitula",
+   "family": "Pyralidae",
+   "picture": "species/Vitula_broweri.jpg",
+   "from_image": "20220718032444-00-14"
+  },
+  {
+   "species": "Watsonalla binaria",
+   "genus": "Watsonalla",
+   "family": "Drepanidae",
+   "picture": "species/Watsonalla_binaria.jpg",
+   "from_image": "20230907013848-00-54"
+  },
+  {
+   "species": "Watsonalla cultraria",
+   "genus": "Watsonalla",
+   "family": "Drepanidae",
+   "picture": "species/Watsonalla_cultraria.jpg",
+   "from_image": "20230823235944-00-93"
+  },
+  {
+   "species": "Xanthia togata",
+   "genus": "Xanthia",
+   "family": "Noctuidae",
+   "picture": "species/Xanthia_togata.jpg",
+   "from_image": "20230925025959-75-snapshot"
+  },
+  {
+   "species": "Xanthorhoe ferrugata",
+   "genus": "Xanthorhoe",
+   "family": "Geometridae",
+   "picture": "species/Xanthorhoe_ferrugata.jpg",
+   "from_image": "20220618014043-00-90"
+  },
+  {
+   "species": "Xanthorhoe fluctuata",
+   "genus": "Xanthorhoe",
+   "family": "Geometridae",
+   "picture": "species/Xanthorhoe_fluctuata.jpg",
+   "from_image": "20230803021242-00-135"
+  },
+  {
+   "species": "Xanthorhoe lacustrata",
+   "genus": "Xanthorhoe",
+   "family": "Geometridae",
+   "picture": "species/Xanthorhoe_lacustrata.jpg",
+   "from_image": "20220827221716-00-30"
+  },
+  {
+   "species": "Xanthorhoe montanata",
+   "genus": "Xanthorhoe",
+   "family": "Geometridae",
+   "picture": "species/Xanthorhoe_montanata.jpg",
+   "from_image": "20230618030000-212-snapshot"
+  },
+  {
+   "species": "Xanthorhoe packardata",
+   "genus": "Xanthorhoe",
+   "family": "Geometridae",
+   "picture": "species/Xanthorhoe_packardata.jpg",
+   "from_image": "20220827225803-00-44"
+  },
+  {
+   "species": "Xanthorhoe quadrifasiata",
+   "genus": "Xanthorhoe",
+   "family": "Geometridae",
+   "picture": "species/Xanthorhoe_quadrifasiata.jpg",
+   "from_image": "20230812030000-139-snapshot"
+  },
+  {
+   "species": "Xanthorhoe spadicearia",
+   "genus": "Xanthorhoe",
+   "family": "Geometridae",
+   "picture": "species/Xanthorhoe_spadicearia.jpg",
+   "from_image": "20230817025959-194-snapshot"
+  },
+  {
+   "species": "Xanthotype urticaria",
+   "genus": "Xanthotype",
+   "family": "Geometridae",
+   "picture": "species/Xanthotype_urticaria.jpg",
+   "from_image": "20220621003658-101-snapshot"
+  },
+  {
+   "species": "Xestia c-nigrum",
+   "genus": "Xestia",
+   "family": "Noctuidae",
+   "picture": "species/Xestia_c-nigrum.jpg",
+   "from_image": "20220705035042-00-243"
+  },
+  {
+   "species": "Xestia dolosa",
+   "genus": "Xestia",
+   "family": "Noctuidae",
+   "picture": "species/Xestia_dolosa.jpg",
+   "from_image": "20220815230357-00-86"
+  },
+  {
+   "species": "Xestia xanthographa",
+   "genus": "Xestia",
+   "family": "Noctuidae",
+   "picture": "species/Xestia_xanthographa.jpg",
+   "from_image": "20230804215412-00-07"
+  },
+  {
+   "species": "Yponomeuta plumbella",
+   "genus": "Yponomeuta",
+   "family": "Yponomeutidae",
+   "picture": "species/Yponomeuta_plumbella.jpg",
+   "from_image": "20230720025959-109-snapshot"
+  },
+  {
+   "species": "Ypsolopha dentella",
+   "genus": "Ypsolopha",
+   "family": "Ypsolophidae",
+   "picture": "species/Ypsolopha_dentella.jpg",
+   "from_image": "20230725030000-142-snapshot"
+  },
+  {
+   "species": "Ypsolopha senex",
+   "genus": "Ypsolopha",
+   "family": "Ypsolophidae",
+   "picture": "species/Ypsolopha_senex.jpg",
+   "from_image": "20230803030000-186-snapshot"
+  },
+  {
+   "species": "Zanclognatha laevigata",
+   "genus": "Zanclognatha",
+   "family": "Erebidae",
+   "picture": "species/Zanclognatha_laevigata.jpg",
+   "from_image": "20220715215504-00-36"
+  }
+ ]
+}
