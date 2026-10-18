@@ -6,10 +6,18 @@ import { OwnPhoto } from './OwnPhoto'
 import { StepFind } from './steps/StepFind'
 import { StepLearn } from './steps/StepLearn'
 import { StepNight } from './steps/StepNight'
+import { StepName } from './steps/StepName'
 import { StepReview } from './steps/StepReview'
 import { StepSort } from './steps/StepSort'
 
-const STEPS = ['Look at a photo', 'Find the insects', 'Moth or not?', "Check the AI's work", 'What did we learn?']
+const STEPS = [
+  'Look at a photo',
+  'Find the insects',
+  'Moth or not?',
+  'Name the moth',
+  "Check the AI's work",
+  'What did we learn?',
+]
 
 type Page = 'lesson' | 'own' | 'ai' | 'credits'
 
@@ -138,8 +146,9 @@ export default function App() {
             {step === 0 && <StepNight lab={lab} />}
             {step === 1 && lab.scene && <StepFind lab={lab} onExplain={() => openAi()} />}
             {step === 2 && lab.scene && <StepSort lab={lab} />}
-            {step === 3 && lab.scene && <StepReview lab={lab} />}
-            {step === 4 && lab.scene && <StepLearn lab={lab} />}
+            {step === 3 && lab.scene && <StepName key={lab.scene.key} lab={lab} />}
+            {step === 4 && lab.scene && <StepReview lab={lab} />}
+            {step === 5 && lab.scene && <StepLearn lab={lab} />}
 
             <div className="nav-buttons">
               {step > 0 && (

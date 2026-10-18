@@ -75,6 +75,11 @@ export function Credits() {
             <Link href="https://pytorch.org/vision/stable/models/mobilenetv3.html">MobileNetV3 docs</Link>
           </li>
           <li>
+            <strong>BioCLIP</strong> by the Imageomics Institute names each moth in step 4, like it does for the Mothbox
+            team. It's too big for a browser, so we ran it ahead of time on the lesson photos.{' '}
+            <Link href="https://imageomics.github.io/bioclip/">BioCLIP</Link> (MIT license)
+          </li>
+          <li>
             <strong>FiftyOne</strong> by Voxel51 is the program the Mothbox team uses to check the AI's work.{' '}
             <Link href="https://docs.voxel51.com/">FiftyOne docs</Link>
           </li>
@@ -85,9 +90,9 @@ export function Credits() {
         <h3>About this lab</h3>
         <p>
           Made for our FIRST LEGO League team. The lesson photos and the experts' boxes and labels are real, from the
-          AMI dataset. Both AIs are real and run right in your browser: our trained YOLO11n finds the insects, and our
-          trained moth classifier sorts them. Neither one saw the lesson photos while it was learning. The lab's code is
-          free to use and change under the AGPL-3.0 license:{' '}
+          AMI dataset. All three AIs are real. Our trained YOLO11n finds the insects and our trained moth classifier
+          sorts them, right in your browser; neither saw the lesson photos while learning. BioCLIP's species names were
+          worked out ahead of time. The lab's code is free to use and change under the AGPL-3.0 license:{' '}
           <Link href="https://github.com/danmartinez78/vision_playground">source code on GitHub</Link>.
         </p>
       </div>

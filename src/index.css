@@ -1270,6 +1270,11 @@ button.big {
   }
   .stepper .step.current {
     font-size: 0.78rem;
+    min-width: 0;
+  }
+  .stepper .step.current .label {
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 }
 
@@ -1410,4 +1415,11 @@ button.big {
 
 .results-anchor {
   scroll-margin-top: 0.5rem;
+}
+
+.species-blank {
+  width: 96px;
+  height: 96px;
+  border-radius: 8px;
+  background: var(--line);
 }

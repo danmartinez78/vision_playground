@@ -22,7 +22,7 @@ const GUIDE: { id: RealGroup; title: string; look: string; examples: string[] }[
   { id: 'notbug', title: 'Not a bug', look: 'An empty spot, a shadow or a speck on the sheet.', examples: [] },
 ]
 
-/** Step 4: check the close-ups the AI wasn't sure were moths. */
+/** Step 5: check the close-ups the AI wasn't sure were moths. */
 export function StepReview({ lab }: { lab: Lab }) {
   const scene = lab.scene!
   const [pending, setPending] = useState<Record<string, RealGroup>>({})
@@ -33,7 +33,7 @@ export function StepReview({ lab }: { lab: Lab }) {
   if (!lab.detector) {
     return (
       <section>
-        <h2>Step 4: Check the AI's work</h2>
+        <h2>Step 5: Check the AI's work</h2>
         <p className="warn">Run the computer's detector in Step 2 first.</p>
       </section>
     )
@@ -49,7 +49,7 @@ export function StepReview({ lab }: { lab: Lab }) {
   return (
     <section>
       <div className="intro">
-        <h2>Step 4: Check the AI's work</h2>
+        <h2>Step 5: Check the AI's work</h2>
         <p>
           Scientists don't just trust the AI. They check the answers it was <strong>least sure</strong> about. (The
           Mothbox team does this in a program called FiftyOne.) Here are the <strong>{lab.unsure.length}</strong> of the{' '}
