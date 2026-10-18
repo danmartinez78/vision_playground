@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, type ReactNode } from 'react'
 import type { Lab, Score } from '../lab'
 import { engineName } from '../lib/detect'
 import type { Judgement, Verdict } from '../lib/geometry'
@@ -54,15 +54,54 @@ function missedLayer(key: string, j: Judgement, truth: TruthItem[]): BoxLayer {
   return { key, boxes: j.missed.map((i) => truth[i].box), color: PURPLE, dashed: true }
 }
 
-function Pills({ score }: { score: Score }) {
+interface ScoreRow {
+  who: string
+  score: Score | null
+  /** shown instead of the score when there's no answer key */
+  note?: string
+  time: string
+}
+
+/** You (and the computer) side by side: small enough for a phone. */
+function ScoreGrid({ rows }: { rows: ScoreRow[] }) {
   return (
-    <>
-      <span className="pill good">
-        Found {score.hits} of {score.total}
-      </span>
-      <span className="pill miss">Missed {score.misses}</span>
-      <span className="pill bad">False alarms {score.falseAlarms}</span>
-    </>
+    <table className="score-grid">
+      <thead>
+        <tr>
+          <th></th>
+          <th>Found</th>
+          <th>Missed</th>
+          <th>False alarms</th>
+          <th>Time</th>
+        </tr>
+      </thead>
+      <tbody>
+        {rows.map((r) => (
+          <tr key={r.who}>
+            <th scope="row">{r.who}</th>
+            {r.score ? (
+              <>
+                <td className="good-text">
+                  <strong>{r.score.hits}</strong>
+                  <span className="of">/{r.score.total}</span>
+                </td>
+                <td className="miss-text">
+                  <strong>{r.score.misses}</strong>
+                </td>
+                <td className="bad-text">
+                  <strong>{r.score.falseAlarms}</strong>
+                </td>
+              </>
+            ) : (
+              <td colSpan={3} className="muted small">
+                {r.note}
+              </td>
+            )}
+            <td>{r.time}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
   )
 }
 
@@ -70,12 +109,7 @@ function Legend({ j, missed }: { j: Judgement; missed: boolean }) {
   const count = (k: Verdict['kind']) => j.verdicts.filter((v) => v.kind === k).length
   const rows: [string, string, string, number][] = [
     [GREEN, '✓ Found it', 'Your box covers the middle of an insect.', count('found')],
-    [
-      ORANGE,
-      'Too big',
-      'There is an insect inside, but the box is much bigger than it. Draw a tighter box.',
-      count('too-big'),
-    ],
+    [ORANGE, 'Too big', 'Much bigger than the insect inside. Fit it tighter.', count('too-big')],
     [RED, 'Not an insect', 'A leaf, twig or smudge. Easy to mix up!', count('not-insect')],
     [RED, 'Counted twice', 'Another of your boxes already found this insect.', count('twice')],
     [RED, 'Nothing here', 'The box missed the insect. Its middle has to be inside your box.', count('empty')],
@@ -93,8 +127,7 @@ function Legend({ j, missed }: { j: Judgement; missed: boolean }) {
       {missed && j.missed.length > 0 && (
         <li>
           <span className="swatch dashed" style={{ borderColor: PURPLE }} />
-          <strong style={{ color: PURPLE }}>Missed</strong> ({j.missed.length}): insects with no box. Zoom in to see
-          them.
+          <strong style={{ color: PURPLE }}>Missed</strong> ({j.missed.length}): insects with no box.
         </li>
       )}
     </ul>
@@ -115,6 +148,8 @@ export function StepFind({ lab, onExplain }: { lab: Lab; onExplain: () => void }
   const [showMissed, setShowMissed] = useState(true)
   const [showAnswer, setShowAnswer] = useState(false)
   const [showContrast, setShowContrast] = useState(false)
+  // phones box insects with the photo full screen
+  const [full, setFull] = useState(false)
   const scene = lab.scene!
   const sample = scene.source === 'sample'
   const truth = lab.truth
@@ -129,6 +164,11 @@ export function StepFind({ lab, onExplain }: { lab: Lab; onExplain: () => void }
   const startTimer = () => {
     lab.setStudentBoxes([])
     lab.setHandTimer({ start: Date.now(), end: null })
+    if (TOUCH) setFull(true)
+  }
+  const finish = () => {
+    lab.setHandTimer({ start, end: Date.now() })
+    setFull(false)
   }
   const redo = () => {
     lab.setStudentBoxes([])
@@ -138,9 +178,7 @@ export function StepFind({ lab, onExplain }: { lab: Lab; onExplain: () => void }
 
   // what to draw on the photo
   const layers: BoxLayer[] = []
-  if (phase === 'mine') {
-    layers.push({ key: 'mine', boxes: lab.studentBoxes, color: BLUE })
-  } else {
+  if (phase !== 'mine') {
     const showMine = phase === 'computer' || view !== 'computer'
     const showComputer = phase === 'compare' && view !== 'mine'
     if (showAnswer && sample)
@@ -176,74 +214,117 @@ export function StepFind({ lab, onExplain }: { lab: Lab; onExplain: () => void }
     }
   }
 
-  const stopwatchBar =
-    phase === 'mine' && start ? (
-      <div className="stopwatch running">
-        <span aria-hidden>⏱️</span>
+  // the strip on top of the photo: the stopwatch while you work, what to show afterward
+  let bar: ReactNode = null
+  if (phase === 'mine' && start) {
+    bar = (
+      <>
         <Clock start={start} />
-        <span>
-          Boxes so far: <strong>{lab.studentBoxes.length}</strong>.{' '}
-          <span className="sw-help">
-            {TOUCH
-              ? 'Drag one finger around each insect. Tap a box to remove it.'
-              : 'Drag around each insect. Tap or click a box to remove it.'}
-          </span>
+        <span className="bar-count">
+          <strong>{lab.studentBoxes.length}</strong> {lab.studentBoxes.length === 1 ? 'box' : 'boxes'}
         </span>
-        <button
-          className="primary"
-          onClick={() => lab.setHandTimer({ start, end: Date.now() })}
-          disabled={!lab.studentBoxes.length}
-        >
+        <button className="primary bar-done" onClick={finish} disabled={!lab.studentBoxes.length}>
           I'm done
         </button>
+      </>
+    )
+  } else if (phase !== 'mine') {
+    bar = (
+      <div className="photo-options">
+        {phase === 'compare' && (
+          <span role="group" aria-label="Whose boxes to show" className="tool-switch">
+            <button className={view === 'mine' ? 'on' : ''} onClick={() => setView('mine')}>
+              Mine
+            </button>
+            <button className={view === 'computer' ? 'on' : ''} onClick={() => setView('computer')}>
+              Computer
+            </button>
+            <button className={view === 'both' ? 'on' : ''} onClick={() => setView('both')}>
+              Both
+            </button>
+          </span>
+        )}
+        {sample && (
+          <label className="chip">
+            <input type="checkbox" checked={showMissed} onChange={(e) => setShowMissed(e.target.checked)} />
+            Missed
+          </label>
+        )}
+        {phase === 'compare' && sample && (
+          <label className="chip">
+            <input type="checkbox" checked={showAnswer} onChange={(e) => setShowAnswer(e.target.checked)} />
+            Answer key
+          </label>
+        )}
+        {phase === 'compare' && lab.detector?.contrastUrl && (
+          <label className="chip">
+            <input type="checkbox" checked={showContrast} onChange={(e) => setShowContrast(e.target.checked)} />
+            What the AI sees
+          </label>
+        )}
       </div>
-    ) : undefined
+    )
+  }
+
+  const photo = (
+    <SceneView
+      imageUrl={(showContrast && phase === 'compare' && lab.detector?.contrastUrl) || scene.imageUrl}
+      width={scene.width}
+      height={scene.height}
+      layers={layers}
+      edit={
+        phase === 'mine' && start ? { boxes: lab.studentBoxes, color: BLUE, onChange: lab.setStudentBoxes } : undefined
+      }
+      alt="Mothbox sheet"
+      bar={bar}
+      full={full}
+      onFullChange={setFull}
+    />
+  )
 
   return (
     <section>
       <div className="intro">
         <h2>Step 2: Find the insects</h2>
         <p>
-          The first job is called <strong>detection</strong>: finding <em>where</em> every insect is, without worrying
-          yet about what kind it is. Scientists used to do this by hand. First you try it against the clock, then the
-          computer tries the same photo, then you compare.
+          <strong>Detection</strong> means finding <em>where</em> every insect is, not what kind it is. You go first,
+          against the clock. Then the computer tries, and you compare.
         </p>
       </div>
 
       <ol className="phases" aria-label="Parts of this step">
-        <li className={phase === 'mine' ? 'current' : 'done'}>1. Your turn</li>
-        <li className={phase === 'computer' ? 'current' : phase === 'compare' ? 'done' : ''}>2. Computer's turn</li>
+        <li className={phase === 'mine' ? 'current' : 'done'}>1. You</li>
+        <li className={phase === 'computer' ? 'current' : phase === 'compare' ? 'done' : ''}>2. Computer</li>
         <li className={phase === 'compare' ? 'current' : ''}>3. Compare</li>
       </ol>
 
       {phase === 'mine' && !start && (
-        <div className="stopwatch">
-          <span aria-hidden>⏱️</span>
-          <span>
-            <strong>Your turn.</strong> When you press start, the stopwatch runs.{' '}
+        <div className="callout start-card">
+          <p>
+            <strong>Your turn.</strong>{' '}
             {TOUCH
-              ? 'Open the photo and drag one finger around every insect you can find. Zoom in with two fingers or the corner buttons to box the small ones.'
-              : 'Draw a box around every insect you can find by dragging on the photo. Zoom in to spot the small ones.'}{' '}
-            Press <em>I'm done</em> when you have them all.
-          </span>
-          <button className="primary" onClick={startTimer}>
-            Start the stopwatch
+              ? 'Tap each insect you can find to box it, then drag the corners to fit. Pinch to zoom in on the small ones.'
+              : 'Drag a box around every insect you can find. Zoom in to spot the small ones.'}{' '}
+            The stopwatch runs until you press <em>I'm done</em>.
+          </p>
+          <button className="primary big" onClick={startTimer}>
+            ⏱️ Start
           </button>
         </div>
+      )}
+
+      {phase === 'mine' && start && TOUCH && !full && (
+        <p className="small muted">The stopwatch is still running. Tap the photo to keep going.</p>
       )}
 
       {phase === 'computer' && (
         <div className="callout">
           <h3>
-            You boxed {lab.studentBoxes.length} insects in {formatTime(handSecs)}
-            {lab.handSeconds !== null && <> (about {lab.handSeconds.toFixed(1)} seconds each)</>}
+            You boxed {lab.studentBoxes.length} in {formatTime(handSecs)}
           </h3>
           {lab.studentScore && lab.studentJudgement ? (
             <>
-              <div className="score">
-                <strong>You</strong>
-                <Pills score={lab.studentScore} />
-              </div>
+              <ScoreGrid rows={[{ who: 'You', score: lab.studentScore, time: formatTime(handSecs) }]} />
               <Legend j={lab.studentJudgement} missed={showMissed} />
             </>
           ) : (
@@ -252,19 +333,57 @@ export function StepFind({ lab, onExplain }: { lab: Lab; onExplain: () => void }
             </p>
           )}
           <button className="ghost" onClick={redo}>
-            Try my turn again
+            Try again
           </button>
         </div>
+      )}
+
+      {phase === 'compare' && lab.detector && (
+        <div className="callout">
+          <h3>You vs. the computer</h3>
+          <ScoreGrid
+            rows={[
+              {
+                who: 'You',
+                score: lab.studentScore,
+                note: `You are the answer key (${lab.studentBoxes.length} boxes)`,
+                time: formatTime(handSecs),
+              },
+              {
+                who: 'Computer',
+                score: lab.detectorScore,
+                note: '—',
+                time: `${(lab.detector.millis / 1000).toFixed(2)} s`,
+              },
+            ]}
+          />
+          <p className="small muted">
+            Same rules for both. The computer checked the whole photo in {Math.max(1, Math.round(lab.detector.millis))}{' '}
+            milliseconds using {engineName(lab.detector)}.{' '}
+            {scene.real && 'Some "false alarms" may be tiny insects the experts didn\'t box. Experts miss things too. '}
+            <button className="link" onClick={redo}>
+              Start this step over
+            </button>
+          </p>
+        </div>
+      )}
+
+      {photo}
+
+      {phase === 'compare' && showContrast && lab.detector?.contrastUrl && (
+        <p className="small muted">
+          Bright means “very different from the empty sheet.” The detector only sees these differences. It has no idea
+          what an insect is, which is why leaves fool it.
+        </p>
       )}
 
       {phase === 'computer' && (
         <div className="computer-turn">
           <div>
-            <h3>2. Computer's turn</h3>
+            <h3>Computer's turn</h3>
             <p>
-              Now the computer does the same job on the same photo. Its <strong>detector</strong> is YOLO11n, a small AI
-              we trained on about 2,300 real light-trap photos. It really runs, right now, inside this web browser.
-              Nothing is looked up ahead of time, so it works on your own photos too.
+              Its <strong>detector</strong> is YOLO11n, a small AI we trained on about 2,300 real light-trap photos. It
+              runs right now, inside this browser, so it works on your own photos too.
             </p>
           </div>
           <button className="primary big" onClick={lab.runIt} disabled={lab.detecting}>
@@ -274,132 +393,11 @@ export function StepFind({ lab, onExplain }: { lab: Lab; onExplain: () => void }
       )}
 
       {phase === 'compare' && lab.detector && (
-        <div className="callout">
-          <h3>3. Compare: you vs. the computer</h3>
-          <div className="table-scroll">
-            <table className="tally compare">
-              <thead>
-                <tr>
-                  <th></th>
-                  <th>Found</th>
-                  <th>Missed</th>
-                  <th>False alarms</th>
-                  <th>Time</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>
-                    <strong>You</strong>
-                  </td>
-                  {lab.studentScore ? (
-                    <>
-                      <td>
-                        {lab.studentScore.hits} of {lab.studentScore.total}
-                      </td>
-                      <td>{lab.studentScore.misses}</td>
-                      <td>{lab.studentScore.falseAlarms}</td>
-                    </>
-                  ) : (
-                    <td colSpan={3} className="muted">
-                      You are the answer key ({lab.studentBoxes.length} boxes)
-                    </td>
-                  )}
-                  <td>{formatTime(handSecs)}</td>
-                </tr>
-                <tr>
-                  <td>
-                    <strong>Computer</strong>
-                  </td>
-                  {lab.detectorScore ? (
-                    <>
-                      <td>
-                        {lab.detectorScore.hits} of {lab.detectorScore.total}
-                      </td>
-                      <td>{lab.detectorScore.misses}</td>
-                      <td>{lab.detectorScore.falseAlarms}</td>
-                    </>
-                  ) : (
-                    <td colSpan={3}>—</td>
-                  )}
-                  <td>{(lab.detector.millis / 1000).toFixed(2)} seconds</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-          <p className="small muted">
-            Both are scored with the same rules. The computer checked the whole photo in{' '}
-            {Math.max(1, Math.round(lab.detector.millis))} milliseconds using {engineName(lab.detector)}.{' '}
-            {scene.real &&
-              'Some "false alarms" may be tiny insects the experts didn\'t box. Experts can miss things too. '}
-            <button className="link" onClick={redo}>
-              Start this step over
-            </button>
-          </p>
-        </div>
-      )}
-
-      {phase === 'compare' && (
-        <div className="toolbar toggles">
-          <span role="group" aria-label="Whose boxes to show" className="tool-switch">
-            <button className={view === 'mine' ? 'on' : ''} onClick={() => setView('mine')}>
-              My boxes
-            </button>
-            <button className={view === 'computer' ? 'on' : ''} onClick={() => setView('computer')}>
-              Computer's boxes
-            </button>
-            <button className={view === 'both' ? 'on' : ''} onClick={() => setView('both')}>
-              Both
-            </button>
-          </span>
-          {sample && (
-            <label>
-              <input type="checkbox" checked={showAnswer} onChange={(e) => setShowAnswer(e.target.checked)} />
-              Answer key
-            </label>
-          )}
-          {lab.detector?.contrastUrl && (
-            <label>
-              <input type="checkbox" checked={showContrast} onChange={(e) => setShowContrast(e.target.checked)} />
-              What the detector sees
-            </label>
-          )}
-        </div>
-      )}
-      {phase !== 'mine' && sample && (
-        <label className="small">
-          <input type="checkbox" checked={showMissed} onChange={(e) => setShowMissed(e.target.checked)} /> Show missed
-          insects (dashed purple)
-        </label>
-      )}
-
-      <SceneView
-        imageUrl={(showContrast && phase === 'compare' && lab.detector?.contrastUrl) || scene.imageUrl}
-        width={scene.width}
-        height={scene.height}
-        layers={layers}
-        drawLayerKey="mine"
-        onAdd={phase === 'mine' && start ? (b) => lab.setStudentBoxes([...lab.studentBoxes, b]) : undefined}
-        onRemove={
-          phase === 'mine' && start ? (i) => lab.setStudentBoxes(lab.studentBoxes.filter((_, k) => k !== i)) : undefined
-        }
-        alt="Mothbox sheet"
-        overlay={stopwatchBar}
-      />
-
-      {phase === 'compare' && showContrast && lab.detector?.contrastUrl && (
-        <p className="small muted">
-          Bright means “very different from the empty sheet.” The detector only sees these differences. It has no idea
-          what an insect is, which is why leaves fool it.
-        </p>
-      )}
-
-      {phase === 'compare' && lab.detector && (
         <div className="slider-box">
           <h3>Experiment: how sure should the computer be?</h3>
           <p className="small">
             The detector gives every spot a score for how sure it is (the % on each box). Move the slider and watch the
-            scores in the table change.
+            scores change.
           </p>
           <label htmlFor="threshold">
             Count a spot as an insect when the computer is at least <strong>{Math.round(lab.threshold * 100)}%</strong>{' '}
