@@ -1,7 +1,7 @@
 // BioCLIP's species answers for the moths in the lesson photos. BioCLIP is far
 // too big for a browser, so it was run once ahead of time on the full-size
 // photos (see docs/bioclip.md) and its top 3 guesses were saved here.
-import { SAMPLES_DIR } from './samples'
+import { DATA_VERSION, SAMPLES_DIR } from './samples'
 
 export interface SpeciesGuess {
   name: string
@@ -14,7 +14,7 @@ type Answers = Record<string, Record<string, [string, number][]>>
 let loading: Promise<Answers> | null = null
 
 function loadAnswers(): Promise<Answers> {
-  loading ??= fetch(`${SAMPLES_DIR}bioclip.json`).then((r) => {
+  loading ??= fetch(`${SAMPLES_DIR}bioclip.json${DATA_VERSION}`).then((r) => {
     if (!r.ok) throw new Error(`bioclip.json: ${r.status}`)
     return r.json() as Promise<Answers>
   })
@@ -52,7 +52,7 @@ let guide: Promise<GuideEntry[]> | null = null
 
 /** Every species with a field-guide picture, with its genus and family. */
 export function loadGuide(): Promise<GuideEntry[]> {
-  guide ??= fetch(`${SAMPLES_DIR}species/index.json`).then(async (r) => {
+  guide ??= fetch(`${SAMPLES_DIR}species/index.json${DATA_VERSION}`).then(async (r) => {
     if (!r.ok) throw new Error(`species/index.json: ${r.status}`)
     return ((await r.json()) as { species: GuideEntry[] }).species
   })

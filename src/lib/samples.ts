@@ -4,6 +4,9 @@ import { sceneFromUrl } from './scene'
 import type { ExpertGroup, Scene, TruthItem } from './types'
 
 export const SAMPLES_DIR = `${import.meta.env.BASE_URL}samples/ami-traps/`
+/** Add to sample data URLs so a browser never uses an old cached copy. */
+export const DATA_VERSION = `?v=${__DATA_VERSION__}`
+
 /** A small copy of a sample photo for the photo pickers (made by scripts/make_thumbs.py). */
 export const thumbUrl = (image: string) => `${SAMPLES_DIR}thumbs/${image}`
 
@@ -62,7 +65,7 @@ export function expertName(label: TruthItem['label']): string {
 let index: Promise<Sample[]> | null = null
 
 export function loadSamples(): Promise<Sample[]> {
-  index ??= fetch(`${SAMPLES_DIR}index.json`)
+  index ??= fetch(`${SAMPLES_DIR}index.json${DATA_VERSION}`)
     .then((r) => r.json())
     .then((d: { images: Sample[] }) => d.images)
   index.catch(() => {

@@ -1,4 +1,5 @@
 import react from '@vitejs/plugin-react'
+import { createHash } from 'node:crypto'
 import { createReadStream, readFileSync } from 'node:fs'
 import { join } from 'node:path'
 import { defineConfig, type Plugin } from 'vite'
@@ -37,9 +38,16 @@ function ortFiles(): Plugin {
   }
 }
 
+// Browsers cache the sample data for a week, so the app asks for it with a
+// version made from its contents. A changed answer key then loads at once.
+const DATA_FILES = ['index.json', 'bioclip.json', 'species/index.json']
+const dataVersion = createHash('sha256')
+DATA_FILES.forEach((f) => dataVersion.update(readFileSync(join(import.meta.dirname, 'public/samples/ami-traps', f))))
+
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react(), ortFiles()],
+  define: { __DATA_VERSION__: JSON.stringify(dataVersion.digest('hex').slice(0, 10)) },
   optimizeDeps: { exclude: ['onnxruntime-web'] },
   server: { headers: ISOLATION },
   preview: { headers: ISOLATION },
