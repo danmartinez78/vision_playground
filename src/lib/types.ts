@@ -9,7 +9,8 @@ export interface Box {
 export interface TruthItem {
   id: string
   box: Box
-  kind: 'insect' | 'debris'
+  /** 'unlisted': a spot the experts didn't box, often a tiny bug; boxing it counts neither way */
+  kind: 'insect' | 'debris' | 'unlisted'
   speciesId?: string
   debrisLabel?: string
   /** What a real photo's insect is, from the AMI labels (real photos only). */

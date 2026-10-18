@@ -13,8 +13,10 @@ const GREEN = '#16a34a'
 const ORANGE = '#d97706'
 const RED = '#dc2626'
 const PURPLE = '#7c3aed'
+const GRAY = '#6b7280'
 
-const verdictColor = (v: Verdict) => (v.kind === 'found' ? GREEN : v.kind === 'too-big' ? ORANGE : RED)
+const verdictColor = (v: Verdict) =>
+  v.kind === 'found' ? GREEN : v.kind === 'too-big' ? ORANGE : v.kind === 'unlisted' ? GRAY : RED
 
 function verdictLabel(v: Verdict, truth: TruthItem[]): string {
   switch (v.kind) {
@@ -26,6 +28,8 @@ function verdictLabel(v: Verdict, truth: TruthItem[]): string {
       return 'Counted twice'
     case 'not-insect':
       return `${truth[v.answer]?.debrisLabel ?? 'Not an insect'}, not an insect`
+    case 'unlisted':
+      return 'Not scored'
     case 'empty':
       return 'Nothing here'
   }
@@ -113,6 +117,12 @@ function Legend({ j, missed }: { j: Judgement; missed: boolean }) {
     [RED, 'Not an insect', 'A leaf, twig or smudge. Easy to mix up!', count('not-insect')],
     [RED, 'Counted twice', 'Another of your boxes already found this insect.', count('twice')],
     [RED, 'Nothing here', 'The box missed the insect. Its middle has to be inside your box.', count('empty')],
+    [
+      GRAY,
+      'Not scored',
+      "The experts didn't box this spot (often a tiny bug), so it counts neither way.",
+      count('unlisted'),
+    ],
   ]
   return (
     <ul className="legend">

@@ -70,6 +70,7 @@ export type Verdict =
   | { kind: 'too-big'; answer: number }
   | { kind: 'twice'; answer: number }
   | { kind: 'not-insect'; answer: number }
+  | { kind: 'unlisted'; answer: number }
   | { kind: 'empty' }
 
 export interface Judgement {
@@ -88,7 +89,7 @@ const contains = (b: Box, x: number, y: number) => x >= b.x && x <= b.x + b.w &&
  * and isn't way bigger than it (tiny insects get some slack), or if it overlaps
  * the insect well. Each insect can be found only once.
  */
-export function judgeBoxes(guesses: Box[], answers: { box: Box; insect: boolean }[]): Judgement {
+export function judgeBoxes(guesses: Box[], answers: { box: Box; insect: boolean; unlisted?: boolean }[]): Judgement {
   const center = answers.map((a) => ({ x: a.box.x + a.box.w / 2, y: a.box.y + a.box.h / 2 }))
   const coversMiddle = (g: Box, ai: number) => contains(g, center[ai].x, center[ai].y)
   const tightEnough = (g: Box, a: Box) => g.w <= Math.max(4 * a.w, a.w + 60) && g.h <= Math.max(4 * a.h, a.h + 60)
@@ -118,14 +119,24 @@ export function judgeBoxes(guesses: Box[], answers: { box: Box; insect: boolean 
     const touching = answers.map((_, ai) => ai).filter((ai) => coversMiddle(g, ai) || iou(g, answers[ai].box) >= 0.2)
     const twice = touching.find((ai) => answers[ai].insect && claimed.has(ai) && good(g, ai))
     const big = touching.find((ai) => answers[ai].insect && !claimed.has(ai))
-    const junk = touching.find((ai) => !answers[ai].insect)
+    const junk = touching.find((ai) => !answers[ai].insect && !answers[ai].unlisted)
+    // a spot the experts didn't box: maybe a tiny bug, so it counts neither way
+    const unlisted = answers.findIndex((a, ai) => a.unlisted && coversMiddle(g, ai))
     if (twice !== undefined) verdicts[gi] = { kind: 'twice', answer: twice }
     else if (big !== undefined) verdicts[gi] = { kind: 'too-big', answer: big }
     else if (junk !== undefined) verdicts[gi] = { kind: 'not-insect', answer: junk }
+    else if (unlisted >= 0) verdicts[gi] = { kind: 'unlisted', answer: unlisted }
     else verdicts[gi] = { kind: 'empty' }
   })
 
   const missed = answers.map((a, ai) => (a.insect && !claimed.has(ai) ? ai : -1)).filter((ai) => ai >= 0)
   const hits = claimed.size
-  return { verdicts: verdicts as Verdict[], missed, hits, misses: missed.length, falseAlarms: guesses.length - hits }
+  const neither = verdicts.filter((v) => v?.kind === 'unlisted').length
+  return {
+    verdicts: verdicts as Verdict[],
+    missed,
+    hits,
+    misses: missed.length,
+    falseAlarms: guesses.length - hits - neither,
+  }
 }

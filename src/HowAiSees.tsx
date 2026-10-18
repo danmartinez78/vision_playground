@@ -492,6 +492,7 @@ function YoloGrid({ scene }: { scene: Scene }) {
     const rng = makeRng(7)
     const guesses: { box: Box; score: number }[] = []
     for (const t of scene.truth ?? []) {
+      if (t.kind === 'unlisted') continue
       const real = t.kind === 'insect'
       const n = real ? 4 : 2
       for (let i = 0; i < n; i++) {

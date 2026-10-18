@@ -114,7 +114,7 @@ export function useLab() {
     // the answer key: everything really on the sheet for sample nights, or the student's own boxes on a photo
     const answers =
       scene?.source === 'sample'
-        ? truth.map((t) => ({ box: t.box, insect: t.kind === 'insect' }))
+        ? truth.map((t) => ({ box: t.box, insect: t.kind === 'insect', unlisted: t.kind === 'unlisted' }))
         : studentBoxes.map((box) => ({ box, insect: true }))
     const total = answers.filter((a) => a.insect).length
     const toScore = (j: Judgement): Score => ({ hits: j.hits, misses: j.misses, falseAlarms: j.falseAlarms, total })
@@ -138,7 +138,7 @@ export function useLab() {
     const twice = new Set<string>()
     if (scene?.source === 'sample' && detectorJudgement) {
       detectorJudgement.verdicts.forEach((v, di) => {
-        if (v.kind === 'found' || v.kind === 'not-insect' || v.kind === 'twice')
+        if (v.kind === 'found' || v.kind === 'not-insect' || v.kind === 'twice' || v.kind === 'unlisted')
           truthFor.set(kept[di].id, truth[v.answer])
         if (v.kind === 'twice') twice.add(kept[di].id)
       })

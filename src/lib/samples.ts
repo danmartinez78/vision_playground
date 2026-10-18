@@ -16,6 +16,8 @@ export interface Sample {
   labels?: string[]
   /** Each insect simplified to 'moth', 'not a moth' or 'unknown'. */
   groups?: string[]
+  /** Dark spots the experts didn't box, often tiny bugs (see scripts/unlisted_spots.py). */
+  unlisted?: [number, number, number, number][]
 }
 
 export const REGION_NAMES: Record<string, string> = {
@@ -24,19 +26,31 @@ export const REGION_NAMES: Record<string, string> = {
   WesternEurope: 'Western Europe',
 }
 
+/** The label on spots the experts didn't box. */
+const UNLISTED = 'Unlisted'
+
 const GROUP_OF: Record<string, ExpertGroup> = { moth: 'moth', 'not a moth': 'other', unknown: 'unknown' }
 
 /**
- * Photos left out of the lesson. In this one the detector boxes dozens of
- * tiny insects the experts didn't box, which makes scoring confusing.
+ * The photos in the lesson: the experts boxed nearly every insect on them,
+ * and they named enough moths to species for Step 4. The others stay in
+ * "Try your own photo".
  */
-const NOT_IN_LESSON = new Set(['20220531204321-00-11.jpg'])
+const LESSON = new Set([
+  '20220820030901-00-156.jpg',
+  '20230722030832-00-44.jpg',
+  '20220623013311-00-137.jpg',
+  '20220616022535-00-16.jpg',
+  '20220628003000-00-75.jpg',
+  '20220602015906-00-188.jpg',
+])
 
-export const inLesson = (s: Sample) => !NOT_IN_LESSON.has(s.image)
+export const inLesson = (s: Sample) => LESSON.has(s.image)
 
 /** What the experts called an insect, in words a student can read. */
 export function expertName(label: TruthItem['label']): string {
   if (!label) return 'An insect'
+  if (label.name === UNLISTED) return "Something the experts didn't box"
   if (label.group === 'unknown') return "An insect the experts couldn't name"
   if (label.group === 'other') return 'Another insect (not a moth)'
   if (label.name === 'Lepidoptera' || label.name === 'Moth') return 'A moth'
@@ -64,11 +78,24 @@ export async function sceneFromSample(s: Sample): Promise<Scene> {
   const scene = await sceneFromUrl(`${SAMPLES_DIR}${s.image}`, sampleTitle(s))
   // photos wider than the scene size are shrunk, so scale the boxes the same way
   const k = scene.width / s.width
-  const truth: TruthItem[] = s.boxes.map(([x1, y1, x2, y2], i) => ({
-    id: `t${i}`,
-    box: { x: x1 * k, y: y1 * k, w: (x2 - x1) * k, h: (y2 - y1) * k },
-    kind: 'insect',
-    label: { name: s.labels?.[i] ?? 'Insect', group: GROUP_OF[s.groups?.[i] ?? ''] ?? 'unknown' },
-  }))
+  const box = ([x1, y1, x2, y2]: number[]) => ({ x: x1 * k, y: y1 * k, w: (x2 - x1) * k, h: (y2 - y1) * k })
+  const truth: TruthItem[] = [
+    ...s.boxes.map(
+      (b, i): TruthItem => ({
+        id: `t${i}`,
+        box: box(b),
+        kind: 'insect',
+        label: { name: s.labels?.[i] ?? 'Insect', group: GROUP_OF[s.groups?.[i] ?? ''] ?? 'unknown' },
+      }),
+    ),
+    ...(s.unlisted ?? []).map(
+      (b, i): TruthItem => ({
+        id: `u${i}`,
+        box: box(b),
+        kind: 'unlisted',
+        label: { name: UNLISTED, group: 'unknown' },
+      }),
+    ),
+  ]
   return { ...scene, key: `ami-${s.image}`, source: 'sample', real: true, truth }
 }
