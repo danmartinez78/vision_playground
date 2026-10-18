@@ -7,7 +7,7 @@ import type { Box } from './types'
 
 const MODEL_FILE = 'models/moth_classifier.onnx'
 /** The close-up size the model was trained on. */
-const SIZE = 224
+const SIZE = 128
 const MEAN = [0.485, 0.456, 0.406]
 const STD = [0.229, 0.224, 0.225]
 /** Which of the model's two outputs means "moth". */
@@ -47,7 +47,7 @@ function closeUpPixels(
   const side = Math.max(box.w, box.h) + pad * 2
   const cx = box.x + box.w / 2
   const cy = box.y + box.h / 2
-  ctx.fillStyle = '#000'
+  ctx.fillStyle = '#f2f0ec'
   ctx.fillRect(0, 0, SIZE, SIZE)
   ctx.drawImage(source, cx - side / 2, cy - side / 2, side, side, 0, 0, SIZE, SIZE)
   const px = ctx.getImageData(0, 0, SIZE, SIZE).data
