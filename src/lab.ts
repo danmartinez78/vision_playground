@@ -9,8 +9,8 @@ export interface MothGuess {
   confidence: number
 }
 
-/** Below this, the AI's moth-or-not answer counts as unsure and goes to a person to check. */
-export const UNSURE_BELOW = 0.6
+/** How many of the AI's least-sure moth-or-not answers go to a person to check. */
+export const REVIEW_COUNT = 4
 
 export interface Score {
   hits: number
@@ -150,7 +150,11 @@ export function useLab() {
 
     // the cards for sorting: the most confident detections first, at most 24
     const cards = kept.slice(0, 24)
-    const unsure = cards.filter((d) => (mothAi.get(d.id)?.confidence ?? 1) < UNSURE_BELOW)
+    // like sorting by confidence in FiftyOne: people check the answers the AI was least sure about
+    const unsure = cards
+      .filter((d) => mothAi.has(d.id))
+      .sort((a, b) => mothAi.get(a.id)!.confidence - mothAi.get(b.id)!.confidence)
+      .slice(0, REVIEW_COUNT)
     /** The group after the student's check, or null for not a bug. */
     const finalLabel = (id: string): RealGroup | null => {
       const g = (reviewChoices[id] as RealGroup | undefined) ?? mothAi.get(id)?.group

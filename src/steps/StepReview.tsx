@@ -52,8 +52,8 @@ export function StepReview({ lab }: { lab: Lab }) {
         <h2>Step 4: Check the AI's work</h2>
         <p>
           Scientists don't just trust the AI. They check the answers it was <strong>least sure</strong> about. (The
-          Mothbox team does this in a program called FiftyOne.) The AI was less than 60% sure about these{' '}
-          <strong>{lab.unsure.length}</strong> of the {lab.cards.length} close-ups.
+          Mothbox team does this in a program called FiftyOne.) Here are the <strong>{lab.unsure.length}</strong> of the{' '}
+          {lab.cards.length} close-ups the AI was least sure about.
         </p>
         <p>
           <strong>Your job:</strong> compare each close-up with the field guide. Does the AI's answer match? If not,
@@ -61,7 +61,7 @@ export function StepReview({ lab }: { lab: Lab }) {
         </p>
       </div>
 
-      {lab.unsure.length === 0 && <p>The AI was sure about every close-up this time. Try another photo.</p>}
+      {lab.unsure.length === 0 && <p>The AI has no answers to check on this photo. Try another photo.</p>}
 
       <div className="review-list">
         {lab.unsure.map((d) => {
