@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react'
 import type { Lab } from '../lab'
-import { runDetector } from '../lib/detector'
+import { detect } from '../lib/detect'
 import { randomRecipe, renderNight } from '../lib/scene'
 import { formatDuration } from '../lib/time'
 
@@ -32,9 +32,9 @@ export function ScaleUp({ lab }: { lab: Lab }) {
     setResult(null)
     const acc: BatchResult = { photos: 0, insects: 0, found: 0, detectSeconds: 0 }
     const seedBase = Math.floor(Math.random() * 100000)
-    const step = () => {
+    const step = async () => {
       const scene = renderNight(randomRecipe(seedBase + acc.photos), false)
-      const out = runDetector(scene.canvas)
+      const out = await detect(scene.canvas)
       acc.photos++
       acc.insects += scene.truth!.filter((t) => t.kind === 'insect').length
       acc.found += out.detections.filter((d) => d.score >= lab.threshold).length
@@ -80,7 +80,7 @@ export function ScaleUp({ lab }: { lab: Lab }) {
           <div className="stat">
             <span>Computer finding the bugs: one night</span>
             <strong>{formatDuration(computerNight)}</strong>
-            <small>our simple detector on this laptop</small>
+            <small>our YOLO11n AI on this device</small>
           </div>
           <div className="stat highlight">
             <span>Computer + you checking only the unsure ones</span>
@@ -98,8 +98,8 @@ export function ScaleUp({ lab }: { lab: Lab }) {
             {lab.sortSeconds !== null && lab.sortSeconds < idSec
               ? ` (you sorted cards into groups in ${lab.sortSeconds.toFixed(1)} seconds, but naming the exact species is much harder)`
               : ''}
-            . Real AI models (YOLO and BioCLIP) are slower than our simple detector but still finish a night in minutes
-            to a couple of hours on a laptop.
+            . The computer time counts only finding the insects. Naming them with BioCLIP takes extra computer time, but
+            still far less than doing it by hand.
           </p>
         </details>
       </>

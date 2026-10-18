@@ -86,9 +86,10 @@ export function Credits() {
         <h3>About this lab</h3>
         <p>
           Made for our FIRST LEGO League team. The sample nights are drawn by the computer, not real photos, and the
-          names in step 3 are made up to act like BioCLIP. For now, the detector that runs on this page is a simpler
-          stand-in; our trained YOLO11 model is coming next. The lab's code is free to use and change under the AGPL-3.0
-          license: <Link href="https://github.com/danmartinez78/vision_playground">source code on GitHub</Link>.
+          names in step 3 are made up to act like BioCLIP. The detector is real: our trained YOLO11n runs right in your
+          browser, on the drawn nights, the real light-trap photos and your own photos. The lab's code is free to use
+          and change under the AGPL-3.0 license:{' '}
+          <Link href="https://github.com/danmartinez78/vision_playground">source code on GitHub</Link>.
         </p>
       </div>
     </section>

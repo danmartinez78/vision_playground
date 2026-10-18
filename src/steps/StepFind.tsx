@@ -1,8 +1,10 @@
 import { useEffect, useState } from 'react'
 import type { Lab, Score } from '../lab'
+import { engineName } from '../lib/detect'
 import type { Judgement, Verdict } from '../lib/geometry'
 import { formatTime } from '../lib/time'
 import type { TruthItem } from '../lib/types'
+import { loadYolo } from '../lib/yolo'
 import { SceneView, type BoxLayer } from '../SceneView'
 
 const BLUE = '#2563eb'
@@ -117,6 +119,10 @@ export function StepFind({ lab, onExplain }: { lab: Lab; onExplain: () => void }
   const truth = lab.truth
   const { start, end } = lab.handTimer
   const phase = !end ? 'mine' : !lab.detector ? 'computer' : 'compare'
+  // start downloading the AI model while the student works, so it's ready when they need it
+  useEffect(() => {
+    loadYolo().catch(() => {})
+  }, [])
   const handSecs = start && end ? (end - start) / 1000 : 0
 
   const startTimer = () => {
@@ -249,12 +255,13 @@ export function StepFind({ lab, onExplain }: { lab: Lab; onExplain: () => void }
           <div>
             <h3>2. Computer's turn</h3>
             <p>
-              Now the computer does the same job on the same photo. Its <strong>detector</strong> really runs, right
-              now, inside this web browser. Nothing is looked up ahead of time, so it works on your own photos too.
+              Now the computer does the same job on the same photo. Its <strong>detector</strong> is YOLO11n, a small AI
+              we trained on about 2,300 real light-trap photos. It really runs, right now, inside this web browser.
+              Nothing is looked up ahead of time, so it works on your own photos too.
             </p>
           </div>
-          <button className="primary big" onClick={lab.runIt}>
-            ▶ Run the computer's detector
+          <button className="primary big" onClick={lab.runIt} disabled={lab.detecting}>
+            {lab.detecting ? 'The AI is looking at the photo…' : "▶ Run the computer's detector"}
           </button>
         </div>
       )}
@@ -315,7 +322,7 @@ export function StepFind({ lab, onExplain }: { lab: Lab; onExplain: () => void }
           </div>
           <p className="small muted">
             Both are scored with the same rules. The computer checked the whole photo in{' '}
-            {Math.max(1, Math.round(lab.detector.millis))} milliseconds.{' '}
+            {Math.max(1, Math.round(lab.detector.millis))} milliseconds using {engineName(lab.detector)}.{' '}
             <button className="link" onClick={redo}>
               Start this step over
             </button>
@@ -342,10 +349,12 @@ export function StepFind({ lab, onExplain }: { lab: Lab; onExplain: () => void }
               Answer key
             </label>
           )}
-          <label>
-            <input type="checkbox" checked={showContrast} onChange={(e) => setShowContrast(e.target.checked)} />
-            What the detector sees
-          </label>
+          {lab.detector?.contrastUrl && (
+            <label>
+              <input type="checkbox" checked={showContrast} onChange={(e) => setShowContrast(e.target.checked)} />
+              What the detector sees
+            </label>
+          )}
         </div>
       )}
       {phase !== 'mine' && sample && (
@@ -356,7 +365,7 @@ export function StepFind({ lab, onExplain }: { lab: Lab; onExplain: () => void }
       )}
 
       <SceneView
-        imageUrl={showContrast && lab.detector && phase === 'compare' ? lab.detector.contrastUrl : scene.imageUrl}
+        imageUrl={(showContrast && phase === 'compare' && lab.detector?.contrastUrl) || scene.imageUrl}
         width={scene.width}
         height={scene.height}
         layers={layers}
@@ -369,7 +378,7 @@ export function StepFind({ lab, onExplain }: { lab: Lab; onExplain: () => void }
         overlay={stopwatchBar}
       />
 
-      {phase === 'compare' && showContrast && (
+      {phase === 'compare' && showContrast && lab.detector?.contrastUrl && (
         <p className="small muted">
           Bright means “very different from the empty sheet.” The detector only sees these differences. It has no idea
           what an insect is, which is why leaves fool it.
@@ -401,10 +410,9 @@ export function StepFind({ lab, onExplain }: { lab: Lab; onExplain: () => void }
             <span>Only very sure (more misses)</span>
           </div>
           <p className="small muted">
-            Our detector is simple: it looks for spots that stand out from the white sheet. The real Mothbox uses a
-            trained AI called YOLO.{' '}
+            Our detector is YOLO11n, the same kind of AI the Mothbox team uses.{' '}
             <button className="link" onClick={onExplain}>
-              How does a real AI like YOLO see?
+              How does an AI like YOLO see?
             </button>
           </p>
         </div>

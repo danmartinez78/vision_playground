@@ -1,6 +1,6 @@
 # Trained insect detector (YOLO11n on AMI-Traps)
 
-These are the trained detector files for the lesson. The site doesn't use them yet: `src/lib/detector.ts` is still the hand-written blob detector. This file lists everything needed to wire them in with ONNX Runtime Web.
+These are the trained detector files for the lesson. The site runs them with ONNX Runtime Web in `src/lib/yolo.ts`: the 1280 model on WebGPU, otherwise the 960 model on WebAssembly. If neither can load, it falls back to the hand-written spot finder in `src/lib/detector.ts`.
 
 ## Files
 

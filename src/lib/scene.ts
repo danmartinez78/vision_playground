@@ -550,7 +550,17 @@ export function renderNight(recipe: NightRecipe, withImage = true): Scene {
 
 /** Loads a photo (for example from the team's Mothbox) and shrinks it to a workable size. */
 export async function sceneFromFile(file: File): Promise<Scene> {
-  const bitmap = await createImageBitmap(file)
+  return sceneFromBitmap(await createImageBitmap(file), `upload-${file.name}-${file.lastModified}`, file.name)
+}
+
+/** A real photo from a web address, for example one of the AMI-Traps samples. */
+export async function sceneFromUrl(url: string, title: string): Promise<Scene> {
+  const res = await fetch(url)
+  if (!res.ok) throw new Error(`Could not load ${url}`)
+  return sceneFromBitmap(await createImageBitmap(await res.blob()), `url-${url}`, title)
+}
+
+async function sceneFromBitmap(bitmap: ImageBitmap, key: string, title: string): Promise<Scene> {
   const scale = Math.min(1, SCENE_W / bitmap.width)
   const w = Math.round(bitmap.width * scale)
   const h = Math.round(bitmap.height * scale)
@@ -561,8 +571,8 @@ export async function sceneFromFile(file: File): Promise<Scene> {
   ctx.drawImage(bitmap, 0, 0, w, h)
   bitmap.close()
   return {
-    key: `upload-${file.name}-${file.lastModified}`,
-    title: file.name,
+    key,
+    title,
     source: 'upload',
     canvas,
     imageUrl: canvas.toDataURL('image/jpeg', 0.9),

@@ -1,5 +1,5 @@
-import { useMemo, useState } from 'react'
-import { runDetector, type DetectorOutput } from './lib/detector'
+import { useMemo, useRef, useState } from 'react'
+import { detect, type DetectResult } from './lib/detect'
 import { judgeBoxes, type Judgement } from './lib/geometry'
 import { identify, type AiGuess } from './lib/identifier'
 import type { Box, Detection, GroupId, Scene, TruthItem } from './lib/types'
@@ -16,8 +16,9 @@ export function useLab() {
   const [scene, setSceneRaw] = useState<Scene | null>(null)
   const [guess, setGuess] = useState<string>('')
   const [studentBoxes, setStudentBoxes] = useState<Box[]>([])
-  const [detector, setDetector] = useState<DetectorOutput | null>(null)
-  const [threshold, setThreshold] = useState(0.4)
+  const [detector, setDetector] = useState<DetectResult | null>(null)
+  const [detecting, setDetecting] = useState(false)
+  const [threshold, setThreshold] = useState(0.25)
   const [sortChoices, setSortChoices] = useState<Record<string, GroupId>>({})
   const [aiRevealed, setAiRevealed] = useState(false)
   const [reviewChoices, setReviewChoices] = useState<Record<string, string>>({})
@@ -25,7 +26,9 @@ export function useLab() {
   const [handTimer, setHandTimer] = useState<{ start: number | null; end: number | null }>({ start: null, end: null })
   const [sortTimer, setSortTimer] = useState<{ start: number; last: number; count: number } | null>(null)
 
+  const currentScene = useRef<Scene | null>(null)
   const setScene = (s: Scene | null) => {
+    currentScene.current = s
     setSceneRaw(s)
     setGuess('')
     setStudentBoxes([])
@@ -45,8 +48,16 @@ export function useLab() {
     setSortChoices({ ...sortChoices, [id]: group })
   }
 
-  const runIt = () => {
-    if (scene) setDetector(runDetector(scene.canvas))
+  const runIt = async () => {
+    if (!scene || detecting) return
+    setDetecting(true)
+    try {
+      const out = await detect(scene.canvas)
+      // ignore the result if the student picked another photo meanwhile
+      if (currentScene.current === scene) setDetector(out)
+    } finally {
+      setDetecting(false)
+    }
   }
 
   const derived = useMemo(() => {
@@ -135,6 +146,7 @@ export function useLab() {
     studentBoxes,
     setStudentBoxes,
     detector,
+    detecting,
     runIt,
     clearDetector: () => setDetector(null),
     threshold,

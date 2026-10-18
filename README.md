@@ -46,24 +46,24 @@ docker run -d --name mothbox-vision-lab --restart unless-stopped \
     -p 8096:8080 ghcr.io/danmartinez78/vision_playground:latest
 ```
 
-nginx sends the cross-origin isolation headers (`Cross-Origin-Opener-Policy` and `Cross-Origin-Embedder-Policy`) so the in-browser AI model can use several CPU threads, and caches models and sample photos for a week. Serve it over HTTPS (for example behind a reverse proxy) so browsers allow WebGPU. If the package is private on GitHub, make it public (Packages, Package settings, Change visibility) or `docker login ghcr.io` on the server first.
+nginx sends the cross-origin isolation headers (`Cross-Origin-Opener-Policy` and `Cross-Origin-Embedder-Policy`) so the in-browser AI model can use several CPU threads, and caches the model, the AI runtime and sample photos for a week. Serve it over HTTPS (for example behind a reverse proxy) so browsers allow WebGPU. If the package is private on GitHub, make it public (Packages, Package settings, Change visibility) or `docker login ghcr.io` on the server first.
 
 ## What is real and what is practice (MVP)
 
-- **The detector really runs on the picture**, including your own photos. It is a simple, explainable method rather than a trained AI: estimate what the empty sheet looks like, mark pixels that are much darker or more colorful than it, group touching pixels into blobs, and score each blob by contrast and size (`src/lib/detector.ts`). It is fooled by leaves and twigs, which is part of the lesson. A trained YOLO model can replace it later.
+- **The detector is a real trained AI running in the browser**: YOLO11n trained on AMI-Traps (`src/lib/yolo.ts`, details and test results in `docs/yolo-model.md`). With WebGPU it runs the 1280 model; otherwise the 960 model on WebAssembly (about half a second per photo on a laptop). If the model can't load, the page falls back to a simple spot finder (`src/lib/detector.ts`) and says so.
+- **Real light-trap photos**: "Try your own photo" offers 12 AMI-Traps test photos with expert boxes, so students see what the AI found, missed and wrongly boxed. The detector never trained on them.
 - **The sample nights are computer drawn** (`src/lib/scene.ts`), so the lab knows the right answer for every insect, leaf and smudge. The species are real North American insects, including three crop-pest moths and several helpers (`src/lib/species.ts`).
 - **The AI identifier is simulated on sample nights** (`src/lib/identifier.ts`). It acts like BioCLIP does on real photos: very sure about the order, less sure about the family, and often unsure or wrong between look-alike species (the three brown pest moths). On uploaded photos, steps 3 to 5 use only the students' own sorting for now.
 
 ## Next steps
 
-1. Swap in real light-trap photos with expert boxes and labels: AMI-Traps from the Automated Monitoring of Insects project (MIT license, [Zenodo](https://zenodo.org/records/11358689)), then the team's own Mothbox nights.
-2. Replace the simple detector with a small YOLO model running in the browser (ONNX).
-3. Show real BioCLIP results, precomputed for each sample photo.
-4. Before-and-after nights to check a scent treatment: did the pest count drop while helpers stayed?
+1. Use real light-trap photos in the lesson itself, then the team's own Mothbox nights.
+2. Show real BioCLIP results, precomputed for each sample photo.
+3. Before-and-after nights to check a scent treatment: did the pest count drop while helpers stayed?
 
 ## License
 
-AGPL-3.0 (see `LICENSE`), because the trained YOLO detector we are adding is built with Ultralytics, which is AGPL-3.0.
+AGPL-3.0 (see `LICENSE`), because the trained YOLO detector is built with Ultralytics, which is AGPL-3.0.
 
 ## Credits
 
