@@ -30,7 +30,7 @@ export function StepNight({ lab }: { lab: Lab }) {
   return (
     <section>
       <div className="intro">
-        <h2>Step 1: Look at a Mothbox photo</h2>
+        <h2>Step 1: Look at a light-trap photo</h2>
         <p>
           A <strong>Mothbox</strong> is a camera trap for insects. At night it turns on a bright light and takes photos
           of the insects that land on its white sheet. One night can make hundreds of photos. Nobody has time to look at

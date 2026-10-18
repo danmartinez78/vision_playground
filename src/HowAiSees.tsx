@@ -392,7 +392,7 @@ function TeachTinyAi({ trainScene, testScene }: { trainScene: Scene; testScene: 
       </p>
       <p>
         Below is a real, tiny CNN with {FILTERS} filters and just {NUMBER_COUNT} numbers. Press <em>Train</em> and watch
-        it learn from the cool, quiet night (where the lab knows the answers).
+        it learn from a night drawn by the computer (so the lab knows every answer).
       </p>
 
       <div className="toolbar">
@@ -404,7 +404,7 @@ function TeachTinyAi({ trainScene, testScene }: { trainScene: Scene; testScene: 
         </button>
         <label>
           <input type="checkbox" checked={onTest} onChange={(e) => setOnTest(e.target.checked)} />
-          Test it on the windy night (it never practiced on that one)
+          Test it on a different drawn night (it never practiced on that one)
         </label>
       </div>
 
@@ -441,7 +441,7 @@ function TeachTinyAi({ trainScene, testScene }: { trainScene: Scene; testScene: 
       <div className="two-col">
         <figure>
           <img src={shownScene.imageUrl} alt={shownScene.title} className="full-img" />
-          <figcaption>{onTest ? 'The windy night: new to the tiny AI' : 'The practice photo'}</figcaption>
+          <figcaption>{onTest ? 'A different drawn night: new to the tiny AI' : 'The practice photo'}</figcaption>
         </figure>
         <figure>
           <img src={outputUrl} alt="Where the tiny AI thinks insects are" className="full-img pixel-img" />
@@ -639,8 +639,8 @@ export function HowAiLearns({ lab }: { lab: Lab }) {
             would confuse it.
           </li>
           <li>
-            It finds <em>where</em> insects are, not <em>what</em> they are. Naming them is a different AI (BioCLIP),
-            which you'll meet in step 3 of the lesson.
+            It finds <em>where</em> insects are, not <em>what</em> they are. Telling moths from other insects is a
+            second AI, which you'll meet in step 3 of the lesson.
           </li>
           <li>
             It doesn't "understand" bugs. It's millions of numbers that got good at one job, so people still check its
@@ -652,7 +652,7 @@ export function HowAiLearns({ lab }: { lab: Lab }) {
       <div className="callout">
         <h3>Talk about it</h3>
         <ol>
-          <li>What fooled the tiny AI on the windy night? Why do you think those things were hard for it?</li>
+          <li>What fooled the tiny AI on the new night? Why do you think those things were hard for it?</li>
           <li>
             Why do you think the AI has to practice on photos people already labeled? What if the labels had mistakes?
           </li>

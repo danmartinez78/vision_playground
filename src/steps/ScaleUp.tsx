@@ -70,7 +70,7 @@ export function ScaleUp({ lab }: { lab: Lab }) {
     const computerNight = (PHOTOS_PER_NIGHT * result.detectSeconds) / result.photos
     const teamNight = computerNight + PHOTOS_PER_NIGHT * perPhoto * unsureShare * idSec
     const rows = [
-      { label: 'By hand', seconds: handNight, note: 'finding and naming every insect', tone: 'hand' },
+      { label: 'By hand', seconds: handNight, note: 'finding and identifying every insect', tone: 'hand' },
       {
         label: 'Computer + you',
         seconds: teamNight,
@@ -112,12 +112,12 @@ export function ScaleUp({ lab }: { lab: Lab }) {
             {lab.handSeconds !== null
               ? `Using your own boxing speed from Step 2 (${boxSec.toFixed(1)} seconds per insect)`
               : `Using ${boxSec} seconds to box each insect (try the stopwatch in Step 2 to use your own speed)`}{' '}
-            and {idSec.toFixed(0)} seconds to name each one to species
+            and {idSec.toFixed(0)} seconds for a scientist to identify each one
             {lab.sortSeconds !== null && lab.sortSeconds < idSec
-              ? ` (you sorted cards into groups in ${lab.sortSeconds.toFixed(1)} seconds, but naming the exact species is much harder)`
+              ? ` (you sorted moth or not in ${lab.sortSeconds.toFixed(1)} seconds, but scientists also name each moth, which takes much longer)`
               : ''}
-            . The computer time counts only finding the insects. Naming them with BioCLIP takes extra computer time, but
-            still far less than doing it by hand.
+            . The computer time counts only finding the insects. Sorting moths from other insects adds a little more
+            computer time, but still far less than doing it by hand.
           </p>
         </details>
       </>

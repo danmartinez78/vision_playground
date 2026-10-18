@@ -9,7 +9,7 @@ import { StepNight } from './steps/StepNight'
 import { StepReview } from './steps/StepReview'
 import { StepSort } from './steps/StepSort'
 
-const STEPS = ['Look at a photo', 'Find the insects', 'Name the insects', "Check the AI's work", 'What did we learn?']
+const STEPS = ['Look at a photo', 'Find the insects', 'Moth or not?', "Check the AI's work", 'What did we learn?']
 
 type Page = 'lesson' | 'own' | 'ai' | 'credits'
 
@@ -41,7 +41,7 @@ export default function App() {
           </span>
           <div>
             <h1>Mothbox Vision Lab</h1>
-            <p>How a computer finds and names insects</p>
+            <p>How a computer finds insects and spots the moths</p>
           </div>
         </div>
         <nav className="extras" aria-label="Extras">

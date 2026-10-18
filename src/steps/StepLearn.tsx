@@ -77,8 +77,8 @@ function RealTally({ lab, counted }: { lab: Lab; counted: Map<string, number> })
         <details className="callout">
           <summary>Which moths did the experts name?</summary>
           <p className="small">
-            Experts looked closely and named these moths, some down to the species. That's the job BioCLIP tries to do
-            next in the Mothbox pipeline.
+            Experts looked closely and named these moths, some down to the species. Naming moths this exactly takes an
+            expert, or a much bigger AI than ours.
           </p>
           <ul className="small">
             {[...mothNames].map(([name, n]) => (
@@ -133,7 +133,7 @@ export function StepLearn({ lab }: { lab: Lab }) {
           <h4>Now: camera + AI + people</h4>
           <ul>
             <li>A Mothbox takes photos, and the insects fly away.</li>
-            <li>AI finds and names them in minutes.</li>
+            <li>AI finds and sorts them in minutes.</li>
             <li>People check only the hard ones.</li>
           </ul>
         </div>

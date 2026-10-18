@@ -70,10 +70,9 @@ export function Credits() {
             photos. <Link href="https://docs.ultralytics.com/models/yolo11/">YOLO11 docs</Link> (AGPL-3.0 license)
           </li>
           <li>
-            <strong>BioCLIP</strong> by the Imageomics Institute names living things at every level of the tree of life.
-            The practice identifier on the drawn night imitates it.{' '}
-            <Link href="https://imageomics.github.io/bioclip/">BioCLIP project page</Link> and{' '}
-            <Link href="https://arxiv.org/abs/2311.18803">paper</Link> (Stevens and others, CVPR 2024)
+            <strong>A moth / not-a-moth classifier</strong> sorts each close-up, like the one AMI runs after its
+            detector. The answers in steps 3 and 4 are practice answers for now; we're training our own on the AMI
+            photos.
           </li>
           <li>
             <strong>FiftyOne</strong> by Voxel51 is the program the Mothbox team uses to check the AI's work.{' '}
@@ -86,9 +85,9 @@ export function Credits() {
         <h3>About this lab</h3>
         <p>
           Made for our FIRST LEGO League team. The lesson photos and the experts' boxes and labels are real, from the
-          AMI dataset. The AI's answers in step 3 are made up for practice. The detector is real: our trained YOLO11n
-          runs right in your browser, on the light-trap photos, the bonus drawn night and your own photos. The lab's
-          code is free to use and change under the AGPL-3.0 license:{' '}
+          AMI dataset. The moth-or-not answers in steps 3 and 4 are made up for practice for now. The detector is real:
+          our trained YOLO11n runs right in your browser, on the light-trap photos, the drawn night and your own photos.
+          The lab's code is free to use and change under the AGPL-3.0 license:{' '}
           <Link href="https://github.com/danmartinez78/vision_playground">source code on GitHub</Link>.
         </p>
       </div>
