@@ -182,10 +182,10 @@ export function StepFind({ lab, onExplain }: { lab: Lab; onExplain: () => void }
         <span aria-hidden>⏱️</span>
         <Clock start={start} />
         <span>
-          {TOUCH ? 'Marked' : 'Boxes'} so far: <strong>{lab.studentBoxes.length}</strong>.{' '}
+          Boxes so far: <strong>{lab.studentBoxes.length}</strong>.{' '}
           <span className="sw-help">
             {TOUCH
-              ? 'Tap each insect to mark it. Tap a mark to remove it.'
+              ? 'Drag one finger around each insect. Tap a box to remove it.'
               : 'Drag around each insect. Tap or click a box to remove it.'}
           </span>
         </span>
@@ -222,7 +222,7 @@ export function StepFind({ lab, onExplain }: { lab: Lab; onExplain: () => void }
           <span>
             <strong>Your turn.</strong> When you press start, the stopwatch runs.{' '}
             {TOUCH
-              ? 'Open the photo and tap every insect you can find. Pinch or use the corner buttons to zoom in on the small ones.'
+              ? 'Open the photo and drag one finger around every insect you can find. Zoom in with two fingers or the corner buttons to box the small ones.'
               : 'Draw a box around every insect you can find by dragging on the photo. Zoom in to spot the small ones.'}{' '}
             Press <em>I'm done</em> when you have them all.
           </span>

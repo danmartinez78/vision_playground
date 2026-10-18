@@ -41,7 +41,7 @@ export function SceneView({ imageUrl, width, height, layers, drawLayerKey, onAdd
   // on touch screens: every finger on the photo, and what the current gesture is doing
   const fingers = useRef(new Map<number, { x: number; y: number }>())
   const gesture = useRef<{
-    kind: 'tap' | 'pan' | 'pinch'
+    kind: 'tap' | 'pan' | 'draw' | 'pinch'
     x: number
     y: number
     left: number
@@ -135,7 +135,8 @@ export function SceneView({ imageUrl, width, height, layers, drawLayerKey, onAdd
     })
   }
 
-  // touch: one finger pans, two fingers pinch, and a quick tap marks an insect
+  // touch: one finger draws a box (or pans when there's nothing to draw), two
+  // fingers zoom and move, and tapping a box removes it
   const fingerDown = (e: PointerEvent<SVGSVGElement>) => {
     fingers.current.set(e.pointerId, { x: e.clientX, y: e.clientY })
     const el = scrollRef.current!
@@ -151,6 +152,8 @@ export function SceneView({ imageUrl, width, height, layers, drawLayerKey, onAdd
         zoom,
       }
     } else if (pts.length === 2) {
+      // a second finger means zoom, so drop any box the first finger started
+      setDraft(null)
       const [a, b] = pts
       gesture.current = {
         kind: 'pinch',
@@ -172,31 +175,48 @@ export function SceneView({ imageUrl, width, height, layers, drawLayerKey, onAdd
     if (g.kind === 'pinch') {
       const [a, b] = [...fingers.current.values()]
       if (!b) return
+      // zoom by how far apart the fingers are, and move with their midpoint
       const r = el.getBoundingClientRect()
-      setZoom((g.zoom * Math.hypot(a.x - b.x, a.y - b.y)) / g.dist, (a.x + b.x) / 2 - r.left, (a.y + b.y) / 2 - r.top)
+      const mx = (a.x + b.x) / 2 - r.left
+      const my = (a.y + b.y) / 2 - r.top
+      const fx = (el.scrollLeft + g.x - r.left) / el.scrollWidth
+      const fy = (el.scrollTop + g.y - r.top) / el.scrollHeight
+      g.x = mx + r.left
+      g.y = my + r.top
+      setZoomRaw(Math.min(MAX_ZOOM, Math.max(1, (g.zoom * Math.hypot(a.x - b.x, a.y - b.y)) / g.dist)))
+      requestAnimationFrame(() => {
+        el.scrollLeft = fx * el.scrollWidth - mx
+        el.scrollTop = fy * el.scrollHeight - my
+      })
       return
     }
-    if (g.kind === 'tap' && Math.hypot(e.clientX - g.x, e.clientY - g.y) > TAP_SLOP) g.kind = 'pan'
-    if (g.kind === 'pan') {
+    if (g.kind === 'tap' && Math.hypot(e.clientX - g.x, e.clientY - g.y) > TAP_SLOP) {
+      if (onAdd) {
+        // the box starts where the finger first touched
+        const start = toImage({ clientX: g.x, clientY: g.y } as PointerEvent)
+        setDraft({ x0: start.x, y0: start.y, x1: start.x, y1: start.y })
+        g.kind = 'draw'
+      } else g.kind = 'pan'
+    }
+    if (g.kind === 'draw') {
+      const p = toImage(e)
+      setDraft((d) => (d ? { ...d, x1: p.x, y1: p.y } : d))
+    } else if (g.kind === 'pan') {
       el.scrollLeft = g.left - (e.clientX - g.x)
       el.scrollTop = g.top - (e.clientY - g.y)
     }
   }
-  const fingerUp = (e: PointerEvent<SVGSVGElement>) => {
+  const fingerUp = (e: PointerEvent<SVGSVGElement>): void => {
     fingers.current.delete(e.pointerId)
     const g = gesture.current
     if (fingers.current.size > 0) return
     gesture.current = null
+    if (g?.kind === 'draw') return up(e, true)
     if (g?.kind !== 'tap') return
     // tapping a mark removes it (handled here, not on click, so the click a
     // tap sends afterwards can't remove the mark it just made)
     const hit = (e.target as Element).getAttribute('data-box')
-    if (hit !== null) return onRemove?.(Number(hit))
-    if (!onAdd) return
-    // a tap marks the insect with a small square around the spot
-    const p = toImage(e)
-    const side = width / 40
-    onAdd({ x: p.x - side / 2, y: p.y - side / 2, w: side, h: side })
+    if (hit !== null) onRemove?.(Number(hit))
   }
 
   const down = (e: PointerEvent<SVGSVGElement>) => {
@@ -223,8 +243,8 @@ export function SceneView({ imageUrl, width, height, layers, drawLayerKey, onAdd
     const p = toImage(e)
     setDraft({ ...draft, x1: p.x, y1: p.y })
   }
-  const up = (e: PointerEvent<SVGSVGElement>) => {
-    if (e.pointerType === 'touch') return fingerUp(e)
+  const up = (e: PointerEvent<SVGSVGElement>, fromFinger = false): void => {
+    if (e.pointerType === 'touch' && !fromFinger) return fingerUp(e)
     pan.current = null
     if (!draft) return
     const box = {
@@ -248,7 +268,7 @@ export function SceneView({ imageUrl, width, height, layers, drawLayerKey, onAdd
       style={{ cursor }}
       onPointerDown={down}
       onPointerMove={move}
-      onPointerUp={up}
+      onPointerUp={(e) => up(e)}
       onPointerCancel={(e) => {
         setDraft(null)
         pan.current = null
@@ -335,7 +355,7 @@ export function SceneView({ imageUrl, width, height, layers, drawLayerKey, onAdd
             </svg>
           </span>
           <span className="open-full">
-            🔍 {canDraw ? 'Tap to open the photo and mark insects' : 'Tap to see the photo up close'}
+            🔍 {canDraw ? 'Tap to open the photo and box insects' : 'Tap to see the photo up close'}
           </span>
         </button>
       </div>
@@ -370,7 +390,9 @@ export function SceneView({ imageUrl, width, height, layers, drawLayerKey, onAdd
             </button>
           </span>
           <span className="small zoom-hint">
-            Pinch to zoom, drag to move.{canDraw && ' Tap an insect to mark it; tap a mark to remove it.'}
+            {canDraw
+              ? 'Drag one finger around an insect to box it. Two fingers zoom and move. Tap a box to remove it.'
+              : 'Pinch to zoom, drag to move.'}
           </span>
           <span className="small rotate-hint">Turn your phone sideways for a bigger photo.</span>
         </div>
