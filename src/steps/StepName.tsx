@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react'
 import type { Lab } from '../lab'
-import { bioclipFor, isSpecies, speciesPicture, type SpeciesGuess } from '../lib/bioclip'
+import { bioclipFor, isSpecies, loadGuide, speciesPicture, type GuideEntry, type SpeciesGuess } from '../lib/bioclip'
 import { cropToDataUrl } from '../lib/geometry'
 import type { TruthItem } from '../lib/types'
 
@@ -11,6 +11,30 @@ function hash(s: string): number {
   let h = 2166136261
   for (let i = 0; i < s.length; i++) h = Math.imul(h ^ s.charCodeAt(i), 16777619)
   return h >>> 0
+}
+
+/**
+ * The experts' species plus look-alikes from the field guide (same genus
+ * first, then same family), so every choice has a picture and the right one
+ * doesn't stand out.
+ */
+function choicesFor(real: string, guide: GuideEntry[], seed: string): string[] {
+  const me = guide.find((g) => g.species === real)
+  const others = guide.filter((g) => g.species !== real)
+  const sameGenus = mixed(
+    others.filter((g) => me && g.genus === me.genus).map((g) => g.species),
+    seed,
+  )
+  const sameFamily = mixed(
+    others.filter((g) => me && g.genus !== me.genus && g.family === me.family).map((g) => g.species),
+    seed,
+  )
+  const anyOther = mixed(
+    others.map((g) => g.species),
+    seed,
+  )
+  const picks = [...new Set([...sameGenus, ...sameFamily, ...anyOther])].slice(0, 3)
+  return mixed([real, ...picks], seed)
 }
 
 /** The same order every time for the same moth, so the AI's answer isn't always first. */
@@ -71,7 +95,7 @@ function Unconfirmed({ extra, closeUps }: { extra: Card[]; closeUps: Map<string,
 export function StepName({ lab }: { lab: Lab }) {
   const scene = lab.scene!
   const image = scene.key.replace(/^ami-/, '')
-  const [answers, setAnswers] = useState<Map<number, SpeciesGuess[]> | null>(null)
+  const [answers, setAnswers] = useState<{ top: Map<number, SpeciesGuess[]>; guide: GuideEntry[] } | null>(null)
   const [failed, setFailed] = useState(false)
   const [picks, setPicks] = useState<Record<string, string>>({})
   const [revealed, setRevealed] = useState(false)
@@ -79,8 +103,8 @@ export function StepName({ lab }: { lab: Lab }) {
   useEffect(() => {
     if (!scene.real) return
     let stale = false
-    bioclipFor(image)
-      .then((a) => !stale && setAnswers(a))
+    Promise.all([bioclipFor(image), loadGuide()])
+      .then(([top, guide]) => !stale && setAnswers({ top, guide }))
       .catch((e) => {
         console.warn('BioCLIP answers could not load', e)
         if (!stale) setFailed(true)
@@ -99,13 +123,12 @@ export function StepName({ lab }: { lab: Lab }) {
     for (const d of lab.kept) {
       const truth = lab.truthFor.get(d.id)
       if (!truth?.label || truth.label.group !== 'moth' || seen.has(truth.id)) continue
-      const top = answers.get(Number(truth.id.slice(1)))
+      const top = answers.top.get(Number(truth.id.slice(1)))
       if (!top?.length) continue
       seen.add(truth.id)
       const card = { id: d.id, truth, top, choices: [] as string[] }
       if (isSpecies(truth.label.name)) {
-        const names = new Set([...top.map((g) => g.name), truth.label.name])
-        card.choices = mixed([...names], truth.id)
+        card.choices = choicesFor(truth.label.name, answers.guide, truth.id)
         if (cards.length < MAX_CARDS) cards.push(card)
       } else if (extra.length < 4) extra.push(card)
     }
@@ -253,7 +276,8 @@ export function StepName({ lab }: { lab: Lab }) {
             </div>
             <p className="small">
               Naming moths is much harder than sorting moth from not a moth, for people and for AI. Many moths look
-              almost the same, so scientists still check the AI's names.
+              almost the same. Look at the bars: when BioCLIP is very sure it's usually right, so scientists check the
+              unsure ones.
             </p>
             <Unconfirmed extra={extra} closeUps={closeUps} />
           </div>

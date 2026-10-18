@@ -41,3 +41,23 @@ export const isSpecies = (name: string) => /^[A-Z][a-z]+ [a-z-]+$/.test(name)
 
 /** An example close-up of a species from the training photos, for the field guide. */
 export const speciesPicture = (name: string) => `${SAMPLES_DIR}species/${name.replace(/ /g, '_')}.jpg`
+
+export interface GuideEntry {
+  species: string
+  genus: string
+  family: string
+}
+
+let guide: Promise<GuideEntry[]> | null = null
+
+/** Every species with a field-guide picture, with its genus and family. */
+export function loadGuide(): Promise<GuideEntry[]> {
+  guide ??= fetch(`${SAMPLES_DIR}species/index.json`).then(async (r) => {
+    if (!r.ok) throw new Error(`species/index.json: ${r.status}`)
+    return ((await r.json()) as { species: GuideEntry[] }).species
+  })
+  guide.catch(() => {
+    guide = null
+  })
+  return guide
+}
