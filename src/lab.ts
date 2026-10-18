@@ -1,6 +1,6 @@
 import { useMemo, useState } from 'react'
 import { runDetector, type DetectorOutput } from './lib/detector'
-import { matchBoxes } from './lib/geometry'
+import { judgeBoxes, type Judgement } from './lib/geometry'
 import { identify, type AiGuess } from './lib/identifier'
 import type { Box, Detection, GroupId, Scene, TruthItem } from './lib/types'
 
@@ -54,43 +54,37 @@ export function useLab() {
     const insects = truth.filter((t) => t.kind === 'insect')
     const kept: Detection[] = detector ? detector.detections.filter((d) => d.score >= threshold) : []
 
+    // the answer key: everything really on the sheet for sample nights, or the student's own boxes on a photo
+    const answers =
+      scene?.source === 'sample'
+        ? truth.map((t) => ({ box: t.box, insect: t.kind === 'insect' }))
+        : studentBoxes.map((box) => ({ box, insect: true }))
+    const total = answers.filter((a) => a.insect).length
+    const toScore = (j: Judgement): Score => ({ hits: j.hits, misses: j.misses, falseAlarms: j.falseAlarms, total })
+
+    // both the student and the detector are scored with the same rules
+    const detectorJudgement =
+      detector && total
+        ? judgeBoxes(
+            kept.map((d) => d.box),
+            answers,
+          )
+        : null
+    const detectorScore = detectorJudgement ? toScore(detectorJudgement) : null
+    const studentJudgement =
+      scene?.source === 'sample' && studentBoxes.length ? judgeBoxes(studentBoxes, answers) : null
+    const studentScore = studentJudgement ? toScore(studentJudgement) : null
+
     // what each kept detection really is (sample nights only)
     const truthFor = new Map<string, TruthItem>()
-    if (truth.length) {
-      const m = matchBoxes(
-        kept.map((d) => d.box),
-        truth.map((t) => t.box),
-      )
-      m.pairs.forEach((ti, di) => truthFor.set(kept[di].id, truth[ti]))
+    if (scene?.source === 'sample' && detectorJudgement) {
+      detectorJudgement.verdicts.forEach((v, di) => {
+        if (v.kind === 'found' || v.kind === 'not-insect') truthFor.set(kept[di].id, truth[v.answer])
+      })
     }
 
-    // the answer key: real insects on sample nights, or the student's own boxes on a photo
-    const answerBoxes = scene?.source === 'sample' ? insects.map((t) => t.box) : studentBoxes
-    let detectorScore: Score | null = null
-    if (detector && answerBoxes.length) {
-      if (scene?.source === 'sample') {
-        const hits = kept.filter((d) => truthFor.get(d.id)?.kind === 'insect').length
-        detectorScore = { hits, misses: insects.length - hits, falseAlarms: kept.length - hits, total: insects.length }
-      } else {
-        const m = matchBoxes(
-          kept.map((d) => d.box),
-          answerBoxes,
-        )
-        detectorScore = { hits: m.hits, misses: m.misses, falseAlarms: m.falseAlarms, total: answerBoxes.length }
-      }
-    }
-
-    let studentScore: Score | null = null
-    if (scene?.source === 'sample' && studentBoxes.length) {
-      const m = matchBoxes(
-        studentBoxes,
-        insects.map((t) => t.box),
-      )
-      studentScore = { hits: m.hits, misses: m.misses, falseAlarms: m.falseAlarms, total: insects.length }
-    }
-
-    // the cards for sorting: the most confident detections first, at most 48
-    const cards = kept.slice(0, 48)
+    // the cards for sorting: the most confident detections first, at most 24
+    const cards = kept.slice(0, 24)
     const ai = new Map<string, AiGuess>()
     if (scene?.source === 'sample') {
       for (const d of cards) ai.set(d.id, identify(scene.key, d.id, truthFor.get(d.id)))
@@ -112,9 +106,25 @@ export function useLab() {
       handTimer.start && handTimer.end && studentBoxes.length
         ? (handTimer.end - handTimer.start) / 1000 / studentBoxes.length
         : null
-    const sortSeconds = sortTimer && sortTimer.count > 1 ? (sortTimer.last - sortTimer.start) / 1000 / (sortTimer.count - 1) : null
+    const sortSeconds =
+      sortTimer && sortTimer.count > 1 ? (sortTimer.last - sortTimer.start) / 1000 / (sortTimer.count - 1) : null
 
-    return { truth, insects, kept, truthFor, detectorScore, studentScore, cards, ai, unsure, finalLabel, handSeconds, sortSeconds }
+    return {
+      truth,
+      insects,
+      kept,
+      truthFor,
+      detectorScore,
+      studentScore,
+      detectorJudgement,
+      studentJudgement,
+      cards,
+      ai,
+      unsure,
+      finalLabel,
+      handSeconds,
+      sortSeconds,
+    }
   }, [scene, detector, threshold, studentBoxes, reviewChoices, handTimer, sortTimer])
 
   return {
@@ -126,6 +136,7 @@ export function useLab() {
     setStudentBoxes,
     detector,
     runIt,
+    clearDetector: () => setDetector(null),
     threshold,
     setThreshold,
     sortChoices,

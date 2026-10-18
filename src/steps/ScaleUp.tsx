@@ -62,9 +62,9 @@ export function ScaleUp({ lab }: { lab: Lab }) {
     tiles = (
       <>
         <p>
-          The computer checked <strong>{result.photos} photos</strong> and found <strong>{result.found}</strong> spots in{' '}
-          <strong>{formatDuration(result.detectSeconds)}</strong>. That's about {Math.round(perPhoto)} insects per photo.
-          Now picture a whole Mothbox night of {PHOTOS_PER_NIGHT} photos:
+          The computer checked <strong>{result.photos} photos</strong> in{' '}
+          <strong>{formatDuration(result.detectSeconds)}</strong>. For a whole Mothbox night of {PHOTOS_PER_NIGHT}{' '}
+          photos:
         </p>
         <div className="stat-row">
           <div className="stat">
@@ -88,18 +88,20 @@ export function ScaleUp({ lab }: { lab: Lab }) {
             <small>you review about {Math.round(unsureShare * 100)}% of the insects</small>
           </div>
         </div>
-        <p className="small muted">
-          {lab.handSeconds !== null
-            ? `Using your own boxing speed from Step 2 (${boxSec.toFixed(1)} seconds per insect)`
-            : `Using ${boxSec} seconds to box each insect (try the stopwatch in Step 2 to use your own speed)`}{' '}
-          and {idSec.toFixed(0)} seconds to name each one to species
-          {lab.sortSeconds !== null && lab.sortSeconds < idSec
-            ? ` (you sorted cards into groups in ${lab.sortSeconds.toFixed(1)} seconds, but naming the exact species is much harder)`
-            : ''}
-          .{' '}
-          Real AI models (YOLO and BioCLIP) are slower than our simple detector but still finish a night in minutes to a
-          couple of hours on a laptop.
-        </p>
+        <details className="small muted">
+          <summary>How did we work this out?</summary>
+          <p>
+            {lab.handSeconds !== null
+              ? `Using your own boxing speed from Step 2 (${boxSec.toFixed(1)} seconds per insect)`
+              : `Using ${boxSec} seconds to box each insect (try the stopwatch in Step 2 to use your own speed)`}{' '}
+            and {idSec.toFixed(0)} seconds to name each one to species
+            {lab.sortSeconds !== null && lab.sortSeconds < idSec
+              ? ` (you sorted cards into groups in ${lab.sortSeconds.toFixed(1)} seconds, but naming the exact species is much harder)`
+              : ''}
+            . Real AI models (YOLO and BioCLIP) are slower than our simple detector but still finish a night in minutes
+            to a couple of hours on a laptop.
+          </p>
+        </details>
       </>
     )
   }
@@ -107,14 +109,18 @@ export function ScaleUp({ lab }: { lab: Lab }) {
   return (
     <div className="scale-box">
       <h3>Scale it up</h3>
-      <p>
-        One sheet is fun. Now let the computer try a stack of new photos, the way a Mothbox would after a real night.
-      </p>
+      <p>A real Mothbox takes hundreds of photos a night. Let the computer try a stack of new ones.</p>
       <button className="primary" onClick={run} disabled={progress > 0 && progress < 1}>
         {result ? 'Run it again' : `Process ${BATCH} new photos`}
       </button>
       {progress > 0 && (
-        <div className="progress" role="progressbar" aria-valuenow={Math.round(progress * 100)} aria-valuemin={0} aria-valuemax={100}>
+        <div
+          className="progress"
+          role="progressbar"
+          aria-valuenow={Math.round(progress * 100)}
+          aria-valuemin={0}
+          aria-valuemax={100}
+        >
           <span style={{ width: `${progress * 100}%` }} />
         </div>
       )}

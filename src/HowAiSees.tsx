@@ -43,27 +43,35 @@ function digits(g: Grid): Grid {
 
 // ---------------------------------------------------------------------------
 
+const RESOLUTIONS = [64, 32, 16, 8]
+const MAX_NUMBERS = 16
+
 function PixelNumbers({ scene, crop }: { scene: Scene; crop: Box }) {
-  const [size, setSize] = useState(16)
+  const [size, setSize] = useState(64)
   const [numbers, setNumbers] = useState(false)
   const { px, dark } = useMemo(() => {
     const px = readPixels(scene.canvas, crop, size, size)
     return { px, dark: digits(darkness(px, size, size)) }
   }, [scene, crop, size])
-  const showNumbers = numbers && size <= 16
+  const showNumbers = numbers && size <= MAX_NUMBERS
 
   return (
     <div className="explain-block">
       <h3>1. A photo is just a grid of numbers</h3>
       <p>
         A computer can't "look" at a moth the way you do. To a computer, a photo is a grid of tiny squares called{' '}
-        <strong>pixels</strong>, and every pixel is a number. Here's the biggest moth from the night, zoomed way in.
+        <strong>pixels</strong>, and every pixel is a number. Here's a close-up of the biggest moth from the photo.
+      </p>
+      <p>
+        <strong>Resolution</strong> is how many pixels are used to show the picture. More pixels show more detail. Lower
+        the resolution step by step and watch the moth turn into blocks. Then show the numbers the computer really works
+        with.
       </p>
       <div className="toolbar">
-        <span>Pixels across:</span>
-        {[8, 16, 32, 64].map((s) => (
+        <span>Resolution:</span>
+        {RESOLUTIONS.map((s) => (
           <button key={s} className={s === size ? 'chip selected' : 'chip'} onClick={() => setSize(s)}>
-            {s}
+            {s} × {s}
           </button>
         ))}
         <label>
@@ -71,15 +79,20 @@ function PixelNumbers({ scene, crop }: { scene: Scene; crop: Box }) {
             type="checkbox"
             checked={numbers}
             onChange={(e) => setNumbers(e.target.checked)}
-            disabled={size > 16}
+            disabled={size > MAX_NUMBERS}
           />
-          Show what the computer sees
+          Show the numbers
         </label>
+        {size > MAX_NUMBERS && (
+          <span className="small muted">
+            {size * size} numbers are too many to read here. Pick {MAX_NUMBERS} × {MAX_NUMBERS} or 8 × 8 to see them.
+          </span>
+        )}
       </div>
       <div
         className="pixel-grid"
         style={{ gridTemplateColumns: `repeat(${size}, 1fr)` }}
-        aria-label="The moth as a grid of pixels"
+        aria-label={`The moth as a grid of ${size} by ${size} pixels`}
       >
         {Array.from({ length: size * size }, (_, i) => {
           const d = dark.data[i]
@@ -94,8 +107,9 @@ function PixelNumbers({ scene, crop }: { scene: Scene; crop: Box }) {
         })}
       </div>
       <p className="small muted">
-        Here 0 means white and 9 means black. A real color photo has three numbers for every pixel (how much red, green
-        and blue), and a Mothbox photo has tens of millions of pixels. That's a lot of numbers!
+        {size} × {size} = {size * size} pixels. In the numbers, 0 means white and 9 means black. A real color photo has
+        three numbers for every pixel (how much red, green and blue), and a Mothbox photo has tens of millions of
+        pixels. That's a lot of numbers!
       </p>
     </div>
   )
@@ -313,8 +327,8 @@ function LayerStack({ scene, crop }: { scene: Scene; crop: Box }) {
       </div>
       <p className="small muted">
         We picked these filters by hand so you can see what each one does. A real AI picks its own filters while it
-        learns (that's next), and its deeper layers end up reacting to things like wing shapes, antennae and eyes. Our
-        real model has dozens of layers.
+        learns (you'll try that in the next step), and its deeper layers end up reacting to things like wing shapes,
+        antennae and eyes. Our real model has dozens of layers.
       </p>
     </div>
   )
@@ -370,7 +384,7 @@ function TeachTinyAi({ trainScene, testScene }: { trainScene: Scene; testScene: 
 
   return (
     <div className="explain-block">
-      <h3>4. How does it learn? Teach a tiny AI</h3>
+      <h3>Teach a tiny AI</h3>
       <p>
         Nobody types in the filter numbers. The AI starts with <strong>random</strong> numbers, so at first its guesses
         are junk. Then it practices on photos where people already marked every insect. After each guess it checks how
@@ -530,13 +544,13 @@ function YoloGrid({ scene }: { scene: Scene }) {
   const text = [
     'YOLO puts an invisible grid over the whole photo. Each square is a cell.',
     `Every cell asks: "Is the middle of an insect inside me? If so, how big is its box, and how sure am I?" That makes lots of guesses at once, ${guesses.length} here. Most are weak.`,
-    'Guesses below 25% sure are thrown out. This is the same "how sure" slider you used in Step 2.',
+    'Guesses below 25% sure are thrown out. This is the same "how sure" slider you tried in Step 2.',
     'Neighboring cells often guess the same insect. YOLO keeps the most confident box and removes the ones that overlap it a lot. One insect, one box.',
   ]
 
   return (
     <div className="explain-block">
-      <h3>5. How YOLO turns all of this into boxes</h3>
+      <h3>4. How YOLO turns all of this into boxes</h3>
       <p>
         YOLO stands for <strong>"You Only Look Once."</strong> Older detectors looked at a photo many times, one
         possible area at a time. YOLO runs the photo through its layers <em>once</em> and gets every box at the same
@@ -567,16 +581,19 @@ function YoloGrid({ scene }: { scene: Scene }) {
 
 // ---------------------------------------------------------------------------
 
-export function HowAiSees({ lab }: { lab: Lab }) {
+function useLessonScenes(lab: Lab) {
   const scene = useMemo(() => (lab.scene?.source === 'sample' ? lab.scene : renderNight(NIGHTS[0])), [lab.scene])
+  return scene
+}
+
+export function HowAiSees({ lab }: { lab: Lab }) {
+  const scene = useLessonScenes(lab)
   const crop = useMemo(() => mothCrop(scene), [scene])
-  const trainScene = useMemo(() => (scene.key === 'quiet' ? scene : renderNight(NIGHTS[0])), [scene])
-  const testScene = useMemo(() => renderNight(NIGHTS[2]), [])
 
   return (
     <section className="explainer">
       <div className="intro">
-        <h2>How the AI sees</h2>
+        <h2>Step 3: How the AI sees</h2>
         <p>
           The real Mothbox finds insects with an AI called a <strong>convolutional neural network</strong> (CNN for
           short). That sounds complicated, but it's built from a few simple ideas. Try each one below.
@@ -586,8 +603,35 @@ export function HowAiSees({ lab }: { lab: Lab }) {
       <PixelNumbers scene={scene} crop={crop} />
       <FilterPlayground scene={scene} crop={crop} />
       <LayerStack scene={scene} crop={crop} />
-      <TeachTinyAi trainScene={trainScene} testScene={testScene} />
       <YoloGrid scene={scene} />
+
+      <div className="callout">
+        <h3>Talk about it</h3>
+        <ol>
+          <li>Design your own filter in part 2. Can you make one that finds right edges? Bottom edges?</li>
+          <li>Why do you think small insects are harder for the computer to find than big ones?</li>
+        </ol>
+      </div>
+    </section>
+  )
+}
+
+export function HowAiLearns({ lab }: { lab: Lab }) {
+  const scene = useLessonScenes(lab)
+  const trainScene = useMemo(() => (scene.key === 'quiet' ? scene : renderNight(NIGHTS[0])), [scene])
+  const testScene = useMemo(() => renderNight(NIGHTS[2]), [])
+
+  return (
+    <section className="explainer">
+      <div className="intro">
+        <h2>Step 4: How the AI learns</h2>
+        <p>
+          In the last step, we picked the filters by hand. A real AI finds its own filter numbers by practicing. This is
+          called <strong>training</strong>.
+        </p>
+      </div>
+
+      <TeachTinyAi trainScene={trainScene} testScene={testScene} />
 
       <div className="big-idea">
         <h3>What the AI can't do</h3>
@@ -598,7 +642,7 @@ export function HowAiSees({ lab }: { lab: Lab }) {
           </li>
           <li>
             It finds <em>where</em> insects are, not <em>what</em> they are. Naming them is a different AI (BioCLIP),
-            which you'll meet in Step 3.
+            which you'll meet in the next step.
           </li>
           <li>
             It doesn't "understand" bugs. It's millions of numbers that got good at one job, so people still check its
@@ -614,7 +658,6 @@ export function HowAiSees({ lab }: { lab: Lab }) {
           <li>
             Why do you think the AI has to practice on photos people already labeled? What if the labels had mistakes?
           </li>
-          <li>Design your own filter in part 2. Can you make one that finds right edges? Bottom edges?</li>
         </ol>
       </div>
     </section>

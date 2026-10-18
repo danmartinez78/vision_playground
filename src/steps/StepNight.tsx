@@ -4,7 +4,6 @@ import { NIGHTS, renderNight, sceneFromFile } from '../lib/scene'
 import { SceneView } from '../SceneView'
 
 export function StepNight({ lab }: { lab: Lab }) {
-  const [zoom, setZoom] = useState(1)
   const [error, setError] = useState('')
 
   const upload = async (file: File | undefined) => {
@@ -20,15 +19,16 @@ export function StepNight({ lab }: { lab: Lab }) {
   return (
     <section>
       <div className="intro">
-        <h2>Step 1: The night</h2>
+        <h2>Step 1: Look at a Mothbox photo</h2>
         <p>
-          A <strong>Mothbox</strong> wakes up at night, turns on a bright UV light and takes photos of the insects that
-          land on its white sheet. One night can make hundreds of photos. Nobody has time to look at all of them, so
-          computers help. In this lab you will do each job yourself first, then see how the computer does it.
+          A <strong>Mothbox</strong> is a camera trap for insects. At night it turns on a bright light and takes photos
+          of the insects that land on its white sheet. One night can make hundreds of photos. Nobody has time to look at
+          all of them, so computers help. In this lab you will do each job yourself first, then see how the computer
+          does it.
         </p>
       </div>
 
-      <h3>Pick a night</h3>
+      <h3>Pick a photo to work on</h3>
       <div className="night-grid">
         {NIGHTS.map((n) => (
           <button
@@ -53,19 +53,11 @@ export function StepNight({ lab }: { lab: Lab }) {
 
       {lab.scene && (
         <>
-          <div className="toolbar">
-            <label>
-              Zoom
-              <input type="range" min={1} max={3} step={0.25} value={zoom} onChange={(e) => setZoom(+e.target.value)} />
-            </label>
-            <span className="muted small">Scroll around when zoomed in.</span>
-          </div>
           <SceneView
             imageUrl={lab.scene.imageUrl}
             width={lab.scene.width}
             height={lab.scene.height}
             layers={[]}
-            zoom={zoom}
             alt={`Mothbox sheet: ${lab.scene.title}`}
           />
           <div className="callout">

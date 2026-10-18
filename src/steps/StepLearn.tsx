@@ -9,8 +9,8 @@ export function StepLearn({ lab }: { lab: Lab }) {
   if (!lab.detector) {
     return (
       <section>
-        <h2>Step 5: What did we learn?</h2>
-        <p className="warn">Run the detector in Step 2 first.</p>
+        <h2>Step 7: What did we learn?</h2>
+        <p className="warn">Run the computer's detector in Step 2 first.</p>
       </section>
     )
   }
@@ -39,7 +39,7 @@ export function StepLearn({ lab }: { lab: Lab }) {
   return (
     <section>
       <div className="intro">
-        <h2>Step 5: What did we learn?</h2>
+        <h2>Step 7: What did we learn?</h2>
       </div>
 
       {sample ? (
@@ -50,7 +50,7 @@ export function StepLearn({ lab }: { lab: Lab }) {
               <strong>{lab.guess || '—'}</strong>
             </div>
             <div className="stat">
-              <span>Counted by detector + AI + you</span>
+              <span>Counted by computer + AI + you</span>
               <strong>{totalCounted}</strong>
             </div>
             <div className="stat">
@@ -92,35 +92,36 @@ export function StepLearn({ lab }: { lab: Lab }) {
             </div>
           </div>
 
-          <h3>The night's tally</h3>
-          <table className="tally">
-            <thead>
-              <tr>
-                <th>Insect</th>
-                <th>Group</th>
-                <th>Role</th>
-                <th>Counted</th>
-                <th>Really there</th>
-              </tr>
-            </thead>
-            <tbody>
-              {SPECIES.filter((s) => counted.get(s.id) || real.get(s.id)).map((s) => (
-                <tr key={s.id} className={s.role}>
-                  <td>
-                    {s.common} <em className="muted small">{s.scientific}</em>
-                  </td>
-                  <td>{GROUP_LABEL.get(s.group)}</td>
-                  <td>{ROLE_LABEL[s.role]}</td>
-                  <td>{counted.get(s.id) ?? 0}</td>
-                  <td>{real.get(s.id) ?? 0}</td>
+          <details className="callout">
+            <summary>See the full count for this photo</summary>
+            <table className="tally">
+              <thead>
+                <tr>
+                  <th>Insect</th>
+                  <th>Group</th>
+                  <th>Role</th>
+                  <th>Counted</th>
+                  <th>Really there</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
-          <p className="small muted">
-            Counts can be off because the detector missed some insects, counted some leaves, or the AI picked a look-alike
-            that nobody fixed.
-          </p>
+              </thead>
+              <tbody>
+                {SPECIES.filter((s) => counted.get(s.id) || real.get(s.id)).map((s) => (
+                  <tr key={s.id} className={s.role}>
+                    <td>
+                      {s.common} <em className="muted small">{s.scientific}</em>
+                    </td>
+                    <td>{GROUP_LABEL.get(s.group)}</td>
+                    <td>{ROLE_LABEL[s.role]}</td>
+                    <td>{counted.get(s.id) ?? 0}</td>
+                    <td>{real.get(s.id) ?? 0}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+            <p className="small muted">
+              Counts can be off when the detector misses an insect, counts a leaf, or the AI picks a look-alike.
+            </p>
+          </details>
         </>
       ) : (
         <>
@@ -135,7 +136,9 @@ export function StepLearn({ lab }: { lab: Lab }) {
               ))}
             </tbody>
           </table>
-          <p className="small muted">Your guess was {lab.guess || '—'}. The detector kept {lab.kept.length} spots.</p>
+          <p className="small muted">
+            Your guess was {lab.guess || '—'}. The detector kept {lab.kept.length} spots.
+          </p>
         </>
       )}
 
@@ -144,17 +147,17 @@ export function StepLearn({ lab }: { lab: Lab }) {
         <div>
           <h4>Before: all by hand</h4>
           <ul>
-            <li>Insects were caught in traps, usually killed, and brought back to the lab.</li>
-            <li>Experts sorted, pinned and named them one at a time with a microscope.</li>
-            <li>One night's catch could take days, so scientists could only study a few places.</li>
+            <li>Insects were trapped and usually killed.</li>
+            <li>Experts named them one at a time under a microscope.</li>
+            <li>One night's catch took days to sort.</li>
           </ul>
         </div>
         <div>
           <h4>Now: camera + AI + people</h4>
           <ul>
-            <li>A Mothbox photographs the insects, and they fly away unharmed.</li>
-            <li>AI does the first pass: find every insect, then make a best guess at its name.</li>
-            <li>Experts check only the hard cases, so many more places and nights can be studied.</li>
+            <li>A Mothbox takes photos, and the insects fly away.</li>
+            <li>AI finds and names them in minutes.</li>
+            <li>People check only the hard ones.</li>
           </ul>
         </div>
       </div>
@@ -164,23 +167,18 @@ export function StepLearn({ lab }: { lab: Lab }) {
       <div className="big-idea">
         <h3>Seeing vs. guessing</h3>
         <p>
-          In the scent simulator, the survey drone <strong>estimates</strong> where pests are from clues like crop damage.
-          We never see the pests themselves, so the map is a guess about something hidden.
-        </p>
-        <p>
-          A Mothbox <strong>observes</strong> directly. Every insect in the count is a photo you can check, like you just
-          did. That doesn't make it perfect: detectors miss things and AI confuses look-alikes. But you can find and fix
-          those mistakes, which you can't do with a guess.
+          The scent simulator's survey map <strong>guesses</strong> where pests are from clues like crop damage. A
+          Mothbox <strong>sees</strong> them: every insect in the count is a photo you can check. It still makes
+          mistakes, but you can find and fix them, like you just did.
         </p>
       </div>
 
       <div className="callout">
         <h3>Talk about it</h3>
         <ol>
-          <li>Where did the computer do better than you? Where did you do better?</li>
-          <li>Which mistake is worse for a farmer: a missed pest moth, or a false alarm?</li>
-          <li>If we put a Mothbox in the field before and after a scent treatment, what would you hope to see change? What should stay the same?</li>
-          <li>How could the Mothbox count and the scent simulator's survey map work together?</li>
+          <li>Where did the computer beat you? Where did you beat it?</li>
+          <li>Which is worse for a farmer: a missed pest, or a false alarm?</li>
+          <li>How could a Mothbox show whether a scent treatment worked?</li>
         </ol>
       </div>
     </section>
