@@ -201,15 +201,6 @@ export function StepReview({ lab }: { lab: Lab }) {
           </div>
         </div>
       )}
-
-      <details className="callout">
-        <summary>Tip: the three brown pest moths</summary>
-        <p>
-          Fall armyworm, corn earworm and black cutworm moths are all brown moths in the same family (Noctuidae). Look
-          at how dark the wings are and whether there's a pale spot. Even experts look closely at wing markings to tell
-          them apart. That's exactly where an AI needs a human to check its work.
-        </p>
-      </details>
     </section>
   )
 }
