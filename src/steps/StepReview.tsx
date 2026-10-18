@@ -1,11 +1,12 @@
 import { useMemo, useState } from 'react'
 import type { Lab } from '../lab'
 import { cropToDataUrl } from '../lib/geometry'
+import { ExpertSays } from './StepSort'
 import type { AiGuess } from '../lib/identifier'
 import { makeRng } from '../lib/rng'
 import { speciesPicture } from '../lib/scene'
 import { SPECIES, SPECIES_BY_ID } from '../lib/species'
-import { expertName, SAMPLES_DIR } from '../lib/samples'
+import { SAMPLES_DIR } from '../lib/samples'
 import { REAL_GROUP_LABEL, realRight, truthName, truthRealGroup } from '../lib/truth'
 import type { RealGroup } from '../lib/types'
 
@@ -57,8 +58,9 @@ function RealReview({ lab }: { lab: Lab }) {
     [lab.unsure, scene],
   )
   const answer = (id: string): RealGroup => (lab.finalLabel(id) as RealGroup | null) ?? 'notbug'
-  const aiAloneRight = lab.cards.filter((d) => realRight(lab.mothAi.get(d.id)?.group, lab.truthFor.get(d.id))).length
-  const teamRight = lab.cards.filter((d) => realRight(answer(d.id), lab.truthFor.get(d.id))).length
+  const scoredCards = lab.cards.filter((d) => lab.scored(d.id))
+  const aiAloneRight = scoredCards.filter((d) => realRight(lab.mothAi.get(d.id)?.group, lab.truthFor.get(d.id))).length
+  const teamRight = scoredCards.filter((d) => realRight(answer(d.id), lab.truthFor.get(d.id))).length
   const checked = lab.unsure.filter((d) => lab.reviewChoices[d.id] !== undefined).length
   const allChecked = checked === lab.unsure.length
 
@@ -111,7 +113,7 @@ function RealReview({ lab }: { lab: Lab }) {
                       'guide-card',
                       item.id === 'notbug' ? 'notbug' : '',
                       value === item.id ? 'on' : '',
-                      decided !== undefined && item.id === real ? 'truth' : '',
+                      decided !== undefined && lab.scored(d.id) && item.id === real ? 'truth' : '',
                     ].join(' ')}
                     onClick={() => choose(item.id)}
                     disabled={decided !== undefined}
@@ -143,15 +145,18 @@ function RealReview({ lab }: { lab: Lab }) {
                 </button>
               ) : (
                 <p className="answer">
-                  Experts: <strong>{truth ? expertName(truth.label) : 'Nothing there (a false alarm)'}</strong>.{' '}
-                  {real === 'unknown' && <span className="muted">Any insect answer counts. </span>}
-                  <span className={youRight ? 'good-text' : 'bad-text'}>
-                    {youRight ? '✓ You were right' : '✗ You missed it'}
-                  </span>
-                  {' · '}
-                  <span className={aiRight ? 'good-text' : 'bad-text'}>
-                    {aiRight ? '✓ The AI was right' : '✗ The AI was wrong'}
-                  </span>
+                  <ExpertSays id={d.id} lab={lab} />{' '}
+                  {lab.scored(d.id) && (
+                    <>
+                      <span className={youRight ? 'good-text' : 'bad-text'}>
+                        {youRight ? '✓ You were right' : '✗ You missed it'}
+                      </span>
+                      {' · '}
+                      <span className={aiRight ? 'good-text' : 'bad-text'}>
+                        {aiRight ? '✓ The AI was right' : '✗ The AI was wrong'}
+                      </span>
+                    </>
+                  )}
                 </p>
               )}
             </article>
@@ -168,10 +173,10 @@ function RealReview({ lab }: { lab: Lab }) {
                 <div className="score">
                   <strong>Right answers</strong>
                   <span className="pill">
-                    AI alone: {aiAloneRight} of {lab.cards.length}
+                    AI alone: {aiAloneRight} of {scoredCards.length}
                   </span>
                   <span className="pill good">
-                    AI + you: {teamRight} of {lab.cards.length}
+                    AI + you: {teamRight} of {scoredCards.length}
                   </span>
                 </div>
                 <p className="small">

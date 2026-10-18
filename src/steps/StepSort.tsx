@@ -54,6 +54,32 @@ function MothAnswer({ group, confidence }: { group: RealGroup; confidence: numbe
   )
 }
 
+/** What the experts said about a real-photo close-up, in one short sentence. */
+export function ExpertSays({ id, lab }: { id: string; lab: Lab }) {
+  const t = lab.truthFor.get(id)
+  if (!t) {
+    return (
+      <>
+        The experts drew no box here. A false alarm, or an insect they missed? <strong>You decide.</strong>
+      </>
+    )
+  }
+  return (
+    <>
+      {t.label?.group === 'unknown' ? (
+        <>
+          The experts boxed it but didn't name it. <strong>You decide.</strong>
+        </>
+      ) : (
+        <>
+          Experts: <strong>{expertName(t.label)}</strong>.
+        </>
+      )}
+      {lab.twice.has(id) && ' The AI boxed this insect twice.'}
+    </>
+  )
+}
+
 /** Tips for telling a moth from other insects on a light-trap photo. */
 export function MothTips() {
   return (
@@ -91,8 +117,10 @@ export function StepSort({ lab }: { lab: Lab }) {
     const g = lab.ai.get(id)
     return g?.speciesId ? SPECIES_BY_ID.get(g.speciesId)!.group : 'notbug'
   }
-  const rightCount = lab.cards.filter((d) => isRight(d.id, lab.sortChoices[d.id])).length
-  const aiRight = lab.cards.filter((d) => isRight(d.id, aiGroup(d.id))).length
+  const scoredCards = lab.cards.filter((d) => lab.scored(d.id))
+  const rightCount = scoredCards.filter((d) => isRight(d.id, lab.sortChoices[d.id])).length
+  const aiRight = scoredCards.filter((d) => isRight(d.id, aiGroup(d.id))).length
+  const unscored = lab.cards.length - scoredCards.length
   const groups = lab.real ? REAL_GROUPS : GROUPS
   const groupLabel = (g: GroupId | RealGroup) =>
     lab.real ? REAL_GROUP_LABEL.get(g as RealGroup) : GROUP_LABEL.get(g as GroupId)
@@ -159,17 +187,20 @@ export function StepSort({ lab }: { lab: Lab }) {
           const m = lab.mothAi.get(d.id)
           const right = choice && isRight(d.id, choice)
           return (
-            <article key={d.id} className={revealed ? (right ? 'crop-card right' : 'crop-card wrong') : 'crop-card'}>
+            <article
+              key={d.id}
+              className={revealed && lab.scored(d.id) ? (right ? 'crop-card right' : 'crop-card wrong') : 'crop-card'}
+            >
               <img src={closeUps.get(d.id)} alt="A close-up from the photo" width={132} height={132} />
               {revealed && (g || m) ? (
                 <>
                   <p className="answer small">
-                    <span className={right ? 'good-text' : 'bad-text'}>{right ? '✓' : '✗'}</span> You said{' '}
-                    <strong>{choice ? groupLabel(choice) : 'nothing'}</strong>.{' '}
+                    {lab.scored(d.id) && (
+                      <span className={right ? 'good-text' : 'bad-text'}>{right ? '✓ ' : '✗ '}</span>
+                    )}
+                    You said <strong>{choice ? groupLabel(choice) : 'nothing'}</strong>.{' '}
                     {lab.real ? (
-                      <>
-                        Experts: <strong>{real ? expertName(real.label) : 'Nothing there (a false alarm)'}</strong>.
-                      </>
+                      <ExpertSays id={d.id} lab={lab} />
                     ) : (
                       <>
                         It was <strong>{truthName(real)}</strong>.
@@ -206,12 +237,18 @@ export function StepSort({ lab }: { lab: Lab }) {
               <div className="score">
                 <strong>Right group</strong>
                 <span className="pill good">
-                  You: {rightCount} of {lab.cards.length}
+                  You: {rightCount} of {scoredCards.length}
                 </span>
                 <span className="pill">
-                  AI: {aiRight} of {lab.cards.length}
+                  AI: {aiRight} of {scoredCards.length}
                 </span>
               </div>
+              {unscored > 0 && (
+                <p className="small muted">
+                  {unscored} close-up{unscored > 1 ? 's have' : ' has'} no expert answer, so{' '}
+                  {unscored > 1 ? "they aren't" : "it isn't"} scored.
+                </p>
+              )}
               {lab.real ? (
                 <>
                   <p className="small">

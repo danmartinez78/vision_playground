@@ -61,7 +61,7 @@ function RealTally({ lab, counted }: { lab: Lab; counted: Map<string, number> })
               </tr>
               {real.unknown > 0 && (
                 <tr>
-                  <td>❓ Experts couldn't tell</td>
+                  <td>❓ Experts didn't name</td>
                   <td>—</td>
                   <td>{real.unknown}</td>
                 </tr>

@@ -37,7 +37,7 @@ export const inLesson = (s: Sample) => !NOT_IN_LESSON.has(s.image)
 /** What the experts called an insect, in words a student can read. */
 export function expertName(label: TruthItem['label']): string {
   if (!label) return 'An insect'
-  if (label.group === 'unknown') return "Even the experts couldn't tell"
+  if (label.group === 'unknown') return "An insect the experts couldn't name"
   if (label.group === 'other') return 'Another insect (not a moth)'
   if (label.name === 'Lepidoptera' || label.name === 'Moth') return 'A moth'
   return `A moth: ${label.name}`

@@ -28,7 +28,7 @@ const MODEL_FILES: Record<number, string> = {
 }
 /** Keep weak guesses too, so the "how sure" slider can bring them back. */
 const MIN_SCORE = 0.05
-const NMS_IOU = 0.7
+const NMS_IOU = 0.5
 const MAX_BOXES = 500
 const PAD = 114
 

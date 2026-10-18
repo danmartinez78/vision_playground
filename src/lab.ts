@@ -86,13 +86,21 @@ export function useLab() {
       scene?.source === 'sample' && studentBoxes.length ? judgeBoxes(studentBoxes, answers) : null
     const studentScore = studentJudgement ? toScore(studentJudgement) : null
 
-    // what each kept detection really is (sample nights only)
+    // what each kept detection really is (sample nights only); a second box on
+    // an insect that was already found is still that insect
     const truthFor = new Map<string, TruthItem>()
+    const twice = new Set<string>()
     if (scene?.source === 'sample' && detectorJudgement) {
       detectorJudgement.verdicts.forEach((v, di) => {
-        if (v.kind === 'found' || v.kind === 'not-insect') truthFor.set(kept[di].id, truth[v.answer])
+        if (v.kind === 'found' || v.kind === 'not-insect' || v.kind === 'twice')
+          truthFor.set(kept[di].id, truth[v.answer])
+        if (v.kind === 'twice') twice.add(kept[di].id)
       })
     }
+    // on real photos a box with no expert box under it might be a false alarm or
+    // an insect the experts missed, and some obvious moths are labeled only
+    // "Unidentifiable", so neither kind of close-up is scored
+    const scored = (id: string) => !scene?.real || (truthFor.get(id)?.label?.group ?? 'unknown') !== 'unknown'
 
     // the cards for sorting: the most confident detections first, at most 24
     const cards = kept.slice(0, 24)
@@ -139,6 +147,8 @@ export function useLab() {
       insects,
       kept,
       truthFor,
+      twice,
+      scored,
       detectorScore,
       studentScore,
       detectorJudgement,

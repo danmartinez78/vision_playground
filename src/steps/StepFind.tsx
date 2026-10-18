@@ -323,6 +323,8 @@ export function StepFind({ lab, onExplain }: { lab: Lab; onExplain: () => void }
           <p className="small muted">
             Both are scored with the same rules. The computer checked the whole photo in{' '}
             {Math.max(1, Math.round(lab.detector.millis))} milliseconds using {engineName(lab.detector)}.{' '}
+            {scene.real &&
+              'Some "false alarms" may be tiny insects the experts didn\'t box. Experts can miss things too. '}
             <button className="link" onClick={redo}>
               Start this step over
             </button>
