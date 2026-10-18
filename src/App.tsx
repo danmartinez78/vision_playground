@@ -44,6 +44,30 @@ export default function App() {
             <p>How a computer finds and names insects</p>
           </div>
         </div>
+        <nav className="extras" aria-label="Extras">
+          <button
+            className={page === 'ai' ? 'step extra current' : 'step extra'}
+            onClick={() => openAi()}
+            aria-current={page === 'ai' ? 'page' : undefined}
+            aria-label="How the AI works"
+          >
+            <span className="num" aria-hidden>
+              🧠
+            </span>
+            <span className="label">How the AI works</span>
+          </button>
+          <button
+            className={page === 'own' ? 'step extra current' : 'step extra'}
+            onClick={() => setPage('own')}
+            aria-current={page === 'own' ? 'page' : undefined}
+            aria-label="Try your own photo"
+          >
+            <span className="num" aria-hidden>
+              📷
+            </span>
+            <span className="label">Try your own photo</span>
+          </button>
+        </nav>
         <nav className="stepper" aria-label="Lesson steps">
           {STEPS.map((name, i) => (
             <button
@@ -58,28 +82,6 @@ export default function App() {
               <span className="label">{name}</span>
             </button>
           ))}
-          <button
-            className={page === 'ai' ? 'step own current' : 'step own'}
-            onClick={() => openAi()}
-            aria-current={page === 'ai' ? 'page' : undefined}
-            aria-label="How the AI works"
-          >
-            <span className="num" aria-hidden>
-              🧠
-            </span>
-            <span className="label">How the AI works</span>
-          </button>
-          <button
-            className={page === 'own' ? 'step own current' : 'step own'}
-            onClick={() => setPage('own')}
-            aria-current={page === 'own' ? 'page' : undefined}
-            aria-label="Try your own photo"
-          >
-            <span className="num" aria-hidden>
-              📷
-            </span>
-            <span className="label">Try your own photo</span>
-          </button>
         </nav>
       </header>
 

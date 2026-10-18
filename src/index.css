@@ -109,8 +109,8 @@ select:focus-visible,
   color: #fff;
   margin: 0 -16px 1.25rem;
   padding: 0.75rem 16px;
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: 1fr auto;
   align-items: center;
   gap: 0.75rem 1.5rem;
   border-radius: 0 0 16px 16px;
@@ -138,10 +138,24 @@ select:focus-visible,
 }
 
 .stepper {
+  grid-column: 1 / -1;
   display: flex;
-  flex-wrap: wrap;
   gap: 0.4rem;
-  margin-left: auto;
+}
+
+.stepper .step {
+  flex: 1 1 auto;
+  justify-content: center;
+  white-space: nowrap;
+}
+
+.step .num {
+  flex-shrink: 0;
+}
+
+.extras {
+  display: flex;
+  gap: 0.4rem;
 }
 
 .step {
@@ -1080,9 +1094,8 @@ button.big {
   font-size: 0.8rem;
 }
 
-.step.own {
+.step.extra {
   border-style: dashed;
-  margin-left: 0.5rem;
 }
 
 .own-upload {
@@ -1245,5 +1258,17 @@ button.big {
 @media (max-width: 700px) {
   .guide-row {
     grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 700px) {
+  .stepper {
+    gap: 0.3rem;
+  }
+  .stepper .step {
+    padding: 0.3rem 0.4rem;
+  }
+  .stepper .step.current {
+    font-size: 0.78rem;
   }
 }
