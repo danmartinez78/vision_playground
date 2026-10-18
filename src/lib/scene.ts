@@ -112,13 +112,15 @@ function drawMoth(ctx: Ctx, size: number, speciesId: string, rng: Rng): Extent {
     )
     if (c.spots) ellipse(ctx, side * s * 0.22, s * 0.13, s * 0.035, s * 0.025, c.spots)
     if (speciesId === 'isabella-tiger') {
-      for (let i = 0; i < 3; i++) ellipse(ctx, side * s * (0.15 + i * 0.09), s * (0.2 - i * 0.03), s * 0.012, s * 0.012, c.mark)
+      for (let i = 0; i < 3; i++)
+        ellipse(ctx, side * s * (0.15 + i * 0.09), s * (0.2 - i * 0.03), s * 0.012, s * 0.012, c.mark)
     }
     if (rng() < 0.5) line(ctx, [side * s * 0.04, s * 0.15, side * s * 0.3, s * 0.27], c.mark, s * 0.015)
   }
   ellipse(ctx, 0, s * 0.04, s * 0.055, s * 0.2, c.body)
   ellipse(ctx, 0, -s * 0.16, s * 0.05, s * 0.04, c.body)
-  for (const side of [-1, 1]) line(ctx, [side * s * 0.02, -s * 0.19, side * s * 0.12, -s * 0.33], c.mark, Math.max(1, s * 0.012))
+  for (const side of [-1, 1])
+    line(ctx, [side * s * 0.02, -s * 0.19, side * s * 0.12, -s * 0.33], c.mark, Math.max(1, s * 0.012))
   return { minX: -s * 0.5, maxX: s * 0.5, minY: -s * 0.33, maxY: s * 0.36 }
 }
 
@@ -154,7 +156,8 @@ function drawBeetle(ctx: Ctx, size: number, speciesId: string): Extent {
   } else {
     ellipse(ctx, -s * 0.09, 0.0, s * 0.05, s * 0.18, 'rgba(255,255,255,0.18)')
   }
-  for (const side of [-1, 1]) line(ctx, [side * s * 0.05, -s * 0.43, side * s * 0.15, -s * 0.55], c.leg, Math.max(1, s * 0.025))
+  for (const side of [-1, 1])
+    line(ctx, [side * s * 0.05, -s * 0.43, side * s * 0.15, -s * 0.55], c.leg, Math.max(1, s * 0.025))
   return { minX: -s * 0.44, maxX: s * 0.44, minY: -s * 0.55, maxY: s * 0.5 }
 }
 
@@ -235,7 +238,8 @@ function drawLacewing(ctx: Ctx, size: number): Extent {
   shadowOff(ctx)
   ellipse(ctx, -s * 0.04, -s * 0.18, s * 0.025, s * 0.025, '#d6b13a')
   ellipse(ctx, s * 0.04, -s * 0.18, s * 0.025, s * 0.025, '#d6b13a')
-  for (const side of [-1, 1]) line(ctx, [side * s * 0.02, -s * 0.2, side * s * 0.14, -s * 0.5], 'rgba(110,160,80,0.8)', 1)
+  for (const side of [-1, 1])
+    line(ctx, [side * s * 0.02, -s * 0.2, side * s * 0.14, -s * 0.5], 'rgba(110,160,80,0.8)', 1)
   return { minX: -s * 0.3, maxX: s * 0.3, minY: -s * 0.5, maxY: s * 0.52 }
 }
 
@@ -304,6 +308,23 @@ function drawSpecies(ctx: Ctx, speciesId: string, size: number, rng: Rng): Exten
     default:
       return drawLacewing(ctx, size)
   }
+}
+
+/** A field-guide picture of one species on a plain sheet, as a data URL. */
+export function speciesPicture(speciesId: string, size = 132): string {
+  const draw = (ctx: Ctx) => drawSpecies(ctx, speciesId, 100, makeRng(3))
+  const probe = document.createElement('canvas').getContext('2d')!
+  const e = draw(probe)
+  const canvas = document.createElement('canvas')
+  canvas.width = canvas.height = size
+  const ctx = canvas.getContext('2d')!
+  ctx.fillStyle = '#efede8'
+  ctx.fillRect(0, 0, size, size)
+  const k = (size * 0.84) / Math.max(e.maxX - e.minX, e.maxY - e.minY)
+  ctx.translate(size / 2 - ((e.minX + e.maxX) / 2) * k, size / 2 - ((e.minY + e.maxY) / 2) * k)
+  ctx.scale(k, k)
+  draw(ctx)
+  return canvas.toDataURL()
 }
 
 function rotatedBox(e: Extent, x: number, y: number, angle: number): Box {

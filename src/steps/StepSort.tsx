@@ -62,7 +62,7 @@ export function StepSort({ lab }: { lab: Lab }) {
   if (!lab.detector) {
     return (
       <section>
-        <h2>Step 5: Name the insects</h2>
+        <h2>Step 3: Name the insects</h2>
         <p className="warn">
           Go back to Step 2 and run the computer's detector first. Every box it found becomes a close-up card here.
         </p>
@@ -73,7 +73,7 @@ export function StepSort({ lab }: { lab: Lab }) {
   return (
     <section>
       <div className="intro">
-        <h2>Step 5: Name the insects</h2>
+        <h2>Step 3: Name the insects</h2>
         <p>
           The second job is called <strong>identification</strong>: deciding <em>what</em> each insect is. The Mothbox
           cuts a small close-up picture out of the photo for every box the detector found. Then a different AI, called{' '}

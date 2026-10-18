@@ -71,17 +71,13 @@ export function Credits() {
           </li>
           <li>
             <strong>BioCLIP</strong> by the Imageomics Institute names living things at every level of the tree of life.
-            The practice identifier in step 5 imitates it.{' '}
+            The practice identifier in step 3 imitates it.{' '}
             <Link href="https://imageomics.github.io/bioclip/">BioCLIP project page</Link> and{' '}
             <Link href="https://arxiv.org/abs/2311.18803">paper</Link> (Stevens and others, CVPR 2024)
           </li>
           <li>
             <strong>FiftyOne</strong> by Voxel51 is the program the Mothbox team uses to check the AI's work.{' '}
             <Link href="https://docs.voxel51.com/">FiftyOne docs</Link>
-          </li>
-          <li>
-            The size and speed numbers for the YOLO11 family in step 4 come from the{' '}
-            <Link href="https://docs.ultralytics.com/models/yolo11/">Ultralytics docs</Link>.
           </li>
         </ul>
       </div>
@@ -90,7 +86,7 @@ export function Credits() {
         <h3>About this lab</h3>
         <p>
           Made for our FIRST LEGO League team. The sample nights are drawn by the computer, not real photos, and the
-          names in step 5 are made up to act like BioCLIP. For now, the detector that runs on this page is a simpler
+          names in step 3 are made up to act like BioCLIP. For now, the detector that runs on this page is a simpler
           stand-in; our trained YOLO11 model is coming next. The lab's code is free to use and change under the AGPL-3.0
           license: <Link href="https://github.com/danmartinez78/vision_playground">source code on GitHub</Link>.
         </p>

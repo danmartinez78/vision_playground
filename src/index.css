@@ -1126,69 +1126,6 @@ button.big {
   }
 }
 
-.size-chart {
-  display: grid;
-  gap: 0.35rem;
-  margin: 0.5rem 0;
-}
-
-.size-row {
-  display: grid;
-  grid-template-columns: minmax(9rem, 1.2fr) 2fr 3.5rem;
-  gap: 0.6rem;
-  align-items: center;
-  background: var(--card);
-  border: 1px solid var(--line);
-  border-radius: 10px;
-  padding: 0.45rem 0.7rem;
-}
-
-.size-row.head {
-  background: none;
-  border: none;
-  padding-top: 0;
-  padding-bottom: 0;
-  font-size: 0.85rem;
-  color: var(--muted);
-}
-
-.size-row small {
-  display: block;
-}
-
-.size-bar-cell {
-  display: flex;
-  flex-direction: column;
-  gap: 0.2rem;
-}
-
-.size-bar {
-  display: block;
-  height: 0.8rem;
-  min-width: 4px;
-  border-radius: 6px;
-  background: linear-gradient(90deg, #8b5cf6, #e11d74);
-}
-
-.size-score {
-  font-size: 1.3rem;
-  font-weight: 700;
-  text-align: right;
-}
-
-@media (max-width: 700px) {
-  .size-row {
-    grid-template-columns: 1fr 3rem;
-  }
-  .size-row .size-bar-cell {
-    grid-column: 1 / -1;
-    grid-row: 2;
-  }
-  .size-row.head span:nth-child(2) {
-    display: none;
-  }
-}
-
 .credits h3 {
   margin-bottom: 0.3rem;
 }
@@ -1199,4 +1136,106 @@ button.big {
 
 .credits li {
   margin-bottom: 0.4rem;
+}
+
+.ai-tabs {
+  margin: 0.5rem 0 1rem;
+}
+
+.review-list {
+  display: grid;
+  gap: 0.9rem;
+}
+
+.review-card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 0.9rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.review-card > .primary {
+  align-self: flex-start;
+}
+
+.review-head {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.review-head img {
+  border-radius: 10px;
+  border: 1px solid var(--line);
+}
+
+.ai-answer {
+  font-size: 1.15rem;
+}
+
+.guide-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 0.5rem;
+}
+
+.guide-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  text-align: center;
+  padding: 0.6rem 0.5rem;
+  border: 2px solid var(--line);
+  border-radius: 12px;
+  background: var(--card);
+  font-weight: 400;
+  color: inherit;
+}
+
+.guide-card img {
+  border-radius: 8px;
+}
+
+.guide-card.on {
+  border-color: #7c3aed;
+  background: #f5f0ff;
+}
+
+.guide-card.truth {
+  border-color: var(--good);
+  box-shadow: 0 0 0 3px #bbf7d0;
+}
+
+.guide-card:disabled {
+  opacity: 1;
+  cursor: default;
+}
+
+.guide-card .tag {
+  position: absolute;
+  top: 0.3rem;
+  left: 0.3rem;
+  font-size: 0.7rem;
+  font-weight: 700;
+  background: #e11d74;
+  color: #fff;
+  border-radius: 999px;
+  padding: 0.1rem 0.45rem;
+}
+
+.notbug-icon {
+  font-size: 3rem;
+  line-height: 96px;
+  height: 96px;
+}
+
+@media (max-width: 700px) {
+  .guide-row {
+    grid-template-columns: 1fr 1fr;
+  }
 }

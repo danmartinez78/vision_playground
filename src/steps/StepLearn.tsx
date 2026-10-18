@@ -9,7 +9,7 @@ export function StepLearn({ lab }: { lab: Lab }) {
   if (!lab.detector) {
     return (
       <section>
-        <h2>Step 7: What did we learn?</h2>
+        <h2>Step 5: What did we learn?</h2>
         <p className="warn">Run the computer's detector in Step 2 first.</p>
       </section>
     )
@@ -39,7 +39,7 @@ export function StepLearn({ lab }: { lab: Lab }) {
   return (
     <section>
       <div className="intro">
-        <h2>Step 7: What did we learn?</h2>
+        <h2>Step 5: What did we learn?</h2>
       </div>
 
       {sample ? (

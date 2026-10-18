@@ -1,6 +1,5 @@
 import { useEffect, useMemo, useState, type MouseEvent } from 'react'
 import type { Lab } from './lab'
-import { ModelSize } from './ModelSize'
 import {
   add,
   convolve,
@@ -328,8 +327,8 @@ function LayerStack({ scene, crop }: { scene: Scene; crop: Box }) {
       </div>
       <p className="small muted">
         We picked these filters by hand so you can see what each one does. A real AI picks its own filters while it
-        learns (you'll try that in the next step), and its deeper layers end up reacting to things like wing shapes,
-        antennae and eyes. Our real model has dozens of layers.
+        learns (you'll try that in part 2), and its deeper layers end up reacting to things like wing shapes, antennae
+        and eyes. Our real model has dozens of layers.
       </p>
     </div>
   )
@@ -594,7 +593,6 @@ export function HowAiSees({ lab }: { lab: Lab }) {
   return (
     <section className="explainer">
       <div className="intro">
-        <h2>Step 3: How the AI sees</h2>
         <p>
           The real Mothbox finds insects with an AI called a <strong>convolutional neural network</strong> (CNN for
           short). That sounds complicated, but it's built from a few simple ideas. Try each one below.
@@ -625,16 +623,13 @@ export function HowAiLearns({ lab }: { lab: Lab }) {
   return (
     <section className="explainer">
       <div className="intro">
-        <h2>Step 4: How the AI learns</h2>
         <p>
-          In the last step, we picked the filters by hand. A real AI finds its own filter numbers by practicing. This is
-          called <strong>training</strong>.
+          In part 1, we picked the filters by hand. A real AI finds its own filter numbers by practicing. This is called{' '}
+          <strong>training</strong>.
         </p>
       </div>
 
       <TeachTinyAi trainScene={trainScene} testScene={testScene} />
-
-      <ModelSize />
 
       <div className="big-idea">
         <h3>What the AI can't do</h3>
@@ -645,7 +640,7 @@ export function HowAiLearns({ lab }: { lab: Lab }) {
           </li>
           <li>
             It finds <em>where</em> insects are, not <em>what</em> they are. Naming them is a different AI (BioCLIP),
-            which you'll meet in the next step.
+            which you'll meet in step 3 of the lesson.
           </li>
           <li>
             It doesn't "understand" bugs. It's millions of numbers that got good at one job, so people still check its
@@ -660,10 +655,6 @@ export function HowAiLearns({ lab }: { lab: Lab }) {
           <li>What fooled the tiny AI on the windy night? Why do you think those things were hard for it?</li>
           <li>
             Why do you think the AI has to practice on photos people already labeled? What if the labels had mistakes?
-          </li>
-          <li>
-            If you had to pick one YOLO11 size for a Mothbox running on a battery in a rainforest, which would you pick?
-            Why?
           </li>
         </ol>
       </div>

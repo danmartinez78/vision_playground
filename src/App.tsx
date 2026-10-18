@@ -9,25 +9,27 @@ import { StepNight } from './steps/StepNight'
 import { StepReview } from './steps/StepReview'
 import { StepSort } from './steps/StepSort'
 
-const STEPS = [
-  'Look at a photo',
-  'Find the insects',
-  'How the AI sees',
-  'How the AI learns',
-  'Name the insects',
-  "Check the AI's work",
-  'What did we learn?',
-]
+const STEPS = ['Look at a photo', 'Find the insects', 'Name the insects', "Check the AI's work", 'What did we learn?']
+
+type Page = 'lesson' | 'own' | 'ai' | 'credits'
 
 export default function App() {
   const lab = useLab()
   const [step, setStep] = useState(0)
-  const [page, setPage] = useState<'lesson' | 'own' | 'credits'>('lesson')
+  const [page, setPageRaw] = useState<Page>('lesson')
+  const [aiPart, setAiPart] = useState<'sees' | 'learns'>('sees')
   const ownPhoto = page !== 'lesson'
+  const setPage = (p: Page) => {
+    setPageRaw(p)
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }
   const go = (i: number) => {
     setStep(i)
     setPage('lesson')
-    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }
+  const openAi = (part: 'sees' | 'learns' = 'sees') => {
+    setAiPart(part)
+    setPage('ai')
   }
 
   return (
@@ -57,11 +59,19 @@ export default function App() {
             </button>
           ))}
           <button
+            className={page === 'ai' ? 'step own current' : 'step own'}
+            onClick={() => openAi()}
+            aria-current={page === 'ai' ? 'page' : undefined}
+            aria-label="How the AI works"
+          >
+            <span className="num" aria-hidden>
+              🧠
+            </span>
+            <span className="label">How the AI works</span>
+          </button>
+          <button
             className={page === 'own' ? 'step own current' : 'step own'}
-            onClick={() => {
-              setPage('own')
-              window.scrollTo({ top: 0, behavior: 'smooth' })
-            }}
+            onClick={() => setPage('own')}
             aria-current={page === 'own' ? 'page' : undefined}
             aria-label="Try your own photo"
           >
@@ -76,7 +86,45 @@ export default function App() {
       <main>
         {ownPhoto ? (
           <>
-            {page === 'own' ? <OwnPhoto /> : <Credits />}
+            {page === 'own' && <OwnPhoto />}
+            {page === 'credits' && <Credits />}
+            {page === 'ai' && (
+              <>
+                <div className="intro">
+                  <h2>How the AI works</h2>
+                  <p>
+                    Extra for curious minds: what's going on inside the computer's detector. You don't need this to
+                    finish the lesson.
+                  </p>
+                  <div className="tool-switch ai-tabs" role="tablist">
+                    <button
+                      role="tab"
+                      aria-selected={aiPart === 'sees'}
+                      className={aiPart === 'sees' ? 'on' : ''}
+                      onClick={() => openAi('sees')}
+                    >
+                      1. How the AI sees
+                    </button>
+                    <button
+                      role="tab"
+                      aria-selected={aiPart === 'learns'}
+                      className={aiPart === 'learns' ? 'on' : ''}
+                      onClick={() => openAi('learns')}
+                    >
+                      2. How the AI learns
+                    </button>
+                  </div>
+                </div>
+                {aiPart === 'sees' ? <HowAiSees lab={lab} /> : <HowAiLearns lab={lab} />}
+                {aiPart === 'sees' && (
+                  <div className="nav-buttons">
+                    <button className="primary" onClick={() => openAi('learns')}>
+                      Next: How the AI learns →
+                    </button>
+                  </div>
+                )}
+              </>
+            )}
             <div className="nav-buttons">
               <button className="primary" onClick={() => go(step)}>
                 ← Back to the lesson
@@ -86,12 +134,10 @@ export default function App() {
         ) : (
           <>
             {step === 0 && <StepNight lab={lab} />}
-            {step === 1 && lab.scene && <StepFind lab={lab} onExplain={() => go(2)} />}
-            {step === 2 && lab.scene && <HowAiSees lab={lab} />}
-            {step === 3 && lab.scene && <HowAiLearns lab={lab} />}
-            {step === 4 && lab.scene && <StepSort lab={lab} />}
-            {step === 5 && lab.scene && <StepReview lab={lab} />}
-            {step === 6 && lab.scene && <StepLearn lab={lab} />}
+            {step === 1 && lab.scene && <StepFind lab={lab} onExplain={() => openAi()} />}
+            {step === 2 && lab.scene && <StepSort lab={lab} />}
+            {step === 3 && lab.scene && <StepReview lab={lab} />}
+            {step === 4 && lab.scene && <StepLearn lab={lab} />}
 
             <div className="nav-buttons">
               {step > 0 && (
@@ -115,13 +161,7 @@ export default function App() {
           Mothbox
         </a>{' '}
         by Digital Naturalism Laboratories.{' '}
-        <button
-          className="link"
-          onClick={() => {
-            setPage('credits')
-            window.scrollTo({ top: 0, behavior: 'smooth' })
-          }}
-        >
+        <button className="link" onClick={() => setPage('credits')}>
           Credits and links
         </button>
       </footer>

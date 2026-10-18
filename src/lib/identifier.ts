@@ -56,7 +56,9 @@ export function identify(sceneKey: string, detectionId: string, truth: TruthItem
   const penalty = tiny ? 0.15 : 0
 
   const orderRight = rng() < 0.97
-  const orderName = orderRight ? real.order : ORDERS.filter((o) => o !== real.order)[Math.floor(rng() * (ORDERS.length - 1))]
+  const orderName = orderRight
+    ? real.order
+    : ORDERS.filter((o) => o !== real.order)[Math.floor(rng() * (ORDERS.length - 1))]
   const order = { name: orderName, confidence: round(between(rng, 0.85, 0.99) - penalty) }
 
   const sameOrder = SPECIES.filter((s) => s.order === orderName)
@@ -70,7 +72,7 @@ export function identify(sceneKey: string, detectionId: string, truth: TruthItem
   const speciesRight = familyRight && rng() < (hard ? 0.55 : 0.85)
   const speciesPick = speciesRight
     ? real
-    : lookAlikes.filter((s) => s.id !== real.id)[Math.floor(rng() * Math.max(1, lookAlikes.length - 1))] ?? familyPick
+    : (lookAlikes.filter((s) => s.id !== real.id)[Math.floor(rng() * Math.max(1, lookAlikes.length - 1))] ?? familyPick)
   const species = {
     id: speciesPick.id,
     name: speciesPick.common,
