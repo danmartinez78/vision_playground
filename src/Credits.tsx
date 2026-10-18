@@ -70,9 +70,9 @@ export function Credits() {
             photos. <Link href="https://docs.ultralytics.com/models/yolo11/">YOLO11 docs</Link> (AGPL-3.0 license)
           </li>
           <li>
-            <strong>A moth / not-a-moth classifier</strong> sorts each close-up, like the one AMI runs after its
-            detector. The answers in steps 3 and 4 are practice answers for now; we're training our own on the AMI
-            photos.
+            <strong>MobileNetV3</strong> sorts each close-up as moth or not, like the classifier AMI runs after its
+            detector. We trained the small size on close-ups from the AMI photos.{' '}
+            <Link href="https://pytorch.org/vision/stable/models/mobilenetv3.html">MobileNetV3 docs</Link>
           </li>
           <li>
             <strong>FiftyOne</strong> by Voxel51 is the program the Mothbox team uses to check the AI's work.{' '}
@@ -85,9 +85,9 @@ export function Credits() {
         <h3>About this lab</h3>
         <p>
           Made for our FIRST LEGO League team. The lesson photos and the experts' boxes and labels are real, from the
-          AMI dataset. The moth-or-not answers in steps 3 and 4 are made up for practice for now. The detector is real:
-          our trained YOLO11n runs right in your browser, on the light-trap photos, the drawn night and your own photos.
-          The lab's code is free to use and change under the AGPL-3.0 license:{' '}
+          AMI dataset. Both AIs are real and run right in your browser: our trained YOLO11n finds the insects, and our
+          trained moth classifier sorts them. Neither one saw the lesson photos while it was learning. The lab's code is
+          free to use and change under the AGPL-3.0 license:{' '}
           <Link href="https://github.com/danmartinez78/vision_playground">source code on GitHub</Link>.
         </p>
       </div>

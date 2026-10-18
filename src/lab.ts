@@ -1,8 +1,16 @@
-import { useMemo, useRef, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { detect, type DetectResult } from './lib/detect'
 import { judgeBoxes, type Judgement } from './lib/geometry'
-import { identifyMoth, type MothGuess } from './lib/identifier'
+import { mothChances } from './lib/mothModel'
 import type { Box, Detection, RealGroup, Scene, TruthItem } from './lib/types'
+
+export interface MothGuess {
+  group: RealGroup
+  confidence: number
+}
+
+/** Below this, the AI's moth-or-not answer counts as unsure and goes to a person to check. */
+export const UNSURE_BELOW = 0.6
 
 export interface Score {
   hits: number
@@ -25,6 +33,9 @@ export function useLab() {
   // stopwatches for the "by hand" jobs, so students can compare with the computer
   const [handTimer, setHandTimer] = useState<{ start: number | null; end: number | null }>({ start: null, end: null })
   const [sortTimer, setSortTimer] = useState<{ start: number; last: number; count: number } | null>(null)
+  // the moth classifier's answers, filled in as the detections come in
+  const [mothAi, setMothAi] = useState<Map<string, MothGuess>>(new Map())
+  const [mothFailed, setMothFailed] = useState(false)
 
   const currentScene = useRef<Scene | null>(null)
   const setScene = (s: Scene | null) => {
@@ -33,6 +44,7 @@ export function useLab() {
     setGuess('')
     setStudentBoxes([])
     setDetector(null)
+    setMothAi(new Map())
     setSortChoices({})
     setAiRevealed(false)
     setReviewChoices({})
@@ -54,11 +66,45 @@ export function useLab() {
     try {
       const out = await detect(scene.canvas)
       // ignore the result if the student picked another photo meanwhile
-      if (currentScene.current === scene) setDetector(out)
+      if (currentScene.current === scene) {
+        setMothAi(new Map())
+        setDetector(out)
+      }
     } finally {
       setDetecting(false)
     }
   }
+
+  // the moth classifier looks at every close-up the detector kept; lowering the
+  // "how sure" slider brings in more, so only the new ones are classified
+  useEffect(() => {
+    if (!scene?.real || !detector || detector.engine !== 'yolo') return
+    const todo = detector.detections.filter((d) => d.score >= threshold && !mothAi.has(d.id))
+    if (!todo.length) return
+    let stale = false
+    mothChances(
+      scene.canvas,
+      todo.map((d) => d.box),
+    )
+      .then((chances) => {
+        if (stale) return
+        setMothAi((m) => {
+          const next = new Map(m)
+          todo.forEach((d, i) => {
+            const p = chances[i]
+            next.set(d.id, { group: p >= 0.5 ? 'moth' : 'other', confidence: Math.max(p, 1 - p) })
+          })
+          return next
+        })
+      })
+      .catch((e) => {
+        console.warn('The moth classifier could not run', e)
+        if (!stale) setMothFailed(true)
+      })
+    return () => {
+      stale = true
+    }
+  }, [scene, detector, threshold, mothAi])
 
   const derived = useMemo(() => {
     const truth = scene?.truth ?? []
@@ -104,10 +150,7 @@ export function useLab() {
 
     // the cards for sorting: the most confident detections first, at most 24
     const cards = kept.slice(0, 24)
-    // the AI's moth-or-not answers (practice answers for now)
-    const mothAi = new Map<string, MothGuess>()
-    if (scene?.real) for (const d of kept) mothAi.set(d.id, identifyMoth(scene.key, d.id, truthFor.get(d.id)))
-    const unsure = cards.filter((d) => (mothAi.get(d.id)?.confidence ?? 1) < 0.6)
+    const unsure = cards.filter((d) => (mothAi.get(d.id)?.confidence ?? 1) < UNSURE_BELOW)
     /** The group after the student's check, or null for not a bug. */
     const finalLabel = (id: string): RealGroup | null => {
       const g = (reviewChoices[id] as RealGroup | undefined) ?? mothAi.get(id)?.group
@@ -135,12 +178,14 @@ export function useLab() {
       studentJudgement,
       cards,
       mothAi,
+      mothReady: !scene?.real || cards.every((d) => mothAi.has(d.id)),
+      mothFailed,
       unsure,
       finalLabel,
       handSeconds,
       sortSeconds,
     }
-  }, [scene, detector, threshold, studentBoxes, reviewChoices, handTimer, sortTimer])
+  }, [scene, detector, threshold, studentBoxes, reviewChoices, handTimer, sortTimer, mothAi, mothFailed])
 
   return {
     scene,

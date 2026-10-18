@@ -192,13 +192,9 @@ export function StepSort({ lab }: { lab: Lab }) {
                 {unscored > 1 ? "they aren't" : "it isn't"} scored.
               </p>
             )}
-            <p className="small">
-              Look at the AI's bars. It's sure about big, clear insects and less sure about tiny or blurry ones. Those
-              unsure ones are where people help, in the next step.
-            </p>
+            <p className="small">Look at the AI's bars. Where it's unsure, people help, in the next step.</p>
             <p className="small muted">
-              Practice mode: the expert answers are real, but the AI's answers are made up to act like a moth
-              classifier.
+              This AI is a real classifier we trained on close-ups the AMI experts labeled. It never saw these photos.
             </p>
           </div>
         ) : (
@@ -206,12 +202,20 @@ export function StepSort({ lab }: { lab: Lab }) {
             <div>
               <h3>AI's turn</h3>
               <p>
-                {allSorted
-                  ? 'Ready! See what the AI said about each close-up.'
-                  : `Sort all ${lab.cards.length} close-ups first (${lab.cards.length - sorted} to go).`}
+                {!allSorted
+                  ? `Sort all ${lab.cards.length} close-ups first (${lab.cards.length - sorted} to go).`
+                  : lab.mothFailed
+                    ? "The moth AI couldn't run on this device, so there are no AI answers to show."
+                    : lab.mothReady
+                      ? 'Ready! See what the AI said about each close-up.'
+                      : 'The AI is still looking at the close-ups…'}
               </p>
             </div>
-            <button className="primary big" onClick={() => lab.setAiRevealed(true)} disabled={!allSorted}>
+            <button
+              className="primary big"
+              onClick={() => lab.setAiRevealed(true)}
+              disabled={!allSorted || !lab.mothReady || lab.mothFailed}
+            >
               ▶ Show the AI's answers
             </button>
           </>
