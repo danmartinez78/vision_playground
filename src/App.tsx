@@ -148,7 +148,7 @@ export default function App() {
             {step === 2 && lab.scene && <StepSort lab={lab} />}
             {step === 3 && lab.scene && <StepName key={lab.scene.key} lab={lab} />}
             {step === 4 && lab.scene && <StepReview lab={lab} />}
-            {step === 5 && lab.scene && <StepLearn lab={lab} />}
+            {step === 5 && lab.scene && <StepLearn lab={lab} onOwn={() => setPage('own')} onAi={() => openAi()} />}
 
             <div className="nav-buttons">
               {step > 0 && (

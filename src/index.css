@@ -1785,3 +1785,65 @@ details.callout > summary:focus:not(:focus-visible) {
     position: static;
   }
 }
+
+/* Step 4: one moth, BioCLIP's pick and whether it was right */
+.review-card.name-card {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  align-items: center;
+}
+
+.name-card figure {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.2rem;
+}
+
+.name-card figure img {
+  border-radius: 8px;
+  border: 1px solid var(--line);
+}
+
+.name-answer {
+  flex: 1 1 220px;
+}
+
+.name-answer p {
+  margin: 0.3rem 0 0;
+}
+
+/* the end of the lesson: where to go next */
+.next-steps {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 0.8rem;
+  margin: 0.5rem 0 1rem;
+}
+
+.next-card {
+  display: flex;
+  gap: 0.8rem;
+  align-items: flex-start;
+  padding: 1rem;
+  border: 2px solid var(--accent);
+  border-radius: 14px;
+  background: var(--card);
+  color: inherit;
+  font-weight: 400;
+  text-align: left;
+}
+
+.next-card .icon {
+  font-size: 1.8rem;
+  line-height: 1;
+}
+
+.next-card strong {
+  display: block;
+  font-size: 1.1rem;
+  margin-bottom: 0.2rem;
+}

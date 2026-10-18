@@ -94,7 +94,7 @@ function RealTally({ lab, counted }: { lab: Lab; counted: Map<string, number> })
   )
 }
 
-export function StepLearn({ lab }: { lab: Lab }) {
+export function StepLearn({ lab, onOwn, onAi }: { lab: Lab; onOwn: () => void; onAi: () => void }) {
   if (!lab.detector) {
     return (
       <section>
@@ -157,6 +157,28 @@ export function StepLearn({ lab }: { lab: Lab }) {
           <li>Which is worse for a farmer: a missed pest, or a false alarm?</li>
           <li>How could a Mothbox show whether a scent treatment worked?</li>
         </ol>
+      </div>
+
+      <h3>Keep exploring</h3>
+      <div className="next-steps">
+        <button className="next-card" onClick={onOwn}>
+          <span className="icon" aria-hidden>
+            📷
+          </span>
+          <span>
+            <strong>Try your own photo</strong>
+            <span className="small">Run the AI on a photo of your own, or on any of 24 real light-trap photos.</span>
+          </span>
+        </button>
+        <button className="next-card" onClick={onAi}>
+          <span className="icon" aria-hidden>
+            🧠
+          </span>
+          <span>
+            <strong>How the AI works</strong>
+            <span className="small">See what the detector sees, and how it learned to find insects.</span>
+          </span>
+        </button>
       </div>
 
       <DrawnNight lab={lab} />
