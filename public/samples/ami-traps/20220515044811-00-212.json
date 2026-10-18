@@ -1,0 +1,96 @@
+{
+ "image": "20220515044811-00-212.jpg",
+ "width": 1600,
+ "height": 844,
+ "source_width": 4096,
+ "source_height": 2160,
+ "region": "NorthEasternAmerica",
+ "label": "insect",
+ "boxes": [
+  [
+   179.6,
+   3.0,
+   220.6,
+   46.3
+  ],
+  [
+   650.9,
+   748.1,
+   682.2,
+   786.3
+  ],
+  [
+   1508.0,
+   352.2,
+   1536.1,
+   378.4
+  ],
+  [
+   203.1,
+   728.6,
+   266.5,
+   801.8
+  ],
+  [
+   796.0,
+   145.6,
+   851.9,
+   217.0
+  ],
+  [
+   596.4,
+   495.2,
+   643.3,
+   556.2
+  ],
+  [
+   587.2,
+   527.7,
+   657.6,
+   591.0
+  ],
+  [
+   204.4,
+   787.5,
+   251.6,
+   843.8
+  ],
+  [
+   1358.9,
+   610.9,
+   1388.2,
+   643.8
+  ],
+  [
+   268.8,
+   91.8,
+   284.1,
+   113.3
+  ]
+ ],
+ "labels": [
+  "Tortricidae",
+  "Tortricidae",
+  "Paraclemensia acerifoliella",
+  "Non-Moth",
+  "Non-Moth",
+  "Non-Moth",
+  "Non-Moth",
+  "Non-Moth",
+  "Non-Moth",
+  "Non-Moth"
+ ],
+ "groups": [
+  "moth",
+  "moth",
+  "moth",
+  "not a moth",
+  "not a moth",
+  "not a moth",
+  "not a moth",
+  "not a moth",
+  "not a moth",
+  "not a moth"
+ ],
+ "box_format": "xyxy pixels in this image"
+}

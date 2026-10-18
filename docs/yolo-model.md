@@ -8,7 +8,7 @@ These are the trained detector files for the lesson. The site runs them with ONN
 |---|---|---|
 | `public/models/yolo11n_ami_train1280_imgsz1280.onnx` | 11.2 MB | `44c4eacfd08c455212af23bd0cb43e7972803d2dafc276af21aecd26675dd7a2` |
 | `public/models/yolo11n_ami_train960_imgsz960.onnx` | 10.9 MB | `a7f5804cf486769fdab952ff6b6359a89a7c8e622ca87df418eae870d5b73a52` |
-| `public/samples/ami-traps/` | 3.5 MB | 12 real trap photos from the test split, resized to 1600 px wide, each with an answer-key JSON, plus `index.json` |
+| `public/samples/ami-traps/` | 7.2 MB | 24 real trap photos from the test split (see below), resized to 1600 px wide, each with an answer-key JSON, plus `index.json` |
 
 ## How it was trained
 
@@ -30,6 +30,24 @@ These are the trained detector files for the lesson. The site runs them with ONN
 AP@0.5 is VOC-style (all-point interpolation), with greedy matching at IoU 0.5. YOLO precision and recall are the Ultralytics test-split values. The AMI rows use the repo's thresholds: 0.99 for R50, 0.5 for MobileNet. The MobileNet row was run in ONNX Runtime, the R50 row in PyTorch.
 
 \*Model call only, 20 Arm CPU cores, ONNX Runtime 1.31. A browser will be slower: expect roughly 1–3 s per photo at 1280 on the WASM backend on a mid-range phone, and much less on WebGPU.
+
+## Lesson photos
+
+The 24 photos in `public/samples/ami-traps/` are all from the test split, so the model never saw them in training. Each one has 6 to 40 insects, few enough for a student to box by hand: 369 insects in all, 10 from northeastern America, 10 from western Europe and 4 from Central America.
+
+Each JSON (and each entry in `index.json`) has:
+- `boxes`: `[x1, y1, x2, y2]` in pixels of the 1600 px photo
+- `labels`: the AMI expert label for each box, a species, family or "Non-Moth"
+- `groups`: the same labels simplified to `moth`, `not a moth` or `unknown` (180 / 173 / 16)
+
+YOLO11n on these photos, at a 0.25 score threshold and IoU 0.5:
+
+| Model | Found | False alarms |
+|---|---|---|
+| imgsz 1280 | 340 of 369 (92%) | 88 |
+| imgsz 960 | 337 of 369 (91%) | 82 |
+
+Some of these "false alarms" are tiny insects the experts didn't box. One photo, `20220531204321-00-11`, accounts for 31 of them.
 
 ## Input and output
 

@@ -1,0 +1,88 @@
+{
+ "image": "20230802235103-00-38.jpg",
+ "width": 1600,
+ "height": 844,
+ "source_width": 4096,
+ "source_height": 2160,
+ "region": "WesternEurope",
+ "label": "insect",
+ "boxes": [
+  [
+   1140.2,
+   35.7,
+   1263.6,
+   92.6
+  ],
+  [
+   41.9,
+   242.4,
+   96.6,
+   278.7
+  ],
+  [
+   61.7,
+   399.1,
+   115.0,
+   443.7
+  ],
+  [
+   450.6,
+   738.5,
+   478.3,
+   757.8
+  ],
+  [
+   934.6,
+   471.6,
+   949.0,
+   523.4
+  ],
+  [
+   251.1,
+   143.6,
+   266.1,
+   171.0
+  ],
+  [
+   1089.0,
+   322.4,
+   1114.7,
+   342.1
+  ],
+  [
+   1511.8,
+   523.1,
+   1543.9,
+   549.1
+  ],
+  [
+   1549.9,
+   158.3,
+   1590.0,
+   184.4
+  ]
+ ],
+ "labels": [
+  "Idaea aversata",
+  "Tortricidae",
+  "Non-Moth",
+  "Non-Moth",
+  "Unidentifiable",
+  "Non-Moth",
+  "Non-Moth",
+  "Non-Moth",
+  "Non-Moth"
+ ],
+ "groups": [
+  "moth",
+  "moth",
+  "not a moth",
+  "not a moth",
+  "unknown",
+  "not a moth",
+  "not a moth",
+  "not a moth",
+  "not a moth"
+ ],
+ "box_format": "xyxy pixels in this image"
+}

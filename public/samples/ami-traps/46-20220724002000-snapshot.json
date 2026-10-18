@@ -1,0 +1,136 @@
+{
+ "image": "46-20220724002000-snapshot.jpg",
+ "width": 1600,
+ "height": 844,
+ "source_width": 4096,
+ "source_height": 2160,
+ "region": "NorthEasternAmerica",
+ "label": "insect",
+ "boxes": [
+  [
+   864.7,
+   319.0,
+   888.0,
+   382.9
+  ],
+  [
+   1095.9,
+   591.5,
+   1128.3,
+   655.2
+  ],
+  [
+   1093.8,
+   217.2,
+   1128.2,
+   264.5
+  ],
+  [
+   1375.2,
+   44.0,
+   1412.4,
+   64.9
+  ],
+  [
+   53.4,
+   55.3,
+   146.9,
+   177.9
+  ],
+  [
+   277.1,
+   232.8,
+   327.9,
+   349.1
+  ],
+  [
+   988.9,
+   4.4,
+   1087.4,
+   53.3
+  ],
+  [
+   364.1,
+   204.0,
+   418.4,
+   286.6
+  ],
+  [
+   419.4,
+   -0.0,
+   457.0,
+   29.5
+  ],
+  [
+   208.2,
+   366.2,
+   247.0,
+   418.4
+  ],
+  [
+   1573.8,
+   59.6,
+   1594.8,
+   81.0
+  ],
+  [
+   681.2,
+   0.1,
+   712.5,
+   25.2
+  ],
+  [
+   54.6,
+   0.9,
+   95.3,
+   13.4
+  ],
+  [
+   371.9,
+   134.0,
+   400.4,
+   144.2
+  ],
+  [
+   640.4,
+   133.2,
+   691.5,
+   157.3
+  ]
+ ],
+ "labels": [
+  "Crambidae",
+  "Tortricidae",
+  "Lepidoptera",
+  "Non-Moth",
+  "Non-Moth",
+  "Non-Moth",
+  "Non-Moth",
+  "Non-Moth",
+  "Non-Moth",
+  "Non-Moth",
+  "Non-Moth",
+  "Unidentifiable",
+  "Non-Moth",
+  "Unidentifiable",
+  "Non-Moth"
+ ],
+ "groups": [
+  "moth",
+  "moth",
+  "moth",
+  "not a moth",
+  "not a moth",
+  "not a moth",
+  "not a moth",
+  "not a moth",
+  "not a moth",
+  "not a moth",
+  "not a moth",
+  "unknown",
+  "not a moth",
+  "unknown",
+  "not a moth"
+ ],
+ "box_format": "xyxy pixels in this image"
+}

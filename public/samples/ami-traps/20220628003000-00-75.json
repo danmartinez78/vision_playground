@@ -1,0 +1,168 @@
+{
+ "image": "20220628003000-00-75.jpg",
+ "width": 1600,
+ "height": 844,
+ "source_width": 4096,
+ "source_height": 2160,
+ "region": "NorthEasternAmerica",
+ "label": "insect",
+ "boxes": [
+  [
+   960.4,
+   641.7,
+   1052.6,
+   812.3
+  ],
+  [
+   1248.7,
+   718.5,
+   1306.2,
+   760.2
+  ],
+  [
+   552.3,
+   571.8,
+   591.6,
+   601.8
+  ],
+  [
+   450.0,
+   581.0,
+   489.8,
+   671.9
+  ],
+  [
+   694.2,
+   332.2,
+   712.6,
+   372.7
+  ],
+  [
+   339.4,
+   332.3,
+   379.0,
+   416.4
+  ],
+  [
+   0.6,
+   391.5,
+   26.9,
+   422.5
+  ],
+  [
+   228.6,
+   1.3,
+   281.5,
+   39.3
+  ],
+  [
+   927.5,
+   371.5,
+   990.0,
+   418.4
+  ],
+  [
+   777.8,
+   233.2,
+   789.2,
+   267.2
+  ],
+  [
+   908.2,
+   244.8,
+   923.2,
+   268.9
+  ],
+  [
+   755.2,
+   767.1,
+   797.0,
+   804.9
+  ],
+  [
+   428.9,
+   754.2,
+   451.7,
+   780.1
+  ],
+  [
+   804.0,
+   571.1,
+   831.8,
+   587.0
+  ],
+  [
+   939.3,
+   552.2,
+   951.2,
+   570.1
+  ],
+  [
+   1.0,
+   54.7,
+   35.8,
+   95.5
+  ],
+  [
+   677.6,
+   228.9,
+   705.5,
+   248.7
+  ],
+  [
+   382.1,
+   404.0,
+   394.0,
+   428.8
+  ],
+  [
+   741.3,
+   422.9,
+   753.2,
+   444.8
+  ]
+ ],
+ "labels": [
+  "Ctenucha virginica",
+  "Macaria sp.",
+  "Olethreutes fasciatana",
+  "Pasiphila rectangulata",
+  "Scopariinae",
+  "Pasiphila rectangulata",
+  "Scopariinae",
+  "Arctiinae",
+  "Non-Moth",
+  "Non-Moth",
+  "Non-Moth",
+  "Non-Moth",
+  "Non-Moth",
+  "Non-Moth",
+  "Non-Moth",
+  "Non-Moth",
+  "Non-Moth",
+  "Non-Moth",
+  "Non-Moth"
+ ],
+ "groups": [
+  "moth",
+  "moth",
+  "moth",
+  "moth",
+  "moth",
+  "moth",
+  "moth",
+  "moth",
+  "not a moth",
+  "not a moth",
+  "not a moth",
+  "not a moth",
+  "not a moth",
+  "not a moth",
+  "not a moth",
+  "not a moth",
+  "not a moth",
+  "not a moth",
+  "not a moth"
+ ],
+ "box_format": "xyxy pixels in this image"
+}

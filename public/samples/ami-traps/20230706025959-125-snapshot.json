@@ -1,0 +1,72 @@
+{
+ "image": "20230706025959-125-snapshot.jpg",
+ "width": 1600,
+ "height": 900,
+ "source_width": 3840,
+ "source_height": 2160,
+ "region": "WesternEurope",
+ "label": "insect",
+ "boxes": [
+  [
+   806.7,
+   18.2,
+   873.2,
+   94.3
+  ],
+  [
+   693.6,
+   438.8,
+   736.0,
+   473.0
+  ],
+  [
+   784.8,
+   641.9,
+   806.2,
+   684.6
+  ],
+  [
+   344.2,
+   262.1,
+   386.0,
+   315.1
+  ],
+  [
+   1065.4,
+   318.3,
+   1081.3,
+   349.8
+  ],
+  [
+   823.0,
+   788.2,
+   846.4,
+   843.5
+  ],
+  [
+   471.2,
+   0.6,
+   509.4,
+   27.0
+  ]
+ ],
+ "labels": [
+  "Ochropacha duplaris",
+  "Crambidae",
+  "Cochylini",
+  "Chrysoteuchia culmella",
+  "Lepidoptera",
+  "Yponomeuta sp.",
+  "Lepidoptera"
+ ],
+ "groups": [
+  "moth",
+  "moth",
+  "moth",
+  "moth",
+  "moth",
+  "moth",
+  "moth"
+ ],
+ "box_format": "xyxy pixels in this image"
+}

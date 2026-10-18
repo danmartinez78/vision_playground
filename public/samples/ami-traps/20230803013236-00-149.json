@@ -1,0 +1,64 @@
+{
+ "image": "20230803013236-00-149.jpg",
+ "width": 1600,
+ "height": 844,
+ "source_width": 4096,
+ "source_height": 2160,
+ "region": "WesternEurope",
+ "label": "insect",
+ "boxes": [
+  [
+   1503.6,
+   51.7,
+   1584.7,
+   137.3
+  ],
+  [
+   623.4,
+   36.3,
+   659.0,
+   89.8
+  ],
+  [
+   305.5,
+   546.6,
+   347.8,
+   596.3
+  ],
+  [
+   679.1,
+   467.4,
+   723.6,
+   538.5
+  ],
+  [
+   1571.8,
+   565.1,
+   1600.0,
+   584.0
+  ],
+  [
+   1315.4,
+   718.2,
+   1339.9,
+   756.8
+  ]
+ ],
+ "labels": [
+  "Geometridae",
+  "Mesoligia furuncula",
+  "Noctuidae",
+  "Chrysoteuchia culmella",
+  "Non-Moth",
+  "Non-Moth"
+ ],
+ "groups": [
+  "moth",
+  "moth",
+  "moth",
+  "moth",
+  "not a moth",
+  "not a moth"
+ ],
+ "box_format": "xyxy pixels in this image"
+}

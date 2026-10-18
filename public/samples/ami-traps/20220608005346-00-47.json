@@ -1,0 +1,232 @@
+{
+ "image": "20220608005346-00-47.jpg",
+ "width": 1600,
+ "height": 844,
+ "source_width": 4096,
+ "source_height": 2160,
+ "region": "NorthEasternAmerica",
+ "label": "insect",
+ "boxes": [
+  [
+   95.1,
+   636.3,
+   161.4,
+   741.1
+  ],
+  [
+   1399.2,
+   164.1,
+   1461.3,
+   222.9
+  ],
+  [
+   37.4,
+   436.2,
+   102.3,
+   501.9
+  ],
+  [
+   484.8,
+   443.9,
+   501.9,
+   483.3
+  ],
+  [
+   15.3,
+   202.3,
+   30.8,
+   239.9
+  ],
+  [
+   104.3,
+   535.8,
+   167.7,
+   630.1
+  ],
+  [
+   696.4,
+   270.7,
+   721.8,
+   320.4
+  ],
+  [
+   119.7,
+   68.4,
+   171.4,
+   138.0
+  ],
+  [
+   759.7,
+   314.7,
+   781.6,
+   356.9
+  ],
+  [
+   1494.7,
+   101.4,
+   1537.4,
+   178.6
+  ],
+  [
+   1117.2,
+   11.4,
+   1163.9,
+   93.2
+  ],
+  [
+   70.7,
+   104.0,
+   101.8,
+   186.9
+  ],
+  [
+   241.6,
+   59.0,
+   277.8,
+   136.1
+  ],
+  [
+   748.0,
+   715.4,
+   789.6,
+   777.0
+  ],
+  [
+   886.6,
+   309.2,
+   914.0,
+   376.8
+  ],
+  [
+   1310.5,
+   580.5,
+   1351.2,
+   650.6
+  ],
+  [
+   1436.3,
+   0.4,
+   1470.5,
+   16.8
+  ],
+  [
+   165.6,
+   0.0,
+   184.3,
+   20.2
+  ],
+  [
+   1084.5,
+   593.0,
+   1120.7,
+   661.3
+  ],
+  [
+   264.8,
+   824.6,
+   284.3,
+   843.7
+  ],
+  [
+   1271.4,
+   518.3,
+   1302.5,
+   583.8
+  ],
+  [
+   1207.3,
+   674.9,
+   1233.1,
+   757.7
+  ],
+  [
+   1108.8,
+   768.7,
+   1145.7,
+   822.5
+  ],
+  [
+   1168.2,
+   357.2,
+   1233.8,
+   422.9
+  ],
+  [
+   1521.4,
+   248.7,
+   1545.3,
+   270.6
+  ],
+  [
+   530.3,
+   372.1,
+   554.2,
+   402.0
+  ],
+  [
+   561.2,
+   359.2,
+   603.0,
+   431.8
+  ]
+ ],
+ "labels": [
+  "Notodontidae",
+  "Macaria sp.",
+  "Geometridae",
+  "Argyrotaenia velutinana",
+  "Tortricidae",
+  "Geometridae",
+  "Scoparia biplagialis",
+  "Non-Moth",
+  "Moth",
+  "Non-Moth",
+  "Non-Moth",
+  "Non-Moth",
+  "Non-Moth",
+  "Non-Moth",
+  "Non-Moth",
+  "Non-Moth",
+  "Non-Moth",
+  "Non-Moth",
+  "Non-Moth",
+  "Unidentifiable",
+  "Non-Moth",
+  "Non-Moth",
+  "Non-Moth",
+  "Non-Moth",
+  "Non-Moth",
+  "Moth",
+  "Non-Moth"
+ ],
+ "groups": [
+  "moth",
+  "moth",
+  "moth",
+  "moth",
+  "moth",
+  "moth",
+  "moth",
+  "not a moth",
+  "moth",
+  "not a moth",
+  "not a moth",
+  "not a moth",
+  "not a moth",
+  "not a moth",
+  "not a moth",
+  "not a moth",
+  "not a moth",
+  "not a moth",
+  "not a moth",
+  "unknown",
+  "not a moth",
+  "not a moth",
+  "not a moth",
+  "not a moth",
+  "not a moth",
+  "moth",
+  "not a moth"
+ ],
+ "box_format": "xyxy pixels in this image"
+}

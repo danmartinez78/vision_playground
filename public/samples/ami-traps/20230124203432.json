@@ -1,0 +1,128 @@
+{
+ "image": "20230124203432.jpg",
+ "width": 1600,
+ "height": 1202,
+ "source_width": 3280,
+ "source_height": 2464,
+ "region": "CentralAmerica",
+ "label": "insect",
+ "boxes": [
+  [
+   455.4,
+   750.9,
+   565.0,
+   909.9
+  ],
+  [
+   906.4,
+   866.9,
+   997.9,
+   970.2
+  ],
+  [
+   1013.0,
+   526.4,
+   1144.4,
+   680.7
+  ],
+  [
+   638.2,
+   864.6,
+   804.1,
+   1029.9
+  ],
+  [
+   652.5,
+   310.9,
+   763.4,
+   422.4
+  ],
+  [
+   1455.2,
+   199.7,
+   1524.7,
+   278.8
+  ],
+  [
+   621.9,
+   94.0,
+   702.1,
+   213.0
+  ],
+  [
+   318.1,
+   1105.0,
+   415.9,
+   1184.9
+  ],
+  [
+   1009.2,
+   487.2,
+   1053.7,
+   532.1
+  ],
+  [
+   230.1,
+   325.8,
+   289.0,
+   439.3
+  ],
+  [
+   448.4,
+   460.8,
+   552.9,
+   551.7
+  ],
+  [
+   1175.3,
+   643.0,
+   1274.5,
+   728.3
+  ],
+  [
+   1494.4,
+   375.2,
+   1597.4,
+   528.2
+  ],
+  [
+   53.4,
+   1112.6,
+   114.9,
+   1194.6
+  ]
+ ],
+ "labels": [
+  "Lepidoptera",
+  "Arctiinae",
+  "Crambidae",
+  "Sosxetra sp.",
+  "Arctiinae",
+  "Lepidoptera",
+  "Lepidoptera",
+  "Lepidoptera",
+  "Lepidoptera",
+  "Lepidoptera",
+  "Lepidoptera",
+  "Non-Moth",
+  "Non-Moth",
+  "Unidentifiable"
+ ],
+ "groups": [
+  "moth",
+  "moth",
+  "moth",
+  "moth",
+  "moth",
+  "moth",
+  "moth",
+  "moth",
+  "moth",
+  "moth",
+  "moth",
+  "not a moth",
+  "not a moth",
+  "unknown"
+ ],
+ "box_format": "xyxy pixels in this image"
+}

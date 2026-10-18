@@ -1,0 +1,128 @@
+{
+ "image": "20230810041943-00-207.jpg",
+ "width": 1600,
+ "height": 844,
+ "source_width": 4096,
+ "source_height": 2160,
+ "region": "WesternEurope",
+ "label": "insect",
+ "boxes": [
+  [
+   763.7,
+   419.3,
+   855.5,
+   506.5
+  ],
+  [
+   883.2,
+   335.5,
+   943.6,
+   411.4
+  ],
+  [
+   1207.3,
+   598.8,
+   1267.7,
+   694.0
+  ],
+  [
+   1510.9,
+   384.5,
+   1546.0,
+   416.0
+  ],
+  [
+   1017.0,
+   139.4,
+   1076.7,
+   215.5
+  ],
+  [
+   -0.0,
+   670.4,
+   36.4,
+   754.7
+  ],
+  [
+   1083.9,
+   560.4,
+   1103.6,
+   608.0
+  ],
+  [
+   155.8,
+   134.9,
+   208.4,
+   221.5
+  ],
+  [
+   41.9,
+   136.4,
+   162.1,
+   212.6
+  ],
+  [
+   180.5,
+   166.3,
+   264.7,
+   234.5
+  ],
+  [
+   517.3,
+   334.7,
+   575.4,
+   402.8
+  ],
+  [
+   1088.7,
+   446.9,
+   1128.8,
+   511.1
+  ],
+  [
+   986.5,
+   302.6,
+   1016.5,
+   334.7
+  ],
+  [
+   1084.7,
+   116.2,
+   1126.8,
+   164.3
+  ]
+ ],
+ "labels": [
+  "Ennomos fuscantaria",
+  "Cosmia trapezina",
+  "Phragmatobia fuliginosa",
+  "Tortricidae",
+  "Cosmia trapezina",
+  "Noctuidae",
+  "Crambidae",
+  "Eilema complana",
+  "Ennomos erosaria",
+  "Eilema lurideola",
+  "Non-Moth",
+  "Non-Moth",
+  "Non-Moth",
+  "Non-Moth"
+ ],
+ "groups": [
+  "moth",
+  "moth",
+  "moth",
+  "moth",
+  "moth",
+  "moth",
+  "moth",
+  "moth",
+  "moth",
+  "moth",
+  "not a moth",
+  "not a moth",
+  "not a moth",
+  "not a moth"
+ ],
+ "box_format": "xyxy pixels in this image"
+}

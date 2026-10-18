@@ -1,0 +1,120 @@
+{
+ "image": "20220616022535-00-16.jpg",
+ "width": 1600,
+ "height": 844,
+ "source_width": 4096,
+ "source_height": 2160,
+ "region": "NorthEasternAmerica",
+ "label": "insect",
+ "boxes": [
+  [
+   548.1,
+   597.4,
+   616.0,
+   684.3
+  ],
+  [
+   955.4,
+   571.9,
+   1064.2,
+   641.8
+  ],
+  [
+   160.3,
+   769.9,
+   187.6,
+   809.1
+  ],
+  [
+   307.1,
+   197.3,
+   348.7,
+   254.4
+  ],
+  [
+   843.1,
+   220.8,
+   901.0,
+   270.8
+  ],
+  [
+   1079.0,
+   106.8,
+   1109.2,
+   152.8
+  ],
+  [
+   1332.7,
+   110.9,
+   1368.5,
+   174.9
+  ],
+  [
+   770.0,
+   311.3,
+   820.7,
+   409.4
+  ],
+  [
+   1468.1,
+   131.6,
+   1507.5,
+   195.9
+  ],
+  [
+   88.3,
+   289.7,
+   129.0,
+   337.8
+  ],
+  [
+   1372.8,
+   189.8,
+   1422.3,
+   262.9
+  ],
+  [
+   290.1,
+   578.9,
+   385.8,
+   666.8
+  ],
+  [
+   1500.8,
+   619.9,
+   1527.4,
+   680.5
+  ]
+ ],
+ "labels": [
+  "Baileya ophthalmica",
+  "Palpita magniferalis",
+  "Tortricidae",
+  "Tortricidae",
+  "Balsa tristrigella",
+  "Tortricidae",
+  "Tortricidae",
+  "Spilosoma sp.",
+  "Non-Moth",
+  "Non-Moth",
+  "Non-Moth",
+  "Non-Moth",
+  "Non-Moth"
+ ],
+ "groups": [
+  "moth",
+  "moth",
+  "moth",
+  "moth",
+  "moth",
+  "moth",
+  "moth",
+  "moth",
+  "not a moth",
+  "not a moth",
+  "not a moth",
+  "not a moth",
+  "not a moth"
+ ],
+ "box_format": "xyxy pixels in this image"
+}

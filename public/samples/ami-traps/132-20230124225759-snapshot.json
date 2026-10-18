@@ -1,0 +1,112 @@
+{
+ "image": "132-20230124225759-snapshot.jpg",
+ "width": 1600,
+ "height": 844,
+ "source_width": 4096,
+ "source_height": 2160,
+ "region": "CentralAmerica",
+ "label": "insect",
+ "boxes": [
+  [
+   243.1,
+   687.0,
+   331.9,
+   828.2
+  ],
+  [
+   1452.3,
+   417.6,
+   1513.2,
+   468.4
+  ],
+  [
+   1351.5,
+   613.7,
+   1463.2,
+   692.4
+  ],
+  [
+   1394.4,
+   286.8,
+   1447.5,
+   356.7
+  ],
+  [
+   470.4,
+   6.4,
+   525.3,
+   69.5
+  ],
+  [
+   343.3,
+   481.9,
+   403.2,
+   529.8
+  ],
+  [
+   119.2,
+   2.6,
+   163.6,
+   60.4
+  ],
+  [
+   875.5,
+   19.2,
+   905.6,
+   72.7
+  ],
+  [
+   311.2,
+   362.5,
+   357.7,
+   429.4
+  ],
+  [
+   1258.3,
+   392.9,
+   1316.2,
+   466.0
+  ],
+  [
+   813.7,
+   19.3,
+   844.6,
+   76.0
+  ],
+  [
+   421.7,
+   730.7,
+   453.6,
+   774.0
+  ]
+ ],
+ "labels": [
+  "Lepidoptera",
+  "Lepidoptera",
+  "Spilomelinae",
+  "Lepidoptera",
+  "Lepidoptera",
+  "Lepidoptera",
+  "Gaudeator sp.",
+  "Lepidoptera",
+  "Lepidoptera",
+  "Lepidoptera",
+  "Lepidoptera",
+  "Non-Moth"
+ ],
+ "groups": [
+  "moth",
+  "moth",
+  "moth",
+  "moth",
+  "moth",
+  "moth",
+  "moth",
+  "moth",
+  "moth",
+  "moth",
+  "moth",
+  "not a moth"
+ ],
+ "box_format": "xyxy pixels in this image"
+}

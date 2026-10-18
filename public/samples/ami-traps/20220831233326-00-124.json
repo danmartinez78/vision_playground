@@ -1,0 +1,192 @@
+{
+ "image": "20220831233326-00-124.jpg",
+ "width": 1600,
+ "height": 844,
+ "source_width": 4096,
+ "source_height": 2160,
+ "region": "NorthEasternAmerica",
+ "label": "insect",
+ "boxes": [
+  [
+   1159.1,
+   200.9,
+   1170.8,
+   245.7
+  ],
+  [
+   1142.4,
+   370.6,
+   1191.6,
+   420.0
+  ],
+  [
+   85.9,
+   497.1,
+   111.7,
+   511.8
+  ],
+  [
+   1017.8,
+   542.0,
+   1079.0,
+   626.9
+  ],
+  [
+   646.0,
+   328.0,
+   683.3,
+   383.6
+  ],
+  [
+   1447.9,
+   673.1,
+   1521.7,
+   783.9
+  ],
+  [
+   1397.7,
+   216.1,
+   1522.9,
+   346.2
+  ],
+  [
+   1560.8,
+   248.2,
+   1599.5,
+   307.1
+  ],
+  [
+   1447.0,
+   650.3,
+   1472.1,
+   701.3
+  ],
+  [
+   307.6,
+   332.5,
+   334.2,
+   376.2
+  ],
+  [
+   1000.1,
+   537.8,
+   1046.0,
+   577.4
+  ],
+  [
+   863.0,
+   619.6,
+   891.1,
+   664.8
+  ],
+  [
+   777.4,
+   82.7,
+   819.4,
+   126.6
+  ],
+  [
+   1178.6,
+   665.1,
+   1204.0,
+   692.0
+  ],
+  [
+   821.3,
+   92.0,
+   847.5,
+   141.1
+  ],
+  [
+   905.8,
+   33.1,
+   956.4,
+   82.1
+  ],
+  [
+   370.0,
+   697.0,
+   465.8,
+   842.3
+  ],
+  [
+   1047.3,
+   463.6,
+   1070.1,
+   516.8
+  ],
+  [
+   531.3,
+   75.7,
+   559.4,
+   130.5
+  ],
+  [
+   315.5,
+   291.3,
+   338.4,
+   343.2
+  ],
+  [
+   700.6,
+   627.9,
+   727.6,
+   674.2
+  ],
+  [
+   492.3,
+   798.4,
+   537.5,
+   843.8
+  ]
+ ],
+ "labels": [
+  "Coleophora sp.",
+  "Unidentifiable",
+  "Non-Moth",
+  "Non-Moth",
+  "Non-Moth",
+  "Non-Moth",
+  "Non-Moth",
+  "Non-Moth",
+  "Non-Moth",
+  "Non-Moth",
+  "Non-Moth",
+  "Non-Moth",
+  "Non-Moth",
+  "Unidentifiable",
+  "Non-Moth",
+  "Non-Moth",
+  "Non-Moth",
+  "Non-Moth",
+  "Non-Moth",
+  "Non-Moth",
+  "Non-Moth",
+  "Unidentifiable"
+ ],
+ "groups": [
+  "moth",
+  "unknown",
+  "not a moth",
+  "not a moth",
+  "not a moth",
+  "not a moth",
+  "not a moth",
+  "not a moth",
+  "not a moth",
+  "not a moth",
+  "not a moth",
+  "not a moth",
+  "not a moth",
+  "unknown",
+  "not a moth",
+  "not a moth",
+  "not a moth",
+  "not a moth",
+  "not a moth",
+  "not a moth",
+  "not a moth",
+  "unknown"
+ ],
+ "box_format": "xyxy pixels in this image"
+}

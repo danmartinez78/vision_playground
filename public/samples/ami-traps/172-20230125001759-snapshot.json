@@ -1,0 +1,80 @@
+{
+ "image": "172-20230125001759-snapshot.jpg",
+ "width": 1600,
+ "height": 844,
+ "source_width": 4096,
+ "source_height": 2160,
+ "region": "CentralAmerica",
+ "label": "insect",
+ "boxes": [
+  [
+   1143.5,
+   178.2,
+   1326.6,
+   315.3
+  ],
+  [
+   637.5,
+   301.4,
+   688.7,
+   368.1
+  ],
+  [
+   129.5,
+   288.6,
+   236.0,
+   356.7
+  ],
+  [
+   1088.7,
+   507.9,
+   1148.9,
+   569.9
+  ],
+  [
+   821.4,
+   32.6,
+   891.0,
+   108.2
+  ],
+  [
+   693.8,
+   526.6,
+   805.8,
+   607.4
+  ],
+  [
+   409.3,
+   76.8,
+   541.6,
+   193.6
+  ],
+  [
+   1035.8,
+   568.8,
+   1075.3,
+   612.2
+  ]
+ ],
+ "labels": [
+  "Spilomelinae",
+  "Lepidoptera",
+  "Spilomelinae",
+  "Lepidoptera",
+  "Lepidoptera",
+  "Spilomelinae",
+  "Moth",
+  "Unidentifiable"
+ ],
+ "groups": [
+  "moth",
+  "moth",
+  "moth",
+  "moth",
+  "moth",
+  "moth",
+  "moth",
+  "unknown"
+ ],
+ "box_format": "xyxy pixels in this image"
+}
