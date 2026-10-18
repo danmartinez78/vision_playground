@@ -1,6 +1,7 @@
 import { useEffect, useState, type ReactNode } from 'react'
 import type { Lab, Score } from '../lab'
 import { engineName } from '../lib/detect'
+import { FallbackNote } from '../FallbackNote'
 import type { Judgement, Verdict } from '../lib/geometry'
 import { formatTime } from '../lib/time'
 import type { TruthItem } from '../lib/types'
@@ -351,6 +352,7 @@ export function StepFind({ lab, onExplain }: { lab: Lab; onExplain: () => void }
       {phase === 'compare' && lab.detector && (
         <div className="callout">
           <h3>You vs. the computer</h3>
+          <FallbackNote detector={lab.detector} />
           <ScoreGrid
             rows={[
               {
@@ -360,7 +362,7 @@ export function StepFind({ lab, onExplain }: { lab: Lab; onExplain: () => void }
                 time: formatTime(handSecs),
               },
               {
-                who: 'Computer',
+                who: lab.detector.engine === 'simple' ? 'Spot finder (not AI)' : 'Computer',
                 score: lab.detectorScore,
                 note: '—',
                 time: `${(lab.detector.millis / 1000).toFixed(2)} s`,

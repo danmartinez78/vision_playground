@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { detect, engineName, type DetectResult } from './lib/detect'
+import { FallbackNote } from './FallbackNote'
 import { cropToDataUrl, judgeBoxes } from './lib/geometry'
 import { sceneFromFile, sceneFromUrl } from './lib/scene'
 import type { Box, Scene } from './lib/types'
@@ -155,6 +156,7 @@ export function OwnPhoto() {
 
       {scene && detector && !busy && (
         <>
+          <FallbackNote detector={detector} />
           <p>
             The detector checked {answerKey ? 'this photo' : 'your photo'} in{' '}
             <strong>{Math.max(1, Math.round(detector.millis))} milliseconds</strong> using {engineName(detector)}, and

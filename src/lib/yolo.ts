@@ -55,12 +55,49 @@ async function open(ort: typeof Ort, size: number, backend: Backend): Promise<Yo
   return model
 }
 
+// Some graphics chips run the model but get the math wrong, which gives
+// dozens of boxes on empty sheet. So before trusting WebGPU, run it on one
+// lesson photo and compare with the surest boxes the same model gives on a
+// regular computer (worked out with scripts/yolo_check.py).
+const CHECK_PHOTO = 'samples/ami-traps/20220628003000-00-75.jpg'
+const CHECK_BOXES: [number, number, number, number][] = [
+  [958, 647, 102, 165],
+  [448, 581, 42, 93],
+  [338, 331, 41, 84],
+  [1248, 710, 57, 49],
+  [228, 1, 50, 39],
+  [920, 375, 71, 47],
+  [552, 570, 40, 33],
+  [692, 330, 22, 42],
+  [761, 761, 42, 48],
+  [1, 391, 28, 34],
+  [0, 56, 31, 41],
+]
+/** The same model gives 19 boxes at 25% or more on the check photo. */
+const CHECK_MAX_BOXES = 30
+
+async function checkModel(model: YoloModel): Promise<void> {
+  const res = await fetch(`${import.meta.env.BASE_URL}${CHECK_PHOTO}`)
+  const bitmap = await createImageBitmap(await res.blob())
+  const canvas = document.createElement('canvas')
+  canvas.width = bitmap.width
+  canvas.height = bitmap.height
+  canvas.getContext('2d')!.drawImage(bitmap, 0, 0)
+  const found = (await detectWith(model, canvas)).filter((d) => d.score >= 0.25)
+  const matched = CHECK_BOXES.filter(([x, y, w, h]) => found.some((d) => iou(d.box, { x, y, w, h }) > 0.5)).length
+  if (matched < CHECK_BOXES.length - 2 || found.length > CHECK_MAX_BOXES) {
+    throw new Error(`${model.backend} check failed: ${matched} of ${CHECK_BOXES.length} boxes, ${found.length} in all`)
+  }
+}
+
 /** Loads the model once (about 11 MB, cached by the browser after that). */
 export function loadYolo(): Promise<YoloModel> {
   loading ??= (async () => {
     if (await webGpuWorks()) {
       try {
-        return await open(await import('onnxruntime-web/webgpu'), 1280, 'webgpu')
+        const model = await open(await import('onnxruntime-web/webgpu'), 1280, 'webgpu')
+        await checkModel(model)
+        return model
       } catch (e) {
         console.warn('WebGPU did not work, using WebAssembly instead', e)
       }
@@ -109,6 +146,11 @@ function letterbox(source: HTMLCanvasElement, size: number) {
 export async function runYolo(source: HTMLCanvasElement): Promise<YoloOutput> {
   const model = await loadYolo()
   const t0 = performance.now()
+  const detections = await detectWith(model, source)
+  return { detections, millis: performance.now() - t0, backend: model.backend, size: model.size }
+}
+
+async function detectWith(model: YoloModel, source: HTMLCanvasElement): Promise<Detection[]> {
   const { input, scale, padX, padY } = letterbox(source, model.size)
   const out = await run(model, input)
 
@@ -139,10 +181,5 @@ export async function runYolo(source: HTMLCanvasElement): Promise<YoloOutput> {
     if (kept.every((k) => iou(k.box, c.box) < NMS_IOU)) kept.push(c)
   }
 
-  return {
-    detections: kept.map((k, i) => ({ id: `y${i}`, box: k.box, score: k.score })),
-    millis: performance.now() - t0,
-    backend: model.backend,
-    size: model.size,
-  }
+  return kept.map((k, i) => ({ id: `y${i}`, box: k.box, score: k.score }))
 }
