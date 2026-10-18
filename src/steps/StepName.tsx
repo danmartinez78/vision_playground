@@ -64,33 +64,6 @@ interface Card {
   choices: string[]
 }
 
-/** The experts' name for a moth they didn't name to species. */
-const groupName = (name: string) =>
-  name === 'Lepidoptera' || name === 'Moth' ? 'a moth' : name.replace(/ sp\.?$/, '').replace(/\.$/, '')
-
-/** Moths the experts named only to family or genus, with BioCLIP's unchecked guess. */
-function Unconfirmed({ extra, closeUps }: { extra: Card[]; closeUps: Map<string, string> }) {
-  if (!extra.length) return null
-  return (
-    <>
-      <p className="small">
-        On these, the experts didn't name the species. BioCLIP guessed one anyway. Nobody knows yet if it's right.
-      </p>
-      <div className="cards">
-        {extra.map((c) => (
-          <article key={c.id} className="crop-card">
-            <img src={closeUps.get(c.id)} alt="A moth from the photo" width={96} height={96} />
-            <p className="small">
-              Experts: <strong>{groupName(c.truth.label!.name)}</strong>. BioCLIP: <i>{c.top[0].name}</i>{' '}
-              <Bar value={c.top[0].confidence} />
-            </p>
-          </article>
-        ))}
-      </div>
-    </>
-  )
-}
-
 /** Step 4: name each moth, then compare with BioCLIP and the experts. */
 export function StepName({ lab }: { lab: Lab }) {
   const scene = lab.scene!
@@ -115,10 +88,9 @@ export function StepName({ lab }: { lab: Lab }) {
   }, [image, scene.real])
 
   // the moths the detector found and the experts named to species, once each
-  const { cards, extra } = useMemo(() => {
+  const cards = useMemo(() => {
     const cards: Card[] = []
-    const extra: Card[] = []
-    if (!answers) return { cards, extra }
+    if (!answers) return cards
     const seen = new Set<string>()
     for (const d of lab.kept) {
       const truth = lab.truthFor.get(d.id)
@@ -126,27 +98,23 @@ export function StepName({ lab }: { lab: Lab }) {
       const top = answers.top.get(Number(truth.id.slice(1)))
       if (!top?.length) continue
       seen.add(truth.id)
-      const card = { id: d.id, truth, top, choices: [] as string[] }
-      if (isSpecies(truth.label.name)) {
-        card.choices = choicesFor(truth.label.name, answers.guide, truth.id)
-        if (cards.length < MAX_CARDS) cards.push(card)
-      } else if (extra.length < 4) extra.push(card)
+      if (!isSpecies(truth.label.name) || cards.length >= MAX_CARDS) continue
+      cards.push({ id: d.id, truth, top, choices: choicesFor(truth.label.name, answers.guide, truth.id) })
     }
-    return { cards, extra }
+    return cards
   }, [answers, lab.kept, lab.truthFor])
 
   const closeUps = useMemo(
-    () => new Map([...cards, ...extra].map((c) => [c.id, cropToDataUrl(scene.canvas, c.truth.box)])),
-    [cards, extra, scene],
+    () => new Map(cards.map((c) => [c.id, cropToDataUrl(scene.canvas, c.truth.box)])),
+    [cards, scene],
   )
 
   const intro = (
     <div className="intro">
       <h2>Step 4: Name the moth</h2>
       <p>
-        Scientists want to know <em>which</em> moths came, not just how many. The Mothbox team uses a big AI called{' '}
-        <strong>BioCLIP</strong> that has seen pictures of hundreds of thousands of kinds of living things. It's far too
-        big for your browser, so we ran it ahead of time on a bigger computer, on these same photos.
+        Counting moths is only half the job. Scientists also want to know <em>which kinds</em> came. Match each moth to
+        a field-guide picture, then see how an AI did.
       </p>
     </div>
   )
@@ -180,10 +148,9 @@ export function StepName({ lab }: { lab: Lab }) {
       <section>
         {intro}
         <p>
-          The experts didn't name any of the moths on this photo down to the species, so there's nothing to score here.
-          Try another photo, or go on to the next step.
+          The experts didn't name the kind of any moth on this photo, so there's nothing to match. Pick another photo in
+          Step 1, or go on to the next step.
         </p>
-        <Unconfirmed extra={extra} closeUps={closeUps} />
       </section>
     )
   }
@@ -197,8 +164,7 @@ export function StepName({ lab }: { lab: Lab }) {
     <section>
       {intro}
       <p>
-        <strong>Your turn first:</strong> for each moth, tap the picture that looks most like it. The pictures come from
-        other light-trap photos.
+        <strong>Your turn:</strong> tap the field-guide picture that looks most like each moth.
       </p>
 
       <div className="toolbar">
@@ -275,20 +241,18 @@ export function StepName({ lab }: { lab: Lab }) {
               </span>
             </div>
             <p className="small">
-              Naming moths is much harder than sorting moth from not a moth, for people and for AI. Many moths look
-              almost the same. Look at the bars: when BioCLIP is very sure it's usually right, so scientists check the
-              unsure ones.
+              Naming moths is hard for people and for AI, because many kinds look almost the same. Check the bars: when
+              BioCLIP is very sure, it's usually right. Scientists double-check the unsure ones.
             </p>
-            <Unconfirmed extra={extra} closeUps={closeUps} />
           </div>
         ) : (
           <>
             <div>
               <h3>BioCLIP's turn</h3>
               <p>
-                {allPicked
-                  ? "Ready! See BioCLIP's answers and the experts' names."
-                  : `Name all ${cards.length} moths first (${cards.length - picked} to go).`}
+                <strong>BioCLIP</strong> is a big AI that has seen photos of hundreds of thousands of kinds of living
+                things. It's too big for your browser, so we ran it on these photos ahead of time.{' '}
+                {allPicked ? '' : `Match all ${cards.length} moths first (${cards.length - picked} to go).`}
               </p>
             </div>
             <button className="primary big" onClick={() => setRevealed(true)} disabled={!allPicked}>

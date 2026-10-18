@@ -259,11 +259,17 @@ export function SceneView({ imageUrl, width, height, layers, edit, alt, bar, ful
         ? window.setTimeout(() => {
             const o = op.current
             if (o?.kind !== 'press') return
+            navigator.vibrate?.(15)
             const p = toImage(o.x, o.y)
+            // holding a box picks it up to move; holding anywhere else starts a new box
+            if (o.box !== null) {
+              setSelected(o.box)
+              op.current = { kind: 'move', box: o.box, start: boxes[o.box], x: p.x, y: p.y }
+              return
+            }
             op.current = { kind: 'draw', x0: p.x, y0: p.y }
             setDraft({ x: p.x, y: p.y, w: 0, h: 0 })
             setSelected(null)
-            navigator.vibrate?.(15)
           }, HOLD_MS)
         : 0
     op.current = { kind: 'press', x: e.clientX, y: e.clientY, box, timer }
@@ -291,8 +297,13 @@ export function SceneView({ imageUrl, width, height, layers, edit, alt, bar, ful
       case 'press': {
         if (Math.hypot(e.clientX - o.x, e.clientY - o.y) <= SLOP) return
         window.clearTimeout(o.timer)
-        if (edit && e.pointerType === 'mouse') {
-          // with a mouse, dragging draws a box
+        if (edit && e.pointerType === 'mouse' && o.box !== null) {
+          // with a mouse, dragging a box moves it
+          setSelected(o.box)
+          const p = toImage(o.x, o.y)
+          op.current = { kind: 'move', box: o.box, start: boxes[o.box], x: p.x, y: p.y }
+        } else if (edit && e.pointerType === 'mouse') {
+          // and dragging anywhere else draws a new one
           const p = toImage(o.x, o.y)
           op.current = { kind: 'draw', x0: p.x, y0: p.y }
           setSelected(null)

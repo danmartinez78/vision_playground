@@ -50,20 +50,22 @@ export function DrawnNight({ lab }: { lab: Lab }) {
       </p>
       {!out && (
         <>
-          <p>
-            <strong>Guess first:</strong> will it find more or fewer of the drawn bugs than it did on your real photo?
-          </p>
-          <div className="group-buttons">
-            <button className={guess === 'more' ? 'chip on' : 'chip'} onClick={() => setGuess('more')}>
-              More
-            </button>
-            <button className={guess === 'fewer' ? 'chip on' : 'chip'} onClick={() => setGuess('fewer')}>
-              Fewer
+          <div className="drawn-guess">
+            <span>
+              <strong>Guess first:</strong> will it find more or fewer of the drawn bugs than on your real photo?
+            </span>
+            <div className="group-buttons">
+              <button className={guess === 'more' ? 'chip on' : 'chip'} onClick={() => setGuess('more')}>
+                More
+              </button>
+              <button className={guess === 'fewer' ? 'chip on' : 'chip'} onClick={() => setGuess('fewer')}>
+                Fewer
+              </button>
+            </div>
+            <button className="primary" onClick={run} disabled={!guess || busy}>
+              {busy ? 'The AI is looking at the drawing…' : '▶ Run the AI on the drawing'}
             </button>
           </div>
-          <button className="primary" onClick={run} disabled={!guess || busy}>
-            {busy ? 'The AI is looking at the drawing…' : '▶ Run the AI on the drawing'}
-          </button>
         </>
       )}
       {out && (

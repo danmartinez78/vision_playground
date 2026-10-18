@@ -245,19 +245,19 @@ export function StepFind({ lab, onExplain }: { lab: Lab; onExplain: () => void }
           </span>
         )}
         {sample && (
-          <label className="chip">
+          <label className="toggle-chip">
             <input type="checkbox" checked={showMissed} onChange={(e) => setShowMissed(e.target.checked)} />
             Missed
           </label>
         )}
         {phase === 'compare' && sample && (
-          <label className="chip">
+          <label className="toggle-chip">
             <input type="checkbox" checked={showAnswer} onChange={(e) => setShowAnswer(e.target.checked)} />
             Answer key
           </label>
         )}
         {phase === 'compare' && lab.detector?.contrastUrl && (
-          <label className="chip">
+          <label className="toggle-chip">
             <input type="checkbox" checked={showContrast} onChange={(e) => setShowContrast(e.target.checked)} />
             What the AI sees
           </label>
@@ -361,6 +361,10 @@ export function StepFind({ lab, onExplain }: { lab: Lab; onExplain: () => void }
             Same rules for both. The computer checked the whole photo in {Math.max(1, Math.round(lab.detector.millis))}{' '}
             milliseconds using {engineName(lab.detector)}.{' '}
             {scene.real && 'Some "false alarms" may be tiny insects the experts didn\'t box. Experts miss things too. '}
+            <button className="link" onClick={onExplain}>
+              How does an AI like YOLO see?
+            </button>{' '}
+            ·{' '}
             <button className="link" onClick={redo}>
               Start this step over
             </button>
@@ -389,39 +393,6 @@ export function StepFind({ lab, onExplain }: { lab: Lab; onExplain: () => void }
           <button className="primary big" onClick={lab.runIt} disabled={lab.detecting}>
             {lab.detecting ? 'The AI is looking at the photo…' : "▶ Run the computer's detector"}
           </button>
-        </div>
-      )}
-
-      {phase === 'compare' && lab.detector && (
-        <div className="slider-box">
-          <h3>Experiment: how sure should the computer be?</h3>
-          <p className="small">
-            The detector gives every spot a score for how sure it is (the % on each box). Move the slider and watch the
-            scores change.
-          </p>
-          <label htmlFor="threshold">
-            Count a spot as an insect when the computer is at least <strong>{Math.round(lab.threshold * 100)}%</strong>{' '}
-            sure
-          </label>
-          <input
-            id="threshold"
-            type="range"
-            min={0}
-            max={0.95}
-            step={0.05}
-            value={lab.threshold}
-            onChange={(e) => lab.setThreshold(+e.target.value)}
-          />
-          <div className="slider-ends small muted">
-            <span>Count everything (more false alarms)</span>
-            <span>Only very sure (more misses)</span>
-          </div>
-          <p className="small muted">
-            Our detector is YOLO11n, the same kind of AI the Mothbox team uses.{' '}
-            <button className="link" onClick={onExplain}>
-              How does an AI like YOLO see?
-            </button>
-          </p>
         </div>
       )}
     </section>
