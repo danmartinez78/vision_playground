@@ -50,6 +50,8 @@ export function SceneView({ imageUrl, width, height, layers, drawLayerKey, onAdd
     zoom: number
   } | null>(null)
   const [full, setFull] = useState(false)
+  // the how-to line in full-screen mode, until the first touch on the photo
+  const [hint, setHint] = useState(true)
   // in full-screen mode, the photo's width at 100% so the whole photo fits on screen
   const [fitWidth, setFitWidth] = useState<number | null>(null)
   const canDraw = Boolean(onAdd)
@@ -75,6 +77,7 @@ export function SceneView({ imageUrl, width, height, layers, drawLayerKey, onAdd
   }, [full, width, height])
   const openFull = () => {
     setFull(true)
+    setHint(true)
     setZoomRaw(1)
   }
   const closeFull = () => {
@@ -124,20 +127,10 @@ export function SceneView({ imageUrl, width, height, layers, drawLayerKey, onAdd
     }
   }
 
-  /** Zooms in 2× on one quarter of the photo, so small insects are big enough to see. */
-  const corner = (cx: 0 | 1, cy: 0 | 1) => {
-    setZoomRaw(2)
-    requestAnimationFrame(() => {
-      const el = scrollRef.current
-      if (!el) return
-      el.scrollLeft = cx * (el.scrollWidth - el.clientWidth)
-      el.scrollTop = cy * (el.scrollHeight - el.clientHeight)
-    })
-  }
-
   // touch: one finger draws a box (or pans when there's nothing to draw), two
   // fingers zoom and move, and tapping a box removes it
   const fingerDown = (e: PointerEvent<SVGSVGElement>) => {
+    setHint(false)
     fingers.current.set(e.pointerId, { x: e.clientX, y: e.clientY })
     const el = scrollRef.current!
     const pts = [...fingers.current.values()]
@@ -363,40 +356,9 @@ export function SceneView({ imageUrl, width, height, layers, drawLayerKey, onAdd
   }
 
   if (TOUCH) {
+    // the photo fills the screen; only a few small buttons float on top
     return (
       <div className="scene-frame full" role="dialog" aria-label="Photo, full screen">
-        <div className="zoom-bar">
-          <button onClick={closeFull} aria-label="Close the full-screen photo">
-            ✕ Done
-          </button>
-          <button onClick={() => step(-1)} disabled={zoom <= 1} aria-label="Zoom out">
-            −
-          </button>
-          <button onClick={() => step(1)} disabled={zoom >= 4} aria-label="Zoom in">
-            +
-          </button>
-          <span className="corners" role="group" aria-label="Zoom to a corner">
-            <button onClick={() => corner(0, 0)} aria-label="Top left">
-              ↖
-            </button>
-            <button onClick={() => corner(1, 0)} aria-label="Top right">
-              ↗
-            </button>
-            <button onClick={() => corner(0, 1)} aria-label="Bottom left">
-              ↙
-            </button>
-            <button onClick={() => corner(1, 1)} aria-label="Bottom right">
-              ↘
-            </button>
-          </span>
-          <span className="small zoom-hint">
-            {canDraw
-              ? 'Drag one finger around an insect to box it. Two fingers zoom and move. Tap a box to remove it.'
-              : 'Pinch to zoom, drag to move.'}
-          </span>
-          <span className="small rotate-hint">Turn your phone sideways for a bigger photo.</span>
-        </div>
-        {overlay}
         <div className="scene-scroll" ref={scrollRef}>
           <div
             className="scene-inner"
@@ -408,6 +370,20 @@ export function SceneView({ imageUrl, width, height, layers, drawLayerKey, onAdd
             {svg}
           </div>
         </div>
+        <div className="full-top">
+          <button className="full-done" onClick={closeFull} aria-label="Close the full-screen photo">
+            ✕ Done
+          </button>
+          {overlay}
+        </div>
+        {hint && (
+          <p className="full-hint">
+            {canDraw
+              ? 'Drag one finger around an insect to box it. Two fingers zoom and move. Tap a box to remove it.'
+              : 'Pinch to zoom, drag to move.'}
+            <span className="rotate-hint"> Turn your phone sideways for a bigger photo.</span>
+          </p>
+        )}
       </div>
     )
   }

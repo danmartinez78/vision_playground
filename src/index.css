@@ -1459,38 +1459,69 @@ button.big {
   inset: 0;
   z-index: 100;
   margin: 0;
-  display: flex;
-  flex-direction: column;
+  padding: 0;
+  border: none;
+  border-radius: 0;
   background: #111;
   color: #fff;
-  padding: max(0.4rem, env(safe-area-inset-top)) max(0.4rem, env(safe-area-inset-right)) 0.4rem
-    max(0.4rem, env(safe-area-inset-left));
 }
 
-.scene-frame.full .zoom-bar {
-  margin-bottom: 0.3rem;
+.scene-frame.full .scene-scroll {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  overflow: hidden;
+  border: none;
+  border-radius: 0;
+  touch-action: none;
 }
 
-.scene-frame.full .zoom-bar > button,
-.corners button {
-  background: #2a2a2a;
+.scene-frame.full .scene-svg {
+  touch-action: none;
+}
+
+/* the Done button and stopwatch float over the top of the photo */
+.full-top {
+  position: absolute;
+  top: max(0.4rem, env(safe-area-inset-top));
+  left: max(0.4rem, env(safe-area-inset-left));
+  right: max(0.4rem, env(safe-area-inset-right));
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.4rem;
+  pointer-events: none;
+}
+
+.full-top > * {
+  pointer-events: auto;
+}
+
+.full-done {
+  background: rgba(17, 17, 17, 0.75);
   color: #fff;
-  border-color: #444;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 999px;
+  padding: 0.35rem 0.8rem;
+  font-weight: 700;
+  white-space: nowrap;
 }
 
-.corners {
-  display: inline-flex;
-  gap: 0.2rem;
-}
-
-.corners button {
-  min-width: 2.2rem;
-  padding: 0.3rem 0.4rem;
-}
-
-.scene-frame.full .zoom-hint {
-  color: #ccc;
-  flex-basis: 100%;
+.full-hint {
+  position: absolute;
+  left: 50%;
+  bottom: max(0.6rem, env(safe-area-inset-bottom));
+  transform: translateX(-50%);
+  width: max-content;
+  max-width: calc(100% - 1.2rem);
+  margin: 0;
+  padding: 0.4rem 0.8rem;
+  border-radius: 12px;
+  background: rgba(17, 17, 17, 0.8);
+  color: #fff;
+  font-size: 0.85rem;
+  text-align: center;
+  pointer-events: none;
 }
 
 .rotate-hint {
@@ -1499,62 +1530,45 @@ button.big {
 }
 
 @media (orientation: portrait) {
-  .scene-frame.full .rotate-hint {
+  .full-hint .rotate-hint {
     display: inline;
   }
 }
 
-.scene-frame.full .scene-scroll {
-  flex: 1;
-  min-height: 0;
-  overflow: hidden;
-  border: none;
-  border-radius: 8px;
-  touch-action: none;
-}
-
-.scene-frame.full .scene-svg {
-  touch-action: none;
-}
-
 .scene-frame.full .stopwatch {
-  margin: 0 0 0.3rem;
-  padding: 0.3rem 0.6rem;
+  margin: 0;
+  padding: 0.2rem 0.3rem 0.2rem 0.7rem;
   gap: 0.5rem;
   flex-wrap: nowrap;
   font-size: 0.9rem;
   color: var(--ink);
+  border-radius: 999px;
+  opacity: 0.95;
 }
 
-.scene-frame.full .stopwatch .clock {
-  font-size: 1.1rem;
-}
-
-.scene-frame.full .stopwatch button {
-  margin-left: auto;
-  padding: 0.3rem 0.8rem;
-}
-
+.scene-frame.full .stopwatch > span[aria-hidden],
 .scene-frame.full .sw-help {
   display: none;
 }
 
-@media (orientation: landscape) {
-  .scene-frame.full .zoom-hint {
-    flex-basis: auto;
-  }
-}
-
-.scene-frame.full .scene-scroll {
-  display: flex;
-}
-
 .scene-frame.full .stopwatch > span {
   flex: 0 1 auto;
+  white-space: nowrap;
 }
 
-.scene-frame.full .stopwatch > span:first-child {
-  font-size: 1.1rem;
+.scene-frame.full .stopwatch .clock {
+  font-size: 1.05rem;
+}
+
+.scene-frame.full .stopwatch > span:last-of-type {
+  font-size: 0.85rem;
+}
+
+.scene-frame.full .stopwatch button {
+  white-space: nowrap;
+  margin-left: 0;
+  padding: 0.3rem 0.8rem;
+  border-radius: 999px;
 }
 
 /* six steps don't fit with every label on narrow screens and sideways phones */
