@@ -1423,3 +1423,152 @@ button.big {
   border-radius: 8px;
   background: var(--line);
 }
+
+/* phones: the photo on the page opens full screen */
+.scene-preview {
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  overflow: hidden;
+  background: #222;
+  position: relative;
+}
+
+.scene-preview .scene-inner {
+  display: block;
+}
+
+.open-full {
+  position: absolute;
+  left: 50%;
+  bottom: 0.6rem;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  background: rgba(17, 17, 17, 0.8);
+  color: #fff;
+  font-size: 0.9rem;
+  font-weight: 600;
+  padding: 0.35rem 0.8rem;
+  border-radius: 999px;
+}
+
+.scene-frame.full {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  background: #111;
+  color: #fff;
+  padding: max(0.4rem, env(safe-area-inset-top)) max(0.4rem, env(safe-area-inset-right)) 0.4rem
+    max(0.4rem, env(safe-area-inset-left));
+}
+
+.scene-frame.full .zoom-bar {
+  margin-bottom: 0.3rem;
+}
+
+.scene-frame.full .zoom-bar > button,
+.corners button {
+  background: #2a2a2a;
+  color: #fff;
+  border-color: #444;
+}
+
+.corners {
+  display: inline-flex;
+  gap: 0.2rem;
+}
+
+.corners button {
+  min-width: 2.2rem;
+  padding: 0.3rem 0.4rem;
+}
+
+.scene-frame.full .zoom-hint {
+  color: #ccc;
+  flex-basis: 100%;
+}
+
+.rotate-hint {
+  display: none;
+  color: #fbbf24;
+}
+
+@media (orientation: portrait) {
+  .scene-frame.full .rotate-hint {
+    display: inline;
+  }
+}
+
+.scene-frame.full .scene-scroll {
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+  border: none;
+  border-radius: 8px;
+  touch-action: none;
+}
+
+.scene-frame.full .scene-svg {
+  touch-action: none;
+}
+
+.scene-frame.full .stopwatch {
+  margin: 0 0 0.3rem;
+  padding: 0.3rem 0.6rem;
+  gap: 0.5rem;
+  flex-wrap: nowrap;
+  font-size: 0.9rem;
+  color: var(--ink);
+}
+
+.scene-frame.full .stopwatch .clock {
+  font-size: 1.1rem;
+}
+
+.scene-frame.full .stopwatch button {
+  margin-left: auto;
+  padding: 0.3rem 0.8rem;
+}
+
+.scene-frame.full .sw-help {
+  display: none;
+}
+
+@media (orientation: landscape) {
+  .scene-frame.full .zoom-hint {
+    flex-basis: auto;
+  }
+}
+
+.scene-frame.full .scene-scroll {
+  display: flex;
+}
+
+.scene-frame.full .stopwatch > span {
+  flex: 0 1 auto;
+}
+
+.scene-frame.full .stopwatch > span:first-child {
+  font-size: 1.1rem;
+}
+
+/* six steps don't fit with every label on narrow screens and sideways phones */
+@media (max-width: 1100px) {
+  .stepper .step .label {
+    display: none;
+  }
+  .stepper .step.current .label {
+    display: inline;
+  }
+}
+
+@media (max-height: 500px) {
+  .top {
+    position: static;
+  }
+}

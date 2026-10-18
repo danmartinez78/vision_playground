@@ -6,6 +6,7 @@ import { formatTime } from '../lib/time'
 import type { TruthItem } from '../lib/types'
 import { loadYolo } from '../lib/yolo'
 import { SceneView, type BoxLayer } from '../SceneView'
+import { TOUCH } from '../lib/touch'
 
 const BLUE = '#2563eb'
 const GREEN = '#16a34a'
@@ -181,8 +182,12 @@ export function StepFind({ lab, onExplain }: { lab: Lab; onExplain: () => void }
         <span aria-hidden>⏱️</span>
         <Clock start={start} />
         <span>
-          Boxes so far: <strong>{lab.studentBoxes.length}</strong>. Drag around each insect. Tap or click a box to
-          remove it.
+          {TOUCH ? 'Marked' : 'Boxes'} so far: <strong>{lab.studentBoxes.length}</strong>.{' '}
+          <span className="sw-help">
+            {TOUCH
+              ? 'Tap each insect to mark it. Tap a mark to remove it.'
+              : 'Drag around each insect. Tap or click a box to remove it.'}
+          </span>
         </span>
         <button
           className="primary"
@@ -215,9 +220,11 @@ export function StepFind({ lab, onExplain }: { lab: Lab; onExplain: () => void }
         <div className="stopwatch">
           <span aria-hidden>⏱️</span>
           <span>
-            <strong>Your turn.</strong> When you press start, the stopwatch runs. Draw a box around every insect you can
-            find by dragging on the photo. Zoom in to spot the small ones. Press <em>I'm done</em> when you have them
-            all.
+            <strong>Your turn.</strong> When you press start, the stopwatch runs.{' '}
+            {TOUCH
+              ? 'Open the photo and tap every insect you can find. Pinch or use the corner buttons to zoom in on the small ones.'
+              : 'Draw a box around every insect you can find by dragging on the photo. Zoom in to spot the small ones.'}{' '}
+            Press <em>I'm done</em> when you have them all.
           </span>
           <button className="primary" onClick={startTimer}>
             Start the stopwatch
