@@ -106,28 +106,29 @@ export function StepSort({ lab }: { lab: Lab }) {
           return (
             <article key={d.id} className={revealed ? (right ? 'crop-card right' : 'crop-card wrong') : 'crop-card'}>
               <img src={closeUps.get(d.id)} alt="A close-up from the photo" width={132} height={132} />
-              <div className="group-buttons" role="group" aria-label="Pick a group">
-                {GROUPS.map((gr) => (
-                  <button
-                    key={gr.id}
-                    className={choice === gr.id ? 'chip on' : 'chip'}
-                    onClick={() => lab.chooseGroup(d.id, gr.id)}
-                    disabled={revealed}
-                    title={gr.label}
-                  >
-                    <span aria-hidden>{gr.emoji}</span> {gr.label}
-                  </button>
-                ))}
-              </div>
-              {revealed && g && (
+              {revealed && g ? (
                 <>
                   <p className="answer small">
-                    {right ? '✓ ' : '✗ '}It was: <strong>{truthName(real)}</strong>
-                    {choice && !right && <span className="muted"> (you said {GROUP_LABEL.get(choice)})</span>}
+                    <span className={right ? 'good-text' : 'bad-text'}>{right ? '✓' : '✗'}</span> You said{' '}
+                    <strong>{choice ? GROUP_LABEL.get(choice) : 'nothing'}</strong>. It was{' '}
+                    <strong>{truthName(real)}</strong>.
                   </p>
                   <div className="small muted">The AI said:</div>
                   <AiLadder g={g} />
                 </>
+              ) : (
+                <div className="group-buttons" role="group" aria-label="Pick a group">
+                  {GROUPS.map((gr) => (
+                    <button
+                      key={gr.id}
+                      className={choice === gr.id ? 'chip on' : 'chip'}
+                      onClick={() => lab.chooseGroup(d.id, gr.id)}
+                      title={gr.label}
+                    >
+                      <span aria-hidden>{gr.emoji}</span> {gr.label}
+                    </button>
+                  ))}
+                </div>
               )}
             </article>
           )

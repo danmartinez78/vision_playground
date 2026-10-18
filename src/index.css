@@ -421,13 +421,21 @@ input[type='number'] {
 
 .ladder > div {
   display: grid;
-  grid-template-columns: 4.2rem 1fr 6rem;
+  grid-template-columns: 3.6rem minmax(0, 1fr);
   align-items: center;
-  gap: 0.4rem;
+  column-gap: 0.4rem;
+  row-gap: 0.1rem;
 }
 
 .ladder > div > span:first-child {
   color: var(--muted);
+  grid-row: span 2;
+  align-self: start;
+}
+
+.ladder .bar {
+  grid-column: 2;
+  min-width: 0;
 }
 
 .bar {
