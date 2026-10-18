@@ -6,20 +6,74 @@ function Link({ href, children }: { href: string; children: string }) {
   )
 }
 
-/** Who made the things this lab is built on, with links to learn more. */
-export function Credits() {
+/** How the lab was made: where the photos come from, which AIs we trained, and credits. */
+export function HowWeMade() {
   return (
     <section className="credits">
       <div className="intro">
-        <h2>Credits and links</h2>
+        <h2>How we made this site</h2>
         <p>
-          This lab stands on work shared openly by scientists and engineers. Here's who made what, and where to learn
-          more.
+          Everything in the lesson is real: real light-trap photos, real answers from experts, and real AIs. Here's
+          where each part came from.
         </p>
       </div>
 
       <div className="callout">
-        <h3>The Mothbox</h3>
+        <h3>The short version</h3>
+        <ol>
+          <li>
+            <strong>Photos and right answers</strong> come from the AMI project. Experts drew a box around each insect
+            and named many of the moths.
+          </li>
+          <li>
+            <strong>We trained two small AIs</strong> on AMI photos: one finds the insects, one sorts each close-up as
+            moth or not. They run right in your browser.
+          </li>
+          <li>
+            <strong>We didn't train BioCLIP</strong>, the big AI that names the moths. Other scientists made it. We ran
+            it on the lesson photos ahead of time and saved its answers.
+          </li>
+          <li>
+            <strong>The Mothbox</strong> is the trap our team uses, and it follows the same steps. None of the photos or
+            AIs here come from the Mothbox project.
+          </li>
+        </ol>
+      </div>
+
+      <div className="callout">
+        <h3>What we trained</h3>
+        <p>
+          We didn't start from scratch. Each AI started from a free model that had already learned from millions of
+          everyday photos, and we taught it insects with the AMI training photos. That's called{' '}
+          <strong>fine-tuning</strong>.
+        </p>
+        <ul>
+          <li>
+            <strong>The detector</strong> (YOLO11n) learned to put a box around every insect. On the 6 lesson photos it
+            finds 114 of the 120 insects the experts boxed.
+          </li>
+          <li>
+            <strong>The moth-or-not sorter</strong> (MobileNetV3-small) looks at one close-up at a time and says moth,
+            other insect or not a bug.
+          </li>
+        </ul>
+        <p>
+          The lesson photos were kept out of training. An AI tested on photos it practiced on would look better than it
+          really is.
+        </p>
+      </div>
+
+      <div className="callout">
+        <h3>What other scientists made</h3>
+        <p>
+          <strong>BioCLIP 2</strong>, from the Imageomics Institute, learned from photos of hundreds of thousands of
+          kinds of living things. We gave it the list of moths that live in each photo's region and saved its top
+          answers. It's too big to run in a browser, so step 4 shows those saved answers.
+        </p>
+      </div>
+
+      <div className="callout">
+        <h3>Credits: the Mothbox</h3>
         <p>
           The Mothbox is an open-source automatic light trap made by <strong>Digital Naturalism Laboratories</strong>{' '}
           (Dinalab). It attracts insects to a lit sheet at night and photographs them, so scientists can count insects
@@ -41,7 +95,7 @@ export function Credits() {
       </div>
 
       <div className="callout">
-        <h3>The photos our detector learned from</h3>
+        <h3>Credits: the photos and labels</h3>
         <p>
           Our detector practiced on, and the lesson photos come from, the <strong>AMI dataset</strong> from the
           Automated Monitoring of Insects project (Rolnick Lab at Mila and McGill University, with partners around the
@@ -63,7 +117,7 @@ export function Credits() {
       </div>
 
       <div className="callout">
-        <h3>The AI models in the lesson</h3>
+        <h3>Credits: the AI models</h3>
         <ul>
           <li>
             <strong>YOLO11</strong> by Ultralytics finds where the insects are. We trained the nano size on the AMI
@@ -89,10 +143,7 @@ export function Credits() {
       <div className="callout">
         <h3>About this lab</h3>
         <p>
-          Made for our FIRST LEGO League team. The lesson photos and the experts' boxes and labels are real, from the
-          AMI dataset. All three AIs are real. Our trained YOLO11n finds the insects and our trained moth classifier
-          sorts them, right in your browser; neither saw the lesson photos while learning. BioCLIP's species names were
-          worked out ahead of time. The lab's code is free to use and change under the AGPL-3.0 license:{' '}
+          Made for our FIRST LEGO League team. The lab's code is free to use and change under the AGPL-3.0 license:{' '}
           <Link href="https://github.com/danmartinez78/vision_playground">source code on GitHub</Link>.
         </p>
       </div>

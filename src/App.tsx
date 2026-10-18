@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { HowAiLearns, HowAiSees } from './HowAiSees'
-import { Credits } from './Credits'
+import { HowWeMade } from './HowWeMade'
+import { Welcome } from './Welcome'
 import { useLab } from './lab'
 import { OwnPhoto } from './OwnPhoto'
 import { StepFind } from './steps/StepFind'
@@ -19,7 +20,7 @@ const STEPS = [
   'What did we learn?',
 ]
 
-type Page = 'lesson' | 'own' | 'ai' | 'credits'
+type Page = 'lesson' | 'own' | 'ai' | 'about'
 
 export default function App() {
   const lab = useLab()
@@ -42,6 +43,7 @@ export default function App() {
 
   return (
     <div className="app">
+      <Welcome onAbout={() => setPage('about')} />
       <header className="top">
         <div className="brand">
           <span className="logo" aria-hidden>
@@ -97,7 +99,7 @@ export default function App() {
         {ownPhoto ? (
           <>
             {page === 'own' && <OwnPhoto />}
-            {page === 'credits' && <Credits />}
+            {page === 'about' && <HowWeMade />}
             {page === 'ai' && (
               <>
                 <div className="intro">
@@ -172,8 +174,8 @@ export default function App() {
           Mothbox
         </a>{' '}
         by Digital Naturalism Laboratories.{' '}
-        <button className="link" onClick={() => setPage('credits')}>
-          Credits and links
+        <button className="link" onClick={() => setPage('about')}>
+          How we made this site
         </button>
       </footer>
     </div>
