@@ -39,6 +39,17 @@ npm run lint
 
 There is no backend, login or network dependency. Everything runs in the browser, and uploaded photos never leave the computer.
 
+### Docker (same setup as the scent and SPIKE simulators)
+
+Every push to `main` runs `.github/workflows/docker.yml`, which builds the `Dockerfile` and publishes `ghcr.io/danmartinez78/vision_playground:latest`. Other `claude/**` and `feature/**` branches publish `:branch-<name>` (slashes become dashes) for a test container. The image is nginx serving the built site on port 8080, with no volume or settings, because everything runs in the student's browser.
+
+```bash
+docker run -d --name mothbox-vision-lab --restart unless-stopped \
+    -p 8096:8080 ghcr.io/danmartinez78/vision_playground:latest
+```
+
+nginx sends the cross-origin isolation headers (`Cross-Origin-Opener-Policy` and `Cross-Origin-Embedder-Policy`) so the in-browser AI model can use several CPU threads, and caches models and sample photos for a week. Serve it over HTTPS (for example behind a reverse proxy) so browsers allow WebGPU. If the package is private on GitHub, make it public (Packages, Package settings, Change visibility) or `docker login ghcr.io` on the server first.
+
 ## What is real and what is practice (MVP)
 
 - **The detector really runs on the picture**, including your own photos. It is a simple, explainable method rather than a trained AI: estimate what the empty sheet looks like, mark pixels that are much darker or more colorful than it, group touching pixels into blobs, and score each blob by contrast and size (`src/lib/detector.ts`). It is fooled by leaves and twigs, which is part of the lesson. A trained YOLO model can replace it later.
