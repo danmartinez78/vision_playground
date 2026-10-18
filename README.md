@@ -6,13 +6,15 @@ Students walk through the same steps as the real Mothbox pipeline, doing each jo
 
 | Step | What students do | Real Mothbox equivalent |
 |---|---|---|
-| 1. Look at a photo | Pick a sample night (or load a photo), zoom around, guess the count | UV light attracts insects, camera photographs the sheet |
+| 1. Look at a photo | Pick a sample night, zoom around, guess the count | UV light attracts insects, camera photographs the sheet |
 | 2. Find the insects | Box every insect against a stopwatch and see why each box counted or not; then run the computer's detector live in the browser and compare found, missed, false alarms and time; experiment with the confidence slider | YOLO detector finds each insect |
 | 3. How the AI sees | Pixels and resolution, a 3 x 3 filter playground with the math shown, layers of filters, how YOLO turns grid guesses into one box per insect | Inside the detector (a CNN) |
 | 4. How the AI learns | Train a real 309-number CNN in the browser, then test it on a night it never saw | How the detector was trained |
 | 5. Name the insects | Sort each close-up into a group first, then reveal the AI's order, family and species answers | BioCLIP names each close-up |
 | 6. Check the AI's work | Decide on the close-ups the AI was least sure about, then see its answer and the truth; "AI alone" vs. "AI + you" | People review results in FiftyOne |
 | 7. What did we learn? | Pest watch, helpers, then vs. now, "Scale it up" to a 300-photo night and a season, seeing vs. guessing | Biodiversity counts and pest monitoring |
+
+Outside the lesson, **Try your own photo** (header button) runs the detector on any uploaded photo, with the confidence slider, "what the detector sees", and close-ups the student marks as insect or not (there is no answer key for their photo). Photos never leave the browser.
 
 Student boxes and the detector are scored with the same kid-friendly rule (`judgeBoxes` in `src/lib/geometry.ts`): a box finds an insect if it covers the insect's middle and isn't more than about 4 times its size (tiny insects get extra slack), or overlaps it well. Each box gets a reason: found, too big, counted twice, not an insect, or nothing here.
 

@@ -1,21 +1,8 @@
-import { useState } from 'react'
 import type { Lab } from '../lab'
-import { NIGHTS, renderNight, sceneFromFile } from '../lib/scene'
+import { NIGHTS, renderNight } from '../lib/scene'
 import { SceneView } from '../SceneView'
 
 export function StepNight({ lab }: { lab: Lab }) {
-  const [error, setError] = useState('')
-
-  const upload = async (file: File | undefined) => {
-    if (!file) return
-    setError('')
-    try {
-      lab.setScene(await sceneFromFile(file))
-    } catch {
-      setError('That file could not be opened as a picture. Try a JPG or PNG.')
-    }
-  }
-
   return (
     <section>
       <div className="intro">
@@ -40,15 +27,10 @@ export function StepNight({ lab }: { lab: Lab }) {
             <span>{n.blurb}</span>
           </button>
         ))}
-        <label className={lab.scene?.source === 'upload' ? 'night-card upload selected' : 'night-card upload'}>
-          <strong>Use your own photo</strong>
-          <span>A photo from your Mothbox, or any picture of bugs on a light sheet.</span>
-          <input type="file" accept="image/*" onChange={(e) => upload(e.target.files?.[0])} />
-        </label>
       </div>
-      {error && <p className="warn">{error}</p>}
       <p className="small muted">
-        The three sample nights are drawn by the computer so we know the right answers. Real Mothbox photos come next.
+        These photos are drawn by the computer, so the lab knows the right answers. Want to try the detector on your own
+        photo? Use <em>Try your own photo</em> at the top of the page.
       </p>
 
       {lab.scene && (

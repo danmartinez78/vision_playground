@@ -1071,3 +1071,13 @@ button.big {
 .step {
   font-size: 0.8rem;
 }
+
+.step.own {
+  border-style: dashed;
+  margin-left: 0.5rem;
+}
+
+.own-upload {
+  max-width: 420px;
+  margin: 0.5rem 0 1rem;
+}
