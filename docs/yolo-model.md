@@ -49,6 +49,18 @@ YOLO11n on these photos, at a 0.25 score threshold and IoU 0.5:
 
 Some of these "false alarms" are tiny insects the experts didn't box. One photo, `20220531204321-00-11`, accounts for 31 of them.
 
+## Precomputed results for devices that can't run the models
+
+`public/samples/ami-traps/precomputed.json` holds the real results of both models on every lesson photo. They were computed ahead of time with the site's own settings:
+- detector: score ≥ 0.05, NMS 0.5, at most 500 boxes (`src/lib/yolo.ts`)
+- classifier: 128 px close-ups padded with `#f2f0ec` (`src/lib/mothModel.ts`)
+
+The models are `yolo11n_ami_train1280_imgsz1280.onnx` and `moth_classifier.onnx`. The file is meant for devices that can't run either model, so the lesson still works there.
+
+- **Format:** `images[<photo>]` is a list of rows `[x, y, w, h, score, moth_chance]`. x, y, w and h are pixels of the 1600 px photo. `score` is the detector's confidence and `moth_chance` is the classifier's.
+- **Tell the student:** when the site uses this file, it should say so, for example "This device can't run the AI itself, so you're seeing the answers the same AI gave when we ran it on a bigger computer."
+- **Own photos:** these can't be precomputed. On those devices, "Try your own photo" should say that the AI can't run there.
+
 ## Input and output
 
 - **Input** `images`: float32 `[1, 3, S, S]` with S = 1280 or 960. Channels are RGB, values 0–1. Letterbox the photo: scale it so the long side is S, keep the aspect ratio, and pad the rest with gray 114/255, centered.
