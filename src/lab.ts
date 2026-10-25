@@ -19,6 +19,9 @@ export interface Score {
   total: number
 }
 
+/** The moth classifier's chance that a close-up is a moth, as an answer and how sure it is. */
+const mothGuess = (p: number): MothGuess => ({ group: p >= 0.5 ? 'moth' : 'other', confidence: Math.max(p, 1 - p) })
+
 /** All of the lesson's state, plus the numbers worked out from it. */
 export function useLab() {
   const [scene, setSceneRaw] = useState<Scene | null>(null)
@@ -64,7 +67,7 @@ export function useLab() {
     if (!scene || detecting) return
     setDetecting(true)
     try {
-      const out = await detect(scene.canvas)
+      const out = await detect(scene.canvas, scene.key.startsWith('ami-') ? scene.key.slice(4) : undefined)
       // ignore the result if the student picked another photo meanwhile
       if (currentScene.current === scene) {
         setMothAi(new Map())
@@ -78,7 +81,7 @@ export function useLab() {
   // the moth classifier looks at every close-up the detector kept; lowering the
   // "how sure" slider brings in more, so only the new ones are classified
   useEffect(() => {
-    if (!scene?.real || !detector || detector.engine !== 'yolo') return
+    if (!scene?.real || detector?.engine !== 'yolo') return
     const todo = detector.detections.filter((d) => d.score >= threshold && !mothAi.has(d.id))
     if (!todo.length) return
     let stale = false
@@ -90,10 +93,7 @@ export function useLab() {
         if (stale) return
         setMothAi((m) => {
           const next = new Map(m)
-          todo.forEach((d, i) => {
-            const p = chances[i]
-            next.set(d.id, { group: p >= 0.5 ? 'moth' : 'other', confidence: Math.max(p, 1 - p) })
-          })
+          todo.forEach((d, i) => next.set(d.id, mothGuess(chances[i])))
           return next
         })
       })
@@ -105,6 +105,13 @@ export function useLab() {
       stale = true
     }
   }, [scene, detector, threshold, mothAi])
+
+  // with saved answers the classifier's answers come along with the detector's
+  const mothAnswers = useMemo(() => {
+    const saved = detector?.savedMoth
+    if (!saved) return mothAi
+    return new Map(detector.detections.map((d) => [d.id, mothGuess(saved.get(d.id) ?? 0)]))
+  }, [detector, mothAi])
 
   const derived = useMemo(() => {
     const truth = scene?.truth ?? []
@@ -152,12 +159,12 @@ export function useLab() {
     const cards = kept.slice(0, 24)
     // like sorting by confidence in FiftyOne: people check the answers the AI was least sure about
     const unsure = cards
-      .filter((d) => mothAi.has(d.id))
-      .sort((a, b) => mothAi.get(a.id)!.confidence - mothAi.get(b.id)!.confidence)
+      .filter((d) => mothAnswers.has(d.id))
+      .sort((a, b) => mothAnswers.get(a.id)!.confidence - mothAnswers.get(b.id)!.confidence)
       .slice(0, REVIEW_COUNT)
     /** The group after the student's check, or null for not a bug. */
     const finalLabel = (id: string): RealGroup | null => {
-      const g = (reviewChoices[id] as RealGroup | undefined) ?? mothAi.get(id)?.group
+      const g = (reviewChoices[id] as RealGroup | undefined) ?? mothAnswers.get(id)?.group
       return g && g !== 'notbug' ? g : null
     }
 
@@ -181,15 +188,15 @@ export function useLab() {
       detectorJudgement,
       studentJudgement,
       cards,
-      mothAi,
-      mothReady: !scene?.real || cards.every((d) => mothAi.has(d.id)),
+      mothAi: mothAnswers,
+      mothReady: !scene?.real || cards.every((d) => mothAnswers.has(d.id)),
       mothFailed,
       unsure,
       finalLabel,
       handSeconds,
       sortSeconds,
     }
-  }, [scene, detector, threshold, studentBoxes, reviewChoices, handTimer, sortTimer, mothAi, mothFailed])
+  }, [scene, detector, threshold, studentBoxes, reviewChoices, handTimer, sortTimer, mothAnswers, mothFailed])
 
   return {
     scene,

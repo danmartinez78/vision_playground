@@ -362,16 +362,20 @@ export function StepFind({ lab, onExplain }: { lab: Lab; onExplain: () => void }
                 time: formatTime(handSecs),
               },
               {
-                who: lab.detector.engine === 'simple' ? 'Spot finder (not AI)' : 'Computer',
+                who: { yolo: 'Computer', saved: 'Computer (saved answers)', simple: 'Spot finder (not AI)' }[
+                  lab.detector.engine
+                ],
                 score: lab.detectorScore,
                 note: '—',
-                time: `${(lab.detector.millis / 1000).toFixed(2)} s`,
+                time: lab.detector.engine === 'saved' ? '—' : `${(lab.detector.millis / 1000).toFixed(2)} s`,
               },
             ]}
           />
           <p className="small muted">
-            Same rules for both. The computer checked the whole photo in {Math.max(1, Math.round(lab.detector.millis))}{' '}
-            milliseconds using {engineName(lab.detector)}.{' '}
+            Same rules for both.{' '}
+            {lab.detector.engine === 'saved'
+              ? `These are the answers of ${engineName(lab.detector)}.`
+              : `The computer checked the whole photo in ${Math.max(1, Math.round(lab.detector.millis))} milliseconds using ${engineName(lab.detector)}.`}{' '}
             {scene.real && 'Some "false alarms" may be tiny insects the experts didn\'t box. Experts miss things too. '}
             <button className="link" onClick={onExplain}>
               How does an AI like YOLO see?

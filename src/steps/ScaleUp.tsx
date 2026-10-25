@@ -21,6 +21,8 @@ interface BatchResult {
   insects: number
   found: number
   detectSeconds: number
+  /** True if the AI couldn't run and the spot finder stood in. */
+  spotFinder: boolean
 }
 
 export function ScaleUp({ lab }: { lab: Lab }) {
@@ -32,7 +34,7 @@ export function ScaleUp({ lab }: { lab: Lab }) {
     if (running.current) return
     running.current = true
     setResult(null)
-    const acc: BatchResult = { photos: 0, insects: 0, found: 0, detectSeconds: 0 }
+    const acc: BatchResult = { photos: 0, insects: 0, found: 0, detectSeconds: 0, spotFinder: false }
     const seedBase = Math.floor(Math.random() * 100000)
     // the other lesson photos (drawn ones only if the photos can't be loaded)
     let next: () => Promise<Scene> = async () => renderNight(randomRecipe(seedBase + acc.photos), false)
@@ -49,6 +51,7 @@ export function ScaleUp({ lab }: { lab: Lab }) {
       acc.insects += scene.truth!.filter((t) => t.kind === 'insect').length
       acc.found += out.detections.filter((d) => d.score >= lab.threshold).length
       acc.detectSeconds += out.millis / 1000
+      if (out.engine !== 'yolo') acc.spotFinder = true
       setProgress(acc.photos / BATCH)
       if (acc.photos < BATCH) window.setTimeout(step, 0)
       else {
@@ -81,6 +84,12 @@ export function ScaleUp({ lab }: { lab: Lab }) {
     ]
     tiles = (
       <>
+        {result.spotFinder && (
+          <p className="warn small">
+            This device couldn't run our trained AI, so the simple spot finder did this instead. To see the real AI, try
+            a laptop or a newer phone or tablet, in Chrome or Edge.
+          </p>
+        )}
         <p>
           The computer checked <strong>{result.photos} photos</strong> in{' '}
           <strong>{formatDuration(result.detectSeconds)}</strong>. A Mothbox takes about {PHOTOS_PER_NIGHT} photos in

@@ -14,7 +14,7 @@ const RED = '#dc2626'
 export function DrawnNight({ lab }: { lab: Lab }) {
   const [guess, setGuess] = useState<'more' | 'fewer' | null>(null)
   const [busy, setBusy] = useState(false)
-  const [out, setOut] = useState<{ scene: Scene; judged: Judgement; boxes: Box[] } | null>(null)
+  const [out, setOut] = useState<{ scene: Scene; judged: Judgement; boxes: Box[]; spotFinder: boolean } | null>(null)
 
   const run = async () => {
     setBusy(true)
@@ -27,7 +27,7 @@ export function DrawnNight({ lab }: { lab: Lab }) {
         kept,
         truth.map((t) => ({ box: t.box, insect: t.kind === 'insect' })),
       )
-      setOut({ scene, judged, boxes: kept })
+      setOut({ scene, judged, boxes: kept, spotFinder: result.engine !== 'yolo' })
     } finally {
       setBusy(false)
     }
@@ -70,6 +70,12 @@ export function DrawnNight({ lab }: { lab: Lab }) {
       )}
       {out && (
         <>
+          {out.spotFinder && (
+            <p className="warn small">
+              This device couldn't run our trained AI, so the simple spot finder did this instead. To see the real AI,
+              try a laptop or a newer phone or tablet, in Chrome or Edge.
+            </p>
+          )}
           <div className="score">
             <strong>Drawn night</strong>
             <span className="pill good">

@@ -31,7 +31,7 @@ export function OwnPhoto() {
       .catch(() => setSamples([]))
   }, [])
 
-  const open = async (load: () => Promise<Scene>, key: Box[] | null) => {
+  const open = async (load: () => Promise<Scene>, key: Box[] | null, image?: string) => {
     setError('')
     setBusy(true)
     setDetector(null)
@@ -43,7 +43,7 @@ export function OwnPhoto() {
       setAnswerKey(key)
       setMarks({})
       setContrast(false)
-      setDetector(await detect(s.canvas))
+      setDetector(await detect(s.canvas, image))
     } catch {
       setError('That file could not be opened as a picture. Try a JPG or PNG.')
     } finally {
@@ -55,6 +55,7 @@ export function OwnPhoto() {
     open(
       () => sceneFromUrl(`${SAMPLES_DIR}${s.image}`, sampleTitle(s)),
       s.boxes.map(([x1, y1, x2, y2]) => ({ x: x1, y: y1, w: x2 - x1, h: y2 - y1 })),
+      s.image,
     )
 
   const kept = useMemo(
@@ -158,8 +159,15 @@ export function OwnPhoto() {
         <>
           <FallbackNote detector={detector} />
           <p>
-            The detector checked {answerKey ? 'this photo' : 'your photo'} in{' '}
-            <strong>{Math.max(1, Math.round(detector.millis))} milliseconds</strong> using {engineName(detector)}, and
+            {detector.engine === 'saved' ? (
+              <>These are the answers of {engineName(detector)}. It</>
+            ) : (
+              <>
+                The detector checked {answerKey ? 'this photo' : 'your photo'} in{' '}
+                <strong>{Math.max(1, Math.round(detector.millis))} milliseconds</strong> using {engineName(detector)},
+                and
+              </>
+            )}{' '}
             counted <strong>{kept.length}</strong> insects at {Math.round(threshold * 100)}% sure or more.
           </p>
           {judged && answerKey && (

@@ -1884,3 +1884,10 @@ details.callout > summary:focus:not(:focus-visible) {
   gap: 0.8rem;
   margin-top: 1rem;
 }
+
+/* says when the results come from saved answers instead of a live run */
+.note {
+  background: #eef2ff;
+  border-radius: 10px;
+  padding: 0.75rem 1rem;
+}
