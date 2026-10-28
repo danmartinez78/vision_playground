@@ -12,6 +12,13 @@ export interface MothGuess {
 /** How many of the AI's least-sure moth-or-not answers go to a person to check. */
 export const REVIEW_COUNT = 4
 
+/** Step 6's "Scale it up" estimate for one night, in seconds. */
+export interface ScaleUpTimes {
+  hand: number
+  team: number
+  computer: number
+}
+
 export interface Score {
   hits: number
   misses: number
@@ -39,6 +46,7 @@ export function useLab() {
   // the moth classifier's answers, filled in as the detections come in
   const [mothAi, setMothAi] = useState<Map<string, MothGuess>>(new Map())
   const [mothFailed, setMothFailed] = useState(false)
+  const [scaleUp, setScaleUp] = useState<ScaleUpTimes | null>(null)
 
   const currentScene = useRef<Scene | null>(null)
   const setScene = (s: Scene | null) => {
@@ -53,6 +61,7 @@ export function useLab() {
     setReviewChoices({})
     setHandTimer({ start: null, end: null })
     setSortTimer(null)
+    setScaleUp(null)
   }
 
   const chooseGroup = (id: string, group: RealGroup) => {
@@ -219,6 +228,8 @@ export function useLab() {
     setAiRevealed,
     reviewChoices,
     setReviewChoices,
+    scaleUp,
+    setScaleUp,
     ...derived,
   }
 }

@@ -1,5 +1,5 @@
-import { useRef, useState } from 'react'
-import type { Lab } from '../lab'
+import { useEffect, useMemo, useRef, useState } from 'react'
+import type { Lab, ScaleUpTimes } from '../lab'
 import { detect } from '../lib/detect'
 import { inLesson, loadSamples, sceneFromSample } from '../lib/samples'
 import { randomRecipe, renderNight } from '../lib/scene'
@@ -23,6 +23,17 @@ interface BatchResult {
   detectSeconds: number
   /** True if the AI couldn't run and the spot finder stood in. */
   spotFinder: boolean
+}
+
+/** One night of photos: by hand, computer + you checking the unsure ones, and computer alone. */
+function nightTimes(result: BatchResult, boxSec: number, idSec: number, unsureShare: number): ScaleUpTimes {
+  const perPhoto = result.insects / result.photos
+  const computer = (PHOTOS_PER_NIGHT * result.detectSeconds) / result.photos
+  return {
+    hand: PHOTOS_PER_NIGHT * perPhoto * (boxSec + idSec),
+    computer,
+    team: computer + PHOTOS_PER_NIGHT * perPhoto * unsureShare * idSec,
+  }
 }
 
 export function ScaleUp({ lab }: { lab: Lab }) {
@@ -66,12 +77,19 @@ export function ScaleUp({ lab }: { lab: Lab }) {
   const idSec = Math.max(MIN_ID_SECONDS, lab.sortSeconds ?? 0)
   const unsureShare = lab.cards.length ? lab.unsure.length / lab.cards.length : 0.3
 
+  const times = useMemo(
+    () => (result ? nightTimes(result, boxSec, idSec, unsureShare) : null),
+    [result, boxSec, idSec, unsureShare],
+  )
+  // the results card at the end of the lesson shows the same numbers
+  const { setScaleUp } = lab
+  useEffect(() => {
+    if (times) setScaleUp(times)
+  }, [times, setScaleUp])
+
   let tiles = null
-  if (result) {
-    const perPhoto = result.insects / result.photos
-    const handNight = PHOTOS_PER_NIGHT * perPhoto * (boxSec + idSec)
-    const computerNight = (PHOTOS_PER_NIGHT * result.detectSeconds) / result.photos
-    const teamNight = computerNight + PHOTOS_PER_NIGHT * perPhoto * unsureShare * idSec
+  if (result && times) {
+    const { hand: handNight, computer: computerNight, team: teamNight } = times
     const rows = [
       { label: 'By hand', seconds: handNight, note: 'finding and identifying every insect', tone: 'hand' },
       {

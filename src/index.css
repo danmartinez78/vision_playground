@@ -1891,3 +1891,90 @@ details.callout > summary:focus:not(:focus-visible) {
   border-radius: 10px;
   padding: 0.75rem 1rem;
 }
+
+/* Step 6: Our results card */
+.our-results {
+  background: var(--card);
+  border: 2px solid var(--accent);
+  border-radius: 14px;
+  padding: 0.9rem 1.1rem;
+  margin: 1rem 0;
+}
+.our-results h3 {
+  margin-top: 0;
+}
+.results-team,
+.results-write {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  font-weight: 600;
+  margin: 0.6rem 0 0.2rem;
+}
+.results-team {
+  flex-direction: row;
+  align-items: center;
+  gap: 0.6rem;
+}
+.results-team input,
+.results-write textarea {
+  font: inherit;
+  font-weight: 400;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 0.45rem 0.6rem;
+  background: #fff;
+  color: var(--ink);
+}
+.results-team input {
+  flex: 1;
+  max-width: 20rem;
+}
+.results-write textarea {
+  resize: vertical;
+}
+.results-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+  gap: 1rem;
+  align-items: start;
+  margin-top: 0.6rem;
+}
+.results-grid figure {
+  margin: 0;
+}
+.results-grid img {
+  width: 100%;
+  border-radius: 8px;
+  display: block;
+}
+.results-grid figcaption i {
+  display: inline-block;
+  width: 0.8rem;
+  height: 0.8rem;
+  border: 3px solid;
+  margin: 0 0.25rem -0.15rem 0.6rem;
+}
+.results-grid figcaption i:first-child {
+  margin-left: 0;
+}
+.results-lines {
+  padding-left: 1.1rem;
+  margin: 0.5rem 0;
+}
+.results-sensor {
+  background: #f5f3ff;
+  border-radius: 8px;
+  padding: 0.5rem 0.7rem;
+}
+.results-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-top: 0.8rem;
+}
+@media (max-width: 760px) {
+  .results-grid {
+    grid-template-columns: 1fr;
+  }
+}

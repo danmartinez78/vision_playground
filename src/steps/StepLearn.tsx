@@ -1,5 +1,6 @@
 import type { Lab } from '../lab'
 import { DrawnNight } from './DrawnNight'
+import { OurResults } from './OurResults'
 import { ScaleUp } from './ScaleUp'
 
 /** Step 6's count for a real photo: moths and other insects, counted vs. the experts. */
@@ -168,6 +169,8 @@ export function StepLearn({ lab, onOwn, onAi }: { lab: Lab; onOwn: () => void; o
           <li>How could counting insects before and after show whether a treatment worked?</li>
         </ol>
       </div>
+
+      <OurResults lab={lab} />
 
       <h3>Keep exploring</h3>
       <div className="next-steps">
