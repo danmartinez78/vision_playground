@@ -1,6 +1,6 @@
 # BioCLIP species answers (run ahead of time)
 
-The "Name the moth" step shows what [BioCLIP 2](https://huggingface.co/imageomics/bioclip-2) (MIT license) says about each moth in the lesson photos. BioCLIP is the kind of large species model a real Mothbox uses. It is far too big for a browser, so we ran it once and saved its answers.
+The end of the "Check the AI's work" step shows what [BioCLIP 2](https://huggingface.co/imageomics/bioclip-2) (MIT license) says about each moth in the lesson photos. It is far too big for a browser, so we ran it once and saved its answers.
 
 ## Files
 

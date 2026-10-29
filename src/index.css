@@ -1771,7 +1771,7 @@ details.callout > summary:focus:not(:focus-visible) {
   outline: none;
 }
 
-/* six steps don't fit with every label on narrow screens and sideways phones */
+/* the steps don't fit with every label on narrow screens and sideways phones */
 @media (max-width: 1100px) {
   .stepper .step .label {
     display: none;
