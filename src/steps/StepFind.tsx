@@ -30,7 +30,7 @@ function verdictLabel(v: Verdict, truth: TruthItem[]): string {
     case 'not-insect':
       return `${truth[v.answer]?.debrisLabel ?? 'Not an insect'}, not an insect`
     case 'unlisted':
-      return 'Too small to count'
+      return 'Under 1 cm, not counted'
     case 'empty':
       return 'Nothing here'
   }
@@ -319,8 +319,9 @@ export function StepFind({ lab, onExplain }: { lab: Lab; onExplain: () => void }
           <p>
             <strong>Your turn.</strong>{' '}
             {TOUCH
-              ? 'Tap each insect you can find to box it, then drag the corners to fit. Pinch to zoom in on the small ones.'
-              : 'Drag a box around every insect you can find. Zoom in to spot the small ones.'}{' '}
+              ? 'Tap each insect bigger than 1 cm to box it, then drag the corners to fit. Pinch to zoom in to check.'
+              : 'Drag a box around every insect bigger than 1 cm. Zoom in to check the small ones.'}{' '}
+            Smaller bugs don't count.
             The stopwatch runs until you press <em>I'm done</em>.
           </p>
           <button className="primary big" onClick={startTimer}>

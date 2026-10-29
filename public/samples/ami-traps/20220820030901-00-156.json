@@ -180,6 +180,12 @@
    102.9,
    503.3,
    185.0
+  ],
+  [
+   285,
+   714,
+   292,
+   727
   ]
  ],
  "labels": [
@@ -211,7 +217,8 @@
   "Moth",
   "Moth",
   "Non-Moth",
-  "Non-Moth"
+  "Non-Moth",
+  "Insect"
  ],
  "groups": [
   "moth",
@@ -241,6 +248,7 @@
   "not a moth",
   "moth",
   "moth",
+  "not a moth",
   "not a moth",
   "not a moth"
  ],
@@ -371,12 +379,6 @@
    763,
    277,
    767
-  ],
-  [
-   285,
-   714,
-   292,
-   727
   ]
  ],
  "sources": [
@@ -408,6 +410,40 @@
   "ami",
   "ami",
   "ami",
-  "ami"
+  "ami",
+  "team"
+ ],
+ "px_per_cm": 42,
+ "scored": [
+  true,
+  true,
+  true,
+  true,
+  true,
+  true,
+  true,
+  true,
+  false,
+  true,
+  true,
+  true,
+  true,
+  true,
+  true,
+  true,
+  true,
+  true,
+  false,
+  true,
+  true,
+  false,
+  false,
+  false,
+  false,
+  false,
+  true,
+  false,
+  true,
+  false
  ]
 }

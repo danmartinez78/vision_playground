@@ -132,6 +132,48 @@
    86.6,
    910.5,
    108.5
+  ],
+  [
+   511,
+   175,
+   516,
+   183
+  ],
+  [
+   109,
+   302,
+   115,
+   312
+  ],
+  [
+   509,
+   375,
+   518,
+   385
+  ],
+  [
+   763,
+   421,
+   767,
+   431
+  ],
+  [
+   1113,
+   590,
+   1124,
+   604
+  ],
+  [
+   5,
+   656,
+   12,
+   669
+  ],
+  [
+   538,
+   831,
+   542,
+   840
   ]
  ],
  "labels": [
@@ -155,7 +197,14 @@
   "Non-Moth",
   "Non-Moth",
   "Non-Moth",
-  "Non-Moth"
+  "Non-Moth",
+  "Insect",
+  "Insect",
+  "Insect",
+  "Insect",
+  "Insect",
+  "Insect",
+  "Insect"
  ],
  "groups": [
   "moth",
@@ -172,6 +221,13 @@
   "moth",
   "moth",
   "moth",
+  "not a moth",
+  "not a moth",
+  "not a moth",
+  "not a moth",
+  "not a moth",
+  "not a moth",
+  "not a moth",
   "not a moth",
   "not a moth",
   "not a moth",
@@ -361,48 +417,6 @@
    791,
    1397,
    797
-  ],
-  [
-   511,
-   175,
-   516,
-   183
-  ],
-  [
-   109,
-   302,
-   115,
-   312
-  ],
-  [
-   509,
-   375,
-   518,
-   385
-  ],
-  [
-   763,
-   421,
-   767,
-   431
-  ],
-  [
-   1113,
-   590,
-   1124,
-   604
-  ],
-  [
-   5,
-   656,
-   12,
-   669
-  ],
-  [
-   538,
-   831,
-   542,
-   840
   ]
  ],
  "sources": [
@@ -426,6 +440,44 @@
   "ami",
   "ami",
   "ami",
-  "ami"
+  "ami",
+  "team",
+  "team",
+  "team",
+  "team",
+  "team",
+  "team",
+  "team"
+ ],
+ "px_per_cm": 42,
+ "scored": [
+  true,
+  true,
+  true,
+  true,
+  true,
+  true,
+  true,
+  true,
+  true,
+  true,
+  false,
+  true,
+  true,
+  true,
+  true,
+  false,
+  false,
+  false,
+  false,
+  false,
+  false,
+  false,
+  false,
+  false,
+  false,
+  false,
+  false,
+  false
  ]
 }

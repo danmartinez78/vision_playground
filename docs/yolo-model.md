@@ -51,15 +51,17 @@ Some of these "false alarms" are tiny insects the experts didn't box. One photo,
 
 ## Answer key on the lesson photos
 
-The answer key follows the AMI experts' boxes, which are the same standard the detector was trained on. The experts didn't box the tiniest insects, so those aren't in the key either.
+The lesson asks students to find **every insect 1 cm or bigger**, and it grades both students and the AI on exactly those insects.
 
-On the 6 lesson photos our team resolved the "Unidentifiable" boxes:
-- One that is clearly a moth is now `Moth`.
-- Two insects cut off at the photo edge moved to `unlisted`.
-
-`unlisted` spots are not scored either way: specks, dust, the printed scale card, mites, tiny unboxed insects and insects cut off at the edge. Each photo's `sources` list says who decided each box: `ami` or `team`. No "Unidentifiable" boxes are left on the lesson photos.
-
-With a score of 0.25 or more, YOLO11n covers 115 of the 118 answer-key insects on the lesson photos.
+- **Scale:** all 6 lesson photos measure about 42 px per cm in the 1600 px photo (`px_per_cm`). That comes from the printed 20 mm scale card on five of them. On the sixth, `20230722030832-00-44`, it comes from Chrysoteuchia culmella moths, which are about 12 mm long.
+- **The key:** every AMI expert box, plus 16 small insects our team boxed that the experts skipped.
+  - Each box has a `sources` entry: `ami` or `team`.
+  - Our team also relabeled one "Unidentifiable" box that is clearly a moth as `Moth`.
+  - Two insects cut off at the photo edge moved to `unlisted`.
+  - New boxes go after the expert boxes, so the indexes in `bioclip.json` don't change.
+- **Scored:** `scored` is true when the box's long side is at least 1 cm. 82 insects are scored.
+- **Not scored:** insects under 1 cm stay in the key with their labels, but `src/lib/samples.ts` gives them the not-scored kind. A box on one counts neither as a find nor as a false alarm. The same goes for `unlisted` spots: specks, dust, the scale card, mites and insects cut off at the edge.
+- **Detector:** with a score of 0.25 or more, YOLO11n finds all 82 scored insects. All 16 team-added insects are under 1 cm, so they aren't scored. The experts skipped insects that small, and so does the detector.
 
 ## Precomputed results for devices that can't run the models
 

@@ -23,6 +23,10 @@ export interface Sample {
   groups?: string[]
   /** Who drew each box: 'ami' (the experts) or 'team' (our team, on the lesson photos). */
   sources?: string[]
+  /** On the lesson photos: false for insects shorter than 1 cm, which are kept in the key but not scored. */
+  scored?: boolean[]
+  /** Photo pixels per centimeter, measured from the scale card. */
+  px_per_cm?: number
   /** Specks, mites and bugs too small to judge, scored neither way (see scripts/unlisted_spots.py). */
   unlisted?: [number, number, number, number][]
 }
@@ -91,7 +95,8 @@ export async function sceneFromSample(s: Sample): Promise<Scene> {
       (b, i): TruthItem => ({
         id: `t${i}`,
         box: box(b),
-        kind: 'insect',
+        // insects under 1 cm stay in the key with their label, but count neither way
+        kind: s.scored?.[i] === false ? 'unlisted' : 'insect',
         label: {
           name: s.labels?.[i] ?? 'Insect',
           group: GROUP_OF[s.groups?.[i] ?? ''] ?? 'unknown',
