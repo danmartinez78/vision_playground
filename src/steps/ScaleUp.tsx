@@ -74,7 +74,7 @@ export function ScaleUp({ lab }: { lab: Lab }) {
   }
 
   const boxSec = lab.handSeconds ?? DEFAULT_BOX_SECONDS
-  const idSec = Math.max(MIN_ID_SECONDS, lab.sortSeconds ?? 0)
+  const idSec = MIN_ID_SECONDS
   const unsureShare = lab.cards.length ? lab.unsure.length / lab.cards.length : 0.3
 
   const times = useMemo(
@@ -140,12 +140,9 @@ export function ScaleUp({ lab }: { lab: Lab }) {
             {lab.handSeconds !== null
               ? `Using your own boxing speed from Step 2 (${boxSec.toFixed(1)} seconds per insect)`
               : `Using ${boxSec} seconds to box each insect (try the stopwatch in Step 2 to use your own speed)`}{' '}
-            and {idSec.toFixed(0)} seconds for a scientist to identify each one
-            {lab.sortSeconds !== null && lab.sortSeconds < idSec
-              ? ` (you sorted moth or not in ${lab.sortSeconds.toFixed(1)} seconds, but scientists also name each moth, which takes much longer)`
-              : ''}
-            . The computer time counts only finding the insects. Sorting moths from other insects adds a little more
-            computer time, but still far less than doing it by hand.
+            and {idSec.toFixed(0)} seconds for a scientist to identify each one . The computer time counts only finding
+            the insects. Sorting moths from other insects adds a little more computer time, but still far less than
+            doing it by hand.
           </p>
         </details>
       </>

@@ -35,10 +35,7 @@ export function findRows(r: LabResults): Array<[string, string, string]> {
 /** Short lines about sorting, checking and scaling up. */
 export function resultLines(r: LabResults): string[] {
   const lines: string[] = []
-  if (r.sort)
-    lines.push(
-      `Moth or not: we got ${r.sort.you} of ${r.sort.scored} right, the AI got ${r.sort.ai} of ${r.sort.scored}.`,
-    )
+  if (r.sort) lines.push(`Moth or not: the AI got ${r.sort.ai} of ${r.sort.scored} right.`)
   if (r.review)
     lines.push(
       `Checking the AI: we checked its ${r.review.checked} least-sure answers${r.review.aiWrong ? ` and fixed ${r.review.fixed} of its ${r.review.aiWrong} ${r.review.aiWrong === 1 ? 'mistake' : 'mistakes'}` : ', and it had them all right'}. AI alone: ${r.review.aiAlone} of ${r.review.scored} right. AI + us: ${r.review.team} of ${r.review.scored}.`,

@@ -26,7 +26,7 @@ export interface LabResults {
     spotFinder: boolean
   }
   /** Moth or not: how many close-ups each got right (scored ones only). */
-  sort: { scored: number; you: number; ai: number } | null
+  sort: { scored: number; ai: number } | null
   /** Checking the AI's least-sure answers. */
   review: { checked: number; aiWrong: number; fixed: number; aiAlone: number; team: number; scored: number } | null
   scaleUp: ScaleUpTimes | null
@@ -37,7 +37,6 @@ export function labResults(lab: Lab): LabResults {
   const { start, end } = lab.handTimer
   const scored = lab.cards.filter((d) => lab.scored(d.id))
   const right = (id: string, g: Parameters<typeof realRight>[0]) => realRight(g, lab.truthFor.get(id))
-  const sorted = scored.filter((d) => lab.sortChoices[d.id]).length
   const checked = lab.unsure.filter((d) => lab.reviewChoices[d.id] !== undefined)
   const reviewScored = checked.filter((d) => lab.scored(d.id))
   return {
@@ -61,10 +60,9 @@ export function labResults(lab: Lab): LabResults {
       spotFinder: lab.detector?.engine === 'simple',
     },
     sort:
-      scored.length && sorted
+      scored.length && lab.mothReady
         ? {
             scored: scored.length,
-            you: scored.filter((d) => right(d.id, lab.sortChoices[d.id])).length,
             ai: scored.filter((d) => right(d.id, lab.mothAi.get(d.id)?.group ?? 'notbug')).length,
           }
         : null,

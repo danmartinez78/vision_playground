@@ -37,12 +37,9 @@ export function useLab() {
   const [detector, setDetector] = useState<DetectResult | null>(null)
   const [detecting, setDetecting] = useState(false)
   const [threshold, setThreshold] = useState(0.25)
-  const [sortChoices, setSortChoices] = useState<Record<string, RealGroup>>({})
-  const [aiRevealed, setAiRevealed] = useState(false)
   const [reviewChoices, setReviewChoices] = useState<Record<string, string>>({})
   // stopwatches for the "by hand" jobs, so students can compare with the computer
   const [handTimer, setHandTimer] = useState<{ start: number | null; end: number | null }>({ start: null, end: null })
-  const [sortTimer, setSortTimer] = useState<{ start: number; last: number; count: number } | null>(null)
   // the moth classifier's answers, filled in as the detections come in
   const [mothAi, setMothAi] = useState<Map<string, MothGuess>>(new Map())
   const [mothFailed, setMothFailed] = useState(false)
@@ -56,20 +53,9 @@ export function useLab() {
     setStudentBoxes([])
     setDetector(null)
     setMothAi(new Map())
-    setSortChoices({})
-    setAiRevealed(false)
     setReviewChoices({})
     setHandTimer({ start: null, end: null })
-    setSortTimer(null)
     setScaleUp(null)
-  }
-
-  const chooseGroup = (id: string, group: RealGroup) => {
-    const now = Date.now()
-    if (!sortChoices[id]) {
-      setSortTimer((t) => (t ? { ...t, last: now, count: t.count + 1 } : { start: now, last: now, count: 1 }))
-    }
-    setSortChoices({ ...sortChoices, [id]: group })
   }
 
   const runIt = async () => {
@@ -184,8 +170,6 @@ export function useLab() {
       handTimer.start && handTimer.end && studentBoxes.length
         ? (handTimer.end - handTimer.start) / 1000 / studentBoxes.length
         : null
-    const sortSeconds =
-      sortTimer && sortTimer.count > 1 ? (sortTimer.last - sortTimer.start) / 1000 / (sortTimer.count - 1) : null
 
     return {
       truth,
@@ -205,9 +189,8 @@ export function useLab() {
       unsure,
       finalLabel,
       handSeconds,
-      sortSeconds,
     }
-  }, [scene, detector, threshold, studentBoxes, reviewChoices, handTimer, sortTimer, mothAnswers, mothFailed])
+  }, [scene, detector, threshold, studentBoxes, reviewChoices, handTimer, mothAnswers, mothFailed])
 
   return {
     scene,
@@ -222,12 +205,8 @@ export function useLab() {
     clearDetector: () => setDetector(null),
     threshold,
     setThreshold,
-    sortChoices,
-    chooseGroup,
     handTimer,
     setHandTimer,
-    aiRevealed,
-    setAiRevealed,
     reviewChoices,
     setReviewChoices,
     scaleUp,

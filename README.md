@@ -6,9 +6,9 @@ Students walk through the same steps as the real Mothbox pipeline, doing each jo
 
 | Step | What students do | Real Mothbox equivalent |
 |---|---|---|
-| 1. Look at a photo | Pick one of 6 real insect-monitor photos, zoom around, guess the count | UV light attracts insects, camera photographs the sheet |
+| 1. Look at a photo | Pick one of 2 real insect-monitor photos, zoom around, guess the count | UV light attracts insects, camera photographs the sheet |
 | 2. Find the insects | Box every insect against a stopwatch and see why each box counted or not; then run the computer's detector live in the browser and compare found, missed, false alarms and time; experiment with the confidence slider | YOLO detector finds each insect |
-| 3. Moth or not? | Sort each close-up as moth, other insect or not a bug, then reveal the AI's answer and the experts' label | A moth / not-a-moth classifier sorts each close-up |
+| 3. Moth or not? | See the AI's answer for each close-up (moth, other insect or not a bug), grouped by answer, with how sure it was | A moth / not-a-moth classifier sorts each close-up |
 | 4. Check the AI's work | For each close-up the AI was least sure about, compare it with a field guide of real moth and non-moth close-ups, agree or pick another, then see the truth; "AI alone" vs. "AI + you". Then see BioCLIP's species answers for the moths the experts named, surest first, and how often it's right when sure vs. unsure | People review results in FiftyOne; BioCLIP names each moth (run ahead of time, too big for a browser) |
 | 5. What did we learn? | Moths vs. other insects counted against the experts and the moths they named, then vs. now, "Scale it up" to a 300-photo night and a season, seeing vs. guessing, an **Our results** card for the team presentation (the photo with your boxes and the AI's, you vs. the AI, moth-or-not and checking scores, the one-night times, the before/after sensor idea, two sentences with starters; **Make report** opens a one-page printable report and **Save slide picture** downloads a 1600×900 PNG; team name and sentences are kept in the browser), and an optional extra: our AI on a computer-drawn night | Biodiversity counts and pest monitoring |
 
