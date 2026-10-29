@@ -49,6 +49,19 @@ YOLO11n on these photos, at a 0.25 score threshold and IoU 0.5:
 
 Some of these "false alarms" are tiny insects the experts didn't box. One photo, `20220531204321-00-11`, accounts for 31 of them.
 
+## Team-checked answer key on the lesson photos
+
+The AMI experts boxed the moths and larger insects, but often skipped tiny ones, and some boxes say "Unidentifiable". Our team went through every unboxed spot and every "Unidentifiable" box on the 6 lesson photos, using crops from the full-size photos.
+
+- **Added 16 boxes** for insects with a clearly visible body (legs, wings or a segmented body), all labeled `Insect` / `not a moth`.
+- **Relabeled 1** "Unidentifiable" box that is clearly a moth as `Moth`.
+- **Moved 2** "Unidentifiable" insects that are cut off at the photo edge to `unlisted`.
+- **Left everything else in `unlisted`:** specks, dust, the printed scale card, red velvet mites (not insects) and spots too small to judge. These spots are not scored either way.
+
+Each photo's `sources` list says who drew each box: `ami` or `team`. New boxes go after the expert boxes, so the box indexes in `bioclip.json` don't change. No "Unidentifiable" boxes are left on the lesson photos.
+
+**The detector misses most of the team-added insects:** with a score of 0.25 or more, YOLO11n covers 3 of the 17 team boxes, against 114 of the 117 expert boxes. It learned from the experts' boxes, so it learned to skip tiny insects too.
+
 ## Precomputed results for devices that can't run the models
 
 `public/samples/ami-traps/precomputed.json` holds the real results of both models on every lesson photo. They were computed ahead of time with the site's own settings:
