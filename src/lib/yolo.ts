@@ -1,6 +1,6 @@
 // Our trained insect detector: YOLO11n, trained on the AMI-Traps insect-monitor
 // photos (see docs/yolo-model.md), running in the browser with ONNX Runtime
-// Web. With WebGPU it uses the 1280 model; without, the faster 960 model on
+// Web. It uses the 1280 model, on the graphics chip (WebGPU) if it can and on
 // the computer chip (WebAssembly).
 import type * as Ort from 'onnxruntime-web'
 import { iou } from './geometry'
@@ -102,7 +102,7 @@ export function loadYolo(): Promise<YoloModel> {
         console.warn('WebGPU did not work, using WebAssembly instead', e)
       }
     }
-    return open(await import('onnxruntime-web/wasm'), 960, 'wasm')
+    return open(await import('onnxruntime-web/wasm'), 1280, 'wasm')
   })()
   loading.catch(() => {
     loading = null

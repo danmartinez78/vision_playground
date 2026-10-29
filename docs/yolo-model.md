@@ -1,6 +1,6 @@
 # Trained insect detector (YOLO11n on AMI-Traps)
 
-These are the trained detector files for the lesson. The site runs them with ONNX Runtime Web in `src/lib/yolo.ts`: the 1280 model on WebGPU, otherwise the 960 model on WebAssembly. If neither can load, it falls back to the hand-written spot finder in `src/lib/detector.ts`.
+These are the trained detector files for the lesson. The site runs them with ONNX Runtime Web in `src/lib/yolo.ts`: always the 1280 model, on WebGPU when available and otherwise on WebAssembly. The 960 model stays in the repo but isn't used: on lesson photo `20220602015906-00-188` it misses a tiny insect at a moth's wingtip that the 1280 model finds. If neither can load, it falls back to the hand-written spot finder in `src/lib/detector.ts`.
 
 ## Files
 
