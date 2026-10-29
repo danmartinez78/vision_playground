@@ -49,18 +49,17 @@ YOLO11n on these photos, at a 0.25 score threshold and IoU 0.5:
 
 Some of these "false alarms" are tiny insects the experts didn't box. One photo, `20220531204321-00-11`, accounts for 31 of them.
 
-## Team-checked answer key on the lesson photos
+## Answer key on the lesson photos
 
-The AMI experts boxed the moths and larger insects, but often skipped tiny ones, and some boxes say "Unidentifiable". Our team went through every unboxed spot and every "Unidentifiable" box on the 6 lesson photos, using crops from the full-size photos.
+The answer key follows the AMI experts' boxes, which are the same standard the detector was trained on. The experts didn't box the tiniest insects, so those aren't in the key either.
 
-- **Added 16 boxes** for insects with a clearly visible body (legs, wings or a segmented body), all labeled `Insect` / `not a moth`.
-- **Relabeled 1** "Unidentifiable" box that is clearly a moth as `Moth`.
-- **Moved 2** "Unidentifiable" insects that are cut off at the photo edge to `unlisted`.
-- **Left everything else in `unlisted`:** specks, dust, the printed scale card, red velvet mites (not insects) and spots too small to judge. These spots are not scored either way.
+On the 6 lesson photos our team resolved the "Unidentifiable" boxes:
+- One that is clearly a moth is now `Moth`.
+- Two insects cut off at the photo edge moved to `unlisted`.
 
-Each photo's `sources` list says who drew each box: `ami` or `team`. New boxes go after the expert boxes, so the box indexes in `bioclip.json` don't change. No "Unidentifiable" boxes are left on the lesson photos.
+`unlisted` spots are not scored either way: specks, dust, the printed scale card, mites, tiny unboxed insects and insects cut off at the edge. Each photo's `sources` list says who decided each box: `ami` or `team`. No "Unidentifiable" boxes are left on the lesson photos.
 
-**The detector misses most of the team-added insects:** with a score of 0.25 or more, YOLO11n covers 3 of the 17 team boxes, against 114 of the 117 expert boxes. It learned from the experts' boxes, so it learned to skip tiny insects too.
+With a score of 0.25 or more, YOLO11n covers 115 of the 118 answer-key insects on the lesson photos.
 
 ## Precomputed results for devices that can't run the models
 

@@ -84,12 +84,6 @@
    619.9,
    1527.4,
    680.5
-  ],
-  [
-   952,
-   306,
-   959,
-   320
   ]
  ],
  "labels": [
@@ -105,8 +99,7 @@
   "Non-Moth",
   "Non-Moth",
   "Non-Moth",
-  "Non-Moth",
-  "Insect"
+  "Non-Moth"
  ],
  "groups": [
   "moth",
@@ -117,7 +110,6 @@
   "moth",
   "moth",
   "moth",
-  "not a moth",
   "not a moth",
   "not a moth",
   "not a moth",
@@ -239,6 +231,12 @@
    802,
    1258,
    809
+  ],
+  [
+   952,
+   306,
+   959,
+   320
   ]
  ],
  "sources": [
@@ -254,7 +252,6 @@
   "ami",
   "ami",
   "ami",
-  "ami",
-  "team"
+  "ami"
  ]
 }

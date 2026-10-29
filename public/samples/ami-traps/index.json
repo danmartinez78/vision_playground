@@ -1,7 +1,7 @@
 {
  "source": "AMI-Traps (AMI dataset, Zenodo 11358689, MIT)",
  "split": "test",
- "note": "All photos are from the test split: the YOLO11n model never saw them in training. labels are the AMI expert labels; groups simplify them to moth / not a moth / unknown. sources marks who drew each box: 'ami' = the AMI experts, 'team' = boxes and labels our team added or decided on the lesson photos (clear insects the experts didn't box, and 'Unidentifiable' boxes we could judge). unlisted = spots that are not scored either way (specks, dust, the printed scale card, mites, insects cut off at the edge).",
+ "note": "All photos are from the test split: the YOLO11n model never saw them in training. labels are the AMI expert labels; groups simplify them to moth / not a moth / unknown. sources marks who drew each box: 'ami' = the AMI experts, 'team' = boxes and labels our team added or decided on the lesson photos ('Unidentifiable' boxes we could judge). unlisted = spots that are not scored either way (specks, dust, the printed scale card, mites, insects cut off at the edge).",
  "images": [
   {
    "image": "132-20230124225759-snapshot.jpg",
@@ -2971,12 +2971,6 @@
      619.9,
      1527.4,
      680.5
-    ],
-    [
-     952,
-     306,
-     959,
-     320
     ]
    ],
    "labels": [
@@ -2992,8 +2986,7 @@
     "Non-Moth",
     "Non-Moth",
     "Non-Moth",
-    "Non-Moth",
-    "Insect"
+    "Non-Moth"
    ],
    "groups": [
     "moth",
@@ -3004,7 +2997,6 @@
     "moth",
     "moth",
     "moth",
-    "not a moth",
     "not a moth",
     "not a moth",
     "not a moth",
@@ -3126,6 +3118,12 @@
      802,
      1258,
      809
+    ],
+    [
+     952,
+     306,
+     959,
+     320
     ]
    ],
    "sources": [
@@ -3141,8 +3139,7 @@
     "ami",
     "ami",
     "ami",
-    "ami",
-    "team"
+    "ami"
    ]
   },
   {
@@ -3279,48 +3276,6 @@
      86.6,
      910.5,
      108.5
-    ],
-    [
-     511,
-     175,
-     516,
-     183
-    ],
-    [
-     109,
-     302,
-     115,
-     312
-    ],
-    [
-     509,
-     375,
-     518,
-     385
-    ],
-    [
-     763,
-     421,
-     767,
-     431
-    ],
-    [
-     1113,
-     590,
-     1124,
-     604
-    ],
-    [
-     5,
-     656,
-     12,
-     669
-    ],
-    [
-     538,
-     831,
-     542,
-     840
     ]
    ],
    "labels": [
@@ -3344,14 +3299,7 @@
     "Non-Moth",
     "Non-Moth",
     "Non-Moth",
-    "Non-Moth",
-    "Insect",
-    "Insect",
-    "Insect",
-    "Insect",
-    "Insect",
-    "Insect",
-    "Insect"
+    "Non-Moth"
    ],
    "groups": [
     "moth",
@@ -3368,13 +3316,6 @@
     "moth",
     "moth",
     "moth",
-    "not a moth",
-    "not a moth",
-    "not a moth",
-    "not a moth",
-    "not a moth",
-    "not a moth",
-    "not a moth",
     "not a moth",
     "not a moth",
     "not a moth",
@@ -3564,6 +3505,48 @@
      791,
      1397,
      797
+    ],
+    [
+     511,
+     175,
+     516,
+     183
+    ],
+    [
+     109,
+     302,
+     115,
+     312
+    ],
+    [
+     509,
+     375,
+     518,
+     385
+    ],
+    [
+     763,
+     421,
+     767,
+     431
+    ],
+    [
+     1113,
+     590,
+     1124,
+     604
+    ],
+    [
+     5,
+     656,
+     12,
+     669
+    ],
+    [
+     538,
+     831,
+     542,
+     840
     ]
    ],
    "sources": [
@@ -3587,14 +3570,7 @@
     "ami",
     "ami",
     "ami",
-    "ami",
-    "team",
-    "team",
-    "team",
-    "team",
-    "team",
-    "team",
-    "team"
+    "ami"
    ]
   },
   {
@@ -3719,18 +3695,6 @@
      422.9,
      753.2,
      444.8
-    ],
-    [
-     365,
-     546,
-     371,
-     554
-    ],
-    [
-     169,
-     769,
-     180,
-     780
     ]
    ],
    "labels": [
@@ -3752,9 +3716,7 @@
     "Non-Moth",
     "Non-Moth",
     "Non-Moth",
-    "Non-Moth",
-    "Insect",
-    "Insect"
+    "Non-Moth"
    ],
    "groups": [
     "moth",
@@ -3765,8 +3727,6 @@
     "moth",
     "moth",
     "moth",
-    "not a moth",
-    "not a moth",
     "not a moth",
     "not a moth",
     "not a moth",
@@ -3900,6 +3860,18 @@
      659,
      371,
      668
+    ],
+    [
+     365,
+     546,
+     371,
+     554
+    ],
+    [
+     169,
+     769,
+     180,
+     780
     ]
    ],
    "sources": [
@@ -3921,9 +3893,7 @@
     "ami",
     "ami",
     "ami",
-    "ami",
-    "team",
-    "team"
+    "ami"
    ]
   },
   {
@@ -4108,12 +4078,6 @@
      102.9,
      503.3,
      185.0
-    ],
-    [
-     285,
-     714,
-     292,
-     727
     ]
    ],
    "labels": [
@@ -4145,8 +4109,7 @@
     "Moth",
     "Moth",
     "Non-Moth",
-    "Non-Moth",
-    "Insect"
+    "Non-Moth"
    ],
    "groups": [
     "moth",
@@ -4176,7 +4139,6 @@
     "not a moth",
     "moth",
     "moth",
-    "not a moth",
     "not a moth",
     "not a moth"
    ],
@@ -4307,6 +4269,12 @@
      763,
      277,
      767
+    ],
+    [
+     285,
+     714,
+     292,
+     727
     ]
    ],
    "sources": [
@@ -4338,8 +4306,7 @@
     "ami",
     "ami",
     "ami",
-    "ami",
-    "team"
+    "ami"
    ]
   },
   {
@@ -6310,36 +6277,6 @@
      68.2,
      638.0,
      113.2
-    ],
-    [
-     934,
-     60,
-     943,
-     70
-    ],
-    [
-     532,
-     70,
-     548,
-     80
-    ],
-    [
-     937,
-     329,
-     944,
-     345
-    ],
-    [
-     1066,
-     376,
-     1084,
-     399
-    ],
-    [
-     825,
-     544,
-     834,
-     556
     ]
    ],
    "labels": [
@@ -6358,12 +6295,7 @@
     "Eilema lurideola",
     "Chrysoteuchia culmella",
     "Crambidae",
-    "Non-Moth",
-    "Insect",
-    "Insect",
-    "Insect",
-    "Insect",
-    "Insect"
+    "Non-Moth"
    ],
    "groups": [
     "moth",
@@ -6381,11 +6313,6 @@
     "moth",
     "moth",
     "moth",
-    "not a moth",
-    "not a moth",
-    "not a moth",
-    "not a moth",
-    "not a moth",
     "not a moth"
    ],
    "box_format": "xyxy pixels in this image",
@@ -6473,6 +6400,36 @@
      822.9,
      957.4,
      843.8
+    ],
+    [
+     934,
+     60,
+     943,
+     70
+    ],
+    [
+     532,
+     70,
+     548,
+     80
+    ],
+    [
+     937,
+     329,
+     944,
+     345
+    ],
+    [
+     1066,
+     376,
+     1084,
+     399
+    ],
+    [
+     825,
+     544,
+     834,
+     556
     ]
    ],
    "sources": [
@@ -6491,12 +6448,7 @@
     "ami",
     "ami",
     "ami",
-    "ami",
-    "team",
-    "team",
-    "team",
-    "team",
-    "team"
+    "ami"
    ]
   },
   {

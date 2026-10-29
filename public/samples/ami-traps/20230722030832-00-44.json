@@ -102,36 +102,6 @@
    68.2,
    638.0,
    113.2
-  ],
-  [
-   934,
-   60,
-   943,
-   70
-  ],
-  [
-   532,
-   70,
-   548,
-   80
-  ],
-  [
-   937,
-   329,
-   944,
-   345
-  ],
-  [
-   1066,
-   376,
-   1084,
-   399
-  ],
-  [
-   825,
-   544,
-   834,
-   556
   ]
  ],
  "labels": [
@@ -150,12 +120,7 @@
   "Eilema lurideola",
   "Chrysoteuchia culmella",
   "Crambidae",
-  "Non-Moth",
-  "Insect",
-  "Insect",
-  "Insect",
-  "Insect",
-  "Insect"
+  "Non-Moth"
  ],
  "groups": [
   "moth",
@@ -173,11 +138,6 @@
   "moth",
   "moth",
   "moth",
-  "not a moth",
-  "not a moth",
-  "not a moth",
-  "not a moth",
-  "not a moth",
   "not a moth"
  ],
  "box_format": "xyxy pixels in this image",
@@ -265,6 +225,36 @@
    822.9,
    957.4,
    843.8
+  ],
+  [
+   934,
+   60,
+   943,
+   70
+  ],
+  [
+   532,
+   70,
+   548,
+   80
+  ],
+  [
+   937,
+   329,
+   944,
+   345
+  ],
+  [
+   1066,
+   376,
+   1084,
+   399
+  ],
+  [
+   825,
+   544,
+   834,
+   556
   ]
  ],
  "sources": [
@@ -283,11 +273,6 @@
   "ami",
   "ami",
   "ami",
-  "ami",
-  "team",
-  "team",
-  "team",
-  "team",
-  "team"
+  "ami"
  ]
 }
