@@ -37,7 +37,7 @@ export function ExpertSays({ id, lab }: { id: string; lab: Lab }) {
       </>
     )
   }
-  if (t.kind === 'unlisted') return <>Smaller than 1 cm, so it isn't scored.</>
+  if (t.kind === 'unlisted' && t.label?.group === 'unknown') return <>Just a speck, so it isn't scored.</>
   if (t.label?.group === 'unknown') return <>The experts couldn't name this insect, so it isn't scored.</>
   const name = expertName(t.label)
   return (
@@ -184,7 +184,7 @@ export function StepSort({ lab }: { lab: Lab }) {
             </div>
             {unscored > 0 && (
               <p className="small muted">
-                {unscored} close-up{unscored > 1 ? 's are' : ' is'} smaller than 1 cm, so{' '}
+                {unscored} close-up{unscored > 1 ? 's are' : ' is'} just specks, so{' '}
                 {unscored > 1 ? "they aren't" : "it isn't"} scored.
               </p>
             )}

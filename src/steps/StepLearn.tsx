@@ -108,6 +108,8 @@ export function StepLearn({ lab, onOwn, onAi }: { lab: Lab; onOwn: () => void; o
   // counts after the student's checks: every box the detector kept, as moth or other insect
   const counted = new Map<string, number>()
   for (const d of lab.kept) {
+    // like Step 2, anything under 1 cm isn't counted
+    if (lab.truthFor.get(d.id)?.kind === 'unlisted') continue
     const g = lab.finalLabel(d.id)
     if (g) counted.set(g, (counted.get(g) ?? 0) + 1)
   }

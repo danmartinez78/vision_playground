@@ -118,12 +118,7 @@ function Legend({ j, missed }: { j: Judgement; missed: boolean }) {
     [RED, 'Not an insect', 'A leaf, twig or smudge. Easy to mix up!', count('not-insect')],
     [RED, 'Counted twice', 'Another of your boxes already found this insect.', count('twice')],
     [RED, 'Nothing here', 'The box missed the insect. Its middle has to be inside your box.', count('empty')],
-    [
-      GRAY,
-      'Too small to count',
-      'A speck, mite or bug too small to judge, so it counts neither way.',
-      count('unlisted'),
-    ],
+    [GRAY, 'Under 1 cm, not counted', 'Smaller than 1 cm, so it counts neither way.', count('unlisted')],
   ]
   return (
     <ul className="legend">
@@ -321,8 +316,7 @@ export function StepFind({ lab, onExplain }: { lab: Lab; onExplain: () => void }
             {TOUCH
               ? 'Tap each insect bigger than 1 cm to box it, then drag the corners to fit. Pinch to zoom in to check.'
               : 'Drag a box around every insect bigger than 1 cm. Zoom in to check the small ones.'}{' '}
-            Smaller bugs don't count.
-            The stopwatch runs until you press <em>I'm done</em>.
+            Smaller bugs don't count. The stopwatch runs until you press <em>I'm done</em>.
           </p>
           <button className="primary big" onClick={startTimer}>
             ⏱️ Start

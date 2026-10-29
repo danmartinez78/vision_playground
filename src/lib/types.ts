@@ -9,7 +9,7 @@ export interface Box {
 export interface TruthItem {
   id: string
   box: Box
-  /** 'unlisted': a speck, mite or bug too small to judge; boxing it counts neither way */
+  /** 'unlisted': smaller than 1 cm (a speck, or a small insect); boxing it counts neither way */
   kind: 'insect' | 'debris' | 'unlisted'
   speciesId?: string
   debrisLabel?: string

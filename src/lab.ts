@@ -159,11 +159,11 @@ export function useLab() {
         if (v.kind === 'twice') twice.add(kept[di].id)
       })
     }
-    // on real photos a speck too small to judge, or an insect nobody could name, isn't scored;
-    // a box on an empty spot is a false alarm
+    // on real photos a speck, or an insect nobody could name, isn't scored; small insects still
+    // are (the 1 cm rule is for finding them), and a box on an empty spot is a false alarm
     const scored = (id: string) => {
       const t = truthFor.get(id)
-      return !scene?.real || !t || (t.kind !== 'unlisted' && t.label?.group !== 'unknown')
+      return !scene?.real || !t || t.label?.group !== 'unknown'
     }
 
     // the cards for sorting: the most confident detections first, at most 24

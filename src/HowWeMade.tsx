@@ -52,7 +52,7 @@ export function HowWeMade() {
         <ul>
           <li>
             <strong>The detector</strong> (YOLO11n) learned to put a box around every insect. On the 6 lesson photos it
-            finds all 82 insects that are 1 cm or bigger.
+            finds 81 of the 82 insects that are 1 cm or bigger.
           </li>
           <li>
             <strong>The moth-or-not sorter</strong> (MobileNetV3-small) looks at one close-up at a time and says moth,

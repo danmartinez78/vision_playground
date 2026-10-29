@@ -61,7 +61,7 @@ The lesson asks students to find **every insect 1 cm or bigger**, and it grades 
   - New boxes go after the expert boxes, so the indexes in `bioclip.json` don't change.
 - **Scored:** `scored` is true when the box's long side is at least 1 cm. 82 insects are scored.
 - **Not scored:** insects under 1 cm stay in the key with their labels, but `src/lib/samples.ts` gives them the not-scored kind. A box on one counts neither as a find nor as a false alarm. The same goes for `unlisted` spots: specks, dust, the scale card, mites and insects cut off at the edge.
-- **Detector:** with a score of 0.25 or more, YOLO11n finds all 82 scored insects. All 16 team-added insects are under 1 cm, so they aren't scored. The experts skipped insects that small, and so does the detector.
+- **Detector:** with a score of 0.25 or more, YOLO11n finds 81 of the 82 scored insects with the lesson's own box rules (`judgeBoxes`). All 16 team-added insects are under 1 cm, so they aren't scored. The experts skipped insects that small, and so does the detector.
 
 ## Precomputed results for devices that can't run the models
 
