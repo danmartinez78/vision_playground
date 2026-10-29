@@ -31,7 +31,7 @@ export function Welcome({ onAbout }: { onAbout: () => void }) {
     <dialog ref={dialog} className="welcome" onCancel={close} aria-labelledby="welcome-title">
       <h2 id="welcome-title">🦋 Welcome to the Mothbox Vision Lab</h2>
       <ul>
-        <li>Real insect-monitor photos, with right answers from insect experts.</li>
+        <li>Real insect-monitor photos, with right answers from insect experts, checked by our team.</li>
         <li>Real AI, running right in your browser.</li>
         <li>You do each job first, then see how the AI does.</li>
       </ul>

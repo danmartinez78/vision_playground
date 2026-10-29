@@ -27,27 +27,23 @@ function MothAnswer({ group, confidence }: { group: RealGroup; confidence: numbe
   )
 }
 
-/** What the experts said about a real-photo close-up, in one short sentence. */
+/** What the answer key says about a real-photo close-up, in one short sentence. */
 export function ExpertSays({ id, lab }: { id: string; lab: Lab }) {
   const t = lab.truthFor.get(id)
   if (!t) {
     return (
       <>
-        The experts drew no box here. A false alarm, or an insect they missed? <strong>You decide.</strong>
+        Answer key: <strong>nothing here</strong>, so this box is a false alarm.
       </>
     )
   }
+  if (t.kind === 'unlisted') return <>Just a speck, too small to judge. It isn't scored.</>
+  if (t.label?.group === 'unknown') return <>The experts couldn't name this insect, so it isn't scored.</>
+  const name = expertName(t.label)
   return (
     <>
-      {t.label?.group === 'unknown' ? (
-        <>
-          The experts boxed it but didn't name it. <strong>You decide.</strong>
-        </>
-      ) : (
-        <>
-          Experts: <strong>{expertName(t.label)}</strong>.
-        </>
-      )}
+      Answer key: <strong>{name}</strong>
+      {t.label?.team ? ' (checked by our team).' : name.endsWith('.') ? '' : '.'}
       {lab.twice.has(id) && ' The AI boxed this insect twice.'}
     </>
   )
@@ -113,8 +109,8 @@ export function StepSort({ lab }: { lab: Lab }) {
           built to count.
         </p>
         <p>
-          <strong>Your turn first:</strong> sort each close-up. When you've done them all, you can see what the AI and
-          the experts said.
+          <strong>Your turn first:</strong> sort each close-up. When you've done them all, you can see the AI's answers
+          and the answer key.
         </p>
         <MothTips />
       </div>
@@ -188,7 +184,7 @@ export function StepSort({ lab }: { lab: Lab }) {
             </div>
             {unscored > 0 && (
               <p className="small muted">
-                {unscored} close-up{unscored > 1 ? 's have' : ' has'} no expert answer, so{' '}
+                {unscored} close-up{unscored > 1 ? 's are' : ' is'} too small to judge, so{' '}
                 {unscored > 1 ? "they aren't" : "it isn't"} scored.
               </p>
             )}

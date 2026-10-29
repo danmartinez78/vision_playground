@@ -120,7 +120,7 @@ export function judgeBoxes(guesses: Box[], answers: { box: Box; insect: boolean;
     const twice = touching.find((ai) => answers[ai].insect && claimed.has(ai) && good(g, ai))
     const big = touching.find((ai) => answers[ai].insect && !claimed.has(ai))
     const junk = touching.find((ai) => !answers[ai].insect && !answers[ai].unlisted)
-    // a spot the experts didn't box: maybe a tiny bug, so it counts neither way
+    // a speck, mite or bug too small to judge counts neither way
     const unlisted = answers.findIndex((a, ai) => a.unlisted && coversMiddle(g, ai))
     if (twice !== undefined) verdicts[gi] = { kind: 'twice', answer: twice }
     else if (big !== undefined) verdicts[gi] = { kind: 'too-big', answer: big }

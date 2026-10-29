@@ -57,7 +57,7 @@ export function StepReview({ lab }: { lab: Lab }) {
         </p>
         <p>
           <strong>Your job:</strong> compare each close-up with the field guide. Does the AI's answer match? If not,
-          pick a better one. Then press <em>Check</em> to see what the experts said.
+          pick a better one. Then press <em>Check</em> to see the answer key.
         </p>
       </div>
 

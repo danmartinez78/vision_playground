@@ -21,7 +21,9 @@ export interface Sample {
   labels?: string[]
   /** Each insect simplified to 'moth', 'not a moth' or 'unknown'. */
   groups?: string[]
-  /** Dark spots the experts didn't box, often tiny bugs (see scripts/unlisted_spots.py). */
+  /** Who drew each box: 'ami' (the experts) or 'team' (our team, on the lesson photos). */
+  sources?: string[]
+  /** Specks, mites and bugs too small to judge, scored neither way (see scripts/unlisted_spots.py). */
   unlisted?: [number, number, number, number][]
 }
 
@@ -31,7 +33,7 @@ export const REGION_NAMES: Record<string, string> = {
   WesternEurope: 'Western Europe',
 }
 
-/** The label on spots the experts didn't box. */
+/** The label on spots too small to judge. */
 const UNLISTED = 'Unlisted'
 
 const GROUP_OF: Record<string, ExpertGroup> = { moth: 'moth', 'not a moth': 'other', unknown: 'unknown' }
@@ -55,7 +57,7 @@ export const inLesson = (s: Sample) => LESSON.has(s.image)
 /** What the experts called an insect, in words a student can read. */
 export function expertName(label: TruthItem['label']): string {
   if (!label) return 'An insect'
-  if (label.name === UNLISTED) return "Something the experts didn't box"
+  if (label.name === UNLISTED) return 'A speck too small to judge'
   if (label.group === 'unknown') return "An insect the experts couldn't name"
   if (label.group === 'other') return 'Another insect (not a moth)'
   if (label.name === 'Lepidoptera' || label.name === 'Moth') return 'A moth'
@@ -90,7 +92,11 @@ export async function sceneFromSample(s: Sample): Promise<Scene> {
         id: `t${i}`,
         box: box(b),
         kind: 'insect',
-        label: { name: s.labels?.[i] ?? 'Insect', group: GROUP_OF[s.groups?.[i] ?? ''] ?? 'unknown' },
+        label: {
+          name: s.labels?.[i] ?? 'Insect',
+          group: GROUP_OF[s.groups?.[i] ?? ''] ?? 'unknown',
+          team: s.sources?.[i] === 'team',
+        },
       }),
     ),
     ...(s.unlisted ?? []).map(

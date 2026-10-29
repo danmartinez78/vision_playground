@@ -43,7 +43,8 @@ export function StepNight({ lab }: { lab: Lab }) {
       <h3>Pick a photo to work on</h3>
       <p className="small muted">
         These are real photos from insect monitors like the Mothbox, taken by scientists in the AMI project in North
-        America, Central America and Europe. Experts drew a box around every insect, so the lab knows the right answers.
+        America, Central America and Europe. Experts boxed the insects and our team checked every spot they skipped, so
+        the lab knows the right answers.
       </p>
       {error && <p className="warn">{error}</p>}
       <div className="sample-grid">

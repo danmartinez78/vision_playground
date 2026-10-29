@@ -3,7 +3,7 @@ import { DrawnNight } from './DrawnNight'
 import { OurResults } from './OurResults'
 import { ScaleUp } from './ScaleUp'
 
-/** Step 5's count for a real photo: moths and other insects, counted vs. the experts. */
+/** Step 5's count for a real photo: moths and other insects, counted vs. the answer key. */
 function RealTally({ lab, counted }: { lab: Lab; counted: Map<string, number> }) {
   const real = { moth: 0, other: 0, unknown: 0 }
   const mothNames = new Map<string, number>()
@@ -45,7 +45,7 @@ function RealTally({ lab, counted }: { lab: Lab; counted: Map<string, number> })
               <tr>
                 <th></th>
                 <th>Counted</th>
-                <th>Experts</th>
+                <th>Answer key</th>
               </tr>
             </thead>
             <tbody>
@@ -61,7 +61,7 @@ function RealTally({ lab, counted }: { lab: Lab; counted: Map<string, number> })
               </tr>
               {real.unknown > 0 && (
                 <tr>
-                  <td>❓ Experts didn't name</td>
+                  <td>❓ Couldn't be named</td>
                   <td>—</td>
                   <td>{real.unknown}</td>
                 </tr>

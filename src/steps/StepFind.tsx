@@ -30,7 +30,7 @@ function verdictLabel(v: Verdict, truth: TruthItem[]): string {
     case 'not-insect':
       return `${truth[v.answer]?.debrisLabel ?? 'Not an insect'}, not an insect`
     case 'unlisted':
-      return 'Not scored'
+      return 'Too small to count'
     case 'empty':
       return 'Nothing here'
   }
@@ -120,8 +120,8 @@ function Legend({ j, missed }: { j: Judgement; missed: boolean }) {
     [RED, 'Nothing here', 'The box missed the insect. Its middle has to be inside your box.', count('empty')],
     [
       GRAY,
-      'Not scored',
-      "The experts didn't box this spot (often a tiny bug), so it counts neither way.",
+      'Too small to count',
+      'A speck, mite or bug too small to judge, so it counts neither way.',
       count('unlisted'),
     ],
   ]
@@ -171,6 +171,11 @@ export function StepFind({ lab, onExplain }: { lab: Lab; onExplain: () => void }
     loadYolo().catch(() => {})
   }, [])
   const handSecs = start && end ? (end - start) / 1000 : 0
+  // insects our team added to the answer key that the AI skipped, since the experts it learned from skipped them
+  const teamMissed =
+    scene.real && lab.detector?.engine !== 'simple'
+      ? (lab.detectorJudgement?.missed ?? []).filter((ai) => scene.truth?.[ai]?.label?.team).length
+      : 0
 
   const startTimer = () => {
     lab.setStudentBoxes([])
@@ -376,7 +381,6 @@ export function StepFind({ lab, onExplain }: { lab: Lab; onExplain: () => void }
             {lab.detector.engine === 'saved'
               ? `These are the answers of ${engineName(lab.detector)}.`
               : `The computer checked the whole photo in ${Math.max(1, Math.round(lab.detector.millis))} milliseconds using ${engineName(lab.detector)}.`}{' '}
-            {scene.real && 'Some "false alarms" may be tiny insects the experts didn\'t box. Experts miss things too. '}
             <button className="link" onClick={onExplain}>
               How does an AI like YOLO see?
             </button>{' '}
@@ -385,6 +389,13 @@ export function StepFind({ lab, onExplain }: { lab: Lab; onExplain: () => void }
               Start this step over
             </button>
           </p>
+          {teamMissed > 0 && (
+            <p className="small">
+              The AI missed {teamMissed} small insect{teamMissed > 1 ? 's' : ''} that our team added to the answer key.
+              It learned from the experts' boxes, and the experts often skipped the tiniest bugs, so the AI learned to
+              skip them too. An AI picks up its habits from its training data.
+            </p>
+          )}
         </div>
       )}
 

@@ -9,12 +9,12 @@ export interface Box {
 export interface TruthItem {
   id: string
   box: Box
-  /** 'unlisted': a spot the experts didn't box, often a tiny bug; boxing it counts neither way */
+  /** 'unlisted': a speck, mite or bug too small to judge; boxing it counts neither way */
   kind: 'insect' | 'debris' | 'unlisted'
   speciesId?: string
   debrisLabel?: string
-  /** What a real photo's insect is, from the AMI labels (real photos only). */
-  label?: { name: string; group: ExpertGroup }
+  /** What a real photo's insect is, from the AMI labels or our team's (real photos only). */
+  label?: { name: string; group: ExpertGroup; team?: boolean }
 }
 
 export interface Detection {

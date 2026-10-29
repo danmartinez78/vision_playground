@@ -23,7 +23,8 @@ export function HowWeMade() {
         <ol>
           <li>
             <strong>Photos and right answers</strong> come from the AMI project. Experts drew a box around each insect
-            and named many of the moths.
+            and named many of the moths. On the lesson photos, our team also looked at every spot the experts skipped
+            and added the 16 insects they missed.
           </li>
           <li>
             <strong>We trained two small AIs</strong> on AMI photos: one finds the insects, one sorts each close-up as
@@ -51,7 +52,8 @@ export function HowWeMade() {
         <ul>
           <li>
             <strong>The detector</strong> (YOLO11n) learned to put a box around every insect. On the 6 lesson photos it
-            finds 114 of the 120 insects the experts boxed.
+            finds 115 of the 134 insects in the answer key. Most of the ones it misses are tiny insects our team added:
+            the experts skipped them in the training photos too, so the AI learned to skip them.
           </li>
           <li>
             <strong>The moth-or-not sorter</strong> (MobileNetV3-small) looks at one close-up at a time and says moth,

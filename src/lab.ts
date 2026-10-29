@@ -159,10 +159,12 @@ export function useLab() {
         if (v.kind === 'twice') twice.add(kept[di].id)
       })
     }
-    // on real photos a box with no expert box under it might be a false alarm or
-    // an insect the experts missed, and some obvious moths are labeled only
-    // "Unidentifiable", so neither kind of close-up is scored
-    const scored = (id: string) => !scene?.real || (truthFor.get(id)?.label?.group ?? 'unknown') !== 'unknown'
+    // on real photos a speck too small to judge, or an insect nobody could name, isn't scored;
+    // a box on an empty spot is a false alarm
+    const scored = (id: string) => {
+      const t = truthFor.get(id)
+      return !scene?.real || !t || (t.kind !== 'unlisted' && t.label?.group !== 'unknown')
+    }
 
     // the cards for sorting: the most confident detections first, at most 24
     const cards = kept.slice(0, 24)
