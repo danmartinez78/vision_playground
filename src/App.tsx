@@ -3,6 +3,7 @@ import { HowAiLearns, HowAiSees } from './HowAiSees'
 import { HowWeMade } from './HowWeMade'
 import { Welcome } from './Welcome'
 import { useLab } from './lab'
+import { firstOpenStep, todosFor } from './lib/progress'
 import { OwnPhoto } from './OwnPhoto'
 import { StepFind } from './steps/StepFind'
 import { StepLearn } from './steps/StepLearn'
@@ -24,10 +25,33 @@ export default function App() {
     setPageRaw(p)
     window.scrollTo({ top: 0, behavior: 'smooth' })
   }
+  // the step whose unfinished jobs are listed, after a try to skip past it
+  const [blocked, setBlocked] = useState<number | null>(null)
   const go = (i: number) => {
     setStep(i)
+    setBlocked(null)
     setPage('lesson')
   }
+  /** Go to a step, or, if an earlier one isn't finished, show what's left there and point at it. */
+  const tryGo = (i: number) => {
+    const open = firstOpenStep(lab, i)
+    if (open === i) return go(i)
+    setStep(open)
+    setPage('lesson')
+    setBlocked(open)
+    const first = todosFor(lab, open)[0]
+    window.setTimeout(() => {
+      const el = first && document.getElementById(first.target)
+      if (!el) return
+      el.scrollIntoView({ behavior: 'smooth', block: 'center' })
+      el.classList.remove('attention')
+      void el.offsetWidth
+      el.classList.add('attention')
+      window.setTimeout(() => el.classList.remove('attention'), 2400)
+    }, 50)
+  }
+  const todos = blocked === step ? todosFor(lab, step) : []
+  const openStep = firstOpenStep(lab, STEPS.length - 1)
   const openAi = (part: 'sees' | 'learns' = 'sees') => {
     setAiPart(part)
     setPage('ai')
@@ -74,10 +98,12 @@ export default function App() {
           {STEPS.map((name, i) => (
             <button
               key={name}
-              className={i === step && !ownPhoto ? 'step current' : i < step ? 'step done' : 'step'}
-              onClick={() => go(i)}
+              className={
+                (i === step && !ownPhoto ? 'step current' : i < step ? 'step done' : 'step') +
+                (i > openStep ? ' locked' : '')
+              }
+              onClick={() => tryGo(i)}
               aria-label={`Step ${i + 1}: ${name}`}
-              disabled={i > 0 && !lab.scene}
               aria-current={i === step && !ownPhoto ? 'step' : undefined}
             >
               <span className="num">{i + 1}</span>
@@ -143,6 +169,16 @@ export default function App() {
             {step === 3 && lab.scene && <StepReview lab={lab} />}
             {step === 4 && lab.scene && <StepLearn lab={lab} onOwn={() => setPage('own')} onAi={() => openAi()} />}
 
+            {todos.length > 0 && (
+              <div className="warn todo" role="alert">
+                <strong>Before you go on:</strong>
+                <ul>
+                  {todos.map((t) => (
+                    <li key={t.target}>{t.text}</li>
+                  ))}
+                </ul>
+              </div>
+            )}
             <div className="nav-buttons">
               {step > 0 && (
                 <button className="ghost" onClick={() => go(step - 1)}>
@@ -150,7 +186,7 @@ export default function App() {
                 </button>
               )}
               {step < STEPS.length - 1 && (
-                <button className="primary" onClick={() => go(step + 1)} disabled={!lab.scene}>
+                <button className="primary" onClick={() => tryGo(step + 1)}>
                   Next: {STEPS[step + 1]} →
                 </button>
               )}

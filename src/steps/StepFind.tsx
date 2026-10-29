@@ -234,7 +234,7 @@ export function StepFind({ lab, onExplain }: { lab: Lab; onExplain: () => void }
         <span className="bar-count">
           <strong>{lab.studentBoxes.length}</strong> {lab.studentBoxes.length === 1 ? 'box' : 'boxes'}
         </span>
-        <button className="primary bar-done" onClick={finish} disabled={!lab.studentBoxes.length}>
+        <button id="need-boxes" className="primary bar-done" onClick={finish} disabled={!lab.studentBoxes.length}>
           I'm done
         </button>
       </>
@@ -318,7 +318,7 @@ export function StepFind({ lab, onExplain }: { lab: Lab; onExplain: () => void }
               : 'Drag a box around every insect you can find. Zoom in to spot the small ones.'}{' '}
             The stopwatch runs until you press <em>I'm done</em>.
           </p>
-          <button className="primary big" onClick={startTimer}>
+          <button id="need-boxes" className="primary big" onClick={startTimer}>
             ⏱️ Start
           </button>
         </div>
@@ -412,7 +412,7 @@ export function StepFind({ lab, onExplain }: { lab: Lab; onExplain: () => void }
               It runs right now, inside this browser, so it works on your own photos too.
             </p>
           </div>
-          <button className="primary big" onClick={lab.runIt} disabled={lab.detecting}>
+          <button id="need-detector" className="primary big" onClick={lab.runIt} disabled={lab.detecting}>
             {lab.detecting ? 'The AI is looking at the photo…' : "▶ Run the computer's detector"}
           </button>
         </div>

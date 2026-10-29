@@ -194,6 +194,34 @@ select:focus-visible,
   background: #3f9d6b;
 }
 
+/* a step you can't open yet: clicking it shows what's left on the step before */
+.step.locked {
+  opacity: 0.55;
+}
+
+.todo {
+  margin: 1rem 0 0;
+  border: 2px solid var(--miss, #d97706);
+}
+
+.todo ul {
+  margin: 0.3rem 0 0;
+  padding-left: 1.2rem;
+}
+
+/* briefly points at the thing a student still has to do */
+.attention {
+  outline: 3px solid #f59e0b;
+  outline-offset: 3px;
+  animation: attention 0.6s ease-in-out 4 alternate;
+}
+
+@keyframes attention {
+  to {
+    outline-color: transparent;
+  }
+}
+
 .intro {
   max-width: 820px;
 }

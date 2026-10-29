@@ -63,7 +63,7 @@ export function StepReview({ lab }: { lab: Lab }) {
 
       {lab.unsure.length === 0 && <p>The AI has no answers to check on this photo. Try another photo.</p>}
 
-      <div className="review-list">
+      <div className="review-list" id="need-review">
         {lab.unsure.map((d) => {
           const g = lab.mothAi.get(d.id)!
           const truth = lab.truthFor.get(d.id)

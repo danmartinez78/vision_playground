@@ -79,7 +79,7 @@ export function StepSort({ lab }: { lab: Lab }) {
       {lab.mothFailed ? (
         <p className="warn">The moth AI couldn't run on this device, so there are no AI answers to show.</p>
       ) : !lab.mothReady ? (
-        <p>The AI is looking at the close-ups…</p>
+        <p id="need-moth">The AI is looking at the close-ups…</p>
       ) : (
         REAL_GROUPS.map((gr) => {
           const cards = lab.cards.filter((d) => lab.mothAi.get(d.id)?.group === gr.id)

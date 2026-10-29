@@ -47,7 +47,7 @@ export function StepNight({ lab }: { lab: Lab }) {
         the lab knows the right answers.
       </p>
       {error && <p className="warn">{error}</p>}
-      <div className="sample-grid">
+      <div className="sample-grid" id="need-photo">
         {samples.map((s) => (
           <button
             key={s.image}
@@ -76,6 +76,7 @@ export function StepNight({ lab }: { lab: Lab }) {
             <label className="guess">
               Quick guess: how many insects are on this sheet?
               <input
+                id="need-guess"
                 type="number"
                 min={0}
                 inputMode="numeric"
