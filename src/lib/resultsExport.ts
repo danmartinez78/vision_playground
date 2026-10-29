@@ -17,7 +17,8 @@ const n = (v: number | null) => (v === null ? '—' : String(v))
 /** "You vs. the AI" rows: label, you, AI. */
 export function findRows(r: LabResults): Array<[string, string, string]> {
   const rows: Array<[string, string, string]> = []
-  if (r.insects !== null) rows.push(['Insects found', `${n(r.you.found)} of ${r.insects}`, `${n(r.ai.found)} of ${r.insects}`])
+  if (r.insects !== null)
+    rows.push(['Insects found', `${n(r.you.found)} of ${r.insects}`, `${n(r.ai.found)} of ${r.insects}`])
   else rows.push(['Boxes drawn', String(r.you.boxes), n(r.ai.found)])
   if (r.insects !== null) {
     rows.push(['Missed', n(r.you.missed), n(r.ai.missed)])
@@ -34,7 +35,10 @@ export function findRows(r: LabResults): Array<[string, string, string]> {
 /** Short lines about sorting, checking and scaling up. */
 export function resultLines(r: LabResults): string[] {
   const lines: string[] = []
-  if (r.sort) lines.push(`Moth or not: we got ${r.sort.you} of ${r.sort.scored} right, the AI got ${r.sort.ai} of ${r.sort.scored}.`)
+  if (r.sort)
+    lines.push(
+      `Moth or not: we got ${r.sort.you} of ${r.sort.scored} right, the AI got ${r.sort.ai} of ${r.sort.scored}.`,
+    )
   if (r.review)
     lines.push(
       `Checking the AI: we checked its ${r.review.checked} least-sure answers${r.review.aiWrong ? ` and fixed ${r.review.fixed} of its ${r.review.aiWrong} ${r.review.aiWrong === 1 ? 'mistake' : 'mistakes'}` : ', and it had them all right'}. AI alone: ${r.review.aiAlone} of ${r.review.scored} right. AI + us: ${r.review.team} of ${r.review.scored}.`,
@@ -109,7 +113,15 @@ const W = 1600
 const H = 900
 const FONT = '"Segoe UI", system-ui, -apple-system, Roboto, Arial, sans-serif'
 
-function wrap(ctx: CanvasRenderingContext2D, text: string, x: number, y: number, width: number, lineH: number, maxLines: number): number {
+function wrap(
+  ctx: CanvasRenderingContext2D,
+  text: string,
+  x: number,
+  y: number,
+  width: number,
+  lineH: number,
+  maxLines: number,
+): number {
   const words = text.split(/\s+/).filter(Boolean)
   let line = ''
   let lines = 0
@@ -173,7 +185,10 @@ export async function resultsSlidePng(r: LabResults, notes: ResultsNotes, photo:
     ctx.font = `600 22px ${FONT}`
     let kx = px + (pw - w) / 2
     const ky = py + h + 12
-    for (const [label, color] of [['Our boxes', YOU_COLOR], ["The AI's boxes", AI_COLOR]] as const) {
+    for (const [label, color] of [
+      ['Our boxes', YOU_COLOR],
+      ["The AI's boxes", AI_COLOR],
+    ] as const) {
       ctx.strokeStyle = color
       ctx.lineWidth = 4
       ctx.strokeRect(kx, ky + 2, 20, 20)
@@ -223,6 +238,10 @@ export async function resultsSlidePng(r: LabResults, notes: ResultsNotes, photo:
   ctx.fillStyle = '#94a3b8'
   ctx.font = `400 18px ${FONT}`
   const team = notes.team.trim()
-  ctx.fillText(`${team ? `${team} · ` : ''}Mothbox Vision Lab${r.real ? ' · Photo: AMI-Traps dataset' : ''}`, 50, H - 32)
+  ctx.fillText(
+    `${team ? `${team} · ` : ''}Mothbox Vision Lab${r.real ? ' · Photo: AMI-Traps dataset' : ''}`,
+    50,
+    H - 32,
+  )
   return new Promise((resolve) => canvas.toBlob((b) => resolve(b), 'image/png'))
 }

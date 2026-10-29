@@ -61,8 +61,8 @@ interface Card {
   ai: SpeciesGuess
 }
 
-/** Step 4: see how BioCLIP named the moths, and how often it was right. */
-export function StepName({ lab }: { lab: Lab }) {
+/** The end of Check the AI's work: how BioCLIP named the moths, and how often it was right. */
+export function NameTheMoth({ lab }: { lab: Lab }) {
   const scene = lab.scene!
   const image = scene.key.replace(/^ami-/, '')
   const [answers, setAnswers] = useState<Map<number, SpeciesGuess[]> | null>(null)
@@ -112,50 +112,41 @@ export function StepName({ lab }: { lab: Lab }) {
   )
 
   const intro = (
-    <div className="intro">
-      <h2>Step 4: Name the moth</h2>
+    <>
+      <h3>Going further: which kinds of moths?</h3>
       <p>
-        Counting moths is only half the job. Scientists also want to know <em>which kinds</em> came. We ran a big AI
-        called <strong>BioCLIP</strong> on your photo ahead of time (it's too big for a browser). It has seen photos of
-        hundreds of thousands of kinds of living things. Here's what it said about each moth, next to what the experts
-        said.
+        Scientists also want to know <em>which kinds</em> of moths came. We ran a big AI called <strong>BioCLIP</strong>{' '}
+        on your photo ahead of time (it's too big for a browser). It has seen photos of hundreds of thousands of kinds
+        of living things. Here's what it said about each moth, next to what the experts said.
       </p>
-    </div>
+    </>
   )
 
-  if (!lab.detector) {
-    return (
-      <section>
-        {intro}
-        <p className="warn">Run the computer's detector in Step 2 first.</p>
-      </section>
-    )
-  }
   if (failed) {
     return (
-      <section>
+      <div className="name-section">
         {intro}
         <p className="warn">BioCLIP's answers couldn't load. Check your connection and try again.</p>
-      </section>
+      </div>
     )
   }
   if (!answers) {
     return (
-      <section>
+      <div className="name-section">
         {intro}
         <p className="muted">Loading BioCLIP's answers…</p>
-      </section>
+      </div>
     )
   }
   if (!cards.length) {
     return (
-      <section>
+      <div className="name-section">
         {intro}
         <p>
-          The experts didn't name the kind of any moth on this photo, so there's nothing to compare. Pick another photo
-          in Step 1, or go on to the next step.
+          The experts didn't name the kind of any moth on this photo, so there's nothing to compare here. Try another
+          photo from Step 1 to see BioCLIP at work.
         </p>
-      </section>
+      </div>
     )
   }
 
@@ -164,7 +155,7 @@ export function StepName({ lab }: { lab: Lab }) {
   const unsure = cards.filter((c) => c.ai.confidence < SURE)
 
   return (
-    <section>
+    <div className="name-section">
       {intro}
 
       <div className="score">
@@ -232,8 +223,8 @@ export function StepName({ lab }: { lab: Lab }) {
           </>
         )}
         BioCLIP is a helper, not the final judge. Experts check its answers, especially the unsure ones, and every
-        answer they fix can be used to train a better model. You'll do that kind of checking in the next step.
+        answer they fix can be used to train a better model, just like the moth-or-not answers you checked above.
       </p>
-    </section>
+    </div>
   )
 }

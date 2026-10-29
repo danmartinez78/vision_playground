@@ -10,8 +10,21 @@ export interface LabResults {
   /** Insects the experts boxed on the photo (null on a photo with no answer key). */
   insects: number | null
   guess: string
-  you: { boxes: number; found: number | null; missed: number | null; falseAlarms: number | null; seconds: number | null }
-  ai: { found: number | null; missed: number | null; falseAlarms: number | null; seconds: number | null; saved: boolean; spotFinder: boolean }
+  you: {
+    boxes: number
+    found: number | null
+    missed: number | null
+    falseAlarms: number | null
+    seconds: number | null
+  }
+  ai: {
+    found: number | null
+    missed: number | null
+    falseAlarms: number | null
+    seconds: number | null
+    saved: boolean
+    spotFinder: boolean
+  }
   /** Moth or not: how many close-ups each got right (scored ones only). */
   sort: { scored: number; you: number; ai: number } | null
   /** Checking the AI's least-sure answers. */
@@ -59,7 +72,9 @@ export function labResults(lab: Lab): LabResults {
       ? {
           checked: checked.length,
           aiWrong: reviewScored.filter((d) => !right(d.id, lab.mothAi.get(d.id)?.group)).length,
-          fixed: reviewScored.filter((d) => !right(d.id, lab.mothAi.get(d.id)?.group) && right(d.id, lab.finalLabel(d.id) ?? 'notbug')).length,
+          fixed: reviewScored.filter(
+            (d) => !right(d.id, lab.mothAi.get(d.id)?.group) && right(d.id, lab.finalLabel(d.id) ?? 'notbug'),
+          ).length,
           aiAlone: scored.filter((d) => right(d.id, lab.mothAi.get(d.id)?.group)).length,
           team: scored.filter((d) => right(d.id, lab.finalLabel(d.id) ?? 'notbug')).length,
           scored: scored.length,
@@ -85,7 +100,8 @@ export function resultsPhoto(canvas: HTMLCanvasElement, yours: Box[], ai: Box[],
   const draw = (boxes: Box[], color: string, inset: number) => {
     ctx.strokeStyle = color
     ctx.lineWidth = line
-    for (const b of boxes) ctx.strokeRect(b.x * scale - inset, b.y * scale - inset, b.w * scale + 2 * inset, b.h * scale + 2 * inset)
+    for (const b of boxes)
+      ctx.strokeRect(b.x * scale - inset, b.y * scale - inset, b.w * scale + 2 * inset, b.h * scale + 2 * inset)
   }
   // the student's boxes sit just outside the AI's, so both show on the same insect
   draw(ai, AI_COLOR, 0)

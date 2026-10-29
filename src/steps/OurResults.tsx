@@ -39,7 +39,7 @@ function download(filename: string, blob: Blob) {
 
 const fileStem = () => `vision-lab-results-${new Date().toISOString().slice(0, 10)}`
 
-/** Step 6's results card: the student's results on one page, to print or put on a slide. */
+/** Step 5's results card: the student's results on one page, to print or put on a slide. */
 export function OurResults({ lab }: { lab: Lab }) {
   const [notes, setNotes] = useState<ResultsNotes>(loadNotes)
   const [busy, setBusy] = useState(false)
@@ -129,7 +129,12 @@ export function OurResults({ lab }: { lab: Lab }) {
 
       <label className="results-write">
         <span>One thing we learned</span>
-        <textarea rows={2} value={notes.learned} placeholder={LEARNED_STARTER} onChange={(e) => set('learned')(e.target.value)} />
+        <textarea
+          rows={2}
+          value={notes.learned}
+          placeholder={LEARNED_STARTER}
+          onChange={(e) => set('learned')(e.target.value)}
+        />
       </label>
       {!notes.learned.trim() && (
         <button className="link" onClick={() => set('learned')(LEARNED_STARTER)}>
@@ -138,7 +143,12 @@ export function OurResults({ lab }: { lab: Lab }) {
       )}
       <label className="results-write">
         <span>How this could help our sensor</span>
-        <textarea rows={2} value={notes.sensor} placeholder={SENSOR_STARTER} onChange={(e) => set('sensor')(e.target.value)} />
+        <textarea
+          rows={2}
+          value={notes.sensor}
+          placeholder={SENSOR_STARTER}
+          onChange={(e) => set('sensor')(e.target.value)}
+        />
       </label>
       {!notes.sensor.trim() && (
         <button className="link" onClick={() => set('sensor')(SENSOR_STARTER)}>
@@ -154,7 +164,9 @@ export function OurResults({ lab }: { lab: Lab }) {
           🖼 Save slide picture
         </button>
       </div>
-      <p className="small muted">The report prints on one page, or saves as a PDF. The slide picture is a PNG for your slides.</p>
+      <p className="small muted">
+        The report prints on one page, or saves as a PDF. The slide picture is a PNG for your slides.
+      </p>
     </div>
   )
 }

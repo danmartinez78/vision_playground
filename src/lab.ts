@@ -12,7 +12,7 @@ export interface MothGuess {
 /** How many of the AI's least-sure moth-or-not answers go to a person to check. */
 export const REVIEW_COUNT = 4
 
-/** Step 6's "Scale it up" estimate for one night, in seconds. */
+/** Step 5's "Scale it up" estimate for one night, in seconds. */
 export interface ScaleUpTimes {
   hand: number
   team: number

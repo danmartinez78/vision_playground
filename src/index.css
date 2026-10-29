@@ -1892,7 +1892,7 @@ details.callout > summary:focus:not(:focus-visible) {
   padding: 0.75rem 1rem;
 }
 
-/* Step 6: Our results card */
+/* Step 5: Our results card */
 .our-results {
   background: var(--card);
   border: 2px solid var(--accent);
@@ -1977,4 +1977,11 @@ details.callout > summary:focus:not(:focus-visible) {
   .results-grid {
     grid-template-columns: 1fr;
   }
+}
+
+/* BioCLIP's species answers, after the moth-or-not check */
+.name-section {
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--line);
 }

@@ -69,7 +69,7 @@ export function HowWeMade() {
         <p>
           <strong>BioCLIP 2</strong>, from the Imageomics Institute, learned from photos of hundreds of thousands of
           kinds of living things. We gave it the list of moths that live in each photo's region and saved its top
-          answers. It's too big to run in a browser, so step 4 shows those saved answers.
+          answers. It's too big to run in a browser, so the lesson shows those saved answers.
         </p>
       </div>
 
@@ -130,7 +130,7 @@ export function HowWeMade() {
             <Link href="https://pytorch.org/vision/stable/models/mobilenetv3.html">MobileNetV3 docs</Link>
           </li>
           <li>
-            <strong>BioCLIP</strong> by the Imageomics Institute names each moth in step 4, like it does for the
+            <strong>BioCLIP</strong> by the Imageomics Institute names the moths in the lesson, like it does for the
             Mothbox's makers. It's too big for a browser, so we ran it ahead of time on the lesson photos.{' '}
             <Link href="https://imageomics.github.io/bioclip/">BioCLIP</Link> (MIT license)
           </li>
