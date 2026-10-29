@@ -23,10 +23,6 @@ export interface Sample {
   groups?: string[]
   /** Who drew each box: 'ami' (the experts) or 'team' (our team, on the lesson photos). */
   sources?: string[]
-  /** On the lesson photos: false for insects shorter than 1 cm, which are kept in the key but not scored. */
-  scored?: boolean[]
-  /** Photo pixels per centimeter, measured from the scale card. */
-  px_per_cm?: number
   /** Specks, mites and bugs too small to judge, scored neither way (see scripts/unlisted_spots.py). */
   unlisted?: [number, number, number, number][]
 }
@@ -37,24 +33,18 @@ export const REGION_NAMES: Record<string, string> = {
   WesternEurope: 'Western Europe',
 }
 
-/** The label on spots too small to judge. */
+/** The label on spots the experts didn't box (photos outside the lesson). */
 const UNLISTED = 'Unlisted'
 
 const GROUP_OF: Record<string, ExpertGroup> = { moth: 'moth', 'not a moth': 'other', unknown: 'unknown' }
 
 /**
- * The photos in the lesson: the experts boxed nearly every insect on them,
- * and they named enough moths to species for Step 4. The others stay in
- * "Try your own photo".
+ * The photos in the lesson: every insect on them is boxed and labeled, our
+ * detector finds all of them, and the experts named moths to species for
+ * Step 4. Everything else on them is not a bug. The others stay in "Try your
+ * own photo".
  */
-const LESSON = new Set([
-  '20220820030901-00-156.jpg',
-  '20230722030832-00-44.jpg',
-  '20220623013311-00-137.jpg',
-  '20220616022535-00-16.jpg',
-  '20220628003000-00-75.jpg',
-  '20220602015906-00-188.jpg',
-])
+const LESSON = new Set(['20220616022535-00-16.jpg', '20220602015906-00-188.jpg'])
 
 export const inLesson = (s: Sample) => LESSON.has(s.image)
 
@@ -90,13 +80,13 @@ export async function sceneFromSample(s: Sample): Promise<Scene> {
   // photos wider than the scene size are shrunk, so scale the boxes the same way
   const k = scene.width / s.width
   const box = ([x1, y1, x2, y2]: number[]) => ({ x: x1 * k, y: y1 * k, w: (x2 - x1) * k, h: (y2 - y1) * k })
+  const lesson = inLesson(s)
   const truth: TruthItem[] = [
     ...s.boxes.map(
       (b, i): TruthItem => ({
         id: `t${i}`,
         box: box(b),
-        // insects under 1 cm stay in the key with their label, but count neither way
-        kind: s.scored?.[i] === false ? 'unlisted' : 'insect',
+        kind: 'insect',
         label: {
           name: s.labels?.[i] ?? 'Insect',
           group: GROUP_OF[s.groups?.[i] ?? ''] ?? 'unknown',
@@ -104,13 +94,12 @@ export async function sceneFromSample(s: Sample): Promise<Scene> {
         },
       }),
     ),
+    // on a lesson photo every other dark spot is checked and is not a bug: a box on one is a false alarm
     ...(s.unlisted ?? []).map(
-      (b, i): TruthItem => ({
-        id: `u${i}`,
-        box: box(b),
-        kind: 'unlisted',
-        label: { name: UNLISTED, group: 'unknown' },
-      }),
+      (b, i): TruthItem =>
+        lesson
+          ? { id: `u${i}`, box: box(b), kind: 'debris' }
+          : { id: `u${i}`, box: box(b), kind: 'unlisted', label: { name: UNLISTED, group: 'unknown' } },
     ),
   ]
   return { ...scene, key: `ami-${s.image}`, source: 'sample', real: true, truth }

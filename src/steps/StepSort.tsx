@@ -37,6 +37,12 @@ export function ExpertSays({ id, lab }: { id: string; lab: Lab }) {
       </>
     )
   }
+  if (t.kind === 'debris')
+    return (
+      <>
+        Answer key: <strong>not a bug</strong>.
+      </>
+    )
   if (t.kind === 'unlisted' && t.label?.group === 'unknown') return <>Just a speck, so it isn't scored.</>
   if (t.label?.group === 'unknown') return <>The experts couldn't name this insect, so it isn't scored.</>
   const name = expertName(t.label)

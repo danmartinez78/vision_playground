@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import type { Lab, ScaleUpTimes } from '../lab'
 import { detect } from '../lib/detect'
-import { inLesson, loadSamples, sceneFromSample } from '../lib/samples'
+import { loadSamples, sceneFromSample } from '../lib/samples'
 import { randomRecipe, renderNight } from '../lib/scene'
 import type { Scene } from '../lib/types'
 import { formatDuration } from '../lib/time'
@@ -47,10 +47,10 @@ export function ScaleUp({ lab }: { lab: Lab }) {
     setResult(null)
     const acc: BatchResult = { photos: 0, insects: 0, found: 0, detectSeconds: 0, spotFinder: false }
     const seedBase = Math.floor(Math.random() * 100000)
-    // the other lesson photos (drawn ones only if the photos can't be loaded)
+    // the other real photos (drawn ones only if the photos can't be loaded)
     let next: () => Promise<Scene> = async () => renderNight(randomRecipe(seedBase + acc.photos), false)
     try {
-      const others = (await loadSamples()).filter((s) => inLesson(s) && `ami-${s.image}` !== lab.scene?.key)
+      const others = (await loadSamples()).filter((s) => `ami-${s.image}` !== lab.scene?.key)
       next = () => sceneFromSample(others[acc.photos % others.length])
     } catch {
       // keep the drawn photos if the real ones can't be loaded

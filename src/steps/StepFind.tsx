@@ -28,9 +28,9 @@ function verdictLabel(v: Verdict, truth: TruthItem[]): string {
     case 'twice':
       return 'Counted twice'
     case 'not-insect':
-      return `${truth[v.answer]?.debrisLabel ?? 'Not an insect'}, not an insect`
+      return truth[v.answer]?.debrisLabel ? `${truth[v.answer].debrisLabel}, not an insect` : 'Not an insect'
     case 'unlisted':
-      return 'Under 1 cm, not counted'
+      return 'Not counted'
     case 'empty':
       return 'Nothing here'
   }
@@ -115,10 +115,10 @@ function Legend({ j, missed }: { j: Judgement; missed: boolean }) {
   const rows: [string, string, string, number][] = [
     [GREEN, '✓ Found it', 'Your box covers the middle of an insect.', count('found')],
     [ORANGE, 'Too big', 'Much bigger than the insect inside. Fit it tighter.', count('too-big')],
-    [RED, 'Not an insect', 'A leaf, twig or smudge. Easy to mix up!', count('not-insect')],
+    [RED, 'Not an insect', 'A speck, fiber, leaf or smudge. Easy to mix up!', count('not-insect')],
     [RED, 'Counted twice', 'Another of your boxes already found this insect.', count('twice')],
     [RED, 'Nothing here', 'The box missed the insect. Its middle has to be inside your box.', count('empty')],
-    [GRAY, 'Under 1 cm, not counted', 'Smaller than 1 cm, so it counts neither way.', count('unlisted')],
+    [GRAY, 'Not counted', "This spot isn't in the answer key, so it counts neither way.", count('unlisted')],
   ]
   return (
     <ul className="legend">
@@ -314,9 +314,9 @@ export function StepFind({ lab, onExplain }: { lab: Lab; onExplain: () => void }
           <p>
             <strong>Your turn.</strong>{' '}
             {TOUCH
-              ? 'Tap each insect bigger than 1 cm to box it, then drag the corners to fit. Pinch to zoom in to check.'
-              : 'Drag a box around every insect bigger than 1 cm. Zoom in to check the small ones.'}{' '}
-            Smaller bugs don't count. The stopwatch runs until you press <em>I'm done</em>.
+              ? 'Tap each insect you can find to box it, then drag the corners to fit. Pinch to zoom in on the small ones.'
+              : 'Drag a box around every insect you can find. Zoom in to spot the small ones.'}{' '}
+            The stopwatch runs until you press <em>I'm done</em>.
           </p>
           <button className="primary big" onClick={startTimer}>
             ⏱️ Start

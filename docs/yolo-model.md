@@ -51,17 +51,12 @@ Some of these "false alarms" are tiny insects the experts didn't box. One photo,
 
 ## Answer key on the lesson photos
 
-The lesson asks students to find **every insect 1 cm or bigger**, and it grades both students and the AI on exactly those insects.
+The lesson uses only 2 photos, `20220616022535-00-16` and `20220602015906-00-188`. On both, every insect is boxed and labeled, and YOLO11n (score 0.25 or more) finds all 34 of them with the lesson's own box rules (`judgeBoxes`). The other 4 photos we checked had insects the experts skipped that the detector misses too, so they stay in "Try your own photo".
 
-- **Scale:** all 6 lesson photos measure about 42 px per cm in the 1600 px photo (`px_per_cm`). That comes from the printed 20 mm scale card on five of them. On the sixth, `20230722030832-00-44`, it comes from Chrysoteuchia culmella moths, which are about 12 mm long.
-- **The key:** every AMI expert box, plus 16 small insects our team boxed that the experts skipped.
-  - Each box has a `sources` entry: `ami` or `team`.
-  - Our team also relabeled one "Unidentifiable" box that is clearly a moth as `Moth`.
-  - Two insects cut off at the photo edge moved to `unlisted`.
-  - New boxes go after the expert boxes, so the indexes in `bioclip.json` don't change.
-- **Scored:** `scored` is true when the box's long side is at least 1 cm. 82 insects are scored.
-- **Not scored:** insects under 1 cm stay in the key with their labels, but `src/lib/samples.ts` gives them the not-scored kind. A box on one counts neither as a find nor as a false alarm. The same goes for `unlisted` spots: specks, dust, the scale card, mites and insects cut off at the edge.
-- **Detector:** with a score of 0.25 or more, YOLO11n finds 81 of the 82 scored insects with the lesson's own box rules (`judgeBoxes`). All 16 team-added insects are under 1 cm, so they aren't scored. The experts skipped insects that small, and so does the detector.
+- **The key:** every AMI expert box, plus one small insect our team boxed on photo 16 and one "Unidentifiable" box on photo 188 relabeled as `Moth`. Each box has a `sources` entry: `ami` or `team`.
+- **Everything else is not a bug:** the other dark spots (`unlisted`: specks, fibers, the scale card, mites) were checked by our team. On a lesson photo a box on one is a false alarm, and its close-up's right answer is "Not a bug".
+- **Other photos:** outside the lesson, `unlisted` spots count neither way, since nobody checked them.
+- The `scored` and `px_per_cm` fields in `index.json` are left from an earlier 1 cm rule and are not used.
 
 ## Precomputed results for devices that can't run the models
 
